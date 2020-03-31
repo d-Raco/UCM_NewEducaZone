@@ -60,10 +60,10 @@ div#contenido {
 }
 
 div#pie {
-	position: absolute;
+	position:fixed;
   	bottom: 0;
   	width:98%;
-	padding: 10px;
+	padding: 5px;
 	background-color: #31A36E;
 	color: white;
 	text-align: center;

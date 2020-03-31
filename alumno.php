@@ -83,7 +83,7 @@
               }
 
               echo "<p>Observaciones médicas: " .$filaAlumno["observaciones_medicas"]. "</p>";
-              echo "<a href=\"ver_calificaciones_profesor.php?id=" .$filaAlumno["id_calificaciones"]. "\">Calificaciones</a>";
+              echo "<a href=\"ver_calificaciones_padre.php?id=" .$filaAlumno["id_calificaciones"]. "\">Calificaciones</a>";
 
               $a1 = $filaClase["id_asignatura1"];
               $a2 = $filaClase["id_asignatura2"];
@@ -105,7 +105,7 @@
 
                   if($result2->num_rows > 0){
                     $filaProfesor = $result2->fetch_assoc();
-                    echo "<pre>     " .$filaProfesor["nombre"]. " " .$filaProfesor["apellido1"]. " " .$filaProfesor["apellido2"]. " (" .$filaAsignatura["nombre_asignatura"]. ")</pre>";
+                    echo "<ol><a href=\"profesor.php?profesor=" .$idProfesor. "&tutor=" .$idTutor. "\">     " .$filaProfesor["nombre"]. " " .$filaProfesor["apellido1"]. " " .$filaProfesor["apellido2"]. " (" .$filaAsignatura["nombre_asignatura"]. ")</a></ol>";
                   }
                 }
               }
