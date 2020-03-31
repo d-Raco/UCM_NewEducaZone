@@ -34,7 +34,7 @@
      <h3><?php echo $_SESSION["name"] ?></h3>
         <ul><a href="clases.php">Clases</a></ul>
         <ul><a href="horario_profesor.php">Horario</a></ul>
-        <ul><a>Mensajería</a></ul>
+        <ul><a href="mensajeriaClases.php">Mensajería</a></ul>
         <ul><a>Calendario</a></ul>
         <ul><a>Incidencias</a></ul>
     </div>

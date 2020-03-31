@@ -7,7 +7,6 @@
   <body>
     <div id="sidebarIzq">
      <h3><?php echo $_SESSION["name"] ?></h3>
-        <ul><a>Asignaturas</a></ul>
         <ul><a>Mensajería</a></ul>
         <ul><a>Calendario</a></ul>
         <ul><a>Incidencias</a></ul>

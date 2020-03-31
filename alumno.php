@@ -13,7 +13,7 @@
     <?php
       include("include/comun/cabecera.php");
       if($_SESSION['rol'] == 'profesor'){
-        include("include/comun/sidebarIzqProfesor.php");        
+        include("include/comun/sidebarIzqProfesor.php");
       }
       else{
         include("include/comun/sidebarIzqPadre.php");
@@ -21,7 +21,7 @@
     ?>
     <div id="contenido">
       <?php
-         
+
           $conn = new mysqli(BD_HOST, BD_USER, BD_PASS, BD_NAME);
           $id = $conn->real_escape_string($_GET['id']);
           $_SESSION['alumno'] = $id;
@@ -36,7 +36,7 @@
 
             if($result->num_rows > 0){
               $filaAlumno = $result->fetch_assoc();
-              echo "<h1>" .$filaAlumno["nombre"]. " " .$filaAlumno["apellido1"]. " " .$filaAlumno["apellido2"]. "</h2>";
+              echo "<h1>" .$filaAlumno["nombre"]. " " .$filaAlumno["apellido1"]. " " .$filaAlumno["apellido2"]. "</h1>";
               echo "<img src=\"" .$filaAlumno["foto"]. "\"  width=\"150\" height=\"150\">";
               echo "<p>Fecha de nacimiento: " .$filaAlumno["fecha_nacimiento"]. ".</p>";
               echo "<p>DNI: " .$filaAlumno["DNI"]. ".</p>";
@@ -76,14 +76,39 @@
 
               if($result->num_rows > 0){
                 $filaTutor = $result->fetch_assoc();
-                echo "<p>Tutor legal: " .$filaTutor["nombre"]. " " .$filaTutor["apellido1"]. " " .$filaTutor["apellido2"]. " Datos de contacto: móvil (" .$filaTutor["telefono_movil"]. "), fijo (" .$filaTutor["telefono_fijo"]. "), mail (" .$filaTutor["correo"]. ").</p>";
+                echo "<p>Tutor legal: " .$filaTutor["nombre"]. " " .$filaTutor["apellido1"]. " " .$filaTutor["apellido2"]. ". Datos de contacto: móvil (" .$filaTutor["telefono_movil"]. "), fijo (" .$filaTutor["telefono_fijo"]. "), mail (" .$filaTutor["correo"]. ").</p>";
               }
               else{
-                echo "No hay ningún tutor legal con al id " .$idTutor. " en la base de datos.";
+                echo "No hay ningún tutor legal con el id " .$idTutor. " en la base de datos.";
               }
 
               echo "<p>Observaciones médicas: " .$filaAlumno["observaciones_medicas"]. "</p>";
               echo "<a href=\"ver_calificaciones_profesor.php?id=" .$filaAlumno["id_calificaciones"]. "\">Calificaciones</a>";
+
+              $a1 = $filaClase["id_asignatura1"];
+              $a2 = $filaClase["id_asignatura2"];
+              $a3 = $filaClase["id_asignatura3"];
+              $a4 = $filaClase["id_asignatura4"];
+              $a5 = $filaClase["id_asignatura5"];
+              $a6 = $filaClase["id_asignatura6"];
+              $sql = "SELECT id_profesor, nombre_asignatura FROM asignaturas WHERE id = '$a1' || id = '$a2' || id = '$a3' || id = '$a4' || id = '$a5' || id = '$a6'";
+              $result = $conn->query($sql)
+                  or die ($conn->error. " en la línea ".(__LINE__-1));
+
+              if($result->num_rows > 0){
+                echo "<p>Profesores:</p>";
+                while($filaAsignatura = $result->fetch_assoc()){
+                  $idProfesor = $filaAsignatura["id_profesor"];
+                  $sql = "SELECT nombre, apellido1, apellido2 FROM profesores WHERE id = '$idProfesor'";
+                  $result2 = $conn->query($sql)
+                      or die ($conn->error. " en la línea ".(__LINE__-1));
+
+                  if($result2->num_rows > 0){
+                    $filaProfesor = $result2->fetch_assoc();
+                    echo "<pre>     " .$filaProfesor["nombre"]. " " .$filaProfesor["apellido1"]. " " .$filaProfesor["apellido2"]. " (" .$filaAsignatura["nombre_asignatura"]. ")</pre>";
+                  }
+                }
+              }
             }
             else{
               echo "No hay alumnos con id " .$id. ".";
@@ -95,7 +120,7 @@
 
     <?php
       if($_SESSION['rol'] == 'profesor'){
-        include("include/comun/sidebarDerProfesor.php");        
+        include("include/comun/sidebarDerProfesor.php");
       }
       else{
         include("include/comun/sidebarDerPadre.php");

@@ -37,58 +37,20 @@
               $filaPadre = $result->fetch_assoc();
               $id = $filaPadre["id"];
 
-              $sql = "SELECT * FROM alumnos WHERE id_tutor_legal = '$id'";
+              echo "<h1>" .$filaPadre["nombre"]. " " .$filaPadre["apellido1"]. " " .$filaPadre["apellido2"]. "</h1>";
+              echo "<p>Correo electrónico: " .$filaPadre["correo"]. ".</p>";
+              echo "<p>Teléfono móvil: " .$filaPadre["telefono_movil"]. ".</p>";
+              echo "<p>Teléfono fijo: " .$filaPadre["telefono_fijo"]. ".</p>";
+
+              $sql = "SELECT DNI, nombre, apellido1, apellido2 FROM alumnos WHERE id_tutor_legal = '$id'";
               $result = $conn->query($sql)
                   or die ($conn->error. " en la línea ".(__LINE__-1));
 
               if($result->num_rows > 0){
-                $filaAlumno = $result->fetch_assoc();
-                echo "<h1>" .$filaAlumno["nombre"]. " " .$filaAlumno["apellido1"]. " " .$filaAlumno["apellido2"]. "</h2>";
-                echo "<img src=\"" .$filaAlumno["foto"]. "\"  width=\"150\" height=\"150\">";
-                echo "<p>Fecha de nacimiento: " .$filaAlumno["fecha_nacimiento"]. ".</p>";
-                echo "<p>DNI: " .$filaAlumno["DNI"]. ".</p>";
-
-                $idClase = $filaAlumno["id_clase"];
-                $sql = "SELECT * FROM clases WHERE id = '$idClase'";
-                $result = $conn->query($sql)
-                    or die ($conn->error. " en la línea ".(__LINE__-1));
-
-                if($result->num_rows > 0){
-                  $filaClase = $result->fetch_assoc();
-                  echo "<p>Clase: " .$filaClase["curso"]. "º " .$filaClase["titulación"]. " " .$filaClase["letra"]. ".</p>";
+                echo "<p>Hijos: </p>";
+                while($filaAlumno = $result->fetch_assoc()){
+                  echo "<pre>     <a href=\"alumno.php?id=".$filaAlumno["DNI"]."\">" .$filaAlumno["nombre"]. " " .$filaAlumno["apellido1"]. " " .$filaAlumno["apellido2"]. "</a></pre>";
                 }
-                else{
-                  echo "La clase con id " .$idClase. " no se encuentra en la base de datos.";
-                }
-
-                $idCentro = $filaAlumno["id_centro"];
-                $sql = "SELECT * FROM centros WHERE id = '$idCentro'";
-                $result = $conn->query($sql)
-                    or die ($conn->error. " en la línea ".(__LINE__-1));
-
-                if($result->num_rows > 0){
-                  $filaCentro = $result->fetch_assoc();
-                  echo "<p>Colegio: " .$filaCentro["nombre"]. " (" .$filaCentro["direccion"]. ", " .$filaCentro["provincia"]. ").</p>";
-                }
-                else{
-                  echo "El centro con id " .$idCentro. " no se encuentra en la base de datos.";
-                }
-
-                $idTutor = $filaAlumno["id_tutor_legal"];
-                $sql = "SELECT * FROM tutor_legal WHERE id = '$idTutor'";
-                $result = $conn->query($sql)
-                    or die ($conn->error. " en la línea ".(__LINE__-1));
-
-                if($result->num_rows > 0){
-                  $filaTutor = $result->fetch_assoc();
-                  echo "<p>Tutor legal: " .$filaTutor["nombre"]. " " .$filaTutor["apellido1"]. " " .$filaTutor["apellido2"]. " Datos de contacto: móvil (" .$filaTutor["telefono_movil"]. "), fijo (" .$filaTutor["telefono_fijo"]. "), mail (" .$filaTutor["correo"]. ").</p>";
-                }
-                else{
-                  echo "No hay ningún tutor legal con al id " .$idTutor. " en la base de datos.";
-                }
-
-                echo "<p>Observaciones médicas: " .$filaAlumno["observaciones_medicas"]. "</p>";
-                echo "<a href=\"ver_calificaciones_padre.php?id=" .$filaAlumno["id_calificaciones"]. "\">Calificaciones</a>";
               }
               else{
                 echo "No hay alumnos asociados con el tutor legal con id " .$id. ".";
