@@ -1,0 +1,50 @@
+/*Artur Amon 'Educazone' 2020*/
+
+
+:root{
+  --color-verdeFuerte: #31A36E;
+  --color-verdeFlojo: #91C499;
+  --color-mostaza: #E3C322;
+  --color-beige: #EFD0CA;
+  --color-khaki: #C1BCAC;
+}
+
+.copyleft {
+  display:inline-block;
+  transform: rotate(180deg);
+}
+
+.cuerpoDeTexto{
+
+	position: absolute;
+	border-style: hidden;
+	border-radius: 20px;
+	max-width: 80%;
+	top: 50%;
+	left: 20%;
+	right: 20%;
+  transform: translate(-20%, -50%);
+  margin:50px;
+
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 20px;
+  padding-top: 15px;
+}
+
+.content {
+  min-height: 100%;
+}
+.content-inside {
+  padding: 20px;
+  padding-bottom: 50px;
+}
+.footer {
+  height: 50px;
+  margin-top: -50px;
+  text-align: right;
+  color: grey;
+}
