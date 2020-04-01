@@ -27,11 +27,11 @@
     <div id="contenido">
       <h1>Mensajería</h1>
 
-              <form method="post">
-                <p class="msg"> Escribe aqui tu mensaje: <br/>
-                <input type="varchar" name="contenido_msg"></p>
-                <input class="msg" type="submit" value="Submit">
-              </form>
+      <form method="post">
+        <p class="msg"> Escribe aqui tu mensaje: <br/>
+        <input type="varchar" name="contenido_msg"></p>
+        <input class="msg" type="submit" value="Submit">
+      </form>
 
   <?php
       if($_SESSION['rol'] == 'profesor'){
@@ -58,16 +58,14 @@
           if($result->num_rows > 0){
             $fila = $result->fetch_assoc();
 
-            
-          }
-          $iddestino = $_REQUEST['tutor'];
-          $idorig = $_REQUEST["profesor"];
+            $iddestino = $_REQUEST['tutor'];
+            $idorig = $_REQUEST["profesor"];
         
           $mensaje = $_REQUEST["contenido_msg"];
           setlocale(LC_TIME,"es_ES");
           $tiempo = date('Y-m-d h:i:s');
-         // $tiempo = strftime("%D %H:%M:%S");
-
+          // $tiempo = strftime("%D %H:%M:%S");
+          } 
 
           if($mensaje != ""){
             $sql = "INSERT INTO mensajería (id_origen,rol_origen,id_destinatario,rol_destinatario,contenido_msg,fecha_hora)
