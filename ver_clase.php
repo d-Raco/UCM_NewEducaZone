@@ -35,7 +35,7 @@
               or die ($conn->error. " en la línea ".(__LINE__-1));
 
           if($result->num_rows > 0){
-            echo "<p>Alumnos de la clase</p>";
+            echo "<h2>Alumnos de la clase</h2>";
             $i = 1;
             while($fila = $result->fetch_assoc()){
               echo "<p><a href=\"alumno.php?id=" .$fila["DNI"]. "\">" .$i. ". " .$fila["nombre"]. " " .$fila["apellido1"]. " " .$fila["apellido2"]. "</a></p>";

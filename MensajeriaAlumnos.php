@@ -40,8 +40,9 @@
 
           if($result->num_rows > 0){
             $i = 1;
+            $contenido_msg = NULL;
             while($fila = $result->fetch_assoc()){
-              echo "<p><a href=\"mensajeria.php?id= ".$fila["id_tutor_legal"]."\">" .$i. ". Tutor legal de " .$fila["nombre"]. " " .$fila["apellido1"]. " " .$fila["apellido2"]. "</a></p>";
+              echo "<p><a href=\"mensajeria.php?id= ".$fila["id_tutor_legal"]."&contenido_msg= ".$contenido_msg."\">" .$i. ". Tutor legal de " .$fila["nombre"]. " " .$fila["apellido1"]. " " .$fila["apellido2"]. "</a></p>";
               $i = $i + 1;
             }
           }
