@@ -27,7 +27,7 @@
            die("Fallo de conexion con la base de datos: " . $conn->connect_error);
          }
          else{
-          //echo 
+          //echo
            $conn->set_charset("utf8");
            $nombre = $conn->real_escape_string($_SESSION['name']);
            $sql = "SELECT id FROM profesores WHERE usuario = '$nombre'";
@@ -52,7 +52,7 @@
 
                  if($result->num_rows > 0){
                    $fila = $result->fetch_assoc();
-                   echo "<p><a href=\"MensajeriaAlumnos.php?id=" .$fila["id"]. "&curso=" .$fila["curso"]. "&letra=" .$fila["letra"]. "&titulación=" .$fila["titulación"]. "\">" .$fila["curso"]. "º " .$fila["titulación"]. " " .$fila["letra"]. "</a> (Número de alumnos: " .$fila["numero_alumnos"]. ")</p>";
+                   echo "<p><a href=\"MensajeriaAlumnos.php?id=" .$fila["id"]. "&profesor=" .$id. "\">" .$fila["curso"]. "º " .$fila["titulación"]. " " .$fila["letra"]. "</a> (Número de alumnos: " .$fila["numero_alumnos"]. ")</p>";
                  }
                  else{
                    echo "Ninguna clase en la base de datos tiene asignada la asignatura con id " .$id_asignatura;

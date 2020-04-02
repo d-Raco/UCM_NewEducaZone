@@ -23,17 +23,19 @@
       <?php
         if($_SESSION['rol'] == "padre"){
           $conn = new mysqli(BD_HOST, BD_USER, BD_PASS, BD_NAME);
-          $id = $conn->real_escape_string($_GET['id']);
+
           if ($conn->connect_error) {
             die("Fallo de conexion con la base de datos: " . $conn->connect_error);
           }
           else{
+            $conn->set_charset("utf8");
+            $id = $conn->real_escape_string($_GET['id']);
             $usuario = $_SESSION['name'];
 
             $sql = "SELECT id FROM tutor_legal WHERE usuario = '$usuario'";
             $result = $conn->query($sql)
                 or die ($conn->error. " en la línea ".(__LINE__-1));
-            //COMPROBAMOS SI EXISTE EL USUARIO EXISTE    
+            //COMPROBAMOS SI EXISTE EL USUARIO EXISTE
             if($result->num_rows > 0){
 
               $filaPadre = $result->fetch_assoc();
@@ -41,9 +43,9 @@
               $sql = "SELECT * FROM alumnos WHERE DNI = '$id' AND id_tutor_legal = '$idTutor'";
               $result = $conn->query($sql)
                   or die ($conn->error. " en la línea ".(__LINE__-1));
-              //COMPROBAMOS SI EL USUARIO Y EL HIJO SE CORRESPONDEN  
+              //COMPROBAMOS SI EL USUARIO Y EL HIJO SE CORRESPONDEN
               if($result->num_rows > 0){
-                
+
                 $filaAlumno = $result->fetch_assoc();
                 echo "<h1>" .$filaAlumno["nombre"]. " " .$filaAlumno["apellido1"]. " " .$filaAlumno["apellido2"]. "</h1>";
                 echo "<img src=\"" .$filaAlumno["foto"]. "\"  width=\"150\" height=\"150\">";
@@ -121,7 +123,7 @@
               }
               else{
                 header("Location: login.php");
-              }  
+              }
             }
             else{
               header("Location: login.php");
@@ -136,11 +138,12 @@
             die("Fallo de conexion con la base de datos: " . $conn->connect_error);
           }
           else{
+            $conn->set_charset("utf8");
             $usuario = $_SESSION['name'];
             $sql = "SELECT id FROM profesores WHERE usuario = '$usuario'";
             $result = $conn->query($sql)
                 or die ($conn->error. " en la línea ".(__LINE__-1));
-            //COMPROBAMOS SI EXISTE EL USUARIO EXISTE    
+            //COMPROBAMOS SI EXISTE EL USUARIO EXISTE
             if($result->num_rows > 0){
 
               $filaProfe = $result->fetch_assoc();
@@ -149,7 +152,7 @@
               $sql = "SELECT * FROM alumnos WHERE DNI = '$idAlumno'";
               $result = $conn->query($sql)
                   or die ($conn->error. " en la línea ".(__LINE__-1));
-              //COMPROBAMOS SI EL PROFE Y EL ALUMNO SE CORRESPONDEN  
+              //COMPROBAMOS SI EL PROFE Y EL ALUMNO SE CORRESPONDEN
               if($result->num_rows > 0){
                 $filaAlumno = $result->fetch_assoc();
                 echo "<h1>" .$filaAlumno["nombre"]. " " .$filaAlumno["apellido1"]. " " .$filaAlumno["apellido2"]. "</h1>";
@@ -199,11 +202,11 @@
               }
 
               echo "<p>Observaciones médicas: " .$filaAlumno["observaciones_medicas"]. "</p>";
-              echo "<ol><a href=\"ver_calificaciones_profesor.php?idCali=" .$filaAlumno["id_calificaciones"]. "&idAl=".$idAlumno."\">Calificaciones</a></ol>";
+              echo "<ol><a href=\"ver_calificaciones_profesor.php?idAl=".$idAlumno."\">Calificaciones</a></ol>";
               $contenido_msg = NULL;
               echo "<ol><a href=\"mensajeria.php?tutor=".$idTutor."&profesor=".$idProfe."&contenido_msg=".$contenido_msg."\">Enviar un mensaje</a></ol>";
-            } 
-          }   
+            }
+          }
         }
       ?>
     </div>

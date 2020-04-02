@@ -40,35 +40,71 @@
                   <th>Asignatura</th>
                   <th>Nota</th>
                 </tr>
-                <tr>
-                  <td>".$filaCal["asignatura1"]."</td>
+                <tr>"
+                  $idA = $filaCal["id_asignatura1"];
+                  $sql = "SELECT nombre_asignatura FROM asignaturas WHERE id = '$idA'";
+                  $result = $conn->query($sql)
+                      or die ($conn->error. " en la línea ".(__LINE__-1));
+
+                  $asign = $result->fetch_assoc();
+                  "<td>".$asign["nombre_asignatura"]."</td>
                   <td>".$filaCal["nota1"]."</td>
                 </tr>
-                <tr>
-                  <td>".$filaCal["asignatura2"]."</td>
+                <tr>"
+                  $idA = $filaCal["id_asignatura2"];
+                  $sql = "SELECT nombre_asignatura FROM asignaturas WHERE id = '$idA'";
+                  $result = $conn->query($sql)
+                      or die ($conn->error. " en la línea ".(__LINE__-1));
+
+                  $asign = $result->fetch_assoc();
+                  "<td>".$asign["nombre_asignatura"]."</td>
                   <td>".$filaCal["nota2"]."</td>
                 </tr>
-                <tr>
-                  <td>".$filaCal["asignatura3"]."</td>
+                <tr>"
+                  $idA = $filaCal["id_asignatura3"];
+                  $sql = "SELECT nombre_asignatura FROM asignaturas WHERE id = '$idA'";
+                  $result = $conn->query($sql)
+                      or die ($conn->error. " en la línea ".(__LINE__-1));
+
+                  $asign = $result->fetch_assoc();
+                  "<td>".$asign["nombre_asignatura"]."</td>
                   <td>".$filaCal["nota3"]."</td>
                 </tr>
-                <tr>
-                  <td>".$filaCal["asignatura4"]."</td>
+                <tr>"
+                  $idA = $filaCal["id_asignatura4"];
+                  $sql = "SELECT nombre_asignatura FROM asignaturas WHERE id = '$idA'";
+                  $result = $conn->query($sql)
+                      or die ($conn->error. " en la línea ".(__LINE__-1));
+
+                  $asign = $result->fetch_assoc();
+                  "<td>".$asign["nombre_asignatura"]."</td>
                   <td>".$filaCal["nota4"]."</td>
                 </tr>
-                <tr>
-                  <td>".$filaCal["asignatura5"]."</td>
+                <tr>"
+                  $idA = $filaCal["id_asignatura5"];
+                  $sql = "SELECT nombre_asignatura FROM asignaturas WHERE id = '$idA'";
+                  $result = $conn->query($sql)
+                      or die ($conn->error. " en la línea ".(__LINE__-1));
+
+                  $asign = $result->fetch_assoc();
+                  "<td>".$asign["nombre_asignatura"]."</td>
                   <td>".$filaCal["nota5"]."</td>
                 </tr>
-                <tr>
-                  <td>".$filaCal["asignatura6"]."</td>
+                <tr>"
+                  $idA = $filaCal["id_asignatura6"];
+                  $sql = "SELECT nombre_asignatura FROM asignaturas WHERE id = '$idA'";
+                  $result = $conn->query($sql)
+                      or die ($conn->error. " en la línea ".(__LINE__-1));
+
+                  $asign = $result->fetch_assoc();
+                  "<td>".$asign["nombre_asignatura"]."</td>
                   <td>".$filaCal["nota6"]."</td>
                 </tr>
               </table>";
 
           }
           else{
-            
+
           }
         }
         $conn->close();

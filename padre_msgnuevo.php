@@ -13,7 +13,7 @@
     <?php
       include("include/comun/cabecera.php");
       include("include/comun/sidebarIzqPadre.php");
-      
+
     ?>
     <div id="contenido">
       <?php
@@ -23,6 +23,7 @@
           die("Fallo de conexion con la base de datos: " . $conn->connect_error);
         }
         else{
+          $conn->set_charset("utf8");
           $sql = "SELECT t.id, a.nombre, a.apellido1, a.apellido2, a.id_clase FROM tutor_legal t JOIN alumnos a ON id = id_tutor_legal
             WHERE usuario = '$usuario'";
           $result = $conn->query($sql)

@@ -20,7 +20,6 @@
       include("include/comun/sidebarIzqProfesor.php");
     ?>
     <div id="contenido">
-      <h1>Calificaciones</h1>
       <?php
         $conn = new mysqli(BD_HOST, BD_USER, BD_PASS, BD_NAME);
         if ($conn->connect_error) {
@@ -29,7 +28,8 @@
         else{
           $conn->set_charset("utf8");
           $usuario = $conn->real_escape_string($_SESSION['name']);
-          $sql = "SELECT id FROM profesores WHERE usuario = '$nombre'";
+
+          $sql = "SELECT id FROM profesores WHERE usuario = '$usuario'";
           $result = $conn->query($sql)
               or die ($conn->error. " en la línea ".(__LINE__-1));
 
@@ -37,20 +37,102 @@
             $fila = $result->fetch_assoc();
             $idProfesor = $fila['id'];
             $idAlumno = $_GET['idAl'];
-            $idCali = $_GET['idCali'];
 
-            $sql = "SELECT al.nombre FROM alumnos al 
+            $sql = "SELECT * FROM alumnos al
               JOIN calificaciones c ON al.id_calificaciones = c.id
-              WHERE idAl = '$idAlumno'";
+              WHERE al.DNI = '$idAlumno'";
 
             $result = $conn->query($sql)
               or die ($conn->error. " en la línea ".(__LINE__-1));
 
             if($result->num_rows > 0){
-              echo "HOLA";
+              $alumno = $result->fetch_assoc();
+              echo "<h1>Calificación de " .$alumno["nombre"]. " " .$alumno["apellido1"]. " " .$alumno["apellido2"]. ":</h1>";
+
+              $a1 = $alumno["id_asignatura1"];
+              $a2 = $alumno["id_asignatura2"];
+              $a3 = $alumno["id_asignatura3"];
+              $a4 = $alumno["id_asignatura4"];
+              $a5 = $alumno["id_asignatura5"];
+              $a6 = $alumno["id_asignatura6"];
+
+              $nota = $_REQUEST["notaNueva"];
+              $idAsigna = $_REQUEST["idAsignatura"];
+              $idCali = $alumno["id_calificaciones"];
+              if($nota >= 0 && $nota <= 10){
+                switch($idAsigna){
+                  case $a1:
+                    $sql = "UPDATE calificaciones SET nota1 = '$nota' WHERE id = '$idCali'";
+                    break;
+                  case $a2:
+                    $sql = "UPDATE calificaciones SET nota2 = '$nota' WHERE id = '$idCali'";
+                    break;
+                  case $a3:
+                    $sql = "UPDATE calificaciones SET nota3 = '$nota' WHERE id = '$idCali'";
+                    break;
+                  case $a4:
+                    $sql = "UPDATE calificaciones SET nota4 = '$nota' WHERE id = '$idCali'";
+                    break;
+                  case $a5:
+                    $sql = "UPDATE calificaciones SET nota5 = '$nota' WHERE id = '$idCali'";
+                    break;
+                  case $a6:
+                    $sql = "UPDATE calificaciones SET nota6 = '$nota' WHERE id = '$idCali'";
+                    break;
+                  default:
+                    $sql = "";
+                    break;
+                }
+                $conn->query($sql)
+                    or die ($conn->error. " en la línea ".(__LINE__-1));
+              }
+              else{
+                echo "<p>Nota no válida</p>";
+              }
+
+              $sql = "SELECT id, nombre_asignatura FROM asignaturas WHERE (id = '$a1' || id = '$a2' || id = '$a3' || id = '$a4' || id = '$a5' || id = '$a6') && id_profesor = '$idProfesor'";
+
+              $result = $conn->query($sql)
+                or die ($conn->error. " en la línea ".(__LINE__-1));
+
+              if($result->num_rows > 0){
+                while($asignatura = $result->fetch_assoc()){
+                  echo "<p>" .$asignatura["nombre_asignatura"]. ": </p>";
+                  switch($asignatura["id"]){
+                    case $a1:
+                      echo "<p>" .$alumno["nota1"]. "</p>";
+                      break;
+                    case $a2:
+                      echo "<p>" .$alumno["nota2"]. "</p>";
+                      break;
+                    case $a3:
+                      echo "<p>" .$alumno["nota3"]. "</p>";
+                      break;
+                    case $a4:
+                      echo "<p>" .$alumno["nota4"]. "</p>";
+                      break;
+                    case $a5:
+                      echo "<p>" .$alumno["nota5"]. "</p>";
+                      break;
+                    case $a6:
+                      echo "<p>" .$alumno["nota6"]. "</p>";
+                      break;
+                    default:
+                      echo "<p>No se ha encontrado ninguna nota</p>";
+                      break;
+                  }
+                  echo "<form method=\"post\">";
+                    echo "<p> Escribe aquí la nueva nota:";
+                    echo "<input type=\"varchar\" name=\"notaNueva\"></p>";
+                    echo "<input type=\"hidden\" name=\"idAsignatura\" value=\"" .$asignatura["id"]. "\">;
+                    echo "<input class=\"nota\" type=\"submit\" value=\"Submit\">";
+                  echo "</form>";
+                }
+              }
             }
+          }
           else{
-            echo "El profesor/a con usuario: " .$nombre. " no se encuentra en la base de datos.";
+            echo "El profesor/a con usuario: " .$usuario. " no se encuentra en la base de datos.";
           }
         }
         $conn->close();

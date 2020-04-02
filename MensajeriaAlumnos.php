@@ -23,9 +23,7 @@
       <h1>Destinatario</h1>
       <?php
         $id = $_GET['id'];
-        $curso = $_GET['curso'];
-        $letra = $_GET['letra'];
-        $titulación = $_GET['titulación'];
+        $profesor = $_GET['profesor'];
 
         $conn = new mysqli(BD_HOST, BD_USER, BD_PASS, BD_NAME);
 
@@ -42,7 +40,7 @@
             $i = 1;
             $contenido_msg = NULL;
             while($fila = $result->fetch_assoc()){
-              echo "<p><a href=\"mensajeria.php?tutor= ".$fila["id_tutor_legal"]."&profesor= ".$id."&contenido_msg= ".$contenido_msg."\">" .$i. ". Tutor legal de " .$fila["nombre"]. " " .$fila["apellido1"]. " " .$fila["apellido2"]. "</a></p>";
+              echo "<p><a href=\"mensajeria.php?tutor=".$fila["id_tutor_legal"]."&profesor=".$profesor."&contenido_msg=".$contenido_msg."\">" .$i. ". Tutor legal de " .$fila["nombre"]. " " .$fila["apellido1"]. " " .$fila["apellido2"]. "</a></p>";
               $i = $i + 1;
             }
           }
