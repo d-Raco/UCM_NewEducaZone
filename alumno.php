@@ -95,6 +95,7 @@
 
                 echo "<p>Observaciones médicas: " .$filaAlumno["observaciones_medicas"]. "</p>";
                 echo "<a href=\"ver_calificaciones_padre.php?id=" .$filaAlumno["id_calificaciones"]. "\">Calificaciones</a>";
+                echo "<a href=\"incidencias_padre.php\">Incidencias</a>";
 
                 $a1 = $filaClase["id_asignatura1"];
                 $a2 = $filaClase["id_asignatura2"];
@@ -205,6 +206,7 @@
               echo "<ol><a href=\"ver_calificaciones_profesor.php?idAl=".$idAlumno."\">Calificaciones</a></ol>";
               $contenido_msg = NULL;
               echo "<ol><a href=\"mensajeria.php?tutor=".$idTutor."&profesor=".$idProfe."&contenido_msg=".$contenido_msg."\">Enviar un mensaje</a></ol>";
+              echo "<ol><a href=\"incidencias_profesor.php\">Incidencias</a></ol>";
             }
           }
         }

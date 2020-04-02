@@ -51,7 +51,7 @@
 
                  if($result->num_rows > 0){
                    $fila = $result->fetch_assoc();
-                   echo "<p><a href=\"ver_clase.php?id=" .$fila["id"]. "&curso=" .$fila["curso"]. "&letra=" .$fila["letra"]. "&titulación=" .$fila["titulación"]. "\">" .$fila["curso"]. "º " .$fila["titulación"]. " " .$fila["letra"]. "</a> (Número de alumnos: " .$fila["numero_alumnos"]. ")</p>";
+                   echo "<p><a href=\"ver_clase.php?id=" .$fila["id"]. "\">" .$fila["curso"]. "º " .$fila["titulación"]. " " .$fila["letra"]. "</a> (Número de alumnos: " .$fila["numero_alumnos"]. ")</p>";
                  }
                  else{
                    echo "Ninguna clase en la base de datos tiene asignada la asignatura con id " .$id_asignatura;

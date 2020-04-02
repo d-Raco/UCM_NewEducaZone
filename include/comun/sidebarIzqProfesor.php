@@ -36,7 +36,6 @@
         <ul><a href="horario_profesor.php">Horario</a></ul>
         <ul><a href="mensajeriaClases.php">Mensajería</a></ul>
         <ul><a>Calendario</a></ul>
-        <ul><a>Incidencias</a></ul>
     </div>
 
   </body>

@@ -124,7 +124,7 @@
                   echo "<form method=\"post\">";
                     echo "<p> Escribe aquí la nueva nota:";
                     echo "<input type=\"varchar\" name=\"notaNueva\"></p>";
-                    echo "<input type=\"hidden\" name=\"idAsignatura\" value=\"" .$asignatura["id"]. "\">;
+                    echo "<input type=\"hidden\" name=\"idAsignatura\" value=\"" .$asignatura["id"]. "\">";
                     echo "<input class=\"nota\" type=\"submit\" value=\"Submit\">";
                   echo "</form>";
                 }
