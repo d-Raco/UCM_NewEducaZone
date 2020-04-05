@@ -1,11 +1,11 @@
 <?php
-  require_once('include/config.php');
+  require_once('include/DAOClases.php');
 ?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Index</title>
+    <title>Ver_Clase</title>
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
   </head>
   <body>
@@ -22,28 +22,22 @@
     <div id="contenido">
       <?php
         $id = $_GET['id'];
+        $cdao = new ClasesDAO();
+        $c = $cdao->getClase($id);
 
-        $conn = new mysqli(BD_HOST, BD_USER, BD_PASS, BD_NAME);
+        $result = $cdao->getAlumnos($id);
+        $i = 1;
 
-        if ($conn->connect_error) {
-          die("Fallo de conexion con la base de datos: " . $conn->connect_error);
+        if ($_SESSION['rol'] == "profesor"){
+          while($fila = $result->fetch_assoc()){
+            echo "<p><a href=\"ver_alumno.php?id=" .$fila["DNI"]. "\">" .$i. ". " .$fila["nombre"]. " " .$fila["apellido1"]. " " .$fila["apellido2"]. "</a></p>";
+            $i = $i + 1;
+          }
         }
         else{
-          $conn->set_charset("utf8");
-          $sql = "SELECT DNI, nombre, apellido1, apellido2 FROM alumnos WHERE id_clase = '$id'";
-          $result = $conn->query($sql)
-              or die ($conn->error. " en la línea ".(__LINE__-1));
-
-          if($result->num_rows > 0){
-            echo "<h2>Alumnos de la clase</h2>";
-            $i = 1;
-            while($fila = $result->fetch_assoc()){
-              echo "<p><a href=\"alumno.php?id=" .$fila["DNI"]. "\">" .$i. ". " .$fila["nombre"]. " " .$fila["apellido1"]. " " .$fila["apellido2"]. "</a></p>";
-              $i = $i + 1;
-            }
-          }
-          else{
-            echo "No hay clases con id " .$id;
+          while($fila = $result->fetch_assoc()){
+            echo "<p>" .$i. ". " .$fila["nombre"]. " " .$fila["apellido1"]. " " .$fila["apellido2"]. "</p>";
+            $i = $i + 1;
           }
         }
       ?>

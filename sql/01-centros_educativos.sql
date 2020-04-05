@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-03-2020 a las 20:37:34
+-- Tiempo de generación: 02-04-2020 a las 16:44:58
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -47,42 +47,42 @@ CREATE TABLE `alumnos` (
 --
 
 INSERT INTO `alumnos` (`DNI`, `nombre`, `apellido1`, `apellido2`, `id_centro`, `id_clase`, `observaciones_medicas`, `id_tutor_legal`, `fecha_nacimiento`, `id_calificaciones`, `foto`) VALUES
-('00822109C', 'Rosmira', 'Frías', 'Carvajal', 41000405, 7, 'Trastorno obsesivo-compulsivo (TOC)', NULL, '2004-05-20', 7, NULL),
-('01864521A', 'Alumine', 'Nieves', 'Salcedo', 50000151, 14, NULL, NULL, '2006-03-14', 7, NULL),
-('13586449G', 'Memmon', 'Crespo', 'Nieto', 8039598, 18, NULL, NULL, '2006-03-04', 7, NULL),
-('13902147G', 'Inmaculada', 'Campos', 'Alcalá', 8039598, 19, 'Trastorno obsesivo-compulsivo (TOC)', NULL, '2006-05-01', 7, NULL),
-('15700350K', 'Alanis', 'Ibarra', 'Padrón', 28047551, 17, NULL, 2, '2003-07-05', 7, NULL),
-('16352963D', 'Solano', 'Rocha', 'Cedillo', 50000151, 14, NULL, 3, '2006-11-22', 7, NULL),
-('16512408H', 'Sebasten', 'Armendáriz', 'Maldonado', 41000405, 13, ' Anafilaxia', NULL, '2004-11-19', 7, NULL),
-('16627162W', 'Rayen', 'Sánchez', 'Marín', 28047551, 17, 'Presenta reacciones alérgicas a los frutos secos.', 4, '2003-11-11', 7, NULL),
-('20171515D', 'Meinard', 'Mesa', 'Ulloa', 28047551, 17, NULL, NULL, '2003-06-12', 7, NULL),
-('21503333N', 'Zohar', 'Núñez', 'Ozuna', 8039598, 19, NULL, 5, '2005-12-13', 7, NULL),
-('25952332Y', 'Laodicea', 'Cabán', 'Roque', 50000151, 15, NULL, NULL, '2002-08-09', 7, NULL),
-('25988953B', 'Munir', 'Árias', 'Regalado', 50000151, 16, NULL, 6, '2006-07-10', 7, NULL),
-('27036756A', 'Abram', 'Archuleta', 'Vanegas', 41000405, 8, NULL, NULL, '2005-08-09', 7, NULL),
-('31123104X', 'Aracely', 'Angulo', 'Rael', 8039598, 19, NULL, NULL, '2006-01-02', 7, NULL),
-('31631695W', 'Xaviera', 'Amaya', 'Hernández', 28070913, 12, '', 7, '2002-05-20', 7, NULL),
-('37071162S', 'Neus', 'Benavides', 'Bustos', 41000405, 8, NULL, 10, '2005-05-17', 7, NULL),
-('38067105N', 'Atanasio', 'Medrano', 'Villareal', 50000151, 16, NULL, NULL, '2006-10-20', 7, NULL),
-('38946295G', 'Antígona', 'Rosas', 'Vázquez', 28070913, 12, NULL, NULL, '2002-11-19', 7, NULL),
-('42893072G', 'Nicholai', 'Rivero', 'Fernández', 28070913, 12, 'Presenta reacciones alérgicas a los anacardos y almendras', NULL, '2002-03-04', 7, NULL),
-('43018009M', 'Horaz', 'Otero', 'Espinosa', 50000151, 16, NULL, 8, '2006-04-17', 7, NULL),
-('43874001Y', 'Otilio', 'Jimínez', 'Mejía', 8039598, 19, NULL, NULL, '2005-09-08', 7, NULL),
-('44138671S', 'Pío', 'Colunga', 'Bernal', 50000151, 16, NULL, NULL, '2006-06-10', 7, NULL),
-('45730731S', 'Laviana', 'Leyva', 'Guerrero', 41000405, 8, NULL, 9, '2005-09-17', 7, NULL),
-('51195336G', 'Morfeo', 'Calvillo', 'Padilla', 41000405, 8, NULL, NULL, '2005-07-19', 7, NULL),
-('52983179B', 'Orestes', 'Chapa', 'Badillo', 50000151, 16, NULL, NULL, '2007-04-20', 7, NULL),
-('53389278E', 'Dara', 'Tamayo', 'Aguirre', 41000405, 13, ' Síndrome de alargia oral.', NULL, '2004-03-04', 7, NULL),
-('61063539B', 'Antonella', 'Cisneros', 'Mares', 41000405, 8, NULL, NULL, '2005-04-04', 7, NULL),
-('64609317V', 'Carmen', 'Mercado', 'Canales', 50000151, 15, NULL, NULL, '2003-01-31', 7, NULL),
-('65619270V', 'Lucas', 'Benavidez', 'Madrid', 50000151, 14, NULL, NULL, '2006-03-07', 7, NULL),
-('77595539W', 'Tara', 'Melgar', 'Palomino', 50000151, 14, NULL, NULL, '2006-11-19', 7, NULL),
-('78678320N', 'Oscar', 'Cristobal', 'Fernández', 41000405, 7, 'Presenta reacciones alérgicas a los frutos secos.', 1, '2004-03-04', 7, 'img\\users\\alumnos\\oscar.jpg'),
-('82413678D', 'Olalla', 'Porras', 'Rolón', 50000151, 15, NULL, 11, '2004-12-13', 7, NULL),
-('86512991D', 'Privato', 'Corral', 'Rojas', 41000405, 7, NULL, NULL, '2004-11-19', 7, NULL),
-('88962348G', 'Candela', 'Quiñones', 'Aguilera', 50000151, 15, NULL, NULL, '2004-08-20', 7, NULL),
-('92125571Z', 'Adamo', 'Zepeda', 'Altamirano', 8039598, 18, 'Trastorno obsesivo-compulsivo (TOC)', NULL, '2006-05-20', 7, NULL),
-('94374398Q', 'Romanela', 'Alarcón', 'Villaseñor', 50000151, 14, NULL, 12, '2006-08-26', 7, NULL);
+('00822109C', 'Rosmira', 'Frías', 'Carvajal', 41000405, 7, 'Trastorno obsesivo-compulsivo (TOC)', NULL, '2004-05-20', 11, NULL),
+('01864521A', 'Alumine', 'Nieves', 'Salcedo', 50000151, 14, NULL, NULL, '2006-03-14', 15, NULL),
+('13586449G', 'Memmon', 'Crespo', 'Nieto', 8039598, 18, NULL, NULL, '2006-03-04', 13, NULL),
+('13902147G', 'Inmaculada', 'Campos', 'Alcalá', 8039598, 19, 'Trastorno obsesivo-compulsivo (TOC)', NULL, '2006-05-01', 17, NULL),
+('15700350K', 'Alanis', 'Ibarra', 'Padrón', 28047551, 17, NULL, 2, '2003-07-05', 12, NULL),
+('16352963D', 'Solano', 'Rocha', 'Cedillo', 50000151, 14, NULL, 3, '2006-11-22', 15, NULL),
+('16512408H', 'Sebasten', 'Armendáriz', 'Maldonado', 41000405, 13, ' Anafilaxia', NULL, '2004-11-19', 18, NULL),
+('16627162W', 'Rayen', 'Sánchez', 'Marín', 28047551, 17, 'Presenta reacciones alérgicas a los frutos secos.', 4, '2003-11-11', 12, NULL),
+('20171515D', 'Meinard', 'Mesa', 'Ulloa', 28047551, 17, NULL, NULL, '2003-06-12', 12, NULL),
+('21503333N', 'Zohar', 'Núñez', 'Ozuna', 8039598, 19, NULL, 5, '2005-12-13', 17, NULL),
+('25952332Y', 'Laodicea', 'Cabán', 'Roque', 50000151, 15, NULL, NULL, '2002-08-09', 20, NULL),
+('25988953B', 'Munir', 'Árias', 'Regalado', 50000151, 16, NULL, 6, '2006-07-10', 19, NULL),
+('27036756A', 'Abram', 'Archuleta', 'Vanegas', 41000405, 8, NULL, NULL, '2005-08-09', 16, NULL),
+('31123104X', 'Aracely', 'Angulo', 'Rael', 8039598, 19, NULL, NULL, '2006-01-02', 17, NULL),
+('31631695W', 'Xaviera', 'Amaya', 'Hernández', 28070913, 12, '', 7, '2002-05-20', 14, NULL),
+('37071162S', 'Neus', 'Benavides', 'Bustos', 41000405, 8, NULL, 10, '2005-05-17', 16, NULL),
+('38067105N', 'Atanasio', 'Medrano', 'Villareal', 50000151, 16, NULL, NULL, '2006-10-20', 19, NULL),
+('38946295G', 'Antígona', 'Rosas', 'Vázquez', 28070913, 12, NULL, NULL, '2002-11-19', 14, NULL),
+('42893072G', 'Nicholai', 'Rivero', 'Fernández', 28070913, 12, 'Presenta reacciones alérgicas a los anacardos y almendras', NULL, '2002-03-04', 14, NULL),
+('43018009M', 'Horaz', 'Otero', 'Espinosa', 50000151, 16, NULL, 8, '2006-04-17', 19, NULL),
+('43874001Y', 'Otilio', 'Jimínez', 'Mejía', 8039598, 19, NULL, NULL, '2005-09-08', 17, NULL),
+('44138671S', 'Pío', 'Colunga', 'Bernal', 50000151, 16, NULL, NULL, '2006-06-10', 19, NULL),
+('45730731S', 'Laviana', 'Leyva', 'Guerrero', 41000405, 8, NULL, 9, '2005-09-17', 16, NULL),
+('51195336G', 'Morfeo', 'Calvillo', 'Padilla', 41000405, 8, NULL, NULL, '2005-07-19', 16, NULL),
+('52983179B', 'Orestes', 'Chapa', 'Badillo', 50000151, 16, NULL, NULL, '2007-04-20', 19, NULL),
+('53389278E', 'Dara', 'Tamayo', 'Aguirre', 41000405, 13, ' Síndrome de alargia oral.', NULL, '2004-03-04', 18, NULL),
+('61063539B', 'Antonella', 'Cisneros', 'Mares', 41000405, 8, NULL, NULL, '2005-04-04', 16, NULL),
+('64609317V', 'Carmen', 'Mercado', 'Canales', 50000151, 15, NULL, NULL, '2003-01-31', 20, NULL),
+('65619270V', 'Lucas', 'Benavidez', 'Madrid', 50000151, 14, NULL, NULL, '2006-03-07', 15, NULL),
+('77595539W', 'Tara', 'Cristobal', 'Fernández', 50000151, 14, NULL, 1, '2006-11-19', 15, NULL),
+('78678320N', 'Oscar', 'Cristobal', 'Fernández', 41000405, 7, 'Presenta reacciones alérgicas a los frutos secos.', 1, '2004-03-04', 11, 'img\\users\\alumnos\\oscar.jpg'),
+('82413678D', 'Olalla', 'Porras', 'Rolón', 50000151, 15, NULL, 11, '2004-12-13', 20, NULL),
+('86512991D', 'Privato', 'Corral', 'Rojas', 41000405, 7, NULL, NULL, '2004-11-19', 11, NULL),
+('88962348G', 'Candela', 'Quiñones', 'Aguilera', 50000151, 15, NULL, NULL, '2004-08-20', 20, NULL),
+('92125571Z', 'Adamo', 'Zepeda', 'Altamirano', 8039598, 18, 'Trastorno obsesivo-compulsivo (TOC)', NULL, '2006-05-20', 13, NULL),
+('94374398Q', 'Romanela', 'Alarcón', 'Villaseñor', 50000151, 14, NULL, 12, '2006-08-26', 15, NULL);
 
 -- --------------------------------------------------------
 
@@ -180,17 +180,17 @@ INSERT INTO `asignaturas` (`id`, `id_profesor`, `nombre_asignatura`, `lunes_inic
 
 CREATE TABLE `calificaciones` (
   `id` int(11) UNSIGNED NOT NULL,
-  `asignatura1` varchar(20) NOT NULL DEFAULT 'LENGUA',
+  `id_asignatura1` int(11) UNSIGNED NOT NULL,
   `nota1` double UNSIGNED DEFAULT NULL,
-  `asignatura2` varchar(20) NOT NULL DEFAULT 'MATEMATICAS',
+  `id_asignatura2` int(11) UNSIGNED NOT NULL,
   `nota2` double UNSIGNED DEFAULT NULL,
-  `asignatura3` varchar(20) NOT NULL DEFAULT 'FISICA',
+  `id_asignatura3` int(11) UNSIGNED NOT NULL,
   `nota3` double UNSIGNED DEFAULT NULL,
-  `asignatura4` varchar(20) NOT NULL DEFAULT 'INGLES',
+  `id_asignatura4` int(11) UNSIGNED NOT NULL,
   `nota4` double UNSIGNED DEFAULT NULL,
-  `asignatura5` varchar(20) NOT NULL DEFAULT 'HISTORIA',
+  `id_asignatura5` int(11) UNSIGNED NOT NULL,
   `nota5` double UNSIGNED DEFAULT NULL,
-  `asignatura6` varchar(20) NOT NULL DEFAULT 'EDUCACION FISICA',
+  `id_asignatura6` int(11) UNSIGNED NOT NULL,
   `nota6` double UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -198,11 +198,17 @@ CREATE TABLE `calificaciones` (
 -- Volcado de datos para la tabla `calificaciones`
 --
 
-INSERT INTO `calificaciones` (`id`, `asignatura1`, `nota1`, `asignatura2`, `nota2`, `asignatura3`, `nota3`, `asignatura4`, `nota4`, `asignatura5`, `nota5`, `asignatura6`, `nota6`) VALUES
-(7, 'LENGUA', NULL, 'MATEMATICAS', NULL, 'FISICA', NULL, 'INGLES', NULL, 'HISTORIA', NULL, 'EDUCACION FISICA', NULL),
-(8, 'LENGUA', NULL, 'MATEMATICAS', NULL, 'MUSICA', NULL, 'INGLES', NULL, 'HISTORIA', NULL, 'EDUCACION FISICA', NULL),
-(9, 'LENGUA', NULL, 'MATEMATICAS', NULL, 'FISICA', NULL, 'INGLES', NULL, 'HISTORIA', NULL, 'QUIMICA', NULL),
-(10, 'LENGUA', NULL, 'MATEMATICAS', NULL, 'FISICA', NULL, 'INGLES', NULL, 'HISTORIA', NULL, 'ECONOMIA', NULL);
+INSERT INTO `calificaciones` (`id`, `id_asignatura1`, `nota1`, `id_asignatura2`, `nota2`, `id_asignatura3`, `nota3`, `id_asignatura4`, `nota4`, `id_asignatura5`, `nota5`, `id_asignatura6`, `nota6`) VALUES
+(11, 1, NULL, 2, NULL, 3, NULL, 4, NULL, 5, NULL, 6, NULL),
+(12, 7, NULL, 8, NULL, 9, NULL, 10, NULL, 11, NULL, 12, NULL),
+(13, 13, NULL, 14, NULL, 15, NULL, 16, NULL, 17, NULL, 18, NULL),
+(14, 19, NULL, 20, NULL, 21, NULL, 22, NULL, 23, NULL, 24, NULL),
+(15, 25, NULL, 26, NULL, 27, NULL, 28, NULL, 29, NULL, 30, NULL),
+(16, 31, NULL, 32, NULL, 33, NULL, 34, NULL, 35, NULL, 36, NULL),
+(17, 37, NULL, 38, NULL, 39, NULL, 40, NULL, 41, NULL, 42, NULL),
+(18, 43, NULL, 44, NULL, 45, NULL, 46, NULL, 47, NULL, 48, NULL),
+(19, 49, NULL, 50, NULL, 51, NULL, 52, NULL, 53, NULL, 54, NULL),
+(20, 55, NULL, 56, NULL, 57, NULL, 58, NULL, 59, NULL, 60, NULL);
 
 -- --------------------------------------------------------
 
@@ -456,7 +462,13 @@ ALTER TABLE `asignaturas`
 -- Indices de la tabla `calificaciones`
 --
 ALTER TABLE `calificaciones`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_calificaciones_asignatura1` (`id_asignatura1`),
+  ADD KEY `fk_calificaciones_asignatura2` (`id_asignatura2`),
+  ADD KEY `fk_calificaciones_asignatura3` (`id_asignatura3`),
+  ADD KEY `fk_calificaciones_asignatura4` (`id_asignatura4`),
+  ADD KEY `fk_calificaciones_asignatura5` (`id_asignatura5`),
+  ADD KEY `fk_calificaciones_asignatura6` (`id_asignatura6`);
 
 --
 -- Indices de la tabla `centros`
@@ -481,7 +493,6 @@ ALTER TABLE `clases`
 -- Indices de la tabla `codigos_de_acceso`
 --
 ALTER TABLE `codigos_de_acceso`
-  ADD UNIQUE KEY `id_alumnos_2` (`id_alumnos`),
   ADD KEY `id_centro` (`id_centro`),
   ADD KEY `id_alumnos` (`id_alumnos`);
 
@@ -529,7 +540,7 @@ ALTER TABLE `asignaturas`
 -- AUTO_INCREMENT de la tabla `calificaciones`
 --
 ALTER TABLE `calificaciones`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `clases`
@@ -579,6 +590,17 @@ ALTER TABLE `alumnos`
 --
 ALTER TABLE `asignaturas`
   ADD CONSTRAINT `fk_asignatura_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesores` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `calificaciones`
+--
+ALTER TABLE `calificaciones`
+  ADD CONSTRAINT `fk_calificaciones_asignatura1` FOREIGN KEY (`id_asignatura1`) REFERENCES `asignaturas` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_calificaciones_asignatura2` FOREIGN KEY (`id_asignatura2`) REFERENCES `asignaturas` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_calificaciones_asignatura3` FOREIGN KEY (`id_asignatura3`) REFERENCES `asignaturas` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_calificaciones_asignatura4` FOREIGN KEY (`id_asignatura4`) REFERENCES `asignaturas` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_calificaciones_asignatura5` FOREIGN KEY (`id_asignatura5`) REFERENCES `asignaturas` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_calificaciones_asignatura6` FOREIGN KEY (`id_asignatura6`) REFERENCES `asignaturas` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `clases`

@@ -8,7 +8,7 @@
   <body>
 
     <div id="sidebarDer">
-     <ul><a href="profesor.php">Inicio</a></ul>
+     <ul><a href="ver_profesor.php">Inicio</a></ul>
      <ul><a>Notificaciones</a></ul>
      <ul><a>Recordatorios</a></ul>
     </div>

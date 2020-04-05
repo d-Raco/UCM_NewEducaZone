@@ -1,13 +1,11 @@
-<! Artur Amon Educazone v2 2020>
-
 <?php
-  require_once('include/config.php');
+require_once('include/DAOIncidencias.php');
 ?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Index</title>
+    <title>Incidencias Padre</title>
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
   </head>
   <body>
@@ -22,74 +20,18 @@
       include("include/comun/sidebarIzqPadre.php");
     ?>
     <div id="contenido">
-	<! CONTENIDO >
-	
+
 		<?php
-			
-			//Conexion a BBDD
-			
-			$conn = new mysqli(BD_HOST, BD_USER, BD_PASS, BD_NAME);
-			if ($conn->connect_error) /*error de conexion*/ {
-				die("Fallo de conexion con la base de datos: " . $conn->connect_error);
-			}
-			else/*conexion exitosa*/{
-				$conn->set_charset("utf8");
-			
-				//SE BUSCA EL ID DEL PADRE
-				$usuario = $conn->real_escape_string($_SESSION['name']);
-				$sql = "SELECT id FROM tutor_legal WHERE usuario = '$usuario'";
-				$result = $conn->query($sql)
-					or die ($conn->error. " en la línea ".(__LINE__-1));
+      $idao = new IncidenciasDAO();
 
-				if($result->num_rows !== 1) /*No se encontró el padre o se repite su id*/{echo "Error al acceder a padre";}
-				else{
-					$filaPadre = $result->fetch_assoc();
-					$idPadre = $filaPadre["id"];
-					
-					//Guardar hijos
+      $incidencias = $idao->getIncidenciasDetalladas($_GET['id']);
 
-					
-					$sql = "SELECT dni FROM alumnos WHERE id_tutor_legal = $idPadre";
-					$result = $conn->query($sql)
-						or die ($conn->error. " en la línea ".(__LINE__-1));
-                    $hijos = mysqli_fetch_array($result);
-
-                    //$hijos contiene un array de hijos
-
-                    foreach($hijos as $hijo){
-
-                        echo("'$hijo'<br>");
-
-                        $sql = "SELECT * FROM incidencias WHERE id_alumno = '$hijo'";
-                        $result = $conn->query($sql)
-                            or die ($conn->error. " en la línea ".(__LINE__-1));
-
-                        //tabla que muestra las incidencias
-                        echo "<ul style=\"list-style-type:none;\">";
-
-                        while($row = mysqli_fetch_array($result)){
-                            echo $row['id'] . "<br>"
-                                . $row['id_asignatura'] . "<br>"
-                                . $row['id_alumno'] . "<br>"
-                                . $row['msg_incidencia'] . "<hr>";
-                        }
-
-                    }
-					
-				}
-			
-				//Buscar todos los hijos
-				
-				//Sacar las tablas de incidencias de cada uno
-				
-				//Mostrar todas las incidencias
-			
-				
-			
-			}
-	
+      if(!empty($incidencias)){
+        foreach($incidencias as &$value){
+            echo "<p>".$value["nombre_asignatura"].": ".$value["msg_incidencia"]."</p><hr>";
+        }
+      }
 		?>
-	<! fin del contenido>
 	</div>
 
     <?php

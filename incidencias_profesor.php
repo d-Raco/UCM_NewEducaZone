@@ -1,13 +1,11 @@
-<! Artur Amon Educazone v2 2020>
-
 <?php
-require_once('include/config.php');
+require_once('include/DAOIncidencias.php');
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Index</title>
+    <title>Incidencias Profesor</title>
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
 </head>
 <body>
@@ -22,54 +20,32 @@ if (!isset($_SESSION['login'])){
     include("include/comun/sidebarIzqProfesor.php");
     ?>
     <div id="contenido">
-        <! CONTENIDO >
-
         <?php
+        $idao = new IncidenciasDAO();
 
-        //Conexion a BBDD
+        $row = $idao->getInfo($_GET['id'], $_GET['idAsignatura']);
 
-        $conn = new mysqli(BD_HOST, BD_USER, BD_PASS, BD_NAME);
-        if ($conn->connect_error) /*error de conexion*/ {
-            die("Fallo de conexion con la base de datos: " . $conn->connect_error);
+        echo "<h2>Incidencias de " .$row["nombre"]. " " .$row["apellido1"]. " " .$row["apellido2"]. " en la asignatura de " .$row["nombre_asignatura"]. "</h2>";
+
+        $incidencias = $idao->getIncidencias($_GET['id'], $_GET['idAsignatura']);
+
+        if(!empty($incidencias)){
+          foreach($incidencias as &$value){
+              echo $value['msg_incidencia'] . "<hr>";
+          }
         }
-        else/*conexion exitosa*/{
-            $conn->set_charset("utf8");
-
-                //mostrar todas las Incidencia
-                $nombre = $conn->real_escape_string($_SESSION['name']);
-                //seleccionar incidencias
-                $sql = "SELECT incidencias.id, incidencias.id_asignatura , incidencias.id_alumno , incidencias.msg_incidencia
-                        FROM profesores
-                        INNER JOIN asignaturas ON profesores.id = asignaturas.id_profesor
-                        INNER JOIN incidencias ON asignaturas.id = incidencias.id_asignatura
-                        WHERE profesores.usuario = '$nombre'";
-                $result = $conn->query($sql)
-                  or die ($conn->error. " en la línea ".(__LINE__-1));
-
-
-
-                    while($row = mysqli_fetch_array($result)){
-                        echo $row['id'] . "<br>"
-                           . $row['id_asignatura'] . "<br>"
-                           . $row['id_alumno'] . "<br>"
-                           . $row['msg_incidencia'] . "<hr>";
-                    }
-
-
-
-
-        }
-
+        echo "<form action=\"include/process_incidencias.php\" method=\"get\">
+            <input type=\"hidden\" name=\"idAlumno\" value=\"" .$_GET['id']. "\">
+            <input type=\"hidden\" name=\"idAsignatura\" value=\"" .$_GET['idAsignatura']. "\">
+            <p>Mensaje de la incidencia:
+            <input type=\"text\" name=\"incidencia\" /><br></p>
+            <input type=\"submit\" value=\"Enviar\" />
+        </form>";
         ?>
-        <form action="incidencias_crear.php">
-            <input type="submit" value="Crear incidencia" />
-        </form>
-
-        <! fin del contenido>
     </div>
 
     <?php
-    include("include/comun/sidebarDerPadre.php");
+    include("include/comun/sidebarDerProfesor.php");
     include("include/comun/pie.php");
     ?>
 </div>
