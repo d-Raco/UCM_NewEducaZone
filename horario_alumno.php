@@ -1,5 +1,6 @@
 <?php
-  require_once('include/DAOClases.php');
+require_once __DIR__ . '/include/dao/Clases.php';
+  require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,19 +22,18 @@
     ?>
     <div id="contenido">
       <?php
-        $cdao = new ClasesDAO();
-        $c = new Clases(NULL, NULL, NULL, NULL, NULL, NULL, $_GET["id1"], $_GET["id2"], $_GET["id3"], $_GET["id4"], $_GET["id5"], $_GET["id6"]);
+        $c = new Clases(NULL, NULL, NULL, NULL, NULL, NULL, htmlspecialchars(trim(strip_tags($_GET["id1"]))), htmlspecialchars(trim(strip_tags($_GET["id2"]))), htmlspecialchars(trim(strip_tags($_GET["id3"]))), htmlspecialchars(trim(strip_tags($_GET["id4"]))), htmlspecialchars(trim(strip_tags($_GET["id5"]))), htmlspecialchars(trim(strip_tags($_GET["id6"]))));
 
         $asignaturas = array();
 
-        $asignaturas[1] =  $cdao->getAsignatura($c->getAs1());
-        $asignaturas[2] =  $cdao->getAsignatura($c->getAs2());
-        $asignaturas[3] =  $cdao->getAsignatura($c->getAs3());
-        $asignaturas[4] =  $cdao->getAsignatura($c->getAs4());
-        $asignaturas[5] =  $cdao->getAsignatura($c->getAs5());
-        $asignaturas[6] =  $cdao->getAsignatura($c->getAs6());
+        $asignaturas[1] =  $c->getAsignatura($c->getAs1());
+        $asignaturas[2] =  $c->getAsignatura($c->getAs2());
+        $asignaturas[3] =  $c->getAsignatura($c->getAs3());
+        $asignaturas[4] =  $c->getAsignatura($c->getAs4());
+        $asignaturas[5] =  $c->getAsignatura($c->getAs5());
+        $asignaturas[6] =  $c->getAsignatura($c->getAs6());
 
-        echo "<h1>Horario de ".$_GET["id1"]."</h1>";
+        echo "<h1>Horario de ".htmlspecialchars(trim(strip_tags($_GET["id"])))."</h1>";
 
         echo "<table>";
         echo "<tr>";

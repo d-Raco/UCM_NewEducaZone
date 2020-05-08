@@ -1,5 +1,6 @@
 <?php
-require_once('include/DAOIncidencias.php');
+require_once __DIR__ . '/include/dao/Incidencias.php';
+require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,9 +23,9 @@ require_once('include/DAOIncidencias.php');
     <div id="contenido">
 
 		<?php
-      $idao = new IncidenciasDAO();
+      $idao = new Incidencias();
 
-      $incidencias = $idao->getIncidenciasDetalladas($_GET['id']);
+      $incidencias = $idao->getIncidenciasDetalladas(htmlspecialchars(trim(strip_tags($_GET["id"]))));
 
       if(!empty($incidencias)){
         foreach($incidencias as &$value){

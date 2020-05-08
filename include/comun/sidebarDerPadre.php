@@ -1,5 +1,6 @@
 <?php
-  require_once('include/DAOPadre.php');
+  require_once __DIR__ . '/../dao/Padre.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -13,8 +14,8 @@
      <ul><a href="ver_padre.php">Inicio</a></ul><br>
 
       <?php
-        $pdao = new PadreDao();
-        $p = $pdao->getPadre($_SESSION['name']);
+        $pdao = new Padre();
+        $p = $pdao->getPadre(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
         $result = $pdao->getHijos($p->getId());
 
         while($hijo = $result->fetch_assoc()){

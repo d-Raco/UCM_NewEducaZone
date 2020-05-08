@@ -1,6 +1,5 @@
 <?php
-
-require_once('Aplicacion.php');
+require_once __DIR__ . '/Aplicacion.php';
 
 ini_set('default_charset', 'UTF-8');
 setLocale(LC_ALL, 'es_ES.UTF.8');

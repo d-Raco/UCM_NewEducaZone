@@ -1,6 +1,7 @@
 <?php
-  require_once('include/DAOProfe.php');
-  require_once('include/DAOClases.php');
+require_once __DIR__ . '/include/dao/Profesor.php';
+require_once __DIR__ . '/include/dao/Clases.php';
+  require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,20 +24,16 @@
     <div id="contenido">
       <h1>Clases</h1>
       <?php
-        $pdao = new ProfeDao();
-        $p = $pdao->getProfe($_SESSION['name']);
+        $pdao = new Profesor();
+        $p = $pdao->getProfe(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
 
-        $cdao = new ClasesDAO();
+        $cdao = new Clases();
         $result = $cdao->getAsignaturas($p->getId());
         while($fila = $result->fetch_assoc()){
           $id_asignatura = $fila["id"];
           $c = $cdao->getClase($id_asignatura);
           echo "<p><a href=\"ver_clase.php?id=" .$c->getId(). "\">" .$c->getCurso(). "º " .$c->getTitul(). " " .$c->getLetra(). "</a> (".$fila["nombre_asignatura"].", Número de alumnos: " .$c->getNAlum(). ")</p>";
         }
-
-
-
-
       ?>
     </div>
 

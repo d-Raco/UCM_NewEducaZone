@@ -1,5 +1,6 @@
 <?php
-require_once('include/DAOProfe.php');
+require_once __DIR__ . '/include/dao/Profesor.php';
+require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,9 +23,9 @@ require_once('include/DAOProfe.php');
     <div id="contenido">
       <h1>Destinatario</h1>
       <?php
-      $pdao = new ProfeDAO();
+      $pdao = new Profesor();
 
-      $idProfesor = $pdao->getIdProfesor($_SESSION['name']);
+      $idProfesor = $pdao->getIdProfesor(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
       $clases = $pdao->getAsignaturasProfesor($idProfesor);
       foreach($clases as &$value){
         echo "<p><a href=\"mensajeriaAlumnos.php?id=" .$value["id"]. "&profesor=" .$idProfesor. "\">" .$value["curso"]. "º " .$value["titulación"]. " " .$value["letra"]. "</a> (Número de alumnos: " .$value["numero_alumnos"]. ")</p>";

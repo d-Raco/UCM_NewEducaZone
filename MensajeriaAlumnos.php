@@ -1,5 +1,6 @@
 <?php
-require_once('include/DAOClases.php');
+require_once __DIR__ . '/include/dao/Clases.php';
+require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,18 +24,18 @@ require_once('include/DAOClases.php');
       <h1>Destinatario</h1>
       <?php
         $cdao = new ClasesDAO();
-        $rs = $cdao->getAlumnos($_GET['id']);
+        $rs = $cdao->getAlumnos(htmlspecialchars(trim(strip_tags($_GET["id"]))));
 
         if($rs->num_rows > 0){
           $i = 1;
           $contenido_msg = NULL;
           while($fila = $rs->fetch_assoc()){
-            echo "<p><a href=\"mensajeria.php?tutor=".$fila["id_tutor_legal"]."&profesor=".$_GET['profesor']."&contenido_msg=".$contenido_msg."\">" .$i. ". Tutor legal de " .$fila["nombre"]. " " .$fila["apellido1"]. " " .$fila["apellido2"]. "</a></p>";
+            echo "<p><a href=\"mensajeria.php?tutor=".$fila["id_tutor_legal"]."&profesor=".htmlspecialchars(trim(strip_tags($_GET["profesor"])))."&contenido_msg=".$contenido_msg."\">" .$i. ". Tutor legal de " .$fila["nombre"]. " " .$fila["apellido1"]. " " .$fila["apellido2"]. "</a></p>";
             $i = $i + 1;
           }
         }
         else{
-          echo "No hay clases con id " .$_GET['id'];
+          echo "No hay clases con id " .htmlspecialchars(trim(strip_tags($_GET["id"])));
         }
       ?>
     </div>

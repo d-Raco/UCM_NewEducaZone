@@ -1,5 +1,6 @@
 <?php
-require_once('include/DAOIncidencias.php');
+require_once __DIR__ . '/include/dao/Incidencias.php';
+require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,13 +22,13 @@ if (!isset($_SESSION['login'])){
     ?>
     <div id="contenido">
         <?php
-        $idao = new IncidenciasDAO();
+        $idao = new Incidencias();
 
-        $row = $idao->getInfo($_GET['id'], $_GET['idAsignatura']);
+        $row = $idao->getInfo(htmlspecialchars(trim(strip_tags($_GET["id"]))), htmlspecialchars(trim(strip_tags($_GET["idAsignatura"]))));
 
         echo "<h2>Incidencias de " .$row["nombre"]. " " .$row["apellido1"]. " " .$row["apellido2"]. " en la asignatura de " .$row["nombre_asignatura"]. "</h2>";
 
-        $incidencias = $idao->getIncidencias($_GET['id'], $_GET['idAsignatura']);
+        $incidencias = $idao->getIncidencias(htmlspecialchars(trim(strip_tags($_GET["id"]))), htmlspecialchars(trim(strip_tags($_GET["idAsignatura"]))));
 
         if(!empty($incidencias)){
           foreach($incidencias as &$value){
@@ -35,8 +36,8 @@ if (!isset($_SESSION['login'])){
           }
         }
         echo "<form action=\"include/process_incidencias.php\" method=\"get\">
-            <input type=\"hidden\" name=\"idAlumno\" value=\"" .$_GET['id']. "\">
-            <input type=\"hidden\" name=\"idAsignatura\" value=\"" .$_GET['idAsignatura']. "\">
+            <input type=\"hidden\" name=\"idAlumno\" value=\"" .htmlspecialchars(trim(strip_tags($_GET['id']))). "\">
+            <input type=\"hidden\" name=\"idAsignatura\" value=\"" .htmlspecialchars(trim(strip_tags($_GET['idAsignatura']))). "\">
             <p>Mensaje de la incidencia:
             <input type=\"text\" name=\"incidencia\" /><br></p>
             <input type=\"submit\" value=\"Enviar\" />

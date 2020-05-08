@@ -1,11 +1,13 @@
 <?php
-require_once('DAOIncidencias.php');
+require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/dao/Incidencias.php';
 
-$idao = new IncidenciasDAO();
+
+$idao = new Incidencias();
 $id = $idao->getNumIncidencias() + 1;
 
-$i = new Incidencia($id, $_REQUEST["idAsignatura"], $_REQUEST["idAlumno"], $_REQUEST["incidencia"]);
+$i = new Incidencias($id, htmlspecialchars(trim(strip_tags($_REQUEST["idAsignatura"]))), htmlspecialchars(trim(strip_tags($_REQUEST["idAlumno"]))), htmlspecialchars(trim(strip_tags($_REQUEST["incidencia"]))));
 $id = $idao->insertIncidencia($i);
 
-header("Location: ../incidencias_profesor.php?id=".$_REQUEST["idAlumno"]."&idAsignatura=".$_REQUEST["idAsignatura"]);
+header("Location: ../incidencias_profesor.php?id=".htmlspecialchars(trim(strip_tags($_REQUEST["idAlumno"])))."&idAsignatura=".htmlspecialchars(trim(strip_tags($_REQUEST["idAsignatura"]))));
 ?>

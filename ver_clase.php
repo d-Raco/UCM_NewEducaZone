@@ -1,5 +1,6 @@
 <?php
-  require_once('include/DAOClases.php');
+require_once __DIR__ . '/include/dao/Clases.php';
+  require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,7 +14,7 @@
     <?php
       include("include/comun/cabecera.php");
       if($_SESSION['rol'] == 'profesor'){
-        include("include/comun/sidebarIzqProfesor.php");        
+        include("include/comun/sidebarIzqProfesor.php");
       }
       else{
         include("include/comun/sidebarIzqPadre.php");
@@ -21,11 +22,12 @@
     ?>
     <div id="contenido">
       <?php
-        $id = $_GET['id'];
-        $cdao = new ClasesDAO();
-        $c = $cdao->getClase($id);
+        $id = htmlspecialchars(trim(strip_tags($_GET["id"])));
 
-        $result = $cdao->getAlumnos($id);
+        $clases = new Clases();
+        $c = $clases->getClase($id);
+
+        $result = $c->getAlumnos($id);
         $i = 1;
 
         if ($_SESSION['rol'] == "profesor"){
@@ -45,7 +47,7 @@
 
     <?php
       if($_SESSION['rol'] == 'profesor'){
-        include("include/comun/sidebarDerProfesor.php");        
+        include("include/comun/sidebarDerProfesor.php");
       }
       else{
         include("include/comun/sidebarDerPadre.php");

@@ -1,5 +1,6 @@
 <?php
-require_once('include/DAOIncidencias.php');
+require_once __DIR__ . '/include/dao/Incidencias.php';
+require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,12 +22,12 @@ if (!isset($_SESSION['login'])){
     ?>
     <div id="contenido">
         <?php
-        $idao = new IncidenciasDAO();
+        $idao = new Incidencias();
 
-        $asignaturas = $idao->getAsignaturasCompartidas($_GET['alumno'], $_GET['profesor']);
+        $asignaturas = $idao->getAsignaturasCompartidas(htmlspecialchars(trim(strip_tags($_GET["alumno"]))), htmlspecialchars(trim(strip_tags($_GET["profesor"]))));
 
         foreach ($asignaturas as &$value) {
-          echo "<p><a href=\"incidencias_profesor.php?id=".$_GET['alumno']."&idAsignatura=".$value["id"]."\">".$value["nombre_asignatura"]."</a></p>";
+          echo "<p><a href=\"incidencias_profesor.php?id=".htmlspecialchars(trim(strip_tags($_GET['alumno'])))."&idAsignatura=".$value["id"]."\">".$value["nombre_asignatura"]."</a></p>";
         }
         ?>
     </div>

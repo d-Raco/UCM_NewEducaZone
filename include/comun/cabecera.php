@@ -15,10 +15,10 @@
         <?php
           if (isset($_SESSION['login'])){
             if($_SESSION['rol'] == 'padre'){
-              print "<a href=\"./ver_padre.php\">" .$_SESSION['name']. "</a>";
+              print "<a href=\"./ver_padre.php\">" .htmlspecialchars(trim(strip_tags($_SESSION['name']))). "</a>";
             }
             elseif($_SESSION['rol'] == 'profesor'){
-              print "<a href=\"./ver_profesor.php\">" .$_SESSION['name']. "</a>";
+              print "<a href=\"./ver_profesor.php\">" .htmlspecialchars(trim(strip_tags($_SESSION['name']))). "</a>";
             }
             ?>
             <div class="logout">

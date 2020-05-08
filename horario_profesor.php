@@ -1,6 +1,7 @@
 <?php
-  require_once('include/DAOClases.php');
-  require_once('include/DAOProfe.php');
+require_once __DIR__ . '/include/dao/Clases.php';
+require_once __DIR__ . '/include/dao/Profesor.php';
+  require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,10 +23,10 @@
     ?>
     <div id="contenido">
       <?php
-         $cdao = new ClasesDAO();
-         $pdao = new ProfeDAO();
+         $cdao = new Clases();
+         $pdao = new Profesor();
 
-         $p = $pdao->getProfe($_SESSION['name']);
+         $p = $pdao->getProfe(htmlspecialchars(trim(strip_tags($_SESSION['name']))));
          $rs = $cdao->getAsignaturas($p->getId());
 
          if($rs->num_rows > 0){

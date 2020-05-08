@@ -1,5 +1,6 @@
 <?php
-  require_once('include/DAOPadre.php');
+require_once __DIR__ . '/include/dao/Padre.php';
+  require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,8 +22,8 @@
     ?>
     <div id="contenido">
       <?php
-        $pdao = new PadreDAO();
-        $p = $pdao->getPadre($_SESSION['name']);
+        $padre = new Padre();
+        $p = $padre->getPadre(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
 
         echo "<h1>".$p->getNombre(). " " .$p->getAp1(). " " .$p->getAp2()."</h1>";
         echo "<p>Correo electrónico: " .$p->getCorreo(). ".</p>";
@@ -31,17 +32,29 @@
 
         echo "<p>Hijos: </p>";
 
-        $result = $pdao->getHijos($p->getId());
+        $result = $p->getHijos($p->getId());
 
         while($hijo = $result->fetch_assoc()){
           echo "<ol><a href=\"ver_alumno.php?id=".$hijo["DNI"]."\">" .$hijo["nombre"]. " " .$hijo["apellido1"]. " " .$hijo["apellido2"]. "</a></ol>";
-        }  
+        }
       ?>
+        <div id="Editar">
+
+      <form method="post">
+        <input type="submit" name="Edit" value="EDITAR">
+      </form>
+
+    </div>
+</div>
     </div>
 
     <?php
       include("include/comun/sidebarDerPadre.php");
       include("include/comun/pie.php");
+
+      if(isset($_POST["Edit"])){
+        include("EditarPadre.php");
+      }
     ?>
    </div>
   </body>

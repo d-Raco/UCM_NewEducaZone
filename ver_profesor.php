@@ -1,5 +1,6 @@
 <?php
-  require_once('include/DAOProfe.php');
+require_once __DIR__ . '/include/dao/Profesor.php';
+  require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,24 +22,24 @@
     ?>
     <div id="contenido">
       <?php
-        $pdao = new ProfeDao();
+        $profesor = new Profesor();
 
         if ($_SESSION['rol'] == "profesor"){
-          $p = $pdao->getProfe($_SESSION['name']);
+          $p = $profesor->getProfe(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
         }
         else{
-          $usuarioProfe = $_GET['profesor'];
-          $id_padre = $_GET['tutor'];
-          $p = $pdao->getProfe($usuarioProfe);
+          $usuarioProfe = htmlspecialchars(trim(strip_tags($_GET["profesor"])));
+          $id_padre = htmlspecialchars(trim(strip_tags($_GET["tutor"])));
+          $p = $profesor->getProfe($usuarioProfe);
           echo "<img src=\"" .$p->getFoto(). "\"  width=\"150\" height=\"150\">";
         }
 
         echo "<h1>".$p->getNombre(). " " .$p->getAp1(). " " .$p->getAp2()."</h1>";
-        echo "<p>Colegio: " .$pdao->getCentro($p->getIdCentro()). ".</p>";        
+        echo "<p>Colegio: " .$p->getCentro($p->getIdCentro()). ".</p>";
         echo "<p>Despacho: " .$p->getDespacho(). ".</p>";
         echo "<p>Correo: " .$p->getCorreo(). ".</p>";
         echo "<p>Asignaturas: </p>";
-        $result = $pdao->getAsignaturas($p->getId());
+        $result = $p->getAsignaturas($p->getId());
 
         while($asig = $result->fetch_assoc()){
           echo "<ol>".$asig["nombre_asignatura"]."</ol>";
@@ -48,17 +49,36 @@
           $msg = NULL;
           echo "<p><a href=\"mensajeria.php?tutor=".$id_padre."&profesor=".$p->getId()."&contenido_msg=".$msg."\">Enviar mensaje</a></p>";
         }
+          if ($_SESSION['rol'] == "profesor"){
       ?>
-    </div>
 
+
+
+    <div id="Editar">
+
+      <form method="post">
+        <input type="submit" name="Edit" value="EDITAR">
+      </form>
+
+    </div>
     <?php
+  }?>
+</div>
+    <?php
+
+
       if($_SESSION['rol'] == 'profesor'){
         include("include/comun/sidebarDerProfesor.php");
+         if(isset($_POST["Edit"])){
+              include("EditarProfe.php");
+            }
       }
       else{
         include("include/comun/sidebarDerPadre.php");
       }
       include("include/comun/pie.php");
+
+           
     ?>
    </div>
   </body>

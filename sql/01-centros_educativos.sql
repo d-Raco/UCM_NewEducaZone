@@ -2,10 +2,10 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 02-04-2020 a las 16:44:58
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.9
+-- Host: 127.0.0.1
+-- Generation Time: May 08, 2020 at 05:33 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `centros_educativos`
+-- Database: `centros_educativos`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `alumnos`
+-- Table structure for table `alumnos`
 --
 
 CREATE TABLE `alumnos` (
@@ -43,51 +43,51 @@ CREATE TABLE `alumnos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `alumnos`
+-- Dumping data for table `alumnos`
 --
 
 INSERT INTO `alumnos` (`DNI`, `nombre`, `apellido1`, `apellido2`, `id_centro`, `id_clase`, `observaciones_medicas`, `id_tutor_legal`, `fecha_nacimiento`, `id_calificaciones`, `foto`) VALUES
-('00822109C', 'Rosmira', 'Frías', 'Carvajal', 41000405, 7, 'Trastorno obsesivo-compulsivo (TOC)', NULL, '2004-05-20', 11, NULL),
-('01864521A', 'Alumine', 'Nieves', 'Salcedo', 50000151, 14, NULL, NULL, '2006-03-14', 15, NULL),
-('13586449G', 'Memmon', 'Crespo', 'Nieto', 8039598, 18, NULL, NULL, '2006-03-04', 13, NULL),
-('13902147G', 'Inmaculada', 'Campos', 'Alcalá', 8039598, 19, 'Trastorno obsesivo-compulsivo (TOC)', NULL, '2006-05-01', 17, NULL),
-('15700350K', 'Alanis', 'Ibarra', 'Padrón', 28047551, 17, NULL, 2, '2003-07-05', 12, NULL),
-('16352963D', 'Solano', 'Rocha', 'Cedillo', 50000151, 14, NULL, 3, '2006-11-22', 15, NULL),
-('16512408H', 'Sebasten', 'Armendáriz', 'Maldonado', 41000405, 13, ' Anafilaxia', NULL, '2004-11-19', 18, NULL),
-('16627162W', 'Rayen', 'Sánchez', 'Marín', 28047551, 17, 'Presenta reacciones alérgicas a los frutos secos.', 4, '2003-11-11', 12, NULL),
-('20171515D', 'Meinard', 'Mesa', 'Ulloa', 28047551, 17, NULL, NULL, '2003-06-12', 12, NULL),
-('21503333N', 'Zohar', 'Núñez', 'Ozuna', 8039598, 19, NULL, 5, '2005-12-13', 17, NULL),
-('25952332Y', 'Laodicea', 'Cabán', 'Roque', 50000151, 15, NULL, NULL, '2002-08-09', 20, NULL),
-('25988953B', 'Munir', 'Árias', 'Regalado', 50000151, 16, NULL, 6, '2006-07-10', 19, NULL),
-('27036756A', 'Abram', 'Archuleta', 'Vanegas', 41000405, 8, NULL, NULL, '2005-08-09', 16, NULL),
-('31123104X', 'Aracely', 'Angulo', 'Rael', 8039598, 19, NULL, NULL, '2006-01-02', 17, NULL),
-('31631695W', 'Xaviera', 'Amaya', 'Hernández', 28070913, 12, '', 7, '2002-05-20', 14, NULL),
-('37071162S', 'Neus', 'Benavides', 'Bustos', 41000405, 8, NULL, 10, '2005-05-17', 16, NULL),
-('38067105N', 'Atanasio', 'Medrano', 'Villareal', 50000151, 16, NULL, NULL, '2006-10-20', 19, NULL),
-('38946295G', 'Antígona', 'Rosas', 'Vázquez', 28070913, 12, NULL, NULL, '2002-11-19', 14, NULL),
-('42893072G', 'Nicholai', 'Rivero', 'Fernández', 28070913, 12, 'Presenta reacciones alérgicas a los anacardos y almendras', NULL, '2002-03-04', 14, NULL),
-('43018009M', 'Horaz', 'Otero', 'Espinosa', 50000151, 16, NULL, 8, '2006-04-17', 19, NULL),
-('43874001Y', 'Otilio', 'Jimínez', 'Mejía', 8039598, 19, NULL, NULL, '2005-09-08', 17, NULL),
-('44138671S', 'Pío', 'Colunga', 'Bernal', 50000151, 16, NULL, NULL, '2006-06-10', 19, NULL),
-('45730731S', 'Laviana', 'Leyva', 'Guerrero', 41000405, 8, NULL, 9, '2005-09-17', 16, NULL),
-('51195336G', 'Morfeo', 'Calvillo', 'Padilla', 41000405, 8, NULL, NULL, '2005-07-19', 16, NULL),
-('52983179B', 'Orestes', 'Chapa', 'Badillo', 50000151, 16, NULL, NULL, '2007-04-20', 19, NULL),
-('53389278E', 'Dara', 'Tamayo', 'Aguirre', 41000405, 13, ' Síndrome de alargia oral.', NULL, '2004-03-04', 18, NULL),
-('61063539B', 'Antonella', 'Cisneros', 'Mares', 41000405, 8, NULL, NULL, '2005-04-04', 16, NULL),
-('64609317V', 'Carmen', 'Mercado', 'Canales', 50000151, 15, NULL, NULL, '2003-01-31', 20, NULL),
-('65619270V', 'Lucas', 'Benavidez', 'Madrid', 50000151, 14, NULL, NULL, '2006-03-07', 15, NULL),
-('77595539W', 'Tara', 'Cristobal', 'Fernández', 50000151, 14, NULL, 1, '2006-11-19', 15, NULL),
+('00822109C', 'Rosmira', 'Frías', 'Carvajal', 41000405, 7, 'Trastorno obsesivo-compulsivo (TOC)', NULL, '2004-05-20', 11, 'img\\users\\alumnos\\rosmira.jpg'),
+('01864521A', 'Alumine', 'Nieves', 'Salcedo', 50000151, 14, NULL, NULL, '2006-03-14', 15, 'img\\users\\alumnos\\alumine.jpg'),
+('13586449G', 'Memmon', 'Crespo', 'Nieto', 8039598, 18, NULL, NULL, '2006-03-04', 13, 'img\\users\\alumnos\\memmon.jpg'),
+('13902147G', 'Inmaculada', 'Campos', 'Alcalá', 8039598, 19, 'Trastorno obsesivo-compulsivo (TOC)', NULL, '2006-05-01', 17, 'img\\users\\alumnos\\inmaculada.jpg'),
+('15700350K', 'Alanis', 'Ibarra', 'Padrón', 28047551, 17, NULL, 2, '2003-07-05', 12, 'img\\users\\alumnos\\alanis.jpg'),
+('16352963D', 'Solano', 'Rocha', 'Cedillo', 50000151, 14, NULL, 3, '2006-11-22', 15, 'img\\users\\alumnos\\solano.jpg'),
+('16512408H', 'Sebasten', 'Armendáriz', 'Maldonado', 41000405, 13, ' Anafilaxia', NULL, '2004-11-19', 18, 'img\\users\\alumnos\\sebasten.jpg'),
+('16627162W', 'Rayen', 'Sánchez', 'Marín', 28047551, 17, 'Presenta reacciones alérgicas a los frutos secos.', 4, '2003-11-11', 12, 'img\\users\\alumnos\\rayen.jpg'),
+('20171515D', 'Meinard', 'Mesa', 'Ulloa', 28047551, 17, NULL, NULL, '2003-06-12', 12, 'img\\users\\alumnos\\meinard.jpg'),
+('21503333N', 'Zohar', 'Núñez', 'Ozuna', 8039598, 19, NULL, 5, '2005-12-13', 17, 'img\\users\\alumnos\\zohar.jpg'),
+('25952332Y', 'Laodicea', 'Cabán', 'Roque', 50000151, 15, NULL, NULL, '2002-08-09', 20, 'img\\users\\alumnos\\laodicea.jpg'),
+('25988953B', 'Munir', 'Árias', 'Regalado', 50000151, 16, NULL, 6, '2006-07-10', 19, 'img\\users\\alumnos\\munir.jpg'),
+('27036756A', 'Abram', 'Archuleta', 'Vanegas', 41000405, 8, NULL, NULL, '2005-08-09', 16, 'img\\users\\alumnos\\abram.jpg'),
+('31123104X', 'Aracely', 'Angulo', 'Rael', 8039598, 19, NULL, NULL, '2006-01-02', 17, 'img\\users\\alumnos\\aracely.jpg'),
+('31631695W', 'Xaviera', 'Amaya', 'Hernández', 28070913, 12, '', 7, '2002-05-20', 14, 'img\\users\\alumnos\\xaviera.jpg'),
+('37071162S', 'Neus', 'Benavides', 'Bustos', 41000405, 8, NULL, 10, '2005-05-17', 16, 'img\\users\\alumnos\\neus.jpg'),
+('38067105N', 'Atanasio', 'Medrano', 'Villareal', 50000151, 16, NULL, NULL, '2006-10-20', 19, 'img\\users\\alumnos\\atanasio.jpg'),
+('38946295G', 'Antígona', 'Rosas', 'Vázquez', 28070913, 12, NULL, NULL, '2002-11-19', 14, 'img\\users\\alumnos\\antigona.jpg'),
+('42893072G', 'Nicholai', 'Rivero', 'Fernández', 28070913, 12, 'Presenta reacciones alérgicas a los anacardos y almendras', NULL, '2002-03-04', 14, 'img\\users\\alumnos\\nicholai.jpg'),
+('43018009M', 'Horaz', 'Otero', 'Espinosa', 50000151, 16, NULL, 8, '2006-04-17', 19, 'img\\users\\alumnos\\horaz.jpg'),
+('43874001Y', 'Otilio', 'Jimínez', 'Mejía', 8039598, 19, NULL, NULL, '2005-09-08', 17, 'img\\users\\alumnos\\otilio.jpg'),
+('44138671S', 'Pío', 'Colunga', 'Bernal', 50000151, 16, NULL, NULL, '2006-06-10', 19, 'img\\users\\alumnos\\pio.jpg'),
+('45730731S', 'Laviana', 'Leyva', 'Guerrero', 41000405, 8, NULL, 9, '2005-09-17', 16, 'img\\users\\alumnos\\laviana.jpg'),
+('51195336G', 'Morfeo', 'Calvillo', 'Padilla', 41000405, 8, NULL, NULL, '2005-07-19', 16, 'img\\users\\alumnos\\morfeo.jpg'),
+('52983179B', 'Orestes', 'Chapa', 'Badillo', 50000151, 16, NULL, NULL, '2007-04-20', 19, 'img\\users\\alumnos\\orestes.jpg'),
+('53389278E', 'Dara', 'Tamayo', 'Aguirre', 41000405, 13, ' Síndrome de alargia oral.', NULL, '2004-03-04', 18, 'img\\users\\alumnos\\dara.jpg'),
+('61063539B', 'Antonella', 'Cisneros', 'Mares', 41000405, 8, NULL, NULL, '2005-04-04', 16, 'img\\users\\alumnos\\antonella.jpg'),
+('64609317V', 'Carmen', 'Mercado', 'Canales', 50000151, 15, NULL, NULL, '2003-01-31', 20, 'img\\users\\alumnos\\carmen.jpg'),
+('65619270V', 'Lucas', 'Benavidez', 'Madrid', 50000151, 14, NULL, NULL, '2006-03-07', 15, 'img\\users\\alumnos\\lucas.jpg'),
+('77595539W', 'Tara', 'Cristobal', 'Fernández', 50000151, 14, NULL, 1, '2006-11-19', 15, 'img\\users\\alumnos\\tara.jpg'),
 ('78678320N', 'Oscar', 'Cristobal', 'Fernández', 41000405, 7, 'Presenta reacciones alérgicas a los frutos secos.', 1, '2004-03-04', 11, 'img\\users\\alumnos\\oscar.jpg'),
-('82413678D', 'Olalla', 'Porras', 'Rolón', 50000151, 15, NULL, 11, '2004-12-13', 20, NULL),
-('86512991D', 'Privato', 'Corral', 'Rojas', 41000405, 7, NULL, NULL, '2004-11-19', 11, NULL),
-('88962348G', 'Candela', 'Quiñones', 'Aguilera', 50000151, 15, NULL, NULL, '2004-08-20', 20, NULL),
-('92125571Z', 'Adamo', 'Zepeda', 'Altamirano', 8039598, 18, 'Trastorno obsesivo-compulsivo (TOC)', NULL, '2006-05-20', 13, NULL),
-('94374398Q', 'Romanela', 'Alarcón', 'Villaseñor', 50000151, 14, NULL, 12, '2006-08-26', 15, NULL);
+('82413678D', 'Olalla', 'Porras', 'Rolón', 50000151, 15, NULL, 11, '2004-12-13', 20, 'img\\users\\alumnos\\olalla.jpg'),
+('86512991D', 'Privato', 'Corral', 'Rojas', 41000405, 7, NULL, NULL, '2004-11-19', 11, 'img\\users\\alumnos\\privato.jpg'),
+('88962348G', 'Candela', 'Quiñones', 'Aguilera', 50000151, 15, NULL, NULL, '2004-08-20', 20, 'img\\users\\alumnos\\candela.jpg'),
+('92125571Z', 'Adamo', 'Zepeda', 'Altamirano', 8039598, 18, 'Trastorno obsesivo-compulsivo (TOC)', NULL, '2006-05-20', 13, 'img\\users\\alumnos\\adamo.jpg'),
+('94374398Q', 'Romanela', 'Alarcón', 'Villaseñor', 50000151, 14, NULL, 12, '2006-08-26', 15, 'img\\users\\alumnos\\romanela.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `asignaturas`
+-- Table structure for table `asignaturas`
 --
 
 CREATE TABLE `asignaturas` (
@@ -107,7 +107,7 @@ CREATE TABLE `asignaturas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `asignaturas`
+-- Dumping data for table `asignaturas`
 --
 
 INSERT INTO `asignaturas` (`id`, `id_profesor`, `nombre_asignatura`, `lunes_inicio`, `lunes_fin`, `martes_inicio`, `martes_fin`, `miercoles_inicio`, `miercoles_fin`, `jueves_inicio`, `jueves_fin`, `viernes_inicio`, `viernes_fin`) VALUES
@@ -175,7 +175,7 @@ INSERT INTO `asignaturas` (`id`, `id_profesor`, `nombre_asignatura`, `lunes_inic
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `calificaciones`
+-- Table structure for table `calificaciones`
 --
 
 CREATE TABLE `calificaciones` (
@@ -195,7 +195,7 @@ CREATE TABLE `calificaciones` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `calificaciones`
+-- Dumping data for table `calificaciones`
 --
 
 INSERT INTO `calificaciones` (`id`, `id_asignatura1`, `nota1`, `id_asignatura2`, `nota2`, `id_asignatura3`, `nota3`, `id_asignatura4`, `nota4`, `id_asignatura5`, `nota5`, `id_asignatura6`, `nota6`) VALUES
@@ -213,7 +213,7 @@ INSERT INTO `calificaciones` (`id`, `id_asignatura1`, `nota1`, `id_asignatura2`,
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `centros`
+-- Table structure for table `centros`
 --
 
 CREATE TABLE `centros` (
@@ -226,7 +226,7 @@ CREATE TABLE `centros` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `centros`
+-- Dumping data for table `centros`
 --
 
 INSERT INTO `centros` (`id`, `nombre`, `provincia`, `direccion`, `telefono`, `email`) VALUES
@@ -239,7 +239,7 @@ INSERT INTO `centros` (`id`, `nombre`, `provincia`, `direccion`, `telefono`, `em
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `clases`
+-- Table structure for table `clases`
 --
 
 CREATE TABLE `clases` (
@@ -258,7 +258,7 @@ CREATE TABLE `clases` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `clases`
+-- Dumping data for table `clases`
 --
 
 INSERT INTO `clases` (`id`, `curso`, `letra`, `titulación`, `id_tutor_clase`, `numero_alumnos`, `id_asignatura1`, `id_asignatura2`, `id_asignatura3`, `id_asignatura4`, `id_asignatura5`, `id_asignatura6`) VALUES
@@ -276,7 +276,7 @@ INSERT INTO `clases` (`id`, `curso`, `letra`, `titulación`, `id_tutor_clase`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `codigos_de_acceso`
+-- Table structure for table `codigos_de_acceso`
 --
 
 CREATE TABLE `codigos_de_acceso` (
@@ -286,7 +286,7 @@ CREATE TABLE `codigos_de_acceso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `codigos_de_acceso`
+-- Dumping data for table `codigos_de_acceso`
 --
 
 INSERT INTO `codigos_de_acceso` (`codigo`, `id_centro`, `id_alumnos`) VALUES
@@ -330,7 +330,7 @@ INSERT INTO `codigos_de_acceso` (`codigo`, `id_centro`, `id_alumnos`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `incidencias`
+-- Table structure for table `incidencias`
 --
 
 CREATE TABLE `incidencias` (
@@ -343,7 +343,7 @@ CREATE TABLE `incidencias` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `mensajería`
+-- Table structure for table `mensajería`
 --
 
 CREATE TABLE `mensajería` (
@@ -353,13 +353,15 @@ CREATE TABLE `mensajería` (
   `id_destinatario` int(11) UNSIGNED NOT NULL,
   `rol_destinatario` varchar(20) NOT NULL,
   `contenido_msg` varchar(300) NOT NULL,
-  `fecha_hora` datetime NOT NULL
+  `fecha_hora` datetime NOT NULL,
+  `etiqueta` varchar(20) NOT NULL,
+  `archivo` longblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `profesores`
+-- Table structure for table `profesores`
 --
 
 CREATE TABLE `profesores` (
@@ -371,40 +373,40 @@ CREATE TABLE `profesores` (
   `despacho` int(4) UNSIGNED DEFAULT NULL,
   `correo` varchar(40) NOT NULL,
   `usuario` varchar(15) NOT NULL,
-  `contraseña` varchar(30) NOT NULL,
+  `contraseña` varchar(80) NOT NULL,
   `foto` varchar(80) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `profesores`
+-- Dumping data for table `profesores`
 --
 
 INSERT INTO `profesores` (`id`, `id_centro`, `nombre`, `apellido1`, `apellido2`, `despacho`, `correo`, `usuario`, `contraseña`, `foto`) VALUES
-(1, 41000405, 'Javier', 'Sanz', 'Garrido', 23, 'jsanzgarrido@iesmiguelcerv.es', 'javisgarr', 'realmadrid2020', 'img\\users\\profesores\\javier.jpg'),
-(2, 8039598, 'Katherine', 'Thompson', NULL, 14, 'KatherineRThompson@gustr.com', 'Heauld', 'eixoov0AGh', 'img\\users\\profesores\\katherine.jpg'),
-(3, 28070913, 'Georgia', 'Potter', NULL, NULL, 'GeorgiaPotter@gmail.com', 'Prisfirel', 'ohTohPiech6ei', 'img\\users\\profesores\\georgia.jpg'),
-(4, 50000151, 'Beltran', 'Serrano', 'Tafoya', 7, 'BeltranSerranoTafoya@gustr.com', 'Hustme', 'Eejieh7ooBee', 'img\\users\\profesores\\beltran.jpg'),
-(6, 28047551, 'Naiara', 'Cervántez', 'Muñoz', 20, 'NaiaraCervantezMunoz@gustr.com', 'Sekhas44', 'Ohg5ohngao', 'img\\users\\profesores\\naiara.jpg'),
-(8, 41000405, 'Garcilaso', 'Oquendo', 'García', 3, 'GarcilasoOquendoGarcia@gustr.com', 'Heme1969', 'wiZohg5j', 'img\\users\\profesores\\garcilaso.jpg'),
-(9, 8039598, 'Juan Carlos', 'Barreto', 'Hernández', 65, 'JuanCarlosBarretoHernandez@gmail.com', 'Joincte', 'umeephieH1ie', NULL),
-(16, 8039598, 'Margarita', 'Vega', 'Téllez', 2, 'MargaritaVegaTellez@gmail.com', 'Upinedegs', 'Eecoh7ahnae', NULL),
-(17, 8039598, 'Marta', 'Pedroza', 'Rosario', 5, 'MartaPedrozaRosario@gustr.com', ' Emaked', ' OoChi4chue', NULL),
-(20, 8039598, 'Adena', 'Pineda', 'Montero', 54, 'AdenaPinedaMontero@gmail.com', 'Aggland82', ' aViehoh5ees', NULL),
-(21, 8039598, 'Casiano', 'Trejo', 'Lozano', 34, 'CasianoTrejoLozano@gustr.com', ' Cail1971', ' Qua2tieng8', NULL),
-(22, 41000405, 'Bruna', 'Guillén', 'Merino', 17, 'BrunaGuillenMerino@gustr.com', 'Lifee1955', 'Dopha8hei', NULL),
-(23, 41000405, 'Hannah', 'Thompson', NULL, NULL, 'HannahThomp@gustr.com', 'Thimed', 'Ohfee3jei8Oo', NULL),
-(24, 28047551, 'Jose', 'Crespo', 'Aponte', 27, 'CrespoAponte@superrito.com', ' Thappery', ' Ed7Aipu8fei', NULL),
-(25, 28047551, 'Jose', 'Verdugo', 'Correa', 31, 'IberoVerdugoCorrea@gustr.com', ' Liaxoreated', 'gaiV8yahNg', NULL),
-(26, 28070913, 'Balbino', 'Verdugo', 'Castro', 24, 'BalbinoVerdugoCastro@superrito.com', 'Subbillson', 'ieThie0oomee', NULL),
-(27, 28070913, 'Cleodora', 'Carvajal', 'Curiel', 42, 'CleodoraCarvajalCuriel@gmail.com', 'Otill1951', ' Gohc5yo5', NULL),
-(28, 50000151, 'Juliano', 'Vargas', 'Rosas', 37, 'JulianoVargasRosas@gmail.com', 'Grops1982', 'Be4aiGhael5', NULL),
-(29, 50000151, 'Lioba', 'Solórzano', 'Muñoz', 45, 'LiobaSolorzanoCintron@gustr.com', 'Thermed', 'Au3daeNga', NULL),
-(30, 50000151, 'Ethel', 'Llarnas', 'Sanabria', NULL, 'EthelLlarnasSanabria@gmail.com', 'Pricher', 'vah6maiGh5', NULL);
+(1, 41000405, 'Javier', 'Sanz', 'Garrido', 23, 'jsanzgarrido@iesmiguelcerv.es', 'javisgarr', '$2y$10$b1qEUUyb1E5fZuuac0g.8O9KvlTlCd8FU/JtOJS7OhvMStlri2GN.', 'img\\users\\profesores\\javier.jpg'),
+(2, 8039598, 'Katherine', 'Thompson', NULL, 14, 'KatherineRThompson@gustr.com', 'kathethom', '$2y$10$OKcpMEgTw3lBVvRYBnXbFedeVmHF95bx3pQSQjOOLmwd9/SDaI3T6', 'img\\users\\profesores\\katherine.jpg'),
+(3, 28070913, 'Georgia', 'Potter', NULL, NULL, 'GeorgiaPotter@gmail.com', 'GPotter', '$2y$10$ZCFB8WyTNgQsvJAvqrPrEezL4xY3WAFkgy5nzZrTTMHg4P3wyubJq', 'img\\users\\profesores\\georgia.jpg'),
+(4, 50000151, 'Beltran', 'Serrano', 'Tafoya', 7, 'BeltranSerranoTafoya@gustr.com', 'Belserra', '$2y$10$WTHIUBFy34dVsJKnj7SrXuPCVuHcuA5EGmMlT0OHvbAcw2/URpPxm', 'img\\users\\profesores\\beltran.jpg'),
+(6, 28047551, 'Naiara', 'Cervántez', 'Muñoz', 20, 'NaiaraCervantezMunoz@gustr.com', 'naiara44', '$2y$10$F1kpRw5h6mM7aUheCq87KOqrc4C4q0uDrVxOrVRAVJrXh4PZeayNi', 'img\\users\\profesores\\naiara.jpg'),
+(8, 41000405, 'Garcilaso', 'Oquendo', 'García', 3, 'GarcilasoOquendoGarcia@gustr.com', 'GarcilasoOG', '$2y$10$TZwHKzlN3FitjeX8xXvTYOTE3dzGrVW.sFIDz2qXneK11sVfPJjTO', 'img\\users\\profesores\\garcilaso.jpg'),
+(9, 8039598, 'Juan Carlos', 'Barreto', 'Hernández', 65, 'JuanCarlosBarretoHernandez@gmail.com', 'JCarlosBH', '$2y$10$bnzQ0ZZB5rMrEuiMqVkdQuigARVO6aowjytyn/n9a9yt6/sYdWQzG', 'img\\users\\profesores\\juancarlos.jpg'),
+(16, 8039598, 'Margarita', 'Vega', 'Téllez', 2, 'MargaritaVegaTellez@gmail.com', 'margaVT', '$2y$10$v2Wfk2Igi5JCEltGEsmYGOmKKBvgVyzZNQTBP6teSy5aMDjLHizqq', 'img\\users\\profesores\\margarita.jpg'),
+(17, 8039598, 'Marta', 'Pedroza', 'Rosario', 5, 'MartaPedrozaRosario@gustr.com', 'martaProsa', '$2y$10$hxvL.pzyVij3eClRokdEDuX./gDDkubzEp0aW4U0gqzFReknVeixK', 'img\\users\\profesores\\marta.jpg'),
+(20, 8039598, 'Adena', 'Pineda', 'Montero', 54, 'AdenaPinedaMontero@gmail.com', 'adenapine', '$2y$10$BPrs3rrhXVlLlgzzgpwWoucQOEcCyWAwxmJDeMWN3R0/Ts87lH8GC', 'img\\users\\profesores\\adena.jpg'),
+(21, 8039598, 'Casiano', 'Trejo', 'Lozano', 34, 'CasianoTrejoLozano@gustr.com', 'casianotrejo', '$2y$10$/bpbB9Rqf3IpA.mJFsJdPelHIYplrMMSNOon/Pj4/sp3uyvJF9.8a', 'img\\users\\profesores\\casiano.jpg'),
+(22, 41000405, 'Bruna', 'Guillén', 'Merino', 17, 'BrunaGuillenMerino@gustr.com', 'brunaguime', '$2y$10$a0WGfbomM5a8TYeseC1oluRIidfI5byx0ixhuKvaYpxYi.prpjrb.', 'img\\users\\profesores\\bruna.jpg'),
+(23, 41000405, 'Hannah', 'Thompson', NULL, NULL, 'HannahThomp@gustr.com', 'hannahThomp', '$2y$10$ZM7R5vICNW40X82tUpCC0eR.Q0QkD69XYaWe9.27OhJG2.uHIHOJS', 'img\\users\\profesores\\hannah.jpg'),
+(24, 28047551, 'Jose', 'Crespo', 'Aponte', 27, 'CrespoAponte@gmail.com', 'Jcrespo', '$2y$10$Rz7wHt4liyyGYxjz9iKc7u/.nNZDnVv5PIhBr7Wx4Jw56AB5unuo6', 'img\\users\\profesores\\josecrespo.jpg'),
+(25, 28047551, 'Jose', 'Verdugo', 'Correa', 31, 'IberoVerdugoCorrea@gustr.com', 'Jvercorrea', '$2y$10$RxEzFnTtglCCApqaVnuxaOty9ztP1klpHOMv41XK.Fo7IhsZeZvMm', 'img\\users\\profesores\\joseverdugo.jpg'),
+(26, 28070913, 'Balbino', 'Verdugo', 'Castro', 24, 'BalbinoVerdugoCastro@gmail.com', 'Balvercast', '$2y$10$1xHL2gm9BqoCPqSkhHAZLeJpK3K2.5MlUfZCHiD4Guc9WyGkCjItO', 'img\\users\\profesores\\balbino.jpg'),
+(27, 28070913, 'Cleodora', 'Carvajal', 'Curiel', 42, 'CleodoraCarvajalCuriel@gmail.com', 'cleocarcu', '$2y$10$Va3ZUyMa06GQHUHIDL00SOC9qUbdDk.rRrUAXydHld2xyNfL9ynDa', 'img\\users\\profesores\\cleodora.jpg'),
+(28, 50000151, 'Juliano', 'Vargas', 'Rosas', 37, 'JulianoVargasRosas@gmail.com', 'julivargas', '$2y$10$T9PFojNJ0UmwwQmKjLfLYeU8zurHpP.gY8cf1dn4L4NVVp1ALm57y', 'img\\users\\profesores\\juliano.jpg'),
+(29, 50000151, 'Lioba', 'Solórzano', 'Muñoz', 45, 'LiobaSolorzanoCintron@gustr.com', 'liobamuñoz', '$2y$10$gTDVUN08ajprdYLxUx3zkOIZnA/COwp7kg34mOQSoUTf3oe48tyt2', 'img\\users\\profesores\\lioba.jpg'),
+(30, 50000151, 'Ethel', 'Llarnas', 'Sanabria', NULL, 'EthelLlarnasSanabria@gmail.com', 'Ethelsana', '$2y$10$adaX9vKkvvBXKoTn6OYu4.DKdAT0uXwIz2krK04eQPit4B3s6M9FG', 'img\\users\\profesores\\ethel.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tutor_legal`
+-- Table structure for table `tutor_legal`
 --
 
 CREATE TABLE `tutor_legal` (
@@ -416,33 +418,33 @@ CREATE TABLE `tutor_legal` (
   `telefono_fijo` varchar(15) DEFAULT NULL,
   `correo` varchar(40) NOT NULL,
   `usuario` varchar(15) NOT NULL,
-  `contraseña` varchar(30) NOT NULL
+  `contraseña` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `tutor_legal`
+-- Dumping data for table `tutor_legal`
 --
 
 INSERT INTO `tutor_legal` (`id`, `nombre`, `apellido1`, `apellido2`, `telefono_movil`, `telefono_fijo`, `correo`, `usuario`, `contraseña`) VALUES
-(1, 'Francisco', 'Cristobal', 'Casárez', '643 492 101', NULL, 'FCristoCasarez@gustr.com', 'Alied1957', 'haeh2xohnooB'),
-(2, 'Bautista', 'Ibarra', 'Chacón', '686 127 193', NULL, 'BautistaChacon@gustr.com', 'Unis1966', 'au2Uevaicei'),
-(3, 'Elenio ', 'Rocha', 'Valverde', '684 704 947', NULL, 'ElenioValverde@gustr.com', 'Leorelp', 'Fee0tohv'),
-(4, 'María', 'Marín', 'Naranjo', '610 449 678', '910606191', 'MariaNaranjo@gustr.com', 'Hoppled1964', 'eeWah7sie'),
-(5, 'Helen', 'Ozuna', 'Almonte', '733 029 369', '910600444', 'AlmonteConcepcion@gustr.com', 'Thoonions', 'sho6Eep9wei'),
-(6, 'Gara', 'Regalado', 'Montoya', '603 093 237', NULL, 'GaraRMontoya@gustr.com', 'Const1982', 'aiKoh0ipuw'),
-(7, 'Luján', 'Amaya', 'Delgado', '726 535 611', '910601009', 'LujanDelgado@gmail.com', ' Ophymplar', ' uiqu9uF0ie'),
-(8, 'Pedro', 'Otero', 'Franco', '655 224 142', '910608071', 'FedroOteroFranco@gmail.com', 'FOFtusa99', 'ji6Cui6oo'),
-(9, 'Carlos', 'Leyva', 'Gaitán', '748 727 731', '910601031', 'CarlLeyvaGaitan@gustr.com', 'Ambegurea', 'AhhuaMai3ie'),
-(10, 'Emily', 'Bustos', 'Galindo', '750 041 613', '910600448', 'EmilyGalindo@gustr.com', 'Knet1970', 'OoTha3ae'),
-(11, 'Ernesto', 'Porras', 'Ortiz', '687 452 124', '910600518', 'ErnestoPorrasOrtiz@gmail.com', ' Carchab67', 'Aung7iM0ah'),
-(12, 'Ana', 'Villaseñor', 'Pérez', '643 812 467', '910606338', 'AnaVillaPerez@gmail.com', 'Therat85', 'xahv4Nani6Oo');
+(1, 'Francisco', 'Cristobal', 'Casárez', '643 492 101', NULL, 'FCristoCasarez@gustr.com', 'Fcriscas', '$2y$10$oJCfNmuc3Dp1SVDA64LJ3.J/WeWaMGRgwwiXyJ.Jgz0Oq3wkZCos.'),
+(2, 'Bautista', 'Ibarra', 'Chacón', '686 127 193', NULL, 'BautistaChacon@gustr.com', 'bautistaIC', '$2y$10$PC6bzA6YZQxTBtPk/riqaeMmySKjAzz/hYDesHQXdwrtcc8D1PD7S'),
+(3, 'Elenio ', 'Rocha', 'Valverde', '684 704 947', NULL, 'ElenioValverde@gustr.com', 'elerochaval', '$2y$10$veZ/BycDsUxpwXAjhUd4EutdoUAno.58yxWB92xAToVzRPlgHc0A.'),
+(4, 'María', 'Marín', 'Naranjo', '610 449 678', '910606191', 'MariaNaranjo@gustr.com', 'mmnaranj', '$2y$10$VR.OqT2C0eGHMukz8QCf7.CaoyC2mWD64Oqemqtqf0xFYjBze.xtG'),
+(5, 'Helen', 'Ozuna', 'Almonte', '733 029 369', '910600444', 'AlmonteConcepcion@gustr.com', 'helezuna', '$2y$10$wMKXlmPrZJkJVcOOHYtpzOHY0Q9Cphw8P2QR9zZ6C6QsiDwa4jQBK'),
+(6, 'Gara', 'Regalado', 'Montoya', '603 093 237', NULL, 'GaraRMontoya@gustr.com', 'gararemon', '$2y$10$csaZgClSofO56fuIO/QaCenL95FtDvgv4fCa3LYO.dzbg9wveORoS'),
+(7, 'Luján', 'Amaya', 'Delgado', '726 535 611', '910601009', 'LujanDelgado@gmail.com', 'lujamaya', '$2y$10$/BQyWmU7d2ddXLnnO3KeGOuDpVKZfKdb6b6j7dpv8wRdbjPxdZtHO'),
+(8, 'Pedro', 'Otero', 'Franco', '655 224 142', '910608071', 'FedroOteroFranco@gmail.com', 'pedrotero', '$2y$10$H0Zp.ZomzeXLKnYrILW/2uAkd7.4CLHed6kLSaKXSiyXEd.Q/sufa'),
+(9, 'Carlos', 'Leyva', 'Gaitán', '748 727 731', '910601031', 'CarlLeyvaGaitan@gustr.com', 'cleyva', '$2y$10$kXFflHmqrdkZ4oy/Ga2qwOpBdJTZm7o.zG6sWPc23poj5HBMIVd4S'),
+(10, 'Emily', 'Bustos', 'Galindo', '750 041 613', '910600448', 'EmilyGalindo@gustr.com', 'emibugalin', '$2y$10$UoWkOXMQGXEvdhJ7MlvauOu4xvo7j3rGLuc29aHGOsINboV80PSW.'),
+(11, 'Ernesto', 'Porras', 'Ortiz', '687 452 124', '910600518', 'ErnestoPorrasOrtiz@gmail.com', 'ernesporras', '$2y$10$m5Y2HCRwMKnNI9ZZOycj3OZyxFvg92hY4z0kZLKOGz1fdUU3E71oW'),
+(12, 'Ana', 'Villaseñor', 'Pérez', '643 812 467', '910606338', 'AnaVillaPerez@gmail.com', 'anavillaper', '$2y$10$kSHEe1iTxEZ8Ay64C3C.numLUWQD8QkPvOoUsP.UNH3WLuhwmELNO');
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `alumnos`
+-- Indexes for table `alumnos`
 --
 ALTER TABLE `alumnos`
   ADD PRIMARY KEY (`DNI`),
@@ -452,14 +454,14 @@ ALTER TABLE `alumnos`
   ADD KEY `fk_alumno_tutor` (`id_tutor_legal`);
 
 --
--- Indices de la tabla `asignaturas`
+-- Indexes for table `asignaturas`
 --
 ALTER TABLE `asignaturas`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_asignatura_profesor` (`id_profesor`);
 
 --
--- Indices de la tabla `calificaciones`
+-- Indexes for table `calificaciones`
 --
 ALTER TABLE `calificaciones`
   ADD PRIMARY KEY (`id`),
@@ -471,13 +473,13 @@ ALTER TABLE `calificaciones`
   ADD KEY `fk_calificaciones_asignatura6` (`id_asignatura6`);
 
 --
--- Indices de la tabla `centros`
+-- Indexes for table `centros`
 --
 ALTER TABLE `centros`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `clases`
+-- Indexes for table `clases`
 --
 ALTER TABLE `clases`
   ADD PRIMARY KEY (`id`),
@@ -490,14 +492,14 @@ ALTER TABLE `clases`
   ADD KEY `fk_clase_asignatura6` (`id_asignatura6`);
 
 --
--- Indices de la tabla `codigos_de_acceso`
+-- Indexes for table `codigos_de_acceso`
 --
 ALTER TABLE `codigos_de_acceso`
   ADD KEY `id_centro` (`id_centro`),
   ADD KEY `id_alumnos` (`id_alumnos`);
 
 --
--- Indices de la tabla `incidencias`
+-- Indexes for table `incidencias`
 --
 ALTER TABLE `incidencias`
   ADD PRIMARY KEY (`id`),
@@ -505,13 +507,13 @@ ALTER TABLE `incidencias`
   ADD KEY `fk_asignatura_alumno` (`id_asignatura`);
 
 --
--- Indices de la tabla `mensajería`
+-- Indexes for table `mensajería`
 --
 ALTER TABLE `mensajería`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `profesores`
+-- Indexes for table `profesores`
 --
 ALTER TABLE `profesores`
   ADD PRIMARY KEY (`id`),
@@ -520,64 +522,64 @@ ALTER TABLE `profesores`
   ADD KEY `id_centro` (`id_centro`);
 
 --
--- Indices de la tabla `tutor_legal`
+-- Indexes for table `tutor_legal`
 --
 ALTER TABLE `tutor_legal`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `usuario` (`usuario`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `asignaturas`
+-- AUTO_INCREMENT for table `asignaturas`
 --
 ALTER TABLE `asignaturas`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
--- AUTO_INCREMENT de la tabla `calificaciones`
+-- AUTO_INCREMENT for table `calificaciones`
 --
 ALTER TABLE `calificaciones`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT de la tabla `clases`
+-- AUTO_INCREMENT for table `clases`
 --
 ALTER TABLE `clases`
   MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT de la tabla `incidencias`
+-- AUTO_INCREMENT for table `incidencias`
 --
 ALTER TABLE `incidencias`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `mensajería`
+-- AUTO_INCREMENT for table `mensajería`
 --
 ALTER TABLE `mensajería`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `profesores`
+-- AUTO_INCREMENT for table `profesores`
 --
 ALTER TABLE `profesores`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT de la tabla `tutor_legal`
+-- AUTO_INCREMENT for table `tutor_legal`
 --
 ALTER TABLE `tutor_legal`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `alumnos`
+-- Constraints for table `alumnos`
 --
 ALTER TABLE `alumnos`
   ADD CONSTRAINT `fk_alumno_calificaciones` FOREIGN KEY (`id_calificaciones`) REFERENCES `calificaciones` (`id`) ON UPDATE CASCADE,
@@ -586,13 +588,13 @@ ALTER TABLE `alumnos`
   ADD CONSTRAINT `fk_alumno_tutor` FOREIGN KEY (`id_tutor_legal`) REFERENCES `tutor_legal` (`id`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `asignaturas`
+-- Constraints for table `asignaturas`
 --
 ALTER TABLE `asignaturas`
   ADD CONSTRAINT `fk_asignatura_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesores` (`id`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `calificaciones`
+-- Constraints for table `calificaciones`
 --
 ALTER TABLE `calificaciones`
   ADD CONSTRAINT `fk_calificaciones_asignatura1` FOREIGN KEY (`id_asignatura1`) REFERENCES `asignaturas` (`id`) ON UPDATE CASCADE,
@@ -603,7 +605,7 @@ ALTER TABLE `calificaciones`
   ADD CONSTRAINT `fk_calificaciones_asignatura6` FOREIGN KEY (`id_asignatura6`) REFERENCES `asignaturas` (`id`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `clases`
+-- Constraints for table `clases`
 --
 ALTER TABLE `clases`
   ADD CONSTRAINT `fk_clase_asignatura1` FOREIGN KEY (`id_asignatura1`) REFERENCES `asignaturas` (`id`) ON UPDATE CASCADE,
@@ -615,21 +617,21 @@ ALTER TABLE `clases`
   ADD CONSTRAINT `fk_clase_tutor` FOREIGN KEY (`id_tutor_clase`) REFERENCES `profesores` (`id`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `codigos_de_acceso`
+-- Constraints for table `codigos_de_acceso`
 --
 ALTER TABLE `codigos_de_acceso`
   ADD CONSTRAINT `fk_codigo_alumno` FOREIGN KEY (`id_alumnos`) REFERENCES `alumnos` (`DNI`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_codigo_centro` FOREIGN KEY (`id_centro`) REFERENCES `centros` (`id`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `incidencias`
+-- Constraints for table `incidencias`
 --
 ALTER TABLE `incidencias`
   ADD CONSTRAINT `fk_asignatura_alumno` FOREIGN KEY (`id_asignatura`) REFERENCES `asignaturas` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_incidencias_alumno` FOREIGN KEY (`id_alumno`) REFERENCES `alumnos` (`DNI`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `profesores`
+-- Constraints for table `profesores`
 --
 ALTER TABLE `profesores`
   ADD CONSTRAINT `fk_profesor_centro` FOREIGN KEY (`id_centro`) REFERENCES `centros` (`id`) ON UPDATE CASCADE;

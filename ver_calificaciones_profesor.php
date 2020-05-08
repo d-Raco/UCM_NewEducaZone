@@ -1,7 +1,8 @@
 <?php
-  require_once('include/DAOCalificaciones.php');
-  require_once('include/DAOProfe.php');
-  require_once('include/DAOAlumno.php');
+require_once __DIR__ . '/include/dao/Calificaciones.php';
+require_once __DIR__ . '/include/dao/Profesor.php';
+require_once __DIR__ . '/include/dao/Alumno.php';
+  require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,20 +24,18 @@
     ?>
     <div id="contenido">
       <?php
-        $pdao = new ProfeDAO();
-        $adao = new AlumnoDAO();
-        $cdao = new CalificacionesDAO();
+        $pdao = new Profesor();
+        $adao = new Alumno();
 
-        $idProfesor = $pdao->getIdProfesor($_SESSION['name']);
-        $alumno = $adao->getAlumno($_GET['idAl']);
+        $profesor = $pdao->getProfe(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
+        $alumno = $adao->getAlumno(htmlspecialchars(trim(strip_tags($_GET["idAl"]))));
         $c = new Calificaciones($alumno->getCal(), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-        $cdao->setCalificaciones($c);
 
         echo "<h1>Calificación de " .$alumno->getNombre(). " " .$alumno->getAp1(). " " .$alumno->getAp2(). ":</h1>";
 
-        $cdao->setNota($c, $_GET["idAsignatura"], $_GET["notaNueva"]);
-        $cdao->setCalificaciones($c);
-        $filaAsignaturas = $cdao->getFilaAsignaturasProfesor($c, $idProfesor);
+        $cdao->setNota(htmlspecialchars(trim(strip_tags($_GET["idAsignatura"]))), htmlspecialchars(trim(strip_tags($_GET["notaNueva"]))));
+        
+        $filaAsignaturas = $c->getFilaAsignaturasProfesor($profesor->getId());
 
         foreach ($filaAsignaturas as &$value) {
           echo "<p>" .$value["nombre_asignatura"]. ": ";
@@ -45,7 +44,7 @@
           echo "<form method=\"get\">";
             echo "<p> Escribe aquí la nueva nota:";
             echo "<input type=\"varchar\" name=\"notaNueva\"></p>";
-            echo "<input type=\"hidden\" name=\"idAl\" value=\"" .$_GET['idAl']. "\">";
+            echo "<input type=\"hidden\" name=\"idAl\" value=\"" .htmlspecialchars(trim(strip_tags($_GET["idAl"]))). "\">";
             echo "<input type=\"hidden\" name=\"idAsignatura\" value=\"" .$value["id"]. "\">";
             echo "<input class=\"nota\" type=\"submit\" value=\"Submit\">";
           echo "</form>";

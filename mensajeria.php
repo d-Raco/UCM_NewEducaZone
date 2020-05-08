@@ -1,5 +1,6 @@
 <?php
-  require_once('include/DAOMensajes.php');
+require_once __DIR__ . '/include/dao/Mensajes.php';
+  require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,24 +35,24 @@
       </form>
 
   <?php
-      $mdao = new MensajesDAO();
+      $mdao = new Mensajes();
       setlocale(LC_TIME,"es_ES");
       if($_SESSION['rol'] == 'profesor'){
-        $idOrig = $_REQUEST['profesor'];
+        $idOrig = htmlspecialchars(trim(strip_tags($_REQUEST["profesor"])));
         $rolOrig = "profesor";
-        $idDest = $_REQUEST['tutor'];
+        $idDest = htmlspecialchars(trim(strip_tags($_REQUEST["tutor"])));
         $rolDest = "padre";
       }
       else if($_SESSION['rol'] == 'padre'){
-        $idOrig = $_REQUEST['tutor'];
+        $idOrig = htmlspecialchars(trim(strip_tags($_REQUEST["tutor"])));
         $rolOrig = "padre";
-        $idDest = $_REQUEST['profesor'];
+        $idDest = htmlspecialchars(trim(strip_tags($_REQUEST["profesor"])));
         $rolDest = "profesor";
       }
-      $m = new Mensaje($mdao->getNumMensajes()+1, $idOrig, $rolOrig, $idDest, $rolDest,$_REQUEST['contenido_msg'], date('Y-m-d h:i:s'));
+      $m = new Mensajes($mdao->getNumMensajes()+1, $idOrig, $rolOrig, $idDest, $rolDest,htmlspecialchars(trim(strip_tags($_REQUEST["contenido_msg"]))), date('Y-m-d h:i:s'));
       // $tiempo = strftime("%D %H:%M:%S");
 
-      if($_REQUEST['contenido_msg'] != ""){
+      if(htmlspecialchars(trim(strip_tags($_REQUEST["contenido_msg"]))) != ""){
         $mdao->insertMensaje($m);
       }
 

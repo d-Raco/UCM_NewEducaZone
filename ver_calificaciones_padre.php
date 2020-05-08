@@ -1,5 +1,6 @@
 <?php
-  require_once('include/DAOCalificaciones.php');
+require_once __DIR__ . '/include/dao/Calificaciones.php';
+  require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,10 +22,8 @@
     ?>
     <div id="contenido">
       <?php
-        $c = new Calificaciones($_GET["id"], NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-        $cdao = new CalificacionesDAO();
+        $c = new Calificaciones(htmlspecialchars(trim(strip_tags($_GET["id"]))), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
-        $cdao->setCalificaciones($c);
         echo "<h1>Calificaciones</h1>";
         echo "<table style=\"width:55%\" frame = \"border\" rules = \"all\">
           <tr>
@@ -33,7 +32,7 @@
           </tr>";
         for($i = 1; $i < 7; $i++){
           echo "<tr>
-            <td>".$cdao->getNombreAsignatura($c, $i)."</td>
+            <td>".$c->getNombreAsignatura($i)."</td>
             <td>".$c->getNotaAsignatura($i)."</td>
           </tr>";
         }
