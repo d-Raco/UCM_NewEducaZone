@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/include/config.php';
+require_once __DIR__ . '/include/FormularioLogin.php';
 ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -11,18 +12,12 @@ require_once __DIR__ . '/include/config.php';
   <body>
     <?php
       include("include/comun/cabecera.php");
-      //$form = new es\ucm\fdi\aw\FormularioLogin(); $form->gestiona();
     ?>
     <div id="login">
-      <form method="get" action="include/processlogin.php">
-          Usuario:
-        <input type="text" name="usuario" />
-        <br>
-          Contraseña:
-        <input type="password" name="contraseña" />
-        <br>
-        <input type="submit" value="Enviar">
-      </form>
+    <?php 
+      $form = new FormularioLogin(); 
+      $form->gestiona();
+    ?>
     </div>
     <?php
       include("include/comun/pie.php");

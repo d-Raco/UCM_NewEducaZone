@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/include/config.php';
+require_once __DIR__ . '/include/FormularioRegistro.php';
 ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -11,46 +12,15 @@ require_once __DIR__ . '/include/config.php';
   <body>
     <?php
       include("include/comun/cabecera.php");
-      //$form = new es\ucm\fdi\aw\FormularioRegistro(); $form->gestiona();
     ?>
     <div id="signin">
-
-        <form method="get" action="include/process_signin.php">
-            Nombre del tutor/a legal:
-          <input type="text" name="nombre" />
-          <br>
-            Primer apellido del tutor/a legal:
-          <input type="text" name="apellido1" />
-          <br>
-            Segundo apellido del tutor/a legal:
-          <input type="text" name="apellido2" />
-          <br>
-            Teléfono móvil:
-          <input type="text" name="movil" />
-          <br>
-            Teléfono fijo:
-          <input type="text" name="telefono" />
-          <br>
-            Correo electrónico:
-          <input type="text" name="correo" />
-          <br>
-            Usuario:
-          <input type="text" name="usuario" />
-          <br>
-            Contraseña:
-          <input type="password" name="contraseña1" />
-          <br>
-            Repita la contraseña:
-          <input type="password" name="contraseña2" />
-          <br>
-            Código de acceso:
-          <input type="password" name="codigo" />
-          <br>
-          <input type="submit" value="Enviar">
-        </form>
-      </div>
-      <?php
-        include("include/comun/pie.php");
+      <?php 
+        $form = new FormularioRegistro(); 
+        $form->gestiona();
       ?>
+    </div>
+    <?php
+      include("include/comun/pie.php");
+    ?>
   </body>
 </html>

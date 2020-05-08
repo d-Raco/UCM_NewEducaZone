@@ -46,26 +46,15 @@ class Padre {
         return $rows;
 	}
 
-  public function inserta($p) {
+  public function registro($nombre, $ap1, $ap2, $movil, $fijo, $correo, $usuario, $contraseña) {
   	$app = Aplicacion::getSingleton();
   	$conn = $app->conexionBD();
 
   	$id = self::getTotalPadres() + 1;
-  	$nombre = $conn->real_escape_string($p->getNombre());
-  	$ap1 = $conn->real_escape_string($p->getAp1());
-  	$ap2 = $conn->real_escape_string($p->getAp2());
-  	$movil = $conn->real_escape_string($p->getMovil());
-  	$fijo = $conn->real_escape_string($p->getFijo());
-  	$correo = $conn->real_escape_string($p->getCorreo());
-  	$usuario = $conn->real_escape_string($p->getUsuario());
-  	$contraseña = $conn->real_escape_string($p->getContraseña());
 
-  	$p->setId($conn->real_escape_string($id));
-
-   	$query = "INSERT INTO tutor_legal VALUES  ( '$id' , '$nombre' , '$ap1' , '$ap2' , '$movil' , '$fijo' , '$correo' , '$usuario' , '$contraseña')";
-	$result = $conn->query($query)
+   	$query = "INSERT INTO tutor_legal VALUES  ('$id' , '$nombre' , '$ap1' , '$ap2' , '$movil' , '$fijo' , '$correo' , '$usuario' , '$contraseña')";
+	  $result = $conn->query($query)
           or die ($conn->error. " en la línea ".(__LINE__-1));
-
   }
 
 	public function delete($p) {
@@ -132,6 +121,21 @@ class Padre {
       }
     }
 
+    public function codigo_acceso($codigo){
+      $app = Aplicacion::getSingleton();
+      $conn = $app->conexionBD();
+
+      $query = sprintf("SELECT * from codigos_de_acceso where codigo = '%s'", $conn->real_escape_string($codigo));
+      $result = $conn->query($query)
+          or die ($conn->error. " en la línea ".(__LINE__-1));
+      if($result->num_rows > 0){
+        $query = sprintf("DELETE Usuarios where codigo = '%s'", $conn->real_escape_string($codigo));
+        return TRUE;
+      }
+      else{
+        return FALSE;
+      }
+    }
 
     public function updateDatosPadre( $nombre, $ap1,$ap2,$telefono_movil,$telefono_fijo,$correo,$id){
          $app = Aplicacion::getSingleton();
