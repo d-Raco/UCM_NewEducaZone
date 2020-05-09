@@ -31,40 +31,31 @@ class FormularioRegistro extends Form
         }
 
         $html = <<<EOF
-        <fieldset>
-            <legend>Registro</legend>
-            <div class="grupo-control">
-                <label>Nombre del tutor/a legal: </label> <input class="control" type="text" name="nombreTutor" value="$nombreTutor" />
+            <div class="registro">
+                <b>Nombre del tutor/a legal: </b><br>
+                <input class="control" type="text" placeholder="Nombre" name="nombreTutor" value="$nombreTutor"/><br>
+                <b>Primer apellido del tutor/a legal: </b><br>
+                <input class="control" type="text" placeholder="Primer apellido" name="apellido1" value="$apellido1" required/><br>
+                <b>Segundo apellido del tutor/a legal: </b><br>
+                <input class="control" type="text" placeholder="Segundo apellido" name="apellido2" value="$apellido2"/><br>
+                <b>Teléfono móvil: </b><br>
+                <input class="control" type="text" placeholder="Teléfono móvil" name="movil" value="$movil" required/><br>
+                <b>Teléfono fijo: </b><br>
+                <input class="control" type="text" placeholder="Teléfono fijo" name="fijo" value="$fijo"/><br>
+                <b>Correo electrónico:</b><br>
+                <input class="control" type="text" placeholder="Correo" name="correo" value="$correo" required/><br>
+                <b>Usuario: </b><br>
+                <input class="control" type="text" placeholder="Usuario" name="usuario" value="$usuario" required/><br>
+                <b>Contraseña: </b><br>
+                <input class="control" type="password" placeholder="Contraseña" name="contraseña" required/><br>
+                <b>Repita la contraseña: </b><br>
+                <input class="control" type="password" placeholder="Contraseña" name="contraseña2" required/><br>
+                <b>Código de acceso: </b><br>
+                <input class="control" type="password" placeholder="Código" name="codigo" required/><br>
             </div>
-            <div class="grupo-control">
-                <label>Primer apellido del tutor/a legal: </label> <input class="control" type="text" name="apellido1" value="$apellido1" />
+            <div class="boton">    
+                <button type="submit" name="registro">Registrar</button>
             </div>
-            <div class="grupo-control">
-                <label>Segundo apellido del tutor/a legal: </label> <input class="control" type="text" name="apellido2" value="$apellido2"/>
-            </div>
-            <div class="grupo-control">
-                <label>Teléfono móvil: </label> <input class="control" type="text" name="movil" value="$movil"/>
-            </div>
-            <div class="grupo-control">
-                <label>Teléfono fijo: </label> <input class="control" type="text" name="fijo" value="$fijo"/>
-            </div>
-            <div class="grupo-control">
-                <label>Correo electrónico: </label> <input class="control" type="text" name="correo" value="$correo"/>
-            </div>
-            <div class="grupo-control">
-                <label>Usuario: </label> <input class="control" type="text" name="usuario" value="$usuario"/>
-            </div>
-            <div class="grupo-control">
-                <label>Contraseña: </label> <input class="control" type="password" name="contraseña"/>
-            </div>
-            <div class="grupo-control">
-                <label>Repita la contraseña: </label> <input class="control" type="password" name="contraseña2"/>
-            </div>
-            <div class="grupo-control">
-                <label>Código de acceso: </label> <input class="control" type="password" name="codigo"/>
-            </div>
-            <div class="grupo-control"><button type="submit" name="registro">Registrar</button></div>
-            </fieldset>
         EOF;
 
         return $html;
@@ -132,6 +123,7 @@ class FormularioRegistro extends Form
                 $padre->setContraseña($hash= password_hash($contraseña, PASSWORD_BCRYPT, [rand()]));
 
                 $padre->registro();
+                $padre->actualiza_alumno($codigo);
                 echo "Nuevo registro creado. ";
                 echo "<a href=\"./login.php\">Login</a>";
             }

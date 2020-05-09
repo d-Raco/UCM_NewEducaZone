@@ -7,7 +7,7 @@ require_once __DIR__ . '/include/FormularioLogin.php';
   <head>
     <meta charset="utf-8">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
   </head>
   <body>
     <?php
@@ -18,6 +18,9 @@ require_once __DIR__ . '/include/FormularioLogin.php';
         $form = new FormularioLogin();
         $form->gestiona();
       ?>
+      <div class="registrate">
+        <br>¿Nuevo por aquí? <a href="signin.php">Registrate</a>
+      </div>
     </div>
     <?php
       include("include/comun/pie.php");

@@ -14,15 +14,21 @@ class FormularioLogin extends Form
     {
         $nombreUsuario = '';
         if ($datos) {
-            $nombreUsuario = isset($datos['nombreUsuario']) ? htmlspecialchars(trim(strip_tags($datos['nombreUsuario']))) : $nombreUsuario;
+            $nombreUsuario = isset($datos['nombreUsuario']) ? $datos['nombreUsuario'] : $nombreUsuario;
         }
         $html = <<<EOF
-        <fieldset>
-            <legend>Login</legend>
-            <p><label>Nombre de usuario:</label> <input type="text" name="nombreUsuario" value="$nombreUsuario"/></p>
-            <p><label>Password:</label> <input type="password" name="password" /></p>
-            <button type="submit" name="login">Entrar</button>
-        </fieldset>
+          <div class="imgcontainer">
+            <img src="./img/avatar.png" alt="Avatar" class="avatar">
+          </div>
+          <div class="container">
+            <b>Nombre de usuario: </b><br>
+            <input class="login" type="text" placeholder="Usuario" name="nombreUsuario" value="$nombreUsuario" required>
+            <br><b>Contraseña: </b><br>
+            <input class="login" type="password" placeholder="Contraseña" name="password" required>
+          </div>
+          <div class="boton">
+              <button type="submit">Entrar</button>
+          </div>
         EOF;
 
         return $html;
@@ -33,13 +39,13 @@ class FormularioLogin extends Form
     {
         $result = array();
 
-        $nombreUsuario = isset($datos['nombreUsuario']) ? htmlspecialchars(trim(strip_tags($datos['nombreUsuario']))) : null;
+        $nombreUsuario = isset($datos['nombreUsuario']) ? $datos['nombreUsuario'] : null;
 
         if (empty($nombreUsuario) ) {
             $result[] = "El nombre de usuario no puede estar vacío. ";
         }
 
-        $password = isset($datos['password']) ? htmlspecialchars(trim(strip_tags($datos['password']))) : null;
+        $password = isset($datos['password']) ? $datos['password'] : null;
         if ( empty($password) ) {
             $result[] = "El password no puede estar vacío. ";
         }
@@ -62,10 +68,11 @@ class FormularioLogin extends Form
                 header("Location: ./ver_padre.php");
             }
             else{
-              $result[] =  "Error: Usuario o contraseña invalidos. ";
+              $result[] = "Error: Usuario o contraseña invalidos. ";
             }
           }
           else if($profesor->getId() != 0){ //PROFE
+           // echo $profesor->getContraseña();
             if(password_verify($password, $profesor->getContraseña())){
               $_SESSION['login'] = TRUE;
               $_SESSION['name'] = $nombreUsuario;
@@ -73,13 +80,15 @@ class FormularioLogin extends Form
               header("Location: ./ver_profesor.php");
             }
             else{
-              $result[] =  "Error: Usuario o contraseña invalidos. ";
+              $result[] = "Error: Usuario o contraseña invalidos. ";
             }
           }
           else{
-            $result[] =  "Error: Usuario o contraseña invalidos. ";
+            $result[] = "Error: Usuario o contraseña invalidos. ";
           }
         }
         return $result;
     }
 }
+
+?>

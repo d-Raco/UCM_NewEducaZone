@@ -80,7 +80,7 @@ div#logo{
 
 fieldset {
 	border: 1px solid black;
-	width: 15em;
+	width: auto;
 	margin: 0 auto;
 }
 
@@ -96,8 +96,4 @@ label {
 	text-align: right;
 	margin-right: 0.5em;
 	display: inline-block;
-}
-
-button {
-	margin-left: 100px;
 }
