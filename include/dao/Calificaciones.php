@@ -160,6 +160,34 @@ class Calificaciones {
     }
   }
 
+  public function getCal(){
+		$app = Aplicacion::getSingleton();
+		$conn = $app->conexionBD();
+
+		$sql = sprintf("SELECT * FROM calificaciones WHERE id = '%s'", $conn->real_escape_string(self::getId()));
+		$result = $conn->query($sql)
+            or die ($conn->error. " en la línea ".(__LINE__-1));
+
+    if($result->num_rows > 0){
+      $row = $result->fetch_assoc();
+      self::setIdAsignatura1($row["id_asignatura1"]);
+      self::setNotaAsignatura1($row["nota1"]);
+      self::setIdAsignatura2($row["id_asignatura2"]);
+      self::setNotaAsignatura2($row["nota2"]);
+      self::setIdAsignatura3($row["id_asignatura3"]);
+      self::setNotaAsignatura3($row["nota3"]);
+      self::setIdAsignatura4($row["id_asignatura4"]);
+      self::setNotaAsignatura4($row["nota4"]);
+      self::setIdAsignatura5($row["id_asignatura5"]);
+      self::setNotaAsignatura5($row["nota5"]);
+      self::setIdAsignatura6($row["id_asignatura6"]);
+      self::setNotaAsignatura6($row["nota6"]);
+    }
+    else{
+      echo "<p>No se ha encontrado una asignatura con id ".self::getId().".</p>";
+    }
+	}
+
   public function getNombreAsignatura($i){
 		$app = Aplicacion::getSingleton();
 		$conn = $app->conexionBD();

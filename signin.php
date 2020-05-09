@@ -14,9 +14,9 @@ require_once __DIR__ . '/include/FormularioRegistro.php';
       include("include/comun/cabecera.php");
     ?>
     <div id="signin">
-      <?php 
-        $form = new FormularioRegistro(); 
-        $form->gestiona();
+      <?php
+      $form = new FormularioRegistro();
+      $form->gestiona();
       ?>
     </div>
     <?php

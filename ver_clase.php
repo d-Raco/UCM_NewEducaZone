@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/include/dao/Clases.php';
-  require_once __DIR__ . '/include/config.php';
+require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,10 +24,10 @@ require_once __DIR__ . '/include/dao/Clases.php';
       <?php
         $id = htmlspecialchars(trim(strip_tags($_GET["id"])));
 
-        $clases = new Clases();
-        $c = $clases->getClase($id);
+        $clase = new Clases();
+        $clase->setId($id);
 
-        $result = $c->getAlumnos($id);
+        $result = $clase->getAlumnos();
         $i = 1;
 
         if ($_SESSION['rol'] == "profesor"){

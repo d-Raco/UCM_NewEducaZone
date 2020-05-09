@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/include/dao/Padre.php';
-  require_once __DIR__ . '/include/config.php';
+require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,16 +23,17 @@ require_once __DIR__ . '/include/dao/Padre.php';
     <div id="contenido">
       <?php
         $padre = new Padre();
-        $p = $padre->getPadre(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
+        $padre->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
+        $padre->getPadre();
 
-        echo "<h1>".$p->getNombre(). " " .$p->getAp1(). " " .$p->getAp2()."</h1>";
-        echo "<p>Correo electrónico: " .$p->getCorreo(). ".</p>";
-        echo "<p>Teléfono móvil: " .$p->getMovil(). ".</p>";
-        echo "<p>Teléfono fijo: " .$p->getFijo(). ".</p>";
+        echo "<h1>".$padre->getNombre(). " " .$padre->getAp1(). " " .$padre->getAp2()."</h1>";
+        echo "<p>Correo electrónico: " .$padre->getCorreo(). ".</p>";
+        echo "<p>Teléfono móvil: " .$padre->getMovil(). ".</p>";
+        echo "<p>Teléfono fijo: " .$padre->getFijo(). ".</p>";
 
         echo "<p>Hijos: </p>";
 
-        $result = $p->getHijos($p->getId());
+        $result = $padre->getHijos();
 
         while($hijo = $result->fetch_assoc()){
           echo "<ol><a href=\"ver_alumno.php?id=".$hijo["DNI"]."\">" .$hijo["nombre"]. " " .$hijo["apellido1"]. " " .$hijo["apellido2"]. "</a></ol>";

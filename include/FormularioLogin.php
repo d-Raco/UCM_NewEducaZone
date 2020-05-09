@@ -9,12 +9,12 @@ class FormularioLogin extends Form
     public function __construct() {
         parent::__construct('formLogin');
     }
-    
+
     protected function generaCamposFormulario($datos)
     {
         $nombreUsuario = '';
         if ($datos) {
-            $nombreUsuario = isset($datos['nombreUsuario']) ? $datos['nombreUsuario'] : $nombreUsuario;
+            $nombreUsuario = isset($datos['nombreUsuario']) ? htmlspecialchars(trim(strip_tags($datos['nombreUsuario']))) : $nombreUsuario;
         }
         $html = <<<EOF
         <fieldset>
@@ -27,54 +27,58 @@ class FormularioLogin extends Form
 
         return $html;
     }
-    
+
 
     protected function procesaFormulario($datos)
     {
         $result = array();
 
-        $nombreUsuario = isset($datos['nombreUsuario']) ? $datos['nombreUsuario'] : null;
-            
+        $nombreUsuario = isset($datos['nombreUsuario']) ? htmlspecialchars(trim(strip_tags($datos['nombreUsuario']))) : null;
+
         if (empty($nombreUsuario) ) {
-            $result[] = "El nombre de usuario no puede estar vacío";
+            $result[] = "El nombre de usuario no puede estar vacío. ";
         }
 
-        $password = isset($datos['password']) ? $datos['password'] : null;
+        $password = isset($datos['password']) ? htmlspecialchars(trim(strip_tags($datos['password']))) : null;
         if ( empty($password) ) {
-            $result[] = "El password no puede estar vacío.";
+            $result[] = "El password no puede estar vacío. ";
         }
 
         if (count($result) === 0) {
-            $pdao = new Padre();
-            $usuario = $pdao->getPadre($nombreUsuario);
-            $prdao = new Profesor();
-            $pusuario = $prdao->getProfe($nombreUsuario);
+          $padre = new Padre();
+          $padre->setId(0);
+          $padre->setUsuario($nombreUsuario);
+          $padre->getPadre();
+          $profesor = new Profesor();
+          $profesor->setId(0);
+          $profesor->setUsuario($nombreUsuario);
+          $profesor->getProfe();
 
-            if(!is_null($usuario)){ //PADRE
-                if ($password == $usuario->getContraseña()){
-                    $_SESSION['login'] = TRUE;
-                    $_SESSION['name'] = $nombreUsuario;
-                    $_SESSION['rol'] = 'padre';
-                    header("Location: ./ver_padre.php");
-                }
-                else{
-                  echo "Error: Usuario o contraseña invalidos. <a href=\"../login.php\">Login</a>";
-                }
-            }
-            else if(!is_null($pusuario)){ //PROFE
-                if ($password == $pusuario->getContraseña()){
-                    $_SESSION['login'] = TRUE;
-                    $_SESSION['name'] = $nombreUsuario;
-                    $_SESSION['rol'] = 'profesor';
-                    header("Location: ./ver_profesor.php");
-                }
-                else{
-                  echo "Error: Usuario o contraseña invalidos. <a href=\"../login.php\">Login</a>";
-                }
+          if($padre->getId() != 0){ //PADRE
+            if(password_verify($password, $padre->getContraseña())){
+                $_SESSION['login'] = TRUE;
+                $_SESSION['name'] = $nombreUsuario;
+                $_SESSION['rol'] = 'padre';
+                header("Location: ./ver_padre.php");
             }
             else{
-                echo "Error: Usuario o contraseña invalidos. <a href=\"../login.php\">Login</a>";
+              $result[] =  "Error: Usuario o contraseña invalidos. ";
             }
+          }
+          else if($profesor->getId() != 0){ //PROFE
+            if(password_verify($password, $profesor->getContraseña())){
+              $_SESSION['login'] = TRUE;
+              $_SESSION['name'] = $nombreUsuario;
+              $_SESSION['rol'] = 'profesor';
+              header("Location: ./ver_profesor.php");
+            }
+            else{
+              $result[] =  "Error: Usuario o contraseña invalidos. ";
+            }
+          }
+          else{
+            $result[] =  "Error: Usuario o contraseña invalidos. ";
+          }
         }
         return $result;
     }

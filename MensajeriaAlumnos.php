@@ -23,14 +23,18 @@ require_once __DIR__ . '/include/config.php';
     <div id="contenido">
       <h1>Destinatario</h1>
       <?php
-        $cdao = new ClasesDAO();
-        $rs = $cdao->getAlumnos(htmlspecialchars(trim(strip_tags($_GET["id"]))));
+        $clase = new Clases();
+        $clase->setId(htmlspecialchars(trim(strip_tags($_GET["id"]))));
+        $rs = $clase->getAlumnos();
 
         if($rs->num_rows > 0){
           $i = 1;
-          $contenido_msg = NULL;
           while($fila = $rs->fetch_assoc()){
-            echo "<p><a href=\"mensajeria.php?tutor=".$fila["id_tutor_legal"]."&profesor=".htmlspecialchars(trim(strip_tags($_GET["profesor"])))."&contenido_msg=".$contenido_msg."\">" .$i. ". Tutor legal de " .$fila["nombre"]. " " .$fila["apellido1"]. " " .$fila["apellido2"]. "</a></p>";
+            echo '<form name="myform" action="mensajeria.php" method="POST">
+              <input type="hidden" name="tutor" value="' .$fila["id_tutor_legal"]. '">
+              <input type="hidden" name="profesor" value="' .htmlspecialchars(trim(strip_tags($_GET["profesor"]))). '">
+              <button type="submit">' .$i. '. Tutor legal de ' .$fila["nombre"]. ' ' .$fila["apellido1"]. ' ' .$fila["apellido2"]. '</button>
+            </form>';
             $i = $i + 1;
           }
         }

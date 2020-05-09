@@ -23,10 +23,11 @@ require_once __DIR__ . '/include/config.php';
     <div id="contenido">
       <h1>Destinatario</h1>
       <?php
-      $pdao = new Profesor();
-
-      $idProfesor = $pdao->getIdProfesor(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
-      $clases = $pdao->getAsignaturasProfesor($idProfesor);
+      $profesor = new Profesor();
+      $profesor->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION['name']))));
+      $profesor->getProfe();
+      $idProfesor = $profesor->getId();
+      $clases = $profesor->getAsignaturasProfesor();
       foreach($clases as &$value){
         echo "<p><a href=\"mensajeriaAlumnos.php?id=" .$value["id"]. "&profesor=" .$idProfesor. "\">" .$value["curso"]. "º " .$value["titulación"]. " " .$value["letra"]. "</a> (Número de alumnos: " .$value["numero_alumnos"]. ")</p>";
       }

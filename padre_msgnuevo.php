@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__ . '/include/dao/Padre.php';
-  require_once __DIR__ . '/include/dao/Alumno.php';
-  require_once __DIR__ . '/include/dao/Clases.php';
-  require_once __DIR__ . '/include/config.php';
+require_once __DIR__ . '/include/dao/Alumno.php';
+require_once __DIR__ . '/include/dao/Clases.php';
+require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,21 +20,33 @@ require_once __DIR__ . '/include/dao/Padre.php';
     ?>
     <div id="contenido">
       <?php
-        $pdao = new Padre();
-        $adao = new Alumno();
-        $cdao = new Clases();
+        $padre = new Padre();
+        $alumno = new Alumno();
+        $clase = new Clases();
 
-        $p = $pdao->getPadre(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
-        $rsHijos = $p->getHijos($p->getId());
+        $padre->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
+        $padre->getPadre();
+        $rsHijos = $padre->getHijos();
         echo "<h1>Mensaje Nuevo</h1>";
         if($rsHijos->num_rows > 0){
           while($filaAlumno = $rsHijos->fetch_assoc()){
             echo "<h2>Profesores de ".$filaAlumno['nombre']. " " .$filaAlumno['apellido1']. " " .$filaAlumno['apellido2']. ":</h2>";
-            $filaClase = $adao->getClase($filaAlumno["id_clase"]);
-            $c = new Clases($filaClase["id"], $filaClase["curso"], $filaClase["letra"], $filaClase["titulación"], $filaClase["id_tutor_clase"], $filaClase["numero_alumnos"], $filaClase["id_asignatura1"], $filaClase["id_asignatura2"], $filaClase["id_asignatura3"], $filaClase["id_asignatura4"], $filaClase["id_asignatura5"], $filaClase["id_asignatura6"]);
-            $asignaturas = $cdao->getAsignaturaProfesor($c);
+            $alumno->setIdClase($filaAlumno["id_clase"]);
+            $filaClase = $alumno->getClase();
+            $clase->setId($filaClase["id"]);
+            $clase->setAs1($filaClase["id_asignatura1"]);
+            $clase->setAs2($filaClase["id_asignatura2"]);
+            $clase->setAs3($filaClase["id_asignatura3"]);
+            $clase->setAs4($filaClase["id_asignatura4"]);
+            $clase->setAs5($filaClase["id_asignatura5"]);
+            $clase->setAs6($filaClase["id_asignatura6"]);
+            $asignaturas = $clase->getAsignaturaProfesor();
             foreach($asignaturas as &$values){
-              echo "<ol><a href=\"mensajeria.php?tutor=".$p->getId()."&profesor=".$values['id']."&contenido_msg=\">".$values['nombre']." ".$values['apellido1']." ".$values['apellido2']." (".$values['nombre_asignatura'].")</a></ol>";
+              echo '<form name="myform" action="mensajeria.php" method="POST">
+                <input type="hidden" name="tutor" value="' .$padre->getId(). '">
+                <input type="hidden" name="profesor" value="' .$values['id']. '">
+                <button type="submit">'.$values['nombre'].' '.$values['apellido1'].' '.$values['apellido2'].' ('.$values['nombre_asignatura'].')</button>
+              </form>';
             }
           }
         }

@@ -14,9 +14,10 @@
      <ul><a href="ver_padre.php">Inicio</a></ul><br>
 
       <?php
-        $pdao = new Padre();
-        $p = $pdao->getPadre(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
-        $result = $pdao->getHijos($p->getId());
+        $padre = new Padre();
+        $padre->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
+        $padre->getPadre();
+        $result = $padre->getHijos();
 
         while($hijo = $result->fetch_assoc()){
           echo "<ul><img src=\"" .$hijo["foto"]. "\"  width=\"150\" height=\"150\"><ul>";

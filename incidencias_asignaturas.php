@@ -22,12 +22,12 @@ if (!isset($_SESSION['login'])){
     ?>
     <div id="contenido">
         <?php
-        $idao = new Incidencias();
+        $incidencia = new Incidencias();
 
-        $asignaturas = $idao->getAsignaturasCompartidas(htmlspecialchars(trim(strip_tags($_GET["alumno"]))), htmlspecialchars(trim(strip_tags($_GET["profesor"]))));
+        $asignaturas = $incidencia->getAsignaturasCompartidas(htmlspecialchars(trim(strip_tags($_GET["alumno"]))), htmlspecialchars(trim(strip_tags($_GET["profesor"]))));
 
         foreach ($asignaturas as &$value) {
-          echo "<p><a href=\"incidencias_profesor.php?id=".htmlspecialchars(trim(strip_tags($_GET['alumno'])))."&idAsignatura=".$value["id"]."\">".$value["nombre_asignatura"]."</a></p>";
+          echo "<p><a href=\"incidencias.php?idAlumno=".htmlspecialchars(trim(strip_tags($_GET['alumno'])))."&idAsignatura=".$value["id"]."\">".$value["nombre_asignatura"]."</a></p>";
         }
         ?>
     </div>

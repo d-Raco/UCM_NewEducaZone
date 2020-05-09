@@ -1,4 +1,6 @@
-
+<? php
+require_once __DIR__ . '/include/config.php';
+?>
 <div id="signin">
     <form method="get" action="include/process_editarPadre.php">
         Nombre:

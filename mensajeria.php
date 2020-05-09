@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/include/dao/Mensajes.php';
-  require_once __DIR__ . '/include/config.php';
+require_once __DIR__ . '/include/FormularioMensajería.php';
+require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,74 +25,22 @@ require_once __DIR__ . '/include/dao/Mensajes.php';
       else{
         include("include/comun/sidebarIzqPadre.php");
       }
-    ?>
-    <div id="contenido">
-      <h1>Mensajería</h1>
 
-      <form method="post">
-        <p class="msg"> Escribe aquí tu mensaje: <br/>
-        <input type="varchar" name="contenido_msg"></p>
-        <input class="msg" type="submit" value="Submit">
-      </form>
+      echo '<div id="contenido">
+        <h1>Mensajería</h1>';
 
-  <?php
-      $mdao = new Mensajes();
-      setlocale(LC_TIME,"es_ES");
+      $form = new FormularioMensajería(htmlspecialchars(trim(strip_tags($_POST["tutor"]))), htmlspecialchars(trim(strip_tags($_POST["profesor"]))));
+      $form->gestiona();
+
+      echo "</div>";
+
       if($_SESSION['rol'] == 'profesor'){
-        $idOrig = htmlspecialchars(trim(strip_tags($_REQUEST["profesor"])));
-        $rolOrig = "profesor";
-        $idDest = htmlspecialchars(trim(strip_tags($_REQUEST["tutor"])));
-        $rolDest = "padre";
-      }
-      else if($_SESSION['rol'] == 'padre'){
-        $idOrig = htmlspecialchars(trim(strip_tags($_REQUEST["tutor"])));
-        $rolOrig = "padre";
-        $idDest = htmlspecialchars(trim(strip_tags($_REQUEST["profesor"])));
-        $rolDest = "profesor";
-      }
-      $m = new Mensajes($mdao->getNumMensajes()+1, $idOrig, $rolOrig, $idDest, $rolDest,htmlspecialchars(trim(strip_tags($_REQUEST["contenido_msg"]))), date('Y-m-d h:i:s'));
-      // $tiempo = strftime("%D %H:%M:%S");
-
-      if(htmlspecialchars(trim(strip_tags($_REQUEST["contenido_msg"]))) != ""){
-        $mdao->insertMensaje($m);
-      }
-
-      $resultEnviados = $mdao->getMensajes($idOrig, $rolOrig, $idDest, $rolDest);
-      $resultRecibidos = $mdao->getMensajes($idDest, $rolDest, $idOrig, $rolOrig);
-
-      echo "<p>ENVIADOS:</p>";
-
-      if($resultEnviados->num_rows > 0){
-        while($fila = $resultEnviados->fetch_assoc()){
-          echo "<p>"  .$fila["fecha_hora"]. " " .$fila["contenido_msg"]. "</p>";
-        }
+        include("include/comun/sidebarDerProfesor.php");
       }
       else{
-         echo "<p>No hay mensajes</p>";
+        include("include/comun/sidebarDerPadre.php");
       }
-
-      echo "<p>RECIBIDOS:</p>";
-
-      if($resultRecibidos->num_rows > 0){
-        while($fila = $resultRecibidos->fetch_assoc()){
-          echo "<p>" .$fila["fecha_hora"]. " " .$fila["contenido_msg"]. "</p>";
-        }
-      }
-      else{
-        echo "<p>No hay mensajes</p>";
-      }
-
-      ?>
-      </div>
-
-      <?php
-        if($_SESSION['rol'] == 'profesor'){
-          include("include/comun/sidebarDerProfesor.php");
-        }
-        else{
-          include("include/comun/sidebarDerPadre.php");
-        }
-        include("include/comun/pie.php");
+      include("include/comun/pie.php");
       ?>
      </div>
     </body>

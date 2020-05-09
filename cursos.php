@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/include/dao/Profesor.php';
 require_once __DIR__ . '/include/dao/Clases.php';
-  require_once __DIR__ . '/include/config.php';
+require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,15 +24,17 @@ require_once __DIR__ . '/include/dao/Clases.php';
     <div id="contenido">
       <h1>Clases</h1>
       <?php
-        $pdao = new Profesor();
-        $p = $pdao->getProfe(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
+        $profesor = new Profesor();
+        $profesor->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
+        $profesor->getProfe();
 
-        $cdao = new Clases();
-        $result = $cdao->getAsignaturas($p->getId());
+        $clase = new Clases();
+        $clase->setIdTutor($profesor->getId());
+        $result = $clase->getAsignaturas();
         while($fila = $result->fetch_assoc()){
           $id_asignatura = $fila["id"];
-          $c = $cdao->getClase($id_asignatura);
-          echo "<p><a href=\"ver_clase.php?id=" .$c->getId(). "\">" .$c->getCurso(). "º " .$c->getTitul(). " " .$c->getLetra(). "</a> (".$fila["nombre_asignatura"].", Número de alumnos: " .$c->getNAlum(). ")</p>";
+          $clase->getClaseByAsignatura($id_asignatura);
+          echo "<p><a href=\"ver_clase.php?id=" .$clase->getId(). "\">" .$clase->getCurso(). "º " .$clase->getTitul(). " " .$clase->getLetra(). "</a> (".$fila["nombre_asignatura"].", Número de alumnos: " .$clase->getNAlum(). ")</p>";
         }
       ?>
     </div>

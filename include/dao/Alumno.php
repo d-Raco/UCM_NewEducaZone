@@ -21,7 +21,7 @@ class Alumno {
     public function getIdCentro(){return $this->id_centro;}
     public function getIdClase(){return $this->id_clase;}
     public function getOM(){return $this->observaciones_medicas;}
-    public function getTutor(){return $this->id_tutor_legal;}
+    public function getIdTutor(){return $this->id_tutor_legal;}
     public function getFecha(){return $this->fecha_nacimiento;}
     public function getCal(){return $this->id_calificaciones;}
     public function getFoto(){return $this->foto;}
@@ -66,12 +66,11 @@ class Alumno {
 		$query("DELETE Usuarios where id = '" . $p->id . "'");
 	}
 
-	public function getAlumno($id) {
-		$alumno = NULL;
+	public function getAlumno() {
 		$app = Aplicacion::getSingleton();
 		$conn = $app->conexionBD();
 
-		$query = sprintf("SELECT * from alumnos where DNI = '%s'", $conn->real_escape_string($id));
+		$query = sprintf("SELECT * from alumnos where DNI = '%s'", $conn->real_escape_string(self::getDNI()));
 		$result = $conn->query($query)
             or die ($conn->error. " en la línea ".(__LINE__-1));
 		if($result->num_rows > 0){
@@ -88,18 +87,14 @@ class Alumno {
             self::setFecha($fila['fecha_nacimiento']);
             self::setCal($fila['id_calificaciones']);
             self::setFoto($fila['foto']);
-
-	    	$alumno = $this;
         }
-
-	    return $alumno;
 	}
 
-    public function getClase($id_clase) {
+    public function getClase() {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBD();
 
-        $query = sprintf("SELECT * from clases where id = '%s'", $conn->real_escape_string($id_clase));
+        $query = sprintf("SELECT * from clases where id = '%s'", $conn->real_escape_string(self::getIdClase()));
         $result = $conn->query($query)
             or die ($conn->error. " en la línea ".(__LINE__-1));
         if($result->num_rows > 0){
@@ -110,41 +105,38 @@ class Alumno {
         }
     }
 
-    public function getCentro($id_centro) {
+    public function getCentro() {
         $p = NULL;
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBD();
 
-        $query = sprintf("SELECT * from centros where id = '%s'", $conn->real_escape_string($id_centro));
+        $query = sprintf("SELECT * from centros where id = '%s'", $conn->real_escape_string(self::getIdCentro()));
         $result = $conn->query($query)
             or die ($conn->error. " en la línea ".(__LINE__-1));
         if($result->num_rows > 0){
             return $result->fetch_assoc();
         }
-
         return $p;
     }
-    /*
-    public function getTutor($id_tutor) {
+
+    public function getTutor() {
         $p = NULL;
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBD();
 
-        $query = sprintf("SELECT * from tutor_legal where id = '%s'", $conn->real_escape_string($id_tutor));
+        $query = sprintf("SELECT * from tutor_legal where id = '%s'", $conn->real_escape_string(self::getIdTutor()));
         $result = $conn->query($query)
             or die ($conn->error. " en la línea ".(__LINE__-1));
         if($result->num_rows > 0){
             return $result->fetch_assoc();
         }
-
         return $p;
     }
-    */
 
-    public function getProfesores($id_clase) {
+    public function getProfesores() {
         $p = NULL;
         $app = Aplicacion::getSingleton();
-        $filaClase = $this->getClase($id_clase);
+        $filaClase = $this->getClase();
         $conn = $app->conexionBD();
 
         $a1 = $conn->real_escape_string($filaClase["id_asignatura1"]);

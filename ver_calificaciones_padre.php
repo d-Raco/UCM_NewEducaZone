@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/include/dao/Calificaciones.php';
-  require_once __DIR__ . '/include/config.php';
+require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,8 +22,9 @@ require_once __DIR__ . '/include/dao/Calificaciones.php';
     ?>
     <div id="contenido">
       <?php
-        $c = new Calificaciones(htmlspecialchars(trim(strip_tags($_GET["id"]))), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-
+        $calificación = new Calificaciones();
+        $calificación->setId(htmlspecialchars(trim(strip_tags($_GET["id"]))));
+        $calificación->getCal();
         echo "<h1>Calificaciones</h1>";
         echo "<table style=\"width:55%\" frame = \"border\" rules = \"all\">
           <tr>
@@ -32,8 +33,8 @@ require_once __DIR__ . '/include/dao/Calificaciones.php';
           </tr>";
         for($i = 1; $i < 7; $i++){
           echo "<tr>
-            <td>".$c->getNombreAsignatura($i)."</td>
-            <td>".$c->getNotaAsignatura($i)."</td>
+            <td>".$calificación->getNombreAsignatura($i)."</td>
+            <td>".$calificación->getNotaAsignatura($i)."</td>
           </tr>";
         }
         echo "</table>";

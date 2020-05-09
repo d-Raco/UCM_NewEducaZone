@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/include/dao/Profesor.php';
-  require_once __DIR__ . '/include/config.php';
+require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,21 +25,22 @@ require_once __DIR__ . '/include/dao/Profesor.php';
         $profesor = new Profesor();
 
         if ($_SESSION['rol'] == "profesor"){
-          $p = $profesor->getProfe(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
+          $profesor->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
+          $profesor->getProfe();
         }
         else{
-          $usuarioProfe = htmlspecialchars(trim(strip_tags($_GET["profesor"])));
+          $profesor->setUsuario(htmlspecialchars(trim(strip_tags($_GET["profesor"]))));
           $id_padre = htmlspecialchars(trim(strip_tags($_GET["tutor"])));
-          $p = $profesor->getProfe($usuarioProfe);
-          echo "<img src=\"" .$p->getFoto(). "\"  width=\"150\" height=\"150\">";
+          $profesor->getProfe();
+          echo "<img src=\"" .$profesor->getFoto(). "\"  width=\"150\" height=\"150\">";
         }
 
-        echo "<h1>".$p->getNombre(). " " .$p->getAp1(). " " .$p->getAp2()."</h1>";
-        echo "<p>Colegio: " .$p->getCentro($p->getIdCentro()). ".</p>";
-        echo "<p>Despacho: " .$p->getDespacho(). ".</p>";
-        echo "<p>Correo: " .$p->getCorreo(). ".</p>";
+        echo "<h1>".$profesor->getNombre(). " " .$profesor->getAp1(). " " .$profesor->getAp2()."</h1>";
+        echo "<p>Colegio: " .$profesor->getCentro(). ".</p>";
+        echo "<p>Despacho: " .$profesor->getDespacho(). ".</p>";
+        echo "<p>Correo: " .$profesor->getCorreo(). ".</p>";
         echo "<p>Asignaturas: </p>";
-        $result = $p->getAsignaturas($p->getId());
+        $result = $profesor->getAsignaturas();
 
         while($asig = $result->fetch_assoc()){
           echo "<ol>".$asig["nombre_asignatura"]."</ol>";
@@ -47,7 +48,7 @@ require_once __DIR__ . '/include/dao/Profesor.php';
 
         if ($_SESSION['rol'] == "padre"){
           $msg = NULL;
-          echo "<p><a href=\"mensajeria.php?tutor=".$id_padre."&profesor=".$p->getId()."&contenido_msg=".$msg."\">Enviar mensaje</a></p>";
+          echo "<p><a href=\"mensajeria.php?tutor=".$id_padre."&profesor=".$profesor->getId()."&contenido_msg=".$msg."\">Enviar mensaje</a></p>";
         }
           if ($_SESSION['rol'] == "profesor"){
       ?>
@@ -78,7 +79,7 @@ require_once __DIR__ . '/include/dao/Profesor.php';
       }
       include("include/comun/pie.php");
 
-           
+
     ?>
    </div>
   </body>

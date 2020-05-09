@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/include/config.php';
 //session_start();
 //$profe = $_GET["p"];
 //$usuarioProfe = htmlspecialchars(trim(strip_tags($_GET["profe"])));

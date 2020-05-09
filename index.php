@@ -1,5 +1,5 @@
 <?php
-  session_start();
+require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -83,9 +83,8 @@
         <p>Con una interfaz gráfica sencilla y clara mantenemos una máxima funcionalidad para que no te tengas que preocupar de nada.</p>
       </div>
     </div>
-  <?php
-     include("include/comun/pie.php");
-  ?>
-
+    <?php
+       include("include/comun/pie.php");
+    ?>
   </body>
 </html>

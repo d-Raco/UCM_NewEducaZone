@@ -14,10 +14,10 @@ require_once __DIR__ . '/include/FormularioLogin.php';
       include("include/comun/cabecera.php");
     ?>
     <div id="login">
-    <?php 
-      $form = new FormularioLogin(); 
-      $form->gestiona();
-    ?>
+      <?php
+        $form = new FormularioLogin();
+        $form->gestiona();
+      ?>
     </div>
     <?php
       include("include/comun/pie.php");

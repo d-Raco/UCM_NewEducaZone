@@ -60,12 +60,11 @@ class Profesor {
 		$query("DELETE Usuarios where id = '" . $conn->real_escape_string($p->id) . "'");
 	}
 
-	public function getProfe($usuario) {
-		$profesor = NULL;
+	public function getProfe() {
 		$app = Aplicacion::getSingleton();
 		$conn = $app->conexionBD();
 
-		$query = sprintf("SELECT * from profesores where usuario = '%s'", $conn->real_escape_string($usuario));
+		$query = sprintf("SELECT * from profesores where usuario = '%s'", $conn->real_escape_string(self::getUsuario()));
 		$result = $conn->query($query)
             or die ($conn->error. " en la línea ".(__LINE__-1));
 		if($result->num_rows > 0){
@@ -81,18 +80,15 @@ class Profesor {
       self::setUsuario($fila['usuario']);
       self::setContraseña($fila['contraseña']);
       self::setFoto($fila['foto']);
-      $profesor = $this;
     }
-
-	    return $profesor;
 	}
 
-    public function getCentro($id_centro) {
+    public function getCentro() {
         $p = NULL;
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBD();
 
-        $query = sprintf("SELECT * from centros where id = '%s'", $conn->real_escape_string($id_centro));
+        $query = sprintf("SELECT * from centros where id = '%s'", $conn->real_escape_string(self::getIdCentro()));
         $result = $conn->query($query)
             or die ($conn->error. " en la línea ".(__LINE__-1));
         if($result->num_rows > 0){
@@ -103,11 +99,11 @@ class Profesor {
         return $p;
     }
 
-    public function getAsignaturas($id) {
+    public function getAsignaturas() {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBD();
 
-        $query = sprintf("SELECT DISTINCT nombre_asignatura FROM asignaturas WHERE id_profesor = '%s'", $conn->real_escape_string($id));
+        $query = sprintf("SELECT DISTINCT nombre_asignatura FROM asignaturas WHERE id_profesor = '%s'", $conn->real_escape_string(self::getId()));
         $result = $conn->query($query)
             or die ($conn->error. " en la línea ".(__LINE__-1));
         if($result->num_rows > 0){
@@ -118,31 +114,13 @@ class Profesor {
         }
     }
 
-    public function getIdProfesor($usuario){
+    public function getAsignaturasProfesor(){
       $app = Aplicacion::getSingleton();
       $conn = $app->conexionBD();
 
-      $sql = sprintf("SELECT id FROM profesores WHERE usuario = '%s'", $conn->real_escape_string($usuario));
-      $result = $conn->query($sql)
-              or die ($conn->error. " en la línea ".(__LINE__-1));
+      $idProfesor = $conn->real_escape_string(self::getId());
 
-      if($result->num_rows > 0){
-        $row = $result->fetch_assoc();
-        $result->free();
-        return $row["id"];
-      }
-      else{
-        echo "<p>No se ha encontrado ningún profesor con usuario ".$usuario.".</p>";
-      }
-    }
-
-    public function getAsignaturasProfesor($idProfesor){
-      $app = Aplicacion::getSingleton();
-      $conn = $app->conexionBD();
-
-      $idProfesor = $conn->real_escape_string($idProfesor);
-
-      $sql = "SELECT c.id, c.curso, c.letra, c.titulación, c.numero_alumnos FROM clases c JOIN asignaturas a ON id_asignatura1 = a.id OR id_asignatura2 = a.id OR id_asignatura3 = a.id OR id_asignatura4 = a.id OR id_asignatura5 = a.id OR id_asignatura6 = a.id WHERE a.id = '$idProfesor'";
+      $sql = "SELECT DISTINCT c.id, c.curso, c.letra, c.titulación, c.numero_alumnos FROM clases c JOIN asignaturas a ON (id_asignatura1 = a.id OR id_asignatura2 = a.id OR id_asignatura3 = a.id OR id_asignatura4 = a.id OR id_asignatura5 = a.id OR id_asignatura6 = a.id) WHERE a.id_profesor = '$idProfesor'";
       $result = $conn->query($sql)
               or die ($conn->error. " en la línea ".(__LINE__-1));
 
@@ -153,7 +131,6 @@ class Profesor {
           $clases[$i] = $filaClases;
           $i = $i + 1;
         }
-        $result->free();
         return $clases;
       }
       else{
@@ -164,15 +141,16 @@ class Profesor {
 
 
 
-    public function updateDatosProfesor( $nombre, $ap1,$ap2,$despacho,$correo,$id){
+    public function updateDatosProfesor( $nombre, $ap1,$ap2,$despacho,$correo){
          $app = Aplicacion::getSingleton();
           $conn = $app->conexionBD();
 
+          $id = self::getId();
           if($nombre != NULL){
             $sql = "UPDATE profesores  SET nombre = '$nombre'  WHERE id = '$id'  ";
                $result = $conn->query($sql)
               or die ($conn->error. " en la línea ".(__LINE__-1));
-            
+
 
           }
            if($ap1 != NULL){
@@ -201,8 +179,21 @@ class Profesor {
           }
       }
 
+      public function getIdProfesor(){
+       $app = Aplicacion::getSingleton();
+       $conn = $app->conexionBD();
 
+       $sql = sprintf("SELECT id FROM profesores WHERE usuario = '%s'", $conn->real_escape_string(self::getUsuario()));
+       $result = $conn->query($sql)
+               or die ($conn->error. " en la línea ".(__LINE__-1));
 
-
-
+       if($result->num_rows > 0){
+         $row = $result->fetch_assoc();
+         $result->free();
+         return $row["id"];
+       }
+       else{
+         echo "<p>No se ha encontrado ningún profesor con usuario ".$usuario.".</p>";
+       }
+      }
 }

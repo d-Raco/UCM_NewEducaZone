@@ -48,12 +48,12 @@ class Incidencias {
     }
   }
 
-  public function getInfo($idAlumno, $idAsignatura){
+  public function getInfo(){
     $app = Aplicacion::getSingleton();
 		$conn = $app->conexionBD();
 
-    $idAlumno = $conn->real_escape_string($idAlumno);
-    $idAsignatura = $conn->real_escape_string($idAsignatura);
+    $idAlumno = $conn->real_escape_string(self::getIdAlumno());
+    $idAsignatura = $conn->real_escape_string(self::getIdAsignatura());
 
     $sql = "SELECT a.nombre_asignatura, al.nombre, al.apellido1, al.apellido2 FROM alumnos al
             JOIN clases c ON c.id = al.id_clase
@@ -73,12 +73,12 @@ class Incidencias {
     }
   }
 
-  public function getIncidencias($idAlumno, $idAsignatura){
+  public function getIncidencias(){
     $app = Aplicacion::getSingleton();
 		$conn = $app->conexionBD();
 
-    $idAlumno = $conn->real_escape_string($idAlumno);
-    $idAsignatura = $conn->real_escape_string($idAsignatura);
+    $idAlumno = $conn->real_escape_string(self::getIdAlumno());
+    $idAsignatura = $conn->real_escape_string(self::getIdAsignatura());
 
     $sql = "SELECT msg_incidencia FROM incidencias WHERE id_asignatura = '$idAsignatura' && id_alumno = '$idAlumno'";
 
@@ -100,11 +100,11 @@ class Incidencias {
     }
   }
 
-  public function getIncidenciasDetalladas($idAlumno){
+  public function getIncidenciasDetalladas(){
     $app = Aplicacion::getSingleton();
 		$conn = $app->conexionBD();
 
-    $idAlumno = $conn->real_escape_string($idAlumno);
+    $idAlumno = $conn->real_escape_string(self::getIdAsignatura());
 
     $sql = "SELECT a.nombre_asignatura, i.msg_incidencia FROM incidencias i JOIN asignaturas a ON i.id_asignatura = a.id
             WHERE i.id_alumno = '$idAlumno'";
@@ -139,14 +139,14 @@ class Incidencias {
     return $result->num_rows;
   }
 
-  public function insertIncidencia($i){
+  public function insertIncidencia(){
     $app = Aplicacion::getSingleton();
 		$conn = $app->conexionBD();
 
-    $id = $conn->real_escape_string($i->getId());
-    $asignatura = $conn->real_escape_string($i->getIdAsignatura());
-    $dniAlumno = $conn->real_escape_string($i->getIdAlumno());
-    $incidencia = $conn->real_escape_string($i->getMsgIncidencia());
+    $id = $conn->real_escape_string(self::getId());
+    $asignatura = $conn->real_escape_string(self::getIdAsignatura());
+    $dniAlumno = $conn->real_escape_string(self::getIdAlumno());
+    $incidencia = $conn->real_escape_string(self::getMsgIncidencia());
 
     $sql = "INSERT INTO incidencias (id, id_asignatura, id_alumno, msg_incidencia)
             VALUES ('$id', '$asignatura', '$dniAlumno', '$incidencia')";
@@ -158,5 +158,4 @@ class Incidencias {
       echo "<p>No se ha podido insertar una nueva incidencia en la base de datos.</p>";
     }
   }
-
 }

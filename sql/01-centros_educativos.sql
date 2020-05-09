@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2020 at 05:33 PM
+-- Generation Time: May 09, 2020 at 09:17 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -49,40 +49,40 @@ CREATE TABLE `alumnos` (
 INSERT INTO `alumnos` (`DNI`, `nombre`, `apellido1`, `apellido2`, `id_centro`, `id_clase`, `observaciones_medicas`, `id_tutor_legal`, `fecha_nacimiento`, `id_calificaciones`, `foto`) VALUES
 ('00822109C', 'Rosmira', 'Frías', 'Carvajal', 41000405, 7, 'Trastorno obsesivo-compulsivo (TOC)', NULL, '2004-05-20', 11, 'img\\users\\alumnos\\rosmira.jpg'),
 ('01864521A', 'Alumine', 'Nieves', 'Salcedo', 50000151, 14, NULL, NULL, '2006-03-14', 15, 'img\\users\\alumnos\\alumine.jpg'),
-('13586449G', 'Memmon', 'Crespo', 'Nieto', 8039598, 18, NULL, NULL, '2006-03-04', 13, 'img\\users\\alumnos\\memmon.jpg'),
+('13586449G', 'Memmon', 'Crespo', 'Nieto', 8039598, 18, NULL, NULL, '2006-03-04', 5, 'img\\users\\alumnos\\memmon.jpg'),
 ('13902147G', 'Inmaculada', 'Campos', 'Alcalá', 8039598, 19, 'Trastorno obsesivo-compulsivo (TOC)', NULL, '2006-05-01', 17, 'img\\users\\alumnos\\inmaculada.jpg'),
 ('15700350K', 'Alanis', 'Ibarra', 'Padrón', 28047551, 17, NULL, 2, '2003-07-05', 12, 'img\\users\\alumnos\\alanis.jpg'),
-('16352963D', 'Solano', 'Rocha', 'Cedillo', 50000151, 14, NULL, 3, '2006-11-22', 15, 'img\\users\\alumnos\\solano.jpg'),
+('16352963D', 'Solano', 'Rocha', 'Cedillo', 50000151, 14, NULL, 3, '2006-11-22', 8, 'img\\users\\alumnos\\solano.jpg'),
 ('16512408H', 'Sebasten', 'Armendáriz', 'Maldonado', 41000405, 13, ' Anafilaxia', NULL, '2004-11-19', 18, 'img\\users\\alumnos\\sebasten.jpg'),
-('16627162W', 'Rayen', 'Sánchez', 'Marín', 28047551, 17, 'Presenta reacciones alérgicas a los frutos secos.', 4, '2003-11-11', 12, 'img\\users\\alumnos\\rayen.jpg'),
-('20171515D', 'Meinard', 'Mesa', 'Ulloa', 28047551, 17, NULL, NULL, '2003-06-12', 12, 'img\\users\\alumnos\\meinard.jpg'),
-('21503333N', 'Zohar', 'Núñez', 'Ozuna', 8039598, 19, NULL, 5, '2005-12-13', 17, 'img\\users\\alumnos\\zohar.jpg'),
+('16627162W', 'Rayen', 'Sánchez', 'Marín', 28047551, 17, 'Presenta reacciones alérgicas a los frutos secos.', 4, '2003-11-11', 3, 'img\\users\\alumnos\\rayen.jpg'),
+('20171515D', 'Meinard', 'Mesa', 'Ulloa', 28047551, 17, NULL, NULL, '2003-06-12', 4, 'img\\users\\alumnos\\meinard.jpg'),
+('21503333N', 'Zohar', 'Núñez', 'Ozuna', 8039598, 19, NULL, 5, '2005-12-13', 26, 'img\\users\\alumnos\\zohar.jpg'),
 ('25952332Y', 'Laodicea', 'Cabán', 'Roque', 50000151, 15, NULL, NULL, '2002-08-09', 20, 'img\\users\\alumnos\\laodicea.jpg'),
 ('25988953B', 'Munir', 'Árias', 'Regalado', 50000151, 16, NULL, 6, '2006-07-10', 19, 'img\\users\\alumnos\\munir.jpg'),
 ('27036756A', 'Abram', 'Archuleta', 'Vanegas', 41000405, 8, NULL, NULL, '2005-08-09', 16, 'img\\users\\alumnos\\abram.jpg'),
-('31123104X', 'Aracely', 'Angulo', 'Rael', 8039598, 19, NULL, NULL, '2006-01-02', 17, 'img\\users\\alumnos\\aracely.jpg'),
+('31123104X', 'Aracely', 'Angulo', 'Rael', 8039598, 19, NULL, NULL, '2006-01-02', 27, 'img\\users\\alumnos\\aracely.jpg'),
 ('31631695W', 'Xaviera', 'Amaya', 'Hernández', 28070913, 12, '', 7, '2002-05-20', 14, 'img\\users\\alumnos\\xaviera.jpg'),
-('37071162S', 'Neus', 'Benavides', 'Bustos', 41000405, 8, NULL, 10, '2005-05-17', 16, 'img\\users\\alumnos\\neus.jpg'),
-('38067105N', 'Atanasio', 'Medrano', 'Villareal', 50000151, 16, NULL, NULL, '2006-10-20', 19, 'img\\users\\alumnos\\atanasio.jpg'),
-('38946295G', 'Antígona', 'Rosas', 'Vázquez', 28070913, 12, NULL, NULL, '2002-11-19', 14, 'img\\users\\alumnos\\antigona.jpg'),
-('42893072G', 'Nicholai', 'Rivero', 'Fernández', 28070913, 12, 'Presenta reacciones alérgicas a los anacardos y almendras', NULL, '2002-03-04', 14, 'img\\users\\alumnos\\nicholai.jpg'),
-('43018009M', 'Horaz', 'Otero', 'Espinosa', 50000151, 16, NULL, 8, '2006-04-17', 19, 'img\\users\\alumnos\\horaz.jpg'),
-('43874001Y', 'Otilio', 'Jimínez', 'Mejía', 8039598, 19, NULL, NULL, '2005-09-08', 17, 'img\\users\\alumnos\\otilio.jpg'),
-('44138671S', 'Pío', 'Colunga', 'Bernal', 50000151, 16, NULL, NULL, '2006-06-10', 19, 'img\\users\\alumnos\\pio.jpg'),
-('45730731S', 'Laviana', 'Leyva', 'Guerrero', 41000405, 8, NULL, 9, '2005-09-17', 16, 'img\\users\\alumnos\\laviana.jpg'),
-('51195336G', 'Morfeo', 'Calvillo', 'Padilla', 41000405, 8, NULL, NULL, '2005-07-19', 16, 'img\\users\\alumnos\\morfeo.jpg'),
-('52983179B', 'Orestes', 'Chapa', 'Badillo', 50000151, 16, NULL, NULL, '2007-04-20', 19, 'img\\users\\alumnos\\orestes.jpg'),
-('53389278E', 'Dara', 'Tamayo', 'Aguirre', 41000405, 13, ' Síndrome de alargia oral.', NULL, '2004-03-04', 18, 'img\\users\\alumnos\\dara.jpg'),
-('61063539B', 'Antonella', 'Cisneros', 'Mares', 41000405, 8, NULL, NULL, '2005-04-04', 16, 'img\\users\\alumnos\\antonella.jpg'),
-('64609317V', 'Carmen', 'Mercado', 'Canales', 50000151, 15, NULL, NULL, '2003-01-31', 20, 'img\\users\\alumnos\\carmen.jpg'),
-('65619270V', 'Lucas', 'Benavidez', 'Madrid', 50000151, 14, NULL, NULL, '2006-03-07', 15, 'img\\users\\alumnos\\lucas.jpg'),
-('77595539W', 'Tara', 'Cristobal', 'Fernández', 50000151, 14, NULL, 1, '2006-11-19', 15, 'img\\users\\alumnos\\tara.jpg'),
-('78678320N', 'Oscar', 'Cristobal', 'Fernández', 41000405, 7, 'Presenta reacciones alérgicas a los frutos secos.', 1, '2004-03-04', 11, 'img\\users\\alumnos\\oscar.jpg'),
-('82413678D', 'Olalla', 'Porras', 'Rolón', 50000151, 15, NULL, 11, '2004-12-13', 20, 'img\\users\\alumnos\\olalla.jpg'),
-('86512991D', 'Privato', 'Corral', 'Rojas', 41000405, 7, NULL, NULL, '2004-11-19', 11, 'img\\users\\alumnos\\privato.jpg'),
-('88962348G', 'Candela', 'Quiñones', 'Aguilera', 50000151, 15, NULL, NULL, '2004-08-20', 20, 'img\\users\\alumnos\\candela.jpg'),
+('37071162S', 'Neus', 'Benavides', 'Bustos', 41000405, 8, NULL, 10, '2005-05-17', 22, 'img\\users\\alumnos\\neus.jpg'),
+('38067105N', 'Atanasio', 'Medrano', 'Villareal', 50000151, 16, NULL, NULL, '2006-10-20', 30, 'img\\users\\alumnos\\atanasio.jpg'),
+('38946295G', 'Antígona', 'Rosas', 'Vázquez', 28070913, 12, NULL, NULL, '2002-11-19', 6, 'img\\users\\alumnos\\antigona.jpg'),
+('42893072G', 'Nicholai', 'Rivero', 'Fernández', 28070913, 12, 'Presenta reacciones alérgicas a los anacardos y almendras', NULL, '2002-03-04', 7, 'img\\users\\alumnos\\nicholai.jpg'),
+('43018009M', 'Horaz', 'Otero', 'Espinosa', 50000151, 16, NULL, 8, '2006-04-17', 31, 'img\\users\\alumnos\\horaz.jpg'),
+('43874001Y', 'Otilio', 'Jimínez', 'Mejía', 8039598, 19, NULL, NULL, '2005-09-08', 28, 'img\\users\\alumnos\\otilio.jpg'),
+('44138671S', 'Pío', 'Colunga', 'Bernal', 50000151, 16, NULL, NULL, '2006-06-10', 32, 'img\\users\\alumnos\\pio.jpg'),
+('45730731S', 'Laviana', 'Leyva', 'Guerrero', 41000405, 8, NULL, 9, '2005-09-17', 23, 'img\\users\\alumnos\\laviana.jpg'),
+('51195336G', 'Morfeo', 'Calvillo', 'Padilla', 41000405, 8, NULL, NULL, '2005-07-19', 24, 'img\\users\\alumnos\\morfeo.jpg'),
+('52983179B', 'Orestes', 'Chapa', 'Badillo', 50000151, 16, NULL, NULL, '2007-04-20', 33, 'img\\users\\alumnos\\orestes.jpg'),
+('53389278E', 'Dara', 'Tamayo', 'Aguirre', 41000405, 13, ' Síndrome de alargia oral.', NULL, '2004-03-04', 29, 'img\\users\\alumnos\\dara.jpg'),
+('61063539B', 'Antonella', 'Cisneros', 'Mares', 41000405, 8, NULL, NULL, '2005-04-04', 25, 'img\\users\\alumnos\\antonella.jpg'),
+('64609317V', 'Carmen', 'Mercado', 'Canales', 50000151, 15, NULL, NULL, '2003-01-31', 34, 'img\\users\\alumnos\\carmen.jpg'),
+('65619270V', 'Lucas', 'Benavidez', 'Madrid', 50000151, 14, NULL, NULL, '2006-03-07', 9, 'img\\users\\alumnos\\lucas.jpg'),
+('77595539W', 'Tara', 'Cristobal', 'Fernández', 50000151, 14, NULL, 1, '2006-11-19', 10, 'img\\users\\alumnos\\tara.jpg'),
+('78678320N', 'Oscar', 'Cristobal', 'Fernández', 41000405, 7, 'Presenta reacciones alérgicas a los frutos secos.', 1, '2004-03-04', 1, 'img\\users\\alumnos\\oscar.jpg'),
+('82413678D', 'Olalla', 'Porras', 'Rolón', 50000151, 15, NULL, 11, '2004-12-13', 35, 'img\\users\\alumnos\\olalla.jpg'),
+('86512991D', 'Privato', 'Corral', 'Rojas', 41000405, 7, NULL, NULL, '2004-11-19', 2, 'img\\users\\alumnos\\privato.jpg'),
+('88962348G', 'Candela', 'Quiñones', 'Aguilera', 50000151, 15, NULL, NULL, '2004-08-20', 36, 'img\\users\\alumnos\\candela.jpg'),
 ('92125571Z', 'Adamo', 'Zepeda', 'Altamirano', 8039598, 18, 'Trastorno obsesivo-compulsivo (TOC)', NULL, '2006-05-20', 13, 'img\\users\\alumnos\\adamo.jpg'),
-('94374398Q', 'Romanela', 'Alarcón', 'Villaseñor', 50000151, 14, NULL, 12, '2006-08-26', 15, 'img\\users\\alumnos\\romanela.jpg');
+('94374398Q', 'Romanela', 'Alarcón', 'Villaseñor', 50000151, 14, NULL, 12, '2006-08-26', 21, 'img\\users\\alumnos\\romanela.jpg');
 
 -- --------------------------------------------------------
 
@@ -199,6 +199,16 @@ CREATE TABLE `calificaciones` (
 --
 
 INSERT INTO `calificaciones` (`id`, `id_asignatura1`, `nota1`, `id_asignatura2`, `nota2`, `id_asignatura3`, `nota3`, `id_asignatura4`, `nota4`, `id_asignatura5`, `nota5`, `id_asignatura6`, `nota6`) VALUES
+(1, 1, NULL, 2, NULL, 3, NULL, 4, NULL, 5, NULL, 6, NULL),
+(2, 1, NULL, 2, NULL, 3, NULL, 4, NULL, 5, NULL, 6, NULL),
+(3, 7, NULL, 8, NULL, 9, NULL, 10, NULL, 11, NULL, 12, NULL),
+(4, 7, NULL, 8, NULL, 9, NULL, 10, NULL, 11, NULL, 12, NULL),
+(5, 13, NULL, 14, NULL, 15, NULL, 16, NULL, 17, NULL, 18, NULL),
+(6, 19, NULL, 20, NULL, 21, NULL, 22, NULL, 23, NULL, 24, NULL),
+(7, 19, NULL, 20, NULL, 21, NULL, 22, NULL, 23, NULL, 24, NULL),
+(8, 25, NULL, 26, NULL, 27, NULL, 28, NULL, 29, NULL, 30, NULL),
+(9, 25, NULL, 26, NULL, 27, NULL, 28, NULL, 29, NULL, 30, NULL),
+(10, 25, NULL, 26, NULL, 27, NULL, 28, NULL, 29, NULL, 30, NULL),
 (11, 1, NULL, 2, NULL, 3, NULL, 4, NULL, 5, NULL, 6, NULL),
 (12, 7, NULL, 8, NULL, 9, NULL, 10, NULL, 11, NULL, 12, NULL),
 (13, 13, NULL, 14, NULL, 15, NULL, 16, NULL, 17, NULL, 18, NULL),
@@ -208,7 +218,23 @@ INSERT INTO `calificaciones` (`id`, `id_asignatura1`, `nota1`, `id_asignatura2`,
 (17, 37, NULL, 38, NULL, 39, NULL, 40, NULL, 41, NULL, 42, NULL),
 (18, 43, NULL, 44, NULL, 45, NULL, 46, NULL, 47, NULL, 48, NULL),
 (19, 49, NULL, 50, NULL, 51, NULL, 52, NULL, 53, NULL, 54, NULL),
-(20, 55, NULL, 56, NULL, 57, NULL, 58, NULL, 59, NULL, 60, NULL);
+(20, 55, NULL, 56, NULL, 57, NULL, 58, NULL, 59, NULL, 60, NULL),
+(21, 25, NULL, 26, NULL, 27, NULL, 28, NULL, 29, NULL, 30, NULL),
+(22, 31, NULL, 32, NULL, 33, NULL, 34, NULL, 35, NULL, 36, NULL),
+(23, 31, NULL, 32, NULL, 33, NULL, 34, NULL, 35, NULL, 36, NULL),
+(24, 31, NULL, 32, NULL, 33, NULL, 34, NULL, 35, NULL, 36, NULL),
+(25, 31, NULL, 32, NULL, 33, NULL, 34, NULL, 35, NULL, 36, NULL),
+(26, 37, NULL, 38, NULL, 39, NULL, 40, NULL, 41, NULL, 42, NULL),
+(27, 37, NULL, 38, NULL, 39, NULL, 40, NULL, 41, NULL, 42, NULL),
+(28, 37, NULL, 38, NULL, 39, NULL, 40, NULL, 41, NULL, 42, NULL),
+(29, 43, NULL, 44, NULL, 45, NULL, 46, NULL, 47, NULL, 48, NULL),
+(30, 49, NULL, 50, NULL, 51, NULL, 52, NULL, 53, NULL, 54, NULL),
+(31, 49, NULL, 50, NULL, 51, NULL, 52, NULL, 53, NULL, 54, NULL),
+(32, 49, NULL, 50, NULL, 51, NULL, 52, NULL, 53, NULL, 54, NULL),
+(33, 49, NULL, 50, NULL, 51, NULL, 52, NULL, 53, NULL, 54, NULL),
+(34, 55, NULL, 56, NULL, 57, NULL, 58, NULL, 59, NULL, 60, NULL),
+(35, 55, NULL, 56, NULL, 57, NULL, 58, NULL, 59, NULL, 60, NULL),
+(36, 55, NULL, 56, NULL, 57, NULL, 58, NULL, 59, NULL, 60, NULL);
 
 -- --------------------------------------------------------
 
@@ -355,7 +381,10 @@ CREATE TABLE `mensajería` (
   `contenido_msg` varchar(300) NOT NULL,
   `fecha_hora` datetime NOT NULL,
   `etiqueta` varchar(20) NOT NULL,
-  `archivo` longblob NOT NULL
+  `nombre_archivo` varchar(50) NOT NULL,
+  `archivo` longblob DEFAULT NULL,
+  `tamaño_archivo` int(11) DEFAULT NULL,
+  `tipo_archivo` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -373,7 +402,7 @@ CREATE TABLE `profesores` (
   `despacho` int(4) UNSIGNED DEFAULT NULL,
   `correo` varchar(40) NOT NULL,
   `usuario` varchar(15) NOT NULL,
-  `contraseña` varchar(80) NOT NULL,
+  `contraseña` varchar(100) NOT NULL,
   `foto` varchar(80) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -418,7 +447,7 @@ CREATE TABLE `tutor_legal` (
   `telefono_fijo` varchar(15) DEFAULT NULL,
   `correo` varchar(40) NOT NULL,
   `usuario` varchar(15) NOT NULL,
-  `contraseña` varchar(80) NOT NULL
+  `contraseña` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -542,7 +571,7 @@ ALTER TABLE `asignaturas`
 -- AUTO_INCREMENT for table `calificaciones`
 --
 ALTER TABLE `calificaciones`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `clases`
@@ -560,7 +589,7 @@ ALTER TABLE `incidencias`
 -- AUTO_INCREMENT for table `mensajería`
 --
 ALTER TABLE `mensajería`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `profesores`

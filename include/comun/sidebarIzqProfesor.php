@@ -11,13 +11,14 @@ require_once __DIR__ . '/../dao/Profesor.php';
     <div id="sidebarIzq">
       <div id="imagen_alumno">
         <?php
-          $pdao = new Profesor();
-          $p = $pdao->getProfe(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
-          echo "<img src=\"" .$p->getFoto(). "\" width=\"150\" height=\"150\">";
+          $profesor = new Profesor();
+          $profesor->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
+          $profesor->getProfe();
+          echo "<img src=\"" .$profesor->getFoto(). "\" width=\"150\" height=\"150\">";
         ?>
       </div>
      <h3><?php echo htmlspecialchars(trim(strip_tags($_SESSION["name"]))) ?></h3>
-        <ul><a href="perfil.php">Perfil</a></ul>
+        <ul><a href="ver_profesor.php">Perfil</a></ul>
         <ul><a href="cursos.php">Clases</a></ul>
         <ul><a href="horario_profesor.php">Horario</a></ul>
         <ul><a href="mensajeriaClases.php">Mensajería</a></ul>

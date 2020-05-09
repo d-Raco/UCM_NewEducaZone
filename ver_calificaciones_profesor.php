@@ -2,7 +2,7 @@
 require_once __DIR__ . '/include/dao/Calificaciones.php';
 require_once __DIR__ . '/include/dao/Profesor.php';
 require_once __DIR__ . '/include/dao/Alumno.php';
-  require_once __DIR__ . '/include/config.php';
+require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,22 +24,26 @@ require_once __DIR__ . '/include/dao/Alumno.php';
     ?>
     <div id="contenido">
       <?php
-        $pdao = new Profesor();
-        $adao = new Alumno();
+        $profesor = new Profesor();
+        $alumno = new Alumno();
 
-        $profesor = $pdao->getProfe(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
-        $alumno = $adao->getAlumno(htmlspecialchars(trim(strip_tags($_GET["idAl"]))));
-        $c = new Calificaciones($alumno->getCal(), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+        $profesor->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
+        $profesor->getProfe();
+        $alumno->setDNI(htmlspecialchars(trim(strip_tags($_GET["idAl"]))));
+        $alumno->getAlumno();
+        $calificación = new Calificaciones();
+        $calificación->setId(htmlspecialchars(trim(strip_tags($alumno->getCal()))));
+        $calificación->getCal();
+        $calificación->setNota(htmlspecialchars(trim(strip_tags($_GET["idAsignatura"]))), htmlspecialchars(trim(strip_tags($_GET["notaNueva"]))));
 
         echo "<h1>Calificación de " .$alumno->getNombre(). " " .$alumno->getAp1(). " " .$alumno->getAp2(). ":</h1>";
 
-        $cdao->setNota(htmlspecialchars(trim(strip_tags($_GET["idAsignatura"]))), htmlspecialchars(trim(strip_tags($_GET["notaNueva"]))));
-        
-        $filaAsignaturas = $c->getFilaAsignaturasProfesor($profesor->getId());
+        $calificación->getCal();
+        $filaAsignaturas = $calificación->getFilaAsignaturasProfesor($profesor->getId());
 
         foreach ($filaAsignaturas as &$value) {
           echo "<p>" .$value["nombre_asignatura"]. ": ";
-          echo $c->getNotaAsignaturaById($value["id"]). "</p>";
+          echo $calificación->getNotaAsignaturaById($value["id"]). "</p>";
 
           echo "<form method=\"get\">";
             echo "<p> Escribe aquí la nueva nota:";

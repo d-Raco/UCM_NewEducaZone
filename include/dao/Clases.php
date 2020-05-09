@@ -69,41 +69,37 @@ class Clases {
 		$query("DELETE Usuarios where id = '" . $conn->real_escape_string($p->id) . "'");
 	}
 
-	public function getClase($id) {
-		$clases = NULL;
+	public function getClaseByAsignatura($id) {
 		$app = Aplicacion::getSingleton();
 		$conn = $app->conexionBD();
-        $id = $conn->real_escape_string($id);
+    $id = $conn->real_escape_string($id);
 
 		$query = "SELECT * from clases WHERE id_asignatura1 = '$id' OR id_asignatura2 = '$id' OR id_asignatura3 = '$id' OR id_asignatura4 = '$id' OR id_asignatura5 = '$id' OR id_asignatura6 = '$id'";
 		$result = $conn->query($query)
             or die ($conn->error. " en la línea ".(__LINE__-1));
+
 		if($result->num_rows > 0){
-            $fila = $result->fetch_assoc();
+        $fila = $result->fetch_assoc();
 
-            self::setId($fila['id']);
-            self::setCurso($fila['curso']);
-            self::setLetra($fila['letra']);
-            self::setTitul($fila['titulación']);
-            self::setIdTutor($fila['id_tutor_clase']);
-            self::setNAlum($fila['numero_alumnos']);
-            self::setAs1($fila['id_asignatura1']);
-            self::setAs2($fila['id_asignatura2']);
-            self::setAs3($fila['id_asignatura3']);
-            self::setAs4($fila['id_asignatura4']);
-            self::setAs5($fila['id_asignatura5']);
-            self::setAs6($fila['id_asignatura6']);
-            $clases = $this;
-        }
-
-	    return $clases;
+        self::setId($fila['id']);
+        self::setCurso($fila['curso']);
+        self::setLetra($fila['letra']);
+        self::setTitul($fila['titulación']);
+        self::setNAlum($fila['numero_alumnos']);
+        self::setAs1($fila['id_asignatura1']);
+        self::setAs2($fila['id_asignatura2']);
+        self::setAs3($fila['id_asignatura3']);
+        self::setAs4($fila['id_asignatura4']);
+        self::setAs5($fila['id_asignatura5']);
+        self::setAs6($fila['id_asignatura6']);
+    }
 	}
 
-    public function getAsignaturas($id) {
+    public function getAsignaturas() {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBD();
 
-        $query = sprintf("SELECT DISTINCT * FROM asignaturas WHERE id_profesor = '%s'", $conn->real_escape_string($id));
+        $query = sprintf("SELECT DISTINCT * FROM asignaturas WHERE id_profesor = '%s'", $conn->real_escape_string(self::getIdTutor()));
         $result = $conn->query($query)
             or die ($conn->error. " en la línea ".(__LINE__-1));
         if($result->num_rows > 0){
@@ -114,11 +110,11 @@ class Clases {
         }
     }
 
-    public function getAlumnos($id) {
+    public function getAlumnos() {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBD();
 
-        $query = sprintf("SELECT DNI, nombre, apellido1, apellido2, id_tutor_legal FROM alumnos WHERE id_clase = '%s'", $conn->real_escape_string($id));
+        $query = sprintf("SELECT DNI, nombre, apellido1, apellido2, id_tutor_legal FROM alumnos WHERE id_clase = '%s'", $conn->real_escape_string(self::getId()));
         $result = $conn->query($query)
             or die ($conn->error. " en la línea ".(__LINE__-1));
         if($result->num_rows > 0){
@@ -129,16 +125,16 @@ class Clases {
         }
     }
 
-    public function getAsignaturaProfesor($c) {
+    public function getAsignaturaProfesor() {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBD();
 
-        $a1 = $conn->real_escape_string($c->getAs1());
-        $a2 = $conn->real_escape_string($c->getAs2());
-        $a3 = $conn->real_escape_string($c->getAs3());
-        $a4 = $conn->real_escape_string($c->getAs4());
-        $a5 = $conn->real_escape_string($c->getAs5());
-        $a6 = $conn->real_escape_string($c->getAs6());
+        $a1 = $conn->real_escape_string(self::getAs1());
+        $a2 = $conn->real_escape_string(self::getAs2());
+        $a3 = $conn->real_escape_string(self::getAs3());
+        $a4 = $conn->real_escape_string(self::getAs4());
+        $a5 = $conn->real_escape_string(self::getAs5());
+        $a6 = $conn->real_escape_string(self::getAs6());
 
         $sql = "SELECT  a.nombre_asignatura, p.id, p.nombre, p.apellido1, p.apellido2 FROM asignaturas a JOIN profesores p ON a.id_profesor = p.id WHERE a.id = '$a1' || a.id = '$a2' || a.id = '$a3' || a.id = '$a4' || a.id = '$a5' || a.id = '$a6'";
         $result = $conn->query($sql)

@@ -131,7 +131,12 @@ abstract class Form
 
         $html= $this->generaListaErrores($errores);
 
-        $html .= '<form method="POST" action="'.$this->action.'" id="'.$this->formId.'" >';
+        if($this->formId === "formMensajería"){
+          $html .= '<form method="POST" action="'.$this->action.'" id="'.$this->formId.'" enctype="multipart/form-data">';
+        }
+        else{
+          $html .= '<form method="POST" action="'.$this->action.'" id="'.$this->formId.'">';
+        }
         $html .= '<input type="hidden" name="action" value="'.$this->formId.'" />';
 
         $html .= $this->generaCamposFormulario($datos);

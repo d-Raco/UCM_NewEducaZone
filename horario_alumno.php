@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/include/dao/Clases.php';
-  require_once __DIR__ . '/include/config.php';
+require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,16 +22,21 @@ require_once __DIR__ . '/include/dao/Clases.php';
     ?>
     <div id="contenido">
       <?php
-        $c = new Clases(NULL, NULL, NULL, NULL, NULL, NULL, htmlspecialchars(trim(strip_tags($_GET["id1"]))), htmlspecialchars(trim(strip_tags($_GET["id2"]))), htmlspecialchars(trim(strip_tags($_GET["id3"]))), htmlspecialchars(trim(strip_tags($_GET["id4"]))), htmlspecialchars(trim(strip_tags($_GET["id5"]))), htmlspecialchars(trim(strip_tags($_GET["id6"]))));
-
+        $clase = new Clases();
+        $clase->setAs1(htmlspecialchars(trim(strip_tags($_GET["id1"]))));
+        $clase->setAs2(htmlspecialchars(trim(strip_tags($_GET["id2"]))));
+        $clase->setAs3(htmlspecialchars(trim(strip_tags($_GET["id3"]))));
+        $clase->setAs4(htmlspecialchars(trim(strip_tags($_GET["id4"]))));
+        $clase->setAs5(htmlspecialchars(trim(strip_tags($_GET["id5"]))));
+        $clase->setAs6(htmlspecialchars(trim(strip_tags($_GET["id6"]))));
         $asignaturas = array();
 
-        $asignaturas[1] =  $c->getAsignatura($c->getAs1());
-        $asignaturas[2] =  $c->getAsignatura($c->getAs2());
-        $asignaturas[3] =  $c->getAsignatura($c->getAs3());
-        $asignaturas[4] =  $c->getAsignatura($c->getAs4());
-        $asignaturas[5] =  $c->getAsignatura($c->getAs5());
-        $asignaturas[6] =  $c->getAsignatura($c->getAs6());
+        $asignaturas[1] =  $clase->getAsignatura($clase->getAs1());
+        $asignaturas[2] =  $clase->getAsignatura($clase->getAs2());
+        $asignaturas[3] =  $clase->getAsignatura($clase->getAs3());
+        $asignaturas[4] =  $clase->getAsignatura($clase->getAs4());
+        $asignaturas[5] =  $clase->getAsignatura($clase->getAs5());
+        $asignaturas[6] =  $clase->getAsignatura($clase->getAs6());
 
         echo "<h1>Horario de ".htmlspecialchars(trim(strip_tags($_GET["id"])))."</h1>";
 
