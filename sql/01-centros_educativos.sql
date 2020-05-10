@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2020 at 09:17 PM
+-- Generation Time: May 10, 2020 at 09:44 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -83,6 +83,21 @@ INSERT INTO `alumnos` (`DNI`, `nombre`, `apellido1`, `apellido2`, `id_centro`, `
 ('88962348G', 'Candela', 'Quiñones', 'Aguilera', 50000151, 15, NULL, NULL, '2004-08-20', 36, 'img\\users\\alumnos\\candela.jpg'),
 ('92125571Z', 'Adamo', 'Zepeda', 'Altamirano', 8039598, 18, 'Trastorno obsesivo-compulsivo (TOC)', NULL, '2006-05-20', 13, 'img\\users\\alumnos\\adamo.jpg'),
 ('94374398Q', 'Romanela', 'Alarcón', 'Villaseñor', 50000151, 14, NULL, 12, '2006-08-26', 21, 'img\\users\\alumnos\\romanela.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `archivos_foro`
+--
+
+CREATE TABLE `archivos_foro` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `id_foro` int(11) UNSIGNED NOT NULL,
+  `nombre_archivo` varchar(30) NOT NULL,
+  `tamaño_archivo` int(11) UNSIGNED NOT NULL,
+  `archivo` longblob NOT NULL,
+  `tipo_archivo` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -356,6 +371,39 @@ INSERT INTO `codigos_de_acceso` (`codigo`, `id_centro`, `id_alumnos`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comentarios_foro`
+--
+
+CREATE TABLE `comentarios_foro` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `id_foro` int(11) UNSIGNED NOT NULL,
+  `id_redactor` int(11) UNSIGNED NOT NULL,
+  `rol_redactor` varchar(15) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `titulo` varchar(30) DEFAULT NULL,
+  `contenido_comentario` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `entradas_foro`
+--
+
+CREATE TABLE `entradas_foro` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `id_clase` int(11) UNSIGNED NOT NULL,
+  `titulo_foro` varchar(40) NOT NULL,
+  `id_creador` int(11) UNSIGNED NOT NULL,
+  `rol_creador` varchar(20) NOT NULL,
+  `permisos` tinyint(1) NOT NULL DEFAULT 0,
+  `contenido` varchar(300) DEFAULT NULL,
+  `fecha` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `incidencias`
 --
 
@@ -384,7 +432,7 @@ CREATE TABLE `mensajería` (
   `nombre_archivo` varchar(50) NOT NULL,
   `archivo` longblob DEFAULT NULL,
   `tamaño_archivo` int(11) DEFAULT NULL,
-  `tipo_archivo` varchar(15) DEFAULT NULL
+  `tipo_archivo` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -483,6 +531,13 @@ ALTER TABLE `alumnos`
   ADD KEY `fk_alumno_tutor` (`id_tutor_legal`);
 
 --
+-- Indexes for table `archivos_foro`
+--
+ALTER TABLE `archivos_foro`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_archivo_foro` (`id_foro`);
+
+--
 -- Indexes for table `asignaturas`
 --
 ALTER TABLE `asignaturas`
@@ -528,6 +583,20 @@ ALTER TABLE `codigos_de_acceso`
   ADD KEY `id_alumnos` (`id_alumnos`);
 
 --
+-- Indexes for table `comentarios_foro`
+--
+ALTER TABLE `comentarios_foro`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_comentario_foro` (`id_foro`);
+
+--
+-- Indexes for table `entradas_foro`
+--
+ALTER TABLE `entradas_foro`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_entradaforo_clase` (`id_clase`);
+
+--
 -- Indexes for table `incidencias`
 --
 ALTER TABLE `incidencias`
@@ -562,6 +631,12 @@ ALTER TABLE `tutor_legal`
 --
 
 --
+-- AUTO_INCREMENT for table `archivos_foro`
+--
+ALTER TABLE `archivos_foro`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
 -- AUTO_INCREMENT for table `asignaturas`
 --
 ALTER TABLE `asignaturas`
@@ -580,6 +655,18 @@ ALTER TABLE `clases`
   MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
+-- AUTO_INCREMENT for table `comentarios_foro`
+--
+ALTER TABLE `comentarios_foro`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `entradas_foro`
+--
+ALTER TABLE `entradas_foro`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
 -- AUTO_INCREMENT for table `incidencias`
 --
 ALTER TABLE `incidencias`
@@ -589,7 +676,7 @@ ALTER TABLE `incidencias`
 -- AUTO_INCREMENT for table `mensajería`
 --
 ALTER TABLE `mensajería`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `profesores`
@@ -615,6 +702,12 @@ ALTER TABLE `alumnos`
   ADD CONSTRAINT `fk_alumno_centro` FOREIGN KEY (`id_centro`) REFERENCES `centros` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_alumno_clase` FOREIGN KEY (`id_clase`) REFERENCES `clases` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_alumno_tutor` FOREIGN KEY (`id_tutor_legal`) REFERENCES `tutor_legal` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `archivos_foro`
+--
+ALTER TABLE `archivos_foro`
+  ADD CONSTRAINT `fk_archivo_foro` FOREIGN KEY (`id_foro`) REFERENCES `entradas_foro` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `asignaturas`
@@ -651,6 +744,18 @@ ALTER TABLE `clases`
 ALTER TABLE `codigos_de_acceso`
   ADD CONSTRAINT `fk_codigo_alumno` FOREIGN KEY (`id_alumnos`) REFERENCES `alumnos` (`DNI`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_codigo_centro` FOREIGN KEY (`id_centro`) REFERENCES `centros` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `comentarios_foro`
+--
+ALTER TABLE `comentarios_foro`
+  ADD CONSTRAINT `fk_comentario_foro` FOREIGN KEY (`id_foro`) REFERENCES `entradas_foro` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `entradas_foro`
+--
+ALTER TABLE `entradas_foro`
+  ADD CONSTRAINT `fk_entradaforo_clase` FOREIGN KEY (`id_clase`) REFERENCES `clases` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `incidencias`

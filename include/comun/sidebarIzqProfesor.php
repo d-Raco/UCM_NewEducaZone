@@ -22,6 +22,7 @@ require_once __DIR__ . '/../dao/Profesor.php';
         <ul><a href="cursos.php">Clases</a></ul>
         <ul><a href="horario_profesor.php">Horario</a></ul>
         <ul><a href="mensajeriaClases.php">Mensajería</a></ul>
+        <ul><a href="foro_seleccion.php">Foro</a></ul>
         <ul><a>Calendario</a></ul>
     </div>
 

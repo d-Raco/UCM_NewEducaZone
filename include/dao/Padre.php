@@ -87,6 +87,27 @@ class Padre {
     }
 	}
 
+  public function getPadreById() {
+  		$app = Aplicacion::getSingleton();
+  		$conn = $app->conexionBD();
+
+  		$query = sprintf("SELECT * from tutor_legal where id = '%s'", $conn->real_escape_string(self::getId()));
+  		$result = $conn->query($query)
+              or die ($conn->error. " en la línea ".(__LINE__-1));
+  		if($result->num_rows > 0){
+        $fila = $result->fetch_assoc();
+        self::setUsuario($fila['usuario']);
+        self::setNombre($fila['nombre']);
+        self::setAp1($fila['apellido1']);
+        self::setAp2($fila['apellido2']);
+        self::setMovil($fila['telefono_movil']);
+        self::setFijo($fila['telefono_fijo']);
+        self::setCorreo($fila['correo']);
+        self::setUsuario($fila['usuario']);
+        self::setContraseña($fila['contraseña']);
+      }
+  	}
+
     public function getHijos() {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBD();

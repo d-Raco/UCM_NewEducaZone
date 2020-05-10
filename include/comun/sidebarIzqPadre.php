@@ -8,6 +8,7 @@
     <div id="sidebarIzq">
      <h3><?php echo htmlspecialchars(trim(strip_tags($_SESSION["name"]))) ?></h3>
         <ul><a href="padre_msgnuevo.php">Mensajería</a></ul>
+        <ul><a href="foro_seleccion.php">Foro</a></ul>
         <ul><a>Calendario</a></ul>
         <ul><a>Notificaciones</a></ul>
         <ul><a>Recordatorios</a></ul>

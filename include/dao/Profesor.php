@@ -83,6 +83,29 @@ class Profesor {
     }
 	}
 
+  public function getProfesorById() {
+  		$app = Aplicacion::getSingleton();
+  		$conn = $app->conexionBD();
+
+  		$query = sprintf("SELECT * from profesores where id = '%s'", $conn->real_escape_string(self::getId()));
+  		$result = $conn->query($query)
+              or die ($conn->error. " en la línea ".(__LINE__-1));
+  		if($result->num_rows > 0){
+        $fila = $result->fetch_assoc();
+
+        self::setUsuario($fila['usuario']);
+        self::setIdCentro($fila['id_centro']);
+        self::setNombre($fila['nombre']);
+        self::setAp1($fila['apellido1']);
+        self::setAp2($fila['apellido2']);
+        self::setDespacho($fila['despacho']);
+        self::setCorreo($fila['correo']);
+        self::setUsuario($fila['usuario']);
+        self::setContraseña($fila['contraseña']);
+        self::setFoto($fila['foto']);
+      }
+  	}
+
     public function getCentro() {
         $p = NULL;
         $app = Aplicacion::getSingleton();

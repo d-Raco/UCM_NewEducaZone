@@ -13,6 +13,10 @@ img.avatar {
   padding: 16px;
 }
 
+.registro{
+    margin-left: 40px;
+}
+
 input.login {
   width: 20%;
   padding: 12px 20px;

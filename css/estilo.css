@@ -4,24 +4,6 @@ div#contenido {
 	background-color: #aaaaaa;
 }
 
-div#cabecera {
-	background-color: #31A36E;
-	color: white;
-	height: 105px;
-}
-
-div#cabecera a, div#cabecera a:visited {
-	font-weight: bold;
-	text-decoration: none;
-	background-color: #31A36E;
-}
-
-div#cabecera a:hover {
-	color: #E3C322;
-	font-weight: bold;
-	text-decoration: underline;
-}
-
 div#sidebarIzq {
 	padding: 10px;
 	float: left;

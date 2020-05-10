@@ -95,6 +95,31 @@ class Clases {
     }
 	}
 
+  public function getClaseById() {
+		$app = Aplicacion::getSingleton();
+		$conn = $app->conexionBD();
+    $id = $conn->real_escape_string(self::getId());
+
+		$query = "SELECT * from clases WHERE id = '$id'";
+		$result = $conn->query($query)
+            or die ($conn->error. " en la línea ".(__LINE__-1));
+
+		if($result->num_rows > 0){
+        $fila = $result->fetch_assoc();
+
+        self::setCurso($fila['curso']);
+        self::setLetra($fila['letra']);
+        self::setTitul($fila['titulación']);
+        self::setNAlum($fila['numero_alumnos']);
+        self::setAs1($fila['id_asignatura1']);
+        self::setAs2($fila['id_asignatura2']);
+        self::setAs3($fila['id_asignatura3']);
+        self::setAs4($fila['id_asignatura4']);
+        self::setAs5($fila['id_asignatura5']);
+        self::setAs6($fila['id_asignatura6']);
+    }
+	}
+
     public function getAsignaturas() {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBD();
@@ -168,6 +193,22 @@ class Clases {
         }
         else{
             return NULL;
+        }
+    }
+
+    public function getClaseByTutor() {
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBD();
+
+        $sql = sprintf("SELECT id,curso,letra,titulación FROM clases WHERE id_tutor_clase = '%s'", $conn->real_escape_string(self::getIdTutor()));
+        $result = $conn->query($sql)
+            or die ($conn->error. " en la línea ".(__LINE__-1));
+
+        if($result->num_rows > 0){
+            return $result;
+        }
+        else{
+            echo "El profesor con id " .self::getIdTutor(). " no es tutor de ninguna clase.";
         }
     }
 }
