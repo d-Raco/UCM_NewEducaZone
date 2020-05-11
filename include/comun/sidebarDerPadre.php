@@ -22,6 +22,7 @@
         while($hijo = $result->fetch_assoc()){
           echo "<ul><img src=\"" .$hijo["foto"]. "\"  width=\"150\" height=\"150\"><ul>";
           echo "<ul><a href=\"ver_alumno.php?id=".$hijo["DNI"]."\">".$hijo["nombre"]."</a><br><br>";
+          echo '<ul><a href="calendario.php">Calendario</a></ul>';
         }
       ?>
     </div>
