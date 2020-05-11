@@ -1,0 +1,81 @@
+div#contenido {
+	width: 900px;
+	margin: auto;
+	background-color: #aaaaaa;
+}
+
+div#sidebarIzq {
+	padding: 10px;
+	float: left;
+	width: 170px;
+	height: auto;
+	background-color: #D6FED6;
+}
+
+div#sidebarIzq ul {
+	background-color: #D6FED6;
+}
+
+div#sidebarIzq a:hover {
+	color: #E3C322;
+	text-decoration: underline;
+}
+
+div#sidebarDer {
+	padding: 10px;
+	float: right;
+	width: 170px;
+	height: auto;
+	background-color: #D6FED6;
+}
+
+div#sidebarDer ul {
+	background-color: #D6FED6;
+}
+
+div#contenedor {
+	padding: 10px;
+	float: left;
+	min-height: 900px;
+	width: 900px;
+	background-color: white;
+	margin-top: 5em;
+	margin-left: 3em;
+}
+
+div#pie {
+	position:fixed;
+  	bottom: 0;
+  	width:98%;
+	padding: 5px;
+	background-color: #31A36E;
+	color: white;
+	text-align: center;
+}
+
+div.saludo {
+	width: 100%;
+	text-align: right;
+}
+
+div#logo{
+	height: 25px;
+}
+
+div.editar{
+	margin-left: 20em;
+}
+input.edit{
+  width:120%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button{
+	margin-left: 11em;
+	margin-top: 0.5em;
+	 font-size: 30px;
+}
