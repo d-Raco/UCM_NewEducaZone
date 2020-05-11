@@ -54,7 +54,13 @@ require_once __DIR__ . '/include/dao/Clases.php';
     </div>
 
     <?php
-      include("include/comun/pie.php");
+    if($_SESSION['rol'] == "padre"){
+      include("include/comun/sidebarDerPadre.php");
+    }
+    elseif($_SESSION['rol'] == "profesor"){
+      include("include/comun/sidebarDerProfesor.php");
+    }
+    include("include/comun/pie.php");
     ?>
    </div>
   </body>
