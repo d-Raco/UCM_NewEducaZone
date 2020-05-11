@@ -164,7 +164,7 @@ class Profesor {
 
 
 
-    public function updateDatosProfesor( $nombre, $ap1,$ap2,$despacho,$correo){
+    public function updateDatosProfesor( $nombre, $ap1,$ap2,$despacho,$correo,$contraseña){
          $app = Aplicacion::getSingleton();
           $conn = $app->conexionBD();
 
@@ -196,6 +196,12 @@ class Profesor {
           }
            if($correo != NULL){
             $sql = "UPDATE profesores SET correo = '$correo' WHERE id = '$id'  ";
+               $result = $conn->query($sql)
+              or die ($conn->error. " en la línea ".(__LINE__-1));
+
+          }
+          if($contraseña != NULL){
+            $sql = "UPDATE profesores SET contraseña = '$contraseña' WHERE id = '$id'  ";
                $result = $conn->query($sql)
               or die ($conn->error. " en la línea ".(__LINE__-1));
 
