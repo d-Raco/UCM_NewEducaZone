@@ -142,7 +142,7 @@ class Padre {
     }
 
 
-    public function updateDatosPadre( $nombre, $ap1,$ap2,$telefono_movil,$telefono_fijo,$correo){
+    public function updateDatosPadre( $nombre, $ap1,$ap2,$telefono_movil,$telefono_fijo,$correo,$contraseña){
          $app = Aplicacion::getSingleton();
           $conn = $app->conexionBD();
 
@@ -179,6 +179,12 @@ class Padre {
           }
            if($correo != NULL){
             $sql = "UPDATE tutor_legal SET correo = '$correo' WHERE id = '$id'  ";
+               $result = $conn->query($sql)
+              or die ($conn->error. " en la línea ".(__LINE__-1));
+
+          }
+           if($contraseña != NULL){
+            $sql = "UPDATE tutor_legal SET contraseña = '$contraseña' WHERE id = '$id'  ";
                $result = $conn->query($sql)
               or die ($conn->error. " en la línea ".(__LINE__-1));
 
