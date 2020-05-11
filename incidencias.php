@@ -9,6 +9,7 @@ require_once __DIR__ . '/include/config.php';
     <meta charset="utf-8">
     <title>Incidencias Padre</title>
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
+      <link rel="stylesheet" href="css/incidencias.css">
   </head>
   <body>
     <?php
@@ -35,12 +36,26 @@ require_once __DIR__ . '/include/config.php';
         $incidencias = $incidencia->getIncidenciasDetalladas();
 
         if(!empty($incidencias)){
+            echo '<table id="tablaIncidencias">
+            <tr id="filaIncidencias">
+                <th id="cabeceraIncidencias" colspan="2">Incidencias
+                </th>
+            </tr>';
           foreach($incidencias as &$value){
-              echo "<p>".$value["nombre_asignatura"].": ".$value["msg_incidencia"]."</p><hr>";
+              echo "<tr id='filaIncidencias'>
+                            <td id='columna1'>".$value["nombre_asignatura"]."</td>
+                            <td id='columna2'>".$value["msg_incidencia"]."
+                                <div id='tooltip'>
+                                    ".$value["msg_incidencia"]."
+                                </div> 
+                            </td>
+                          </tr>";
           }
+          echo "</table>";
         }
       }
       elseif($_SESSION['rol'] == "profesor"){
+
         $form = new FormularioIncidencia(htmlspecialchars(trim(strip_tags($_REQUEST["idAlumno"]))), htmlspecialchars(trim(strip_tags($_REQUEST["idAsignatura"]))));
         $form->gestiona();
       }
