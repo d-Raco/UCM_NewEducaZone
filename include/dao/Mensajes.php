@@ -58,20 +58,21 @@ class Mensajes {
     $app = Aplicacion::getSingleton();
 		$conn = $app->conexionBD();
 
-    $idorig = $conn->real_escape_string($this->getIdOrigen());
-    $rolorigen = $conn->real_escape_string($this->getRolOrigen());
-    $iddestino = $conn->real_escape_string($this->getIdDestinatario());
-    $roldest = $conn->real_escape_string($this->getRolDestinatario());
-    $mensaje = $conn->real_escape_string($this->getMsg());
-    $tiempo = $conn->real_escape_string($this->getDate());
-    $etiqueta = $conn->real_escape_string($this->getEtiqueta());
-    $nombre_archivo = $conn->real_escape_string($this->getNombreArchivo());
-    $archivo = $conn->real_escape_string($this->getArchivo());
-    $tamaño_archivo = $conn->real_escape_string($this->getTamañoArchivo());
-    $tipo_archivo = $conn->real_escape_string($this->getTipoArchivo());
+    $id  = $conn->real_escape_string(self::getId());
+    $idorig = $conn->real_escape_string(self::getIdOrigen());
+    $rolorigen = $conn->real_escape_string(self::getRolOrigen());
+    $iddestino = $conn->real_escape_string(self::getIdDestinatario());
+    $roldest = $conn->real_escape_string(self::getRolDestinatario());
+    $mensaje = $conn->real_escape_string(self::getMsg());
+    $tiempo = $conn->real_escape_string(self::getDate());
+    $etiqueta = $conn->real_escape_string(self::getEtiqueta());
+    $nombre_archivo = $conn->real_escape_string(self::getNombreArchivo());
+    $archivo = $conn->real_escape_string(self::getArchivo());
+    $tamaño_archivo = $conn->real_escape_string(self::getTamañoArchivo());
+    $tipo_archivo = $conn->real_escape_string(self::getTipoArchivo());
 
-    $sql = "INSERT INTO mensajería (id_origen,rol_origen,id_destinatario,rol_destinatario,contenido_msg,fecha_hora,etiqueta,nombre_archivo,archivo,tamaño_archivo,tipo_archivo)
-            VALUES ('$idorig','$rolorigen','$iddestino','$roldest','$mensaje','$tiempo','$etiqueta','$nombre_archivo','$archivo','$tamaño_archivo','$tipo_archivo')";
+    $sql = "INSERT INTO mensajería (id,id_origen,rol_origen,id_destinatario,rol_destinatario,contenido_msg,fecha_hora,etiqueta,nombre_archivo,archivo,tamaño_archivo,tipo_archivo)
+            VALUES ('$id','$idorig','$rolorigen','$iddestino','$roldest','$mensaje','$tiempo','$etiqueta','$nombre_archivo','$archivo','$tamaño_archivo','$tipo_archivo')";
 
     $conn->query($sql)
         or die ($conn->error. " en la línea ".(__LINE__-1));
