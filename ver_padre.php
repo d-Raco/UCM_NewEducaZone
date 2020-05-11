@@ -1,13 +1,20 @@
 <?php
 require_once __DIR__ . '/include/dao/Padre.php';
 require_once __DIR__ . '/include/config.php';
+ require_once __DIR__ . '/include/FormularioEditarPadre.php';
 ?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>Padre</title>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link rel="stylesheet" type="text/css" href="css/VerPadreyProfe.css">
+
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Last-Modified" content="0">
+  <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+
   </head>
   <body>
     <?php
@@ -21,6 +28,7 @@ require_once __DIR__ . '/include/config.php';
       include("include/comun/sidebarIzqPadre.php");
     ?>
     <div id="contenido">
+       <div class="cuadradoInfo">
       <?php
         $padre = new Padre();
         $padre->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
@@ -36,23 +44,34 @@ require_once __DIR__ . '/include/config.php';
         $result = $padre->getHijos();
 
         while($hijo = $result->fetch_assoc()){
-          echo "<div class=\"imagen_hijo\"><img src=\"" .$hijo["foto"]. "\"  width=\"150\" height=\"150\"><br><a href=\"ver_alumno.php?id=".$hijo["DNI"]."\">" .$hijo["nombre"]. " " .$hijo["apellido1"]. " " .$hijo["apellido2"]. "</a><div>";
+          echo "<h1><ol><a href=\"ver_alumno.php?id=".$hijo["DNI"]."\">" .$hijo["nombre"]. " " .$hijo["apellido1"]. " " .$hijo["apellido2"]. "</a></ol></h1>";
         }
       ?>
-        <div id="Editar">
-
-      <form method="post">
-        <input type="submit" name="Edit" value="EDITAR">
-      </form>
-
     </div>
-</div>
+        <div class="cuadrados">
+        <div class="cuadrado">
+        <h1><a href = "Editar_padre.php">Editar Perfil</a></h1>
+        <p>Modifica tu perfil para conocer todos tus datos.</p>
+        </div>
+
+       <div class="cuadrado">
+        <h1><a href = "foro_seleccion.php">Foro</a></h1>
+        <p>Comparte historias, fotos y buenos recuerdos de las actividades con el colegio.</p>
+       </div>
+
+      <div class="cuadrado">
+        <h1><a href = "Editar_padre.php">Mensajeria</a></h1>
+        <p>Intercambia mensajes y archivos con los profesores para mantenerte informado de todo lo necesario sobre las clases de tu hijo.</p>
+      </div>
+    </div>
+    </div>
+
     </div>
 
     <?php
-      if(isset($_POST["Edit"])){
-        include("EditarPadre.php");
-      }
+      include("include/comun/sidebarDerPadre.php");
+      include("include/comun/pie.php");
+      
     ?>
    </div>
   </body>
