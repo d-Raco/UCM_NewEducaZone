@@ -28,11 +28,21 @@ require_once __DIR__ . '/include/config.php';
 
       echo '<div id="contenido">
         <h1>Mensajería</h1>';
-
-      $form = new FormularioMensajería(htmlspecialchars(trim(strip_tags($_REQUEST["tutor"]))), htmlspecialchars(trim(strip_tags($_REQUEST["profesor"]))));
-      $form->gestiona();
-
+      if(empty($_POST["tutor"])){
+        echo "el alumno no tiene un tutor legal registrado.";
+      }
+      else{
+        $form = new FormularioMensajería(htmlspecialchars(trim(strip_tags($_REQUEST["tutor"]))), htmlspecialchars(trim(strip_tags($_REQUEST["profesor"]))));
+        $form->gestiona();
+      }
       echo "</div>";
+
+      if($_SESSION['rol'] == 'profesor'){
+        include("include/comun/sidebarDerProfesor.php");
+      }
+      else{
+        include("include/comun/sidebarDerPadre.php");
+      }
       include("include/comun/pie.php");
       ?>
      </div>
