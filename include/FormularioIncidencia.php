@@ -20,15 +20,24 @@ class FormularioIncidencia extends Form
 
         $row = $this->incidencia->getInfo();
 
-        echo "<h2>Incidencias de " .$row["nombre"]. " " .$row["apellido1"]. " " .$row["apellido2"]. " en la asignatura de " .$row["nombre_asignatura"]. "</h2>";
+        echo "<table id='tablaIncidencias'>
+                <tr id='filaIncidencias'>
+                    <th id='cabeceraIncidencias'>Incidencias de " .$row["nombre"]. " " .$row["apellido1"]. " " .$row["apellido2"]. " en la asignatura de " .$row["nombre_asignatura"].
+            "</th>
+                </tr>" ;
 
         $incidencias = $this->incidencia->getIncidencias();
 
         if(!empty($incidencias)){
-          foreach($incidencias as &$value){
-              echo $value['msg_incidencia'] . "<hr>";
-          }
+            foreach($incidencias as &$value){
+                echo "<tr id='filaIncidencias'><td id='columna2'>".$value['msg_incidencia'].
+                    "<div id='tooltip'>
+                                ". $value['msg_incidencia'] ."
+                            </div>
+                    </td></tr>";
+            }
         }
+        echo "</table>";
 
         $html = <<<EOF
         <fieldset>
