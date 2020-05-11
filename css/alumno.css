@@ -1,0 +1,75 @@
+* {
+  box-sizing: border-box;
+}
+
+.contenido{
+	margin-left: 200px;
+	padding: 1px 16px;
+	height: 1000px;
+}
+
+.info{
+	position: relative;
+	background-color: #f1f1f1;
+	padding: 30px;
+	text-align: center;
+	font-size: 20px;
+}
+
+.flex-container{
+	justify-content: space-around;
+	width:auto;  
+	margin-top:15px; 
+	display:flex;
+}
+
+.clase{
+	line-height: 20px;
+  	border-radius: 20px;
+	padding: 30px;	
+	text-align: center;
+}
+
+.clase_imagen{
+	border-radius: 20px;
+	border: 1px solid #000;
+}
+
+.clase_imagen:hover{
+  box-shadow: 0 0 2px 5px #91C499;
+}
+
+.horario{
+	line-height: 20px;
+  	border-radius: 20px;
+	padding: 30px;
+	text-align: center;
+}
+
+.cal{
+	line-height: 20px;
+  	border-radius: 20px;
+	padding: 30px;
+	text-align: center;
+}
+
+.incidencias{
+	line-height: 20px;
+  	border-radius: 20px;
+	padding: 30px;
+	text-align: center;
+}
+
+.msg{
+	line-height: 20px;
+  	border-radius: 20px;
+	padding: 30px;
+	text-align: center;
+}
+
+.profes{
+	line-height: 20px;
+  	border-radius: 20px;
+  	padding: 30px;
+	text-align: center;
+}

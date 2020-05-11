@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2020 at 09:44 PM
+-- Generation Time: May 10, 2020 at 03:01 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -378,7 +378,6 @@ CREATE TABLE `comentarios_foro` (
   `id` int(11) UNSIGNED NOT NULL,
   `id_foro` int(11) UNSIGNED NOT NULL,
   `id_redactor` int(11) UNSIGNED NOT NULL,
-  `rol_redactor` varchar(15) NOT NULL,
   `fecha` datetime NOT NULL,
   `titulo` varchar(30) DEFAULT NULL,
   `contenido_comentario` varchar(300) NOT NULL
@@ -634,7 +633,7 @@ ALTER TABLE `tutor_legal`
 -- AUTO_INCREMENT for table `archivos_foro`
 --
 ALTER TABLE `archivos_foro`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `asignaturas`
@@ -658,13 +657,13 @@ ALTER TABLE `clases`
 -- AUTO_INCREMENT for table `comentarios_foro`
 --
 ALTER TABLE `comentarios_foro`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `entradas_foro`
 --
 ALTER TABLE `entradas_foro`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `incidencias`
@@ -676,7 +675,7 @@ ALTER TABLE `incidencias`
 -- AUTO_INCREMENT for table `mensajería`
 --
 ALTER TABLE `mensajería`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `profesores`

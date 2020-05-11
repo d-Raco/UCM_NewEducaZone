@@ -40,7 +40,7 @@ require_once __DIR__ . '/include/config.php';
 
         echo "<h1>Horario de ".htmlspecialchars(trim(strip_tags($_GET["id"])))."</h1>";
 
-        echo "<table>";
+        echo "<table class='tabla'>";
         echo "<tr>";
         echo "<th>Horas</th>";
         echo "<th>Lunes</th>";
@@ -566,12 +566,6 @@ require_once __DIR__ . '/include/config.php';
     </div>
 
     <?php
-      if($_SESSION['rol'] == 'profesor'){
-        include("include/comun/sidebarDerProfesor.php");
-      }
-      else{
-        include("include/comun/sidebarDerPadre.php");
-      }
       include("include/comun/pie.php");
     ?>
     </div>

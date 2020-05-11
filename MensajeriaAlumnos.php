@@ -45,7 +45,6 @@ require_once __DIR__ . '/include/config.php';
     </div>
 
     <?php
-      include("include/comun/sidebarDerProfesor.php");
       include("include/comun/pie.php");
     ?>
    </div>

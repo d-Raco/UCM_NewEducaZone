@@ -9,7 +9,7 @@ require_once __DIR__ . '/include/config.php';
   <head>
     <meta charset="utf-8">
     <title>Mensajeria_Padres</title>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link rel="stylesheet" type="text/css" href="css/msgnuevo.css">
   </head>
   <body>
    <div id ="profesor">
@@ -54,7 +54,6 @@ require_once __DIR__ . '/include/config.php';
     </div>
 
     <?php
-      include("include/comun/sidebarDerPadre.php");
       include("include/comun/pie.php");
     ?>
    </div>

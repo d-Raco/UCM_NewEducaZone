@@ -39,7 +39,7 @@ class FormularioMensajería extends Form
             <input type="varchar" name="contenido_msg"></p>
             <input type="hidden" name="tutor" value="$this->tutor">
             <input type="hidden" name="profesor" value="$this->profesor">
-            <input type="file" name="fileupload">
+            <input type="file" name="fileupload" value="fileupload">
             <input class="msg" type="submit" name="enviado" value="Submit">
         </fieldset>
         EOF;
@@ -57,7 +57,7 @@ class FormularioMensajería extends Form
           while($fila = $resultEnviados->fetch_assoc()){
             echo "<p>"  .$fila["fecha_hora"]. " " .$fila["contenido_msg"]. " ";
             if($fila["archivo"] != null) {
-              echo '<a href="include/descargarArchivoMensajeria.php?id=' .$fila["id"]. '"> <img src="img/file.png" width="20" height="20">';
+              echo '<a href="include/descargarArchivo.php?id=' .$fila["id"]. '"> <img src="img/file.png" width="20" height="20">';
               echo ' ' .$fila["nombre_archivo"]. '</a>';
             }
             echo "</p>";
@@ -113,8 +113,8 @@ class FormularioMensajería extends Form
             fclose($fp);
             $mensaje->setNombreArchivo($file['name']);
             $mensaje->setArchivo($content);
-            $mensaje->setTamañoArchivo($file['size']);
-            $mensaje->setTipoArchivo($file['type']);
+            $mensaje->setTamañoArchivo($_FILES['fileupload']['size']);
+            $mensaje->setTipoArchivo($_FILES['fileupload']['type']);
           }
 
           $mensaje->insertMensaje();

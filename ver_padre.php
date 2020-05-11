@@ -36,7 +36,7 @@ require_once __DIR__ . '/include/config.php';
         $result = $padre->getHijos();
 
         while($hijo = $result->fetch_assoc()){
-          echo "<ol><a href=\"ver_alumno.php?id=".$hijo["DNI"]."\">" .$hijo["nombre"]. " " .$hijo["apellido1"]. " " .$hijo["apellido2"]. "</a></ol>";
+          echo "<div class=\"imagen_hijo\"><img src=\"" .$hijo["foto"]. "\"  width=\"150\" height=\"150\"><br><a href=\"ver_alumno.php?id=".$hijo["DNI"]."\">" .$hijo["nombre"]. " " .$hijo["apellido1"]. " " .$hijo["apellido2"]. "</a><div>";
         }
       ?>
         <div id="Editar">
@@ -50,9 +50,6 @@ require_once __DIR__ . '/include/config.php';
     </div>
 
     <?php
-      include("include/comun/sidebarDerPadre.php");
-      include("include/comun/pie.php");
-
       if(isset($_POST["Edit"])){
         include("EditarPadre.php");
       }

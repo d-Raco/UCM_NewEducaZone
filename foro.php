@@ -31,8 +31,8 @@ require_once __DIR__ . '/include/dao/Entradas_foro.php';
     <div id="contenido">
       <?php
       $username = htmlspecialchars(trim(strip_tags($_SESSION['name'])));
-      $idClase = htmlspecialchars(trim(strip_tags($_REQUEST["idClase"])));
-      $bien = FALSE;
+      $idClase = $_REQUEST["idClase"];
+      $bien = 0;
       if($_SESSION['rol'] == "padre"){
         $usuario = new Padre();
         $usuario->setUsuario($username);
@@ -40,7 +40,7 @@ require_once __DIR__ . '/include/dao/Entradas_foro.php';
         $result = $usuario->getHijos();
         while($row = $result->fetch_assoc()){
           if($row["id_clase"] === $idClase){
-            $bien = TRUE;
+            $bien = 1;
           }
         }
       }
@@ -53,7 +53,7 @@ require_once __DIR__ . '/include/dao/Entradas_foro.php';
         $result = $clases->getClaseByTutor();
         while($row = $result->fetch_assoc()){
           if($row["id"] === $idClase){
-            $bien = TRUE;
+            $bien = 1;
           }
         }
       }
@@ -77,13 +77,13 @@ require_once __DIR__ . '/include/dao/Entradas_foro.php';
               $padre = new Padre();
               $padre->setId($row["id_creador"]);
               $padre->getPadreById();
-              echo '<a href="foro_entrada.php?idClase=' .$idClase. '&idEntrada=' .$row["id"]. '">' .$row["fecha"]. ' ' .$padre->getNombre(). ' ' .$padre->getAp1(). ' ' .$padre->getAp2(). ' (Padre) ' .$row["titulo_foro"]. ' </a><br>';
+              echo '<a href="foro_entrada.php?idEntrada=' .$row["id"]. '">' .$row["fecha"]. ' ' .$row["nombre"]. ' ' .$row["apellido1"]. ' ' .$row["apellido2"]. ' (Padre) ' .$row["titulo_foro"]. ' </a>';
             }
             else if($row["rol_creador"] === "profesor"){
               $profesor = new Profesor();
               $profesor->setId($row["id_creador"]);
               $profesor->getProfesorById();
-              echo '<a href="foro_entrada.php?idClase=' .$idClase. '&idEntrada=' .$row["id"]. '">' .$row["fecha"]. ' ' .$profesor->getNombre(). ' ' .$profesor->getAp1(). ' ' .$profesor->getAp2(). ' (Profesor) ' .$row["titulo_foro"]. ' </a><br>';
+              echo '<a href="foro_entrada.php?idEntrada=' .$row["id"]. '">' .$row["fecha"]. ' ' .$row["nombre"]. ' ' .$row["apellido1"]. ' ' .$row["apellido2"]. ' (Profesor) ' .$row["titulo_foro"]. ' </a>';
             }
           }
         }
@@ -98,13 +98,7 @@ require_once __DIR__ . '/include/dao/Entradas_foro.php';
     </div>
 
     <?php
-    if($_SESSION['rol'] == "padre"){
-      include("include/comun/sidebarDerPadre.php");
-    }
-    elseif($_SESSION['rol'] == "profesor"){
-      include("include/comun/sidebarDerProfesor.php");
-    }
-    include("include/comun/pie.php");
+      include("include/comun/pie.php");
     ?>
    </div>
   </body>

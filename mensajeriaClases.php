@@ -7,7 +7,7 @@ require_once __DIR__ . '/include/config.php';
   <head>
     <meta charset="utf-8">
     <title>Clases para Mensajería</title>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
   <body>
     <?php
@@ -28,14 +28,14 @@ require_once __DIR__ . '/include/config.php';
       $profesor->getProfe();
       $idProfesor = $profesor->getId();
       $clases = $profesor->getAsignaturasProfesor();
+      echo "<div class='w3-container'><ul class=\"w3-ul\">";
       foreach($clases as &$value){
-        echo "<p><a href=\"mensajeriaAlumnos.php?id=" .$value["id"]. "&profesor=" .$idProfesor. "\">" .$value["curso"]. "º " .$value["titulación"]. " " .$value["letra"]. "</a> (Número de alumnos: " .$value["numero_alumnos"]. ")</p>";
+        echo "<li><a href=\"mensajeriaAlumnos.php?id=" .$value["id"]. "&profesor=" .$idProfesor. "\">" .$value["curso"]. "º " .$value["titulación"]. " " .$value["letra"]. "</a> (Número de alumnos: " .$value["numero_alumnos"]. ")</li>";
       }
       ?>
     </div>
 
     <?php
-      include("include/comun/sidebarDerProfesor.php");
       include("include/comun/pie.php");
     ?>
    </div>

@@ -31,18 +31,16 @@ require_once __DIR__ . '/include/FormularioForo.php';
     <div id="contenido">
       <?php
       $username = htmlspecialchars(trim(strip_tags($_SESSION['name'])));
-      $idClase = htmlspecialchars(trim(strip_tags($_REQUEST["idClase"])));
-      $bien = FALSE;
-      $id = null;
+      $idClase = $_REQUEST["idClase"];
+      $bien = 0;
       if($_SESSION['rol'] == "padre"){
         $usuario = new Padre();
         $usuario->setUsuario($username);
         $usuario->getPadre();
-        $id = $usuario->getId();
         $result = $usuario->getHijos();
         while($row = $result->fetch_assoc()){
           if($row["id_clase"] === $idClase){
-            $bien = TRUE;
+            $bien = 1;
           }
         }
       }
@@ -50,23 +48,22 @@ require_once __DIR__ . '/include/FormularioForo.php';
         $usuario = new Profesor();
         $usuario->setUsuario($username);
         $usuario->getProfe();
-        $id = $usuario->getId();
         $clases = new Clases();
         $clases->setIdTutor($usuario->getId());
         $result = $clases->getClaseByTutor();
         while($row = $result->fetch_assoc()){
           if($row["id"] === $idClase){
-            $bien = TRUE;
+            $bien = 1;
           }
         }
       }
 
       if($bien){
-        $form = new FormularioForo(htmlspecialchars(trim(strip_tags($_POST["idClase"]))), htmlspecialchars(trim(strip_tags($id))), htmlspecialchars(trim(strip_tags($_SESSION['rol']))));
+        $form = new FormularioForo(htmlspecialchars(trim(strip_tags($_POST["idClase"]))));
         $form->gestiona();
       }
       else{
-        header("Location: ./login.php");
+        //header("Location: ./login.php");
       }
       ?>
     </div>

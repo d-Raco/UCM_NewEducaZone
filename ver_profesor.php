@@ -69,14 +69,11 @@ require_once __DIR__ . '/include/config.php';
 
 
       if($_SESSION['rol'] == 'profesor'){
-        include("include/comun/sidebarDerProfesor.php");
          if(isset($_POST["Edit"])){
               include("EditarProfe.php");
             }
       }
-      else{
-        include("include/comun/sidebarDerPadre.php");
-      }
+
       include("include/comun/pie.php");
 
 

@@ -26,7 +26,7 @@ class FormularioLogin extends Form
             <br><b>Contraseña: </b><br>
             <input class="login" type="password" placeholder="Contraseña" name="password" required>
           </div>
-          <div class="boton">
+          <div class="boton_login">
               <button type="submit">Entrar</button>
           </div>
         EOF;
@@ -65,7 +65,7 @@ class FormularioLogin extends Form
                 $_SESSION['login'] = TRUE;
                 $_SESSION['name'] = $nombreUsuario;
                 $_SESSION['rol'] = 'padre';
-                header("Location: ./ver_padre.php");
+                header("Location: ./index.php");
             }
             else{
               $result[] = "Error: Usuario o contraseña invalidos. ";

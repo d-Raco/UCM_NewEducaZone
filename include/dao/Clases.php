@@ -69,30 +69,56 @@ class Clases {
 		$query("DELETE Usuarios where id = '" . $conn->real_escape_string($p->id) . "'");
 	}
 
+    public function setClase($id){
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBD();
+
+        $id = $conn->real_escape_string($id);
+        $query = "SELECT * from clases WHERE id = '$id'";
+        $result = $conn->query($query)
+            or die ($conn->error. " en la línea ".(__LINE__-1));
+
+        if($result->num_rows > 0){
+            $fila = $result->fetch_assoc();
+
+            self::setId($fila['id']);
+            self::setCurso($fila['curso']);
+            self::setLetra($fila['letra']);
+            self::setTitul($fila['titulación']);
+            self::setNAlum($fila['numero_alumnos']);
+            self::setAs1($fila['id_asignatura1']);
+            self::setAs2($fila['id_asignatura2']);
+            self::setAs3($fila['id_asignatura3']);
+            self::setAs4($fila['id_asignatura4']);
+            self::setAs5($fila['id_asignatura5']);
+            self::setAs6($fila['id_asignatura6']);
+        }
+    }
+
 	public function getClaseByAsignatura($id) {
 		$app = Aplicacion::getSingleton();
 		$conn = $app->conexionBD();
-    $id = $conn->real_escape_string($id);
+        $id = $conn->real_escape_string($id);
 
 		$query = "SELECT * from clases WHERE id_asignatura1 = '$id' OR id_asignatura2 = '$id' OR id_asignatura3 = '$id' OR id_asignatura4 = '$id' OR id_asignatura5 = '$id' OR id_asignatura6 = '$id'";
 		$result = $conn->query($query)
             or die ($conn->error. " en la línea ".(__LINE__-1));
 
 		if($result->num_rows > 0){
-        $fila = $result->fetch_assoc();
+            $fila = $result->fetch_assoc();
 
-        self::setId($fila['id']);
-        self::setCurso($fila['curso']);
-        self::setLetra($fila['letra']);
-        self::setTitul($fila['titulación']);
-        self::setNAlum($fila['numero_alumnos']);
-        self::setAs1($fila['id_asignatura1']);
-        self::setAs2($fila['id_asignatura2']);
-        self::setAs3($fila['id_asignatura3']);
-        self::setAs4($fila['id_asignatura4']);
-        self::setAs5($fila['id_asignatura5']);
-        self::setAs6($fila['id_asignatura6']);
-    }
+            self::setId($fila['id']);
+            self::setCurso($fila['curso']);
+            self::setLetra($fila['letra']);
+            self::setTitul($fila['titulación']);
+            self::setNAlum($fila['numero_alumnos']);
+            self::setAs1($fila['id_asignatura1']);
+            self::setAs2($fila['id_asignatura2']);
+            self::setAs3($fila['id_asignatura3']);
+            self::setAs4($fila['id_asignatura4']);
+            self::setAs5($fila['id_asignatura5']);
+            self::setAs6($fila['id_asignatura6']);
+        }
 	}
 
   public function getClaseById() {
@@ -105,25 +131,24 @@ class Clases {
             or die ($conn->error. " en la línea ".(__LINE__-1));
 
 		if($result->num_rows > 0){
-        $fila = $result->fetch_assoc();
+            $fila = $result->fetch_assoc();
 
-        self::setCurso($fila['curso']);
-        self::setLetra($fila['letra']);
-        self::setTitul($fila['titulación']);
-        self::setNAlum($fila['numero_alumnos']);
-        self::setAs1($fila['id_asignatura1']);
-        self::setAs2($fila['id_asignatura2']);
-        self::setAs3($fila['id_asignatura3']);
-        self::setAs4($fila['id_asignatura4']);
-        self::setAs5($fila['id_asignatura5']);
-        self::setAs6($fila['id_asignatura6']);
-    }
+            self::setCurso($fila['curso']);
+            self::setLetra($fila['letra']);
+            self::setTitul($fila['titulación']);
+            self::setNAlum($fila['numero_alumnos']);
+            self::setAs1($fila['id_asignatura1']);
+            self::setAs2($fila['id_asignatura2']);
+            self::setAs3($fila['id_asignatura3']);
+            self::setAs4($fila['id_asignatura4']);
+            self::setAs5($fila['id_asignatura5']);
+            self::setAs6($fila['id_asignatura6']);
+        }
 	}
 
     public function getAsignaturas() {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBD();
-
         $query = sprintf("SELECT DISTINCT * FROM asignaturas WHERE id_profesor = '%s'", $conn->real_escape_string(self::getIdTutor()));
         $result = $conn->query($query)
             or die ($conn->error. " en la línea ".(__LINE__-1));
@@ -139,7 +164,7 @@ class Clases {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBD();
 
-        $query = sprintf("SELECT DNI, nombre, apellido1, apellido2, id_tutor_legal FROM alumnos WHERE id_clase = '%s'", $conn->real_escape_string(self::getId()));
+        $query = sprintf("SELECT DNI, nombre, apellido1, apellido2, id_tutor_legal, foto FROM alumnos WHERE id_clase = '%s'", $conn->real_escape_string(self::getId()));
         $result = $conn->query($query)
             or die ($conn->error. " en la línea ".(__LINE__-1));
         if($result->num_rows > 0){

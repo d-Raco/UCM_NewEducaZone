@@ -31,29 +31,34 @@ class FormularioRegistro extends Form
         }
 
         $html = <<<EOF
-            <div class="registro">
-                <b>Nombre del tutor/a legal: </b><br>
-                <input class="control" type="text" placeholder="Nombre" name="nombreTutor" value="$nombreTutor"/><br>
-                <b>Primer apellido del tutor/a legal: </b><br>
-                <input class="control" type="text" placeholder="Primer apellido" name="apellido1" value="$apellido1" required/><br>
-                <b>Segundo apellido del tutor/a legal: </b><br>
-                <input class="control" type="text" placeholder="Segundo apellido" name="apellido2" value="$apellido2"/><br>
-                <b>Teléfono móvil: </b><br>
-                <input class="control" type="text" placeholder="Teléfono móvil" name="movil" value="$movil" required/><br>
-                <b>Teléfono fijo: </b><br>
-                <input class="control" type="text" placeholder="Teléfono fijo" name="fijo" value="$fijo"/><br>
-                <b>Correo electrónico:</b><br>
-                <input class="control" type="text" placeholder="Correo" name="correo" value="$correo" required/><br>
-                <b>Usuario: </b><br>
-                <input class="control" type="text" placeholder="Usuario" name="usuario" value="$usuario" required/><br>
-                <b>Contraseña: </b><br>
-                <input class="control" type="password" placeholder="Contraseña" name="contraseña" required/><br>
-                <b>Repita la contraseña: </b><br>
-                <input class="control" type="password" placeholder="Contraseña" name="contraseña2" required/><br>
-                <b>Código de acceso: </b><br>
-                <input class="control" type="password" placeholder="Código" name="codigo" required/><br>
+            <div class="flex-container">
+                <div class="registro"> 
+                    <b>Nombre del tutor/a legal: </b><br>
+                    <input class="control" type="text" placeholder="Nombre" name="nombreTutor" value="$nombreTutor"/><br>
+                    <b>Primer apellido del tutor/a legal: </b><br>
+                    <input class="control" type="text" placeholder="Primer apellido" name="apellido1" value="$apellido1" required/><br>
+                    <b>Segundo apellido del tutor/a legal: </b><br>
+                    <input class="control" type="text" placeholder="Segundo apellido" name="apellido2" value="$apellido2"/><br>
+                    <b>Teléfono móvil: </b><br>
+                    <input class="control" type="text" placeholder="Teléfono móvil" name="movil" value="$movil" required/><br>
+                    <b>Teléfono fijo: </b><br>
+                    <input class="control" type="text" placeholder="Teléfono fijo" name="fijo" value="$fijo"/><br>
+                    <b>Correo electrónico:</b><br>
+                    <input class="control" type="text" placeholder="Correo" name="correo" value="$correo" required/><br>
+                    <b>Usuario: </b><br>
+                    <input class="control" type="text" placeholder="Usuario" name="usuario" value="$usuario" required/><br>
+                    <b>Contraseña: </b><br>
+                    <input class="control" type="password" placeholder="Contraseña" name="contraseña" required/><br>
+                    <b>Repita la contraseña: </b><br>
+                    <input class="control" type="password" placeholder="Contraseña" name="contraseña2" required/><br>
+                    <b>Código de acceso: </b><br>
+                    <input class="control" type="password" placeholder="Código" name="codigo" required/><br>
+                </div>
+                <div class="imagen_registro">
+                    <img src="./img/signin.png" alt="Avatar" class="sig" height="320" width="480">
+                </div>
             </div>
-            <div class="boton">    
+            <div class="boton_registro">    
                 <button type="submit" name="registro">Registrar</button>
             </div>
         EOF;

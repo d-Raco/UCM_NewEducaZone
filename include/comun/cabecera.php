@@ -1,3 +1,6 @@
+<?php
+  require_once __DIR__ . '/../dao/Padre.php';
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -11,20 +14,28 @@
           <a href="./index.php" class ="titulo">EDUCAZONE</a>
 
           <div class="header-right">
-            <a class="active" href="./index.php">Home</a>
+            <a class="op" href="./index.php">Home</a>
               <?php
                 if (isset($_SESSION["login"]) && ($_SESSION["login"]===true)) {
 
                   if($_SESSION['rol'] == "padre"){
-                    echo  "<a href='ver_padre.php' class =\"op\">".$_SESSION['name']."</a>";
+                    $padre = new Padre();
+                    $padre->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
+                    $padre->getPadre();
+                    $result = $padre->getHijos();
+
+                    echo  "<div class='dropdown' style='float:right;'><button class='dropbtn'>".$_SESSION['name']."</button><div class='dropdown-content'>";
+                    while($hijo = $result->fetch_assoc()){
+                      echo "<a href=\"ver_alumno.php?id=".$hijo["DNI"]."\">".$hijo["nombre"]." ".$hijo["apellido1"]." ".$hijo["apellido2"]."</a><br>";
+                    }
+                    echo "<a href=\"logout.php\">Logout</a><br></div></div>";
                   }
                   else{
-                    echo  "<a href='ver_profesor.php' class =\"op\">".$_SESSION['name']."</a>";
+                    echo  "<div class='dropdown' style='float:right;'><button class='dropbtn'>".$_SESSION['name']."</button><div class='dropdown-content'>";
+                    echo  "<a href='logout.php'>Logout</a><br></div></div>";
                   }
-
-                  echo  "<a href='logout.php' class =\"op\">Logout</a>";
-
-                } else {
+                } 
+                else {
                   echo "<a href='login.php' class =\"op\">Login</a> <a href='signin.php' class =\"op\">Registro</a>";
                 }
               ?>

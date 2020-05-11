@@ -41,15 +41,7 @@ div#contenido {
 	background-color: white;
 }
 
-div#pie {
-	position:fixed;
-  	bottom: 0;
-  	width:98%;
-	padding: 5px;
-	background-color: #31A36E;
-	color: white;
-	text-align: center;
-}
+
 
 div.saludo {
 	width: 100%;
@@ -78,4 +70,18 @@ label {
 	text-align: right;
 	margin-right: 0.5em;
 	display: inline-block;
+}
+
+.pie {
+	position:fixed;
+  	bottom: 0;
+  	width:100%;
+	padding: 5px;
+	background-color: #31A36E;
+	color: white;
+	text-align: center;
+}
+
+.tabla th {
+	background-color: #D6FED6
 }
