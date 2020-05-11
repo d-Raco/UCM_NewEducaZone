@@ -41,7 +41,15 @@ div#contenido {
 	background-color: white;
 }
 
-
+div#pie {
+	position:fixed;
+  	bottom: 0;
+  	width:98%;
+	padding: 5px;
+	background-color: #31A36E;
+	color: white;
+	text-align: center;
+}
 
 div.saludo {
 	width: 100%;
@@ -72,16 +80,29 @@ label {
 	display: inline-block;
 }
 
-.pie {
-	position:fixed;
-  	bottom: 0;
-  	width:100%;
-	padding: 5px;
-	background-color: #31A36E;
-	color: white;
-	text-align: center;
+div.bloque {
+  width: 60%;
+  background-color: #31A36E;
+  box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 50px;
+	margin: auto;
 }
 
-.tabla th {
-	background-color: #D6FED6
+div.container {
+  text-align: center;
+  padding: 10px 0px;
+	margin: auto;
+}
+
+.containerr {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
