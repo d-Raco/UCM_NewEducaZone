@@ -38,6 +38,10 @@ require_once __DIR__ . '/include/config.php';
              $asignaturas[$i] = $filaAsignatura;
              $i = $i + 1;
            }
+           ?>
+           <div class="bloque">
+             <div class="container">
+               <?php
 
            echo "<table>";
            echo "<tr>";
@@ -561,6 +565,10 @@ require_once __DIR__ . '/include/config.php';
 
            echo "</tr>";
            echo "</table>";
+           ?>
+         </div>
+       </div>
+   <?php
 
          }
          else{
@@ -570,6 +578,7 @@ require_once __DIR__ . '/include/config.php';
     </div>
 
     <?php
+      include("include/comun/sidebarDerProfesor.php");
       include("include/comun/pie.php");
     ?>
    </div>
