@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2020 at 03:01 AM
+-- Generation Time: May 11, 2020 at 01:35 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -376,8 +376,10 @@ INSERT INTO `codigos_de_acceso` (`codigo`, `id_centro`, `id_alumnos`) VALUES
 
 CREATE TABLE `comentarios_foro` (
   `id` int(11) UNSIGNED NOT NULL,
-  `id_foro` int(11) UNSIGNED NOT NULL,
+  `id_relacion` int(11) UNSIGNED NOT NULL,
+  `reply` tinyint(1) NOT NULL DEFAULT 0,
   `id_redactor` int(11) UNSIGNED NOT NULL,
+  `rol_redactor` varchar(15) NOT NULL,
   `fecha` datetime NOT NULL,
   `titulo` varchar(30) DEFAULT NULL,
   `contenido_comentario` varchar(300) NOT NULL
@@ -585,8 +587,7 @@ ALTER TABLE `codigos_de_acceso`
 -- Indexes for table `comentarios_foro`
 --
 ALTER TABLE `comentarios_foro`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_comentario_foro` (`id_foro`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `entradas_foro`
@@ -633,7 +634,7 @@ ALTER TABLE `tutor_legal`
 -- AUTO_INCREMENT for table `archivos_foro`
 --
 ALTER TABLE `archivos_foro`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `asignaturas`
@@ -657,25 +658,25 @@ ALTER TABLE `clases`
 -- AUTO_INCREMENT for table `comentarios_foro`
 --
 ALTER TABLE `comentarios_foro`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `entradas_foro`
 --
 ALTER TABLE `entradas_foro`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `incidencias`
 --
 ALTER TABLE `incidencias`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `mensajería`
 --
 ALTER TABLE `mensajería`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `profesores`
@@ -743,12 +744,6 @@ ALTER TABLE `clases`
 ALTER TABLE `codigos_de_acceso`
   ADD CONSTRAINT `fk_codigo_alumno` FOREIGN KEY (`id_alumnos`) REFERENCES `alumnos` (`DNI`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_codigo_centro` FOREIGN KEY (`id_centro`) REFERENCES `centros` (`id`) ON UPDATE CASCADE;
-
---
--- Constraints for table `comentarios_foro`
---
-ALTER TABLE `comentarios_foro`
-  ADD CONSTRAINT `fk_comentario_foro` FOREIGN KEY (`id_foro`) REFERENCES `entradas_foro` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `entradas_foro`
