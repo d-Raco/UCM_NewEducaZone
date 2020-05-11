@@ -9,7 +9,7 @@ require_once __DIR__ . '/include/config.php';
   <head>
     <meta charset="utf-8">
     <title>Mensajeria_Padres</title>
-    <link rel="stylesheet" type="text/css" href="css/msgnuevo.css">
+    <link rel="stylesheet" type="text/css" href="css/estilo.css">
   </head>
   <body>
    <div id ="profesor">
@@ -27,10 +27,26 @@ require_once __DIR__ . '/include/config.php';
         $padre->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
         $padre->getPadre();
         $rsHijos = $padre->getHijos();
+        ?>
+        <div class="bloque">
+          <div class="container">
+            <?php
         echo "<h1>Mensaje Nuevo</h1>";
+                ?>
+              </div>
+            </div>
+        <?php
         if($rsHijos->num_rows > 0){
           while($filaAlumno = $rsHijos->fetch_assoc()){
+            ?>
+            <div class="bloque">
+              <div class="container">
+                <?php
             echo "<h2>Profesores de ".$filaAlumno['nombre']. " " .$filaAlumno['apellido1']. " " .$filaAlumno['apellido2']. ":</h2>";
+                    ?>
+                  </div>
+                </div>
+            <?php
             $alumno->setIdClase($filaAlumno["id_clase"]);
             $filaClase = $alumno->getClase();
             $clase->setId($filaClase["id"]);
@@ -42,11 +58,19 @@ require_once __DIR__ . '/include/config.php';
             $clase->setAs6($filaClase["id_asignatura6"]);
             $asignaturas = $clase->getAsignaturaProfesor();
             foreach($asignaturas as &$values){
+              ?>
+              <div class="bloque">
+                <div class="container">
+                  <?php
               echo '<form name="myform" action="mensajeria.php" method="POST">
                 <input type="hidden" name="tutor" value="' .$padre->getId(). '">
                 <input type="hidden" name="profesor" value="' .$values['id']. '">
                 <button type="submit">'.$values['nombre'].' '.$values['apellido1'].' '.$values['apellido2'].' ('.$values['nombre_asignatura'].')</button>
               </form>';
+                    ?>
+                  </div>
+                </div>
+            <?php
             }
           }
         }
@@ -54,6 +78,7 @@ require_once __DIR__ . '/include/config.php';
     </div>
 
     <?php
+      include("include/comun/sidebarDerPadre.php");
       include("include/comun/pie.php");
     ?>
    </div>
