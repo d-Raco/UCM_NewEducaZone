@@ -31,7 +31,7 @@ require_once __DIR__ . '/include/dao/Comentarios_foro.php';
       include("include/comun/sidebarIzqProfesor.php");
     }
     ?>
-    <div id="contenido">
+    <div class="contenido" style = "margin-left: 230px;">
       <?php
       $username = htmlspecialchars(trim(strip_tags($_SESSION['name'])));
       $idClase = htmlspecialchars(trim(strip_tags($_REQUEST["idClase"])));
@@ -182,16 +182,6 @@ require_once __DIR__ . '/include/dao/Comentarios_foro.php';
       }
       ?>
     </div>
-
-    <?php
-    if($_SESSION['rol'] == "padre"){
-      //include("include/comun/sidebarDerPadre.php");
-    }
-    elseif($_SESSION['rol'] == "profesor"){
-      //include("include/comun/sidebarDerProfesor.php");
-    }
-    include("include/comun/pie.php");
-    ?>
    </div>
   </body>
 </html>

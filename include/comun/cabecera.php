@@ -16,6 +16,7 @@
 
           <div class="header-right">
             <a href="./index.php" class ="op">Inicio</a>
+            <a href="./contact_us.php" class ="op">Contact us</a>
             <a href="./faqs.php" class ="op">FAQ's</a>
               <?php
                 if (isset($_SESSION["login"]) && ($_SESSION["login"]===true)) {
@@ -27,7 +28,7 @@
                     $result = $padre->getHijos();
                     echo "<div class='user_flex'>";
                     echo "<div class='dropdown' style='float:right;'><button onclick=\"window.location.href='ver_padre.php'\" class='dropbtn'>".$_SESSION['name']." <img  class='imag' src='".$padre->getFoto()."' height=40px width=40px></button><div class='dropdown-content'>";
-                  
+
 
                     while($hijo = $result->fetch_assoc()){
                       echo "<a href=\"ver_alumno.php?id=".$hijo["DNI"]."\">".$hijo["nombre"]." ".$hijo["apellido1"]." ".$hijo["apellido2"]."</a><br>";
@@ -46,7 +47,7 @@
 
                     echo "</div>";
                   }
-                } 
+                }
                 else {
                   echo "<a href='login.php' class =\"op\">Login</a> <a href='signin.php' class =\"op\">Registro</a>";
                 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2020 at 05:06 PM
+-- Generation Time: May 15, 2020 at 08:35 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -98,6 +98,15 @@ CREATE TABLE `archivos_foro` (
   `archivo` varchar(80) NOT NULL,
   `tipo_archivo` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `archivos_foro`
+--
+
+INSERT INTO `archivos_foro` (`id`, `id_foro`, `nombre_archivo`, `tamaño_archivo`, `archivo`, `tipo_archivo`) VALUES
+(1, 2, 'granjaescuela1.jpg', 25808, './archivos/granjaescuela1.jpg', 'image/jpeg'),
+(2, 2, 'granjaescuela2.jpg', 83510, './archivos/granjaescuela2.jpg', 'image/jpeg'),
+(3, 2, 'granjaescuela3.jpg', 120940, './archivos/granjaescuela3.jpg', 'image/jpeg');
 
 -- --------------------------------------------------------
 
@@ -235,7 +244,7 @@ INSERT INTO `calificaciones` (`id`, `id_asignatura1`, `nota1`, `id_asignatura2`,
 (19, 49, NULL, 50, NULL, 51, NULL, 52, NULL, 53, NULL, 54, NULL),
 (20, 55, NULL, 56, NULL, 57, NULL, 58, NULL, 59, NULL, 60, NULL),
 (21, 25, NULL, 26, NULL, 27, NULL, 28, NULL, 29, NULL, 30, NULL),
-(22, 31, NULL, 32, NULL, 33, NULL, 34, NULL, 35, NULL, 36, NULL),
+(22, 31, NULL, 32, NULL, 33, NULL, 34, NULL, 35, 4, 36, 2),
 (23, 31, NULL, 32, NULL, 33, NULL, 34, NULL, 35, NULL, 36, NULL),
 (24, 31, NULL, 32, NULL, 33, NULL, 34, NULL, 35, NULL, 36, NULL),
 (25, 31, NULL, 32, NULL, 33, NULL, 34, NULL, 35, NULL, 36, NULL),
@@ -385,6 +394,19 @@ CREATE TABLE `comentarios_foro` (
   `contenido_comentario` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `comentarios_foro`
+--
+
+INSERT INTO `comentarios_foro` (`id`, `id_relacion`, `reply`, `id_redactor`, `rol_redactor`, `fecha`, `titulo`, `contenido_comentario`) VALUES
+(1, 1, 0, 10, 'padre', '2020-05-15 08:17:47', 'Duda sobre el pago.', '¿Habrá que realizar un pago adicional o se sumará al coste de la matrícula?'),
+(2, 1, 1, 1, 'profesor', '2020-05-15 08:20:28', 'Pago', 'Se sumará a la matrícula, no tienen que preocuparse por nada.'),
+(3, 3, 0, 9, 'padre', '2020-05-15 08:22:16', 'Igual', 'Mi hija también ha tenido dificultades con ese ejercicio. Llevamos horas intentándolo y nada. ¡Ayuda!'),
+(4, 1, 0, 9, 'padre', '2020-05-15 08:22:56', 'Genial', '¡Qué ganas tiene mi hija de ir! Me alegro de ver lo ilusionada que está.'),
+(5, 1, 1, 9, 'padre', '2020-05-15 08:31:09', 'Yo tampoco lo sabía', 'Yo también tenía la misma duda jajaja. Menos mal que tenemos este foro.'),
+(6, 3, 0, 1, 'profesor', '2020-05-15 08:33:05', 'Solución', 'Se parece mucho al ejercicio 5 del examen de geometría que corregimos el otro día. ¡Echadle un vistazo!'),
+(7, 6, 1, 10, 'padre', '2020-05-15 08:34:46', 'Gracias', 'Muchísimas gracias, es verdad que se parecían. Gracias a eso lo hemos solucionado en un segundo :)');
+
 -- --------------------------------------------------------
 
 --
@@ -402,6 +424,15 @@ CREATE TABLE `entradas_foro` (
   `fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `entradas_foro`
+--
+
+INSERT INTO `entradas_foro` (`id`, `id_clase`, `titulo_foro`, `id_creador`, `rol_creador`, `permisos`, `contenido`, `fecha`) VALUES
+(1, 8, 'Visita a la granja escuela', 1, 'profesor', 1, 'El próximo fin de semana iremos la clase 3ºB a una visita a la granja escuela. Cualquier duda que tengan sobre este viaje, no duden en preguntarla.', '2020-05-15 08:12:11'),
+(2, 8, 'Fotos de la granja escuela', 1, 'profesor', 0, '', '2020-05-15 08:13:34'),
+(3, 8, 'Problema de matemáticas', 10, 'padre', 1, 'Mi hija está teniendo problemas con el ejercicio 5 del tema 3. ¿Alguien podría echarnos una mano?', '2020-05-15 08:18:49');
+
 -- --------------------------------------------------------
 
 --
@@ -414,6 +445,16 @@ CREATE TABLE `incidencias` (
   `id_alumno` varchar(9) NOT NULL,
   `msg_incidencia` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `incidencias`
+--
+
+INSERT INTO `incidencias` (`id`, `id_asignatura`, `id_alumno`, `msg_incidencia`) VALUES
+(1, 35, '37071162S', 'Ha llegado tarde a clase'),
+(2, 35, '37071162S', 'La he tenido que echar de clase por mal comportamiento'),
+(3, 35, '37071162S', 'No ha hecho la tarea'),
+(4, 36, '37071162S', 'Ha suspendido con un 2');
 
 -- --------------------------------------------------------
 
@@ -435,6 +476,16 @@ CREATE TABLE `mensajería` (
   `tamaño_archivo` int(11) DEFAULT NULL,
   `tipo_archivo` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `mensajería`
+--
+
+INSERT INTO `mensajería` (`id`, `id_origen`, `rol_origen`, `id_destinatario`, `rol_destinatario`, `contenido_msg`, `fecha_hora`, `etiqueta`, `nombre_archivo`, `archivo`, `tamaño_archivo`, `tipo_archivo`) VALUES
+(1, 1, 'profesor', 10, 'padre', 'Su hija ha tenido un comportamiento deplorable estos últimos días. Me gustaría que usted viniera con su hija algún día al despacho. Un saludo.', '2020-05-15 08:09:17', '', '', '', 0, ''),
+(2, 10, 'padre', 1, 'profesor', 'También quería hacer una tutoría con usted, a ver si usted me puede ayudar a guiarla en sus estudios. Le adjunto mi horario para que vea qué hora le conviene más.', '2020-05-15 08:16:27', '', 'Horario.docx', './archivos/Horario.docx', 11883, 'application/vnd.openxmlfo'),
+(3, 1, 'profesor', 10, 'padre', 'A las 13:00 del miércoles me viene bien. Nos vemos entonces en mi despacho.', '2020-05-15 08:19:52', '', '', '', 0, ''),
+(4, 10, 'padre', 1, 'profesor', 'Muy bien, nos vemos el miércoles a las 13:00', '2020-05-15 08:33:57', '', '', '', 0, '');
 
 -- --------------------------------------------------------
 
@@ -659,7 +710,7 @@ ALTER TABLE `clases`
 -- AUTO_INCREMENT for table `comentarios_foro`
 --
 ALTER TABLE `comentarios_foro`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `entradas_foro`
@@ -671,7 +722,7 @@ ALTER TABLE `entradas_foro`
 -- AUTO_INCREMENT for table `incidencias`
 --
 ALTER TABLE `incidencias`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `mensajería`

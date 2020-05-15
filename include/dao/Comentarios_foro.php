@@ -49,7 +49,7 @@ class Comentarios_foro {
 
     $id_relacion = $conn->real_escape_string(self::getIdRelacion());
 
-    $sql = "SELECT * FROM comentarios_foro WHERE id_relacion = '$id_relacion' AND reply = 0 ORDER BY fecha DESC";
+    $sql = "SELECT * FROM comentarios_foro WHERE id_relacion = '$id_relacion' AND reply = 0 ORDER BY fecha ASC";
 
     $result = $conn->query($sql)
         or die ($conn->error. " en la línea ".(__LINE__-1));

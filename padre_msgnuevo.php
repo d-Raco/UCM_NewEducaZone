@@ -18,7 +18,7 @@ require_once __DIR__ . '/include/config.php';
       include("include/comun/sidebarIzqPadre.php");
 
     ?>
-    <div id="contenido">
+    <div class="contenido" style = "margin-left: 230px; margin-top:100px;">
       <?php
         $padre = new Padre();
         $alumno = new Alumno();
@@ -79,7 +79,6 @@ require_once __DIR__ . '/include/config.php';
 
     <?php
       //include("include/comun/sidebarDerPadre.php");
-      include("include/comun/pie.php");
     ?>
    </div>
   </body>

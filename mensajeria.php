@@ -26,7 +26,7 @@ require_once __DIR__ . '/include/config.php';
         include("include/comun/sidebarIzqPadre.php");
       }
 
-      echo '<div id="contenido">
+      echo '<div class="contenido2" style = "margin-left: 230px; margin-top:100px;">
         <h1>Mensajería</h1>';
       if(empty($_POST["tutor"])){
         echo "El alumno no tiene un tutor legal registrado.";
@@ -37,7 +37,6 @@ require_once __DIR__ . '/include/config.php';
       }
       echo "</div>";
 
-      include("include/comun/pie.php");
       ?>
      </div>
     </body>

@@ -36,7 +36,7 @@ class FormularioMensajería extends Form
         $html = <<<EOF
         <fieldset>
             <p class="msg"> Escribe aquí tu mensaje: <br/>
-            <input type="varchar" name="contenido_msg"></p>
+            <textarea name="contenido_msg" placeholder="Texto del mensaje..."></textarea></p>
             <input type="hidden" name="tutor" value="$this->tutor">
             <input type="hidden" name="profesor" value="$this->profesor">
             <input type="file" name="fileupload">
@@ -52,7 +52,7 @@ class FormularioMensajería extends Form
 
         if($result->num_rows > 0){
           while($fila = $result->fetch_assoc()){
-            if($fila['id_origen'] == $this->idOrig){
+            if($fila['id_origen'] == $this->idOrig && $fila['rol_origen'] == $this->rolOrig){
               echo "<div class='mssg lighter'>";
                 echo "<div class='cabeza_msg'><p>Enviado:</p></div>";
                 echo "<div class='mensaje_enviado'><p>" .$fila["contenido_msg"]. "</p></div>";
@@ -62,7 +62,7 @@ class FormularioMensajería extends Form
                 }
                 echo "<div class='hora_msg'>" .$fila["fecha_hora"]. "</div></div>";
             }
-            elseif ($fila['id_destinatario'] == $this->idOrig) {
+            elseif ($fila['id_destinatario'] == $this->idOrig && $fila['rol_destinatario'] == $this->rolOrig) {
               echo "<div class='mssg darker'>";
                 echo "<div class='cabeza_msg'><p>Recibido:</p></div>";
                 echo "<div class='mensaje_recibido'><p>" .$fila["contenido_msg"]. "</p></div>";

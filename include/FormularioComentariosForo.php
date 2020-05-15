@@ -15,11 +15,13 @@ class FormularioComentariosForo extends Form
     public function __construct($idClase, $id_relacion, $reply, $id_redactor, $rol_redactor, $respuesta) {
         if($reply){
           $opciones = array( 'action' => 'foro_entrada.php?idClase=' .$idClase. '&idEntrada=' .$respuesta. '&respuesta=' .$id_relacion, );
+          parent::__construct('formComentariosReply', $opciones);
         }
         else{
           $opciones = array( 'action' => 'foro_entrada.php?idClase=' .$idClase. '&idEntrada=' .$id_relacion, );
+          parent::__construct('formComentarios', $opciones);
         }
-        parent::__construct('formComentarios', $opciones);
+
         $this->idClase = $idClase;
         $this->idEntrada = $id_relacion;
         $this->reply = $reply;

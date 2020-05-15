@@ -28,7 +28,7 @@ require_once __DIR__ . '/include/dao/Entradas_foro.php';
       include("include/comun/sidebarIzqProfesor.php");
     }
     ?>
-    <div id="contenido">
+    <div class="contenido" style = "margin-left: 230px;">
       <?php
       $username = htmlspecialchars(trim(strip_tags($_SESSION['name'])));
       $idClase = htmlspecialchars(trim(strip_tags($_REQUEST["idClase"])));

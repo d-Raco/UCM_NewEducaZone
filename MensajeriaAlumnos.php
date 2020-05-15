@@ -20,7 +20,7 @@ require_once __DIR__ . '/include/config.php';
       include("include/comun/cabecera.php");
       include("include/comun/sidebarIzqProfesor.php");
     ?>
-    <div id="contenido">
+    <div class="contenido" style = "margin-left: 230px;">
       <h1>Destinatario</h1>
       <?php
         $clase = new Clases();
