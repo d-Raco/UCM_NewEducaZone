@@ -7,8 +7,25 @@ require_once __DIR__ . '/include/config.php';
   <head>
     <meta charset="utf-8">
     <title>Index</title>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
     <link rel="stylesheet" href="css/index.css">
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script>
+	var slideIndex = 0;
+	$(document).ready(function carousel() {
+		  var i;
+		  var x = document.getElementsByClassName("slide");
+		  for (i = 0; i < x.length; i++) {
+			x[i].style.display = "none";
+		  }
+		  slideIndex++;
+		  if (slideIndex > x.length) {
+			  slideIndex = 1;
+		  }
+		  x[slideIndex-1].style.display = "block";
+		  setTimeout(carousel, 5000); // Change image every 2 seconds
+	});
+	carousel();
+</script>
   </head>
 
   <body>
@@ -17,9 +34,10 @@ require_once __DIR__ . '/include/config.php';
   ?>
 
 <div class="containerr">
-  <img src="img/portada.png" alt="Avatar" class="image" style=width:100%>
-  <!--<div class="centered"> <font size="+8"> Educazone</font> </div> -->
-
+  <img src="img/portada/portada1.png" alt="Avatar" class="slide" style=width:100%>
+  <img src="img/portada/portada2.png" alt="Avatar" class="slide" style=width:100%>
+  <img src="img/portada/portada3.png" alt="Avatar" class="slide" style=width:100%>
+  <img src="img/portada/portada4.png" alt="Avatar" class="slide" style=width:100%>
   <section id="one" class="wrapper">
     <div class="inner">
       <div class="flex flex-3">

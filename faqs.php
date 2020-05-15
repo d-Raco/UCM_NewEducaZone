@@ -16,7 +16,7 @@
 		$("#mapa").goMap({
 			latitude:39.3152286,
 			longitude:-4.4280326,
-			zoom:5,
+			zoom:5.5,
 			maptype:"ROAD",
 			scaleControl:true
 		});
@@ -79,7 +79,7 @@ $(document).ready(function(){
       include("include/comun/cabecera.php");
     ?>
     <div class="content_faqs">
-    	<h2>Preguntas frecuentes (FAQS)</h2>
+    	<h2>Preguntas frecuentes (FAQS)</h2></br>
     	<div class="flex_btn">
 			<button class="faqs" style="vertical-align:middle"><span>¿Para que sirve esta aplicación web?</span></button>
 			<div class="respuesta">
@@ -101,11 +101,11 @@ $(document).ready(function(){
 		<div class="flex_btn">
 			<button class="faqs" style="vertical-align:middle"><span>¿Dónde puedo cambiar mi contraseña de usuario?</span></button>
 		  	<div class="respuesta">
-				<p>En el perfil de usuario se facilita la opción de "Editar" con la que podrá modificar la información que usted desee. En caso de que usted ha olvidado la contraseña por favor le rogamos que contacte con nosotros en:<a href="www.EducaZone.com/support">Help</a></p>
+				<p>En el perfil de usuario se facilita la opción de "Editar" con la que podrá modificar la información que usted desee. En caso de que usted ha olvidado la contraseña por favor le rogamos que contacte con nosotros en: <a href="contact_us.php">Contact us</a></p>
 		  	</div>
 		</div>
 	</div>
-	<h1 class="centros">Centros educativos que usan nuestra aplicación web</h1>
+	<h1 class="centros">Centros educativos que usan nuestra aplicación web</h1></br>
 	<div class="principal">
 	    <div id="mapa"></div>
 	</div>

@@ -29,7 +29,7 @@ require_once __DIR__ . '/include/config.php';
       echo '<div id="contenido">
         <h1>Mensajería</h1>';
       if(empty($_POST["tutor"])){
-        echo "el alumno no tiene un tutor legal registrado.";
+        echo "El alumno no tiene un tutor legal registrado.";
       }
       else{
         $form = new FormularioMensajería(htmlspecialchars(trim(strip_tags($_REQUEST["tutor"]))), htmlspecialchars(trim(strip_tags($_REQUEST["profesor"]))));

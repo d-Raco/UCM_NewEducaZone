@@ -70,17 +70,13 @@ class FormularioForo extends Form
 
           for($key = 0; $key < $total_files; $key++) {
             $archivo = new Archivos_foro();
-            $fp      = fopen($files['tmp_name'][$key], 'r');
-            $content = fread($fp, filesize($files['tmp_name'][$key]));
-            $content = addslashes($content);
-            fclose($fp);
-
             $archivo->setId($archivo->getNumArchivos()+1);
             $archivo->setIdForo($entrada->getId());
             $archivo->setNombreArchivo($files['name'][$key]);
             $archivo->setTamañoArchivo($files['size'][$key]);
-            $archivo->setArchivo($content);
+            $archivo->setArchivo("./archivos/" .$files['name'][$key]);
             $archivo->setTipoArchivo($files['type'][$key]);
+            move_uploaded_file($files['tmp_name'][$key], $archivo->getArchivo());
             $archivo->insertArchivo();
           }
 

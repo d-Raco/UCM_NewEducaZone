@@ -9,13 +9,18 @@ body {
   border-radius: 5px;
   padding: 10px;
   margin: 10px 0;
-  width:100%;
+  width:60%;
+  overflow: auto;
+}
+
+.lighter {
+  margin-left: 50%;
 }
 
 .darker {
+  margin-right: 50%;
   border-color: #ccc;
   background-color: #ddd;
-
 }
 
 .mssg::after {
@@ -24,24 +29,22 @@ body {
   display: table;
 }
 
-.mssg img {
-  float: left;
-  max-width: 60px;
-  width: 100%;
-  margin-right: 20px;
-  border-radius: 50%;
+.cabeza_msg {
+  float:left;
+  clear:both;
 }
 
-.mssg img.right {
-  float: right;
-  margin-left: 20px;
-  margin-right:0;
+.hora_msg{
+  float:right;
+  font-size: 10px;
+  clear:both;
 }
-
 
 .archivo_enviado, .mensaje_enviado {
-  float:left;
+  float:right;
+  clear:both;
 }
 .archivo_recibido, .mensaje_recibido {
-  float:right;
+  float:left;
+  clear:both;
 }

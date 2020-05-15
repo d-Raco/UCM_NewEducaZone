@@ -112,11 +112,16 @@ class Mensajes {
     self::setTamañoArchivo($fila["tamaño_archivo"]);
   }
 
-  public function getMensajesByDate($id){
+  public function getMensajesByDate($id_Orig, $rol_Orig, $id_Dest, $rol_Dest){
     $app = Aplicacion::getSingleton();
     $conn = $app->conexionBD();
 
-    $sql = "SELECT * FROM mensajería WHERE id_origen = '$id' OR id_destinatario = '$id' ORDER BY fecha_hora ASC";
+    $idOrig = $conn->real_escape_string($id_Orig);
+    $rolOrig = $conn->real_escape_string($rol_Orig);
+    $idDest = $conn->real_escape_string($id_Dest);
+    $rolDest = $conn->real_escape_string($rol_Dest);
+
+    $sql = "SELECT * FROM mensajería WHERE (id_origen = '$idOrig' AND rol_origen = '$rolOrig' AND id_destinatario = '$idDest' AND rol_destinatario = '$rolDest') OR (id_origen = '$idDest' AND rol_origen = '$rolDest' AND id_destinatario = '$idOrig' AND rol_destinatario = '$rolOrig') ORDER BY fecha_hora ASC";
 
     $result = $conn->query($sql)
         or die ($conn->error. " en la línea ".(__LINE__-1));

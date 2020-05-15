@@ -156,10 +156,10 @@ abstract class Form
         $html='';
         $numErrores = count($errores);
         if (  $numErrores == 1 ) {
-            $html .= "<ul><li>".$errores[0]."</li></ul>";
+            $html .= "<ul><style>ul {list-style: red;color: red;}</style><li>".$errores[0]."</li></ul>";
         } else if ( $numErrores > 1 ) {
             $html .= "<ul><li>";
-            $html .= implode("</li><li>", $errores);
+            $html .= implode("</li><style>ul {list-style: red;color: red;}</style><li>", $errores);
             $html .= "</li></ul>";
         }
         return $html;
