@@ -28,8 +28,8 @@ class FormularioEditProfesor extends Form
    
 
         $html = <<<EOF
-                    <div class="editar">
-                     <h1>RELLENA LOS DATOS A EDITAR.</h1>
+                    <div class="contenido">
+                     <br><h1>RELLENA LOS DATOS A EDITAR.</h1>
                         <b>Nombre: </b><br>
                         <input class="edit" type="text" placeholder="$nombre" name="nombre"/><br>
                         <b>Primer apellido: </b><br>
@@ -44,10 +44,11 @@ class FormularioEditProfesor extends Form
                         <input class="edit" type="password" placeholder="Contraseña" name="contraseña" /><br>
                         <b>Repita la contraseña: </b><br>
                         <input class="edit" type="password" placeholder="Contraseña" name="contraseña2" /><br>
-                    </div>
-                    <div class="boton">
-                        <button type="submit" name="registro">Guardar</button>
-                    </div>
+                      </div>
+                      <div class="boton">
+                          <button class='submit' type="submit" name="registro">Guardar</button>
+                      </div>
+
                 EOF;
 
                 return $html;

@@ -8,8 +8,8 @@ require_once __DIR__ . '/include/dao/Clases.php';
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Foro</title>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <title>Selecciona foro</title>
+    <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
   <body>
     <?php
@@ -28,15 +28,20 @@ require_once __DIR__ . '/include/dao/Clases.php';
     }
     ?>
     <div id="contenido">
+      <h1>Selecciona foro</h1>
       <?php
       $username = htmlspecialchars(trim(strip_tags($_SESSION['name'])));
+      echo "<div class='w3-container'><ul class=\"w3-ul\">";
+
       if($_SESSION['rol'] == "padre"){
         $usuario = new Padre();
         $usuario->setUsuario($username);
         $usuario->getPadre();
         $result = $usuario->getHijos();
         while($row = $result->fetch_assoc()){
-          echo '<a href="foro.php?idClase=' .$row["id_clase"]. '">Foro a la clase de ' .$row["nombre"]. '.</a><br>';
+          echo '<li>
+                <a href="foro.php?idClase=' .$row["id_clase"]. '">Foro a la clase de ' .$row["nombre"]. '.</a><br>
+          </li>';
         }
       }
       elseif($_SESSION['rol'] == "profesor"){
@@ -47,18 +52,21 @@ require_once __DIR__ . '/include/dao/Clases.php';
         $clases->setIdTutor($usuario->getId());
         $result = $clases->getClaseByTutor();
         while($row = $result->fetch_assoc()){
-          echo '<a href="foro.php?idClase=' .$row["id"]. '">Foro a la clase ' .$row["curso"]. 'º ' .$row["letra"]. ' ' .$row["titulación"]. '.</a>';
+          echo '<li>
+                <a href="foro.php?idClase=' .$row["id"]. '">Foro a la clase ' .$row["curso"]. 'º ' .$row["letra"]. ' ' .$row["titulación"]. '.</a>
+          </li>';
         }
       }
+      echo "</div>";
       ?>
     </div>
 
     <?php
     if($_SESSION['rol'] == "padre"){
-      include("include/comun/sidebarDerPadre.php");
+      //include("include/comun/sidebarDerPadre.php");
     }
     elseif($_SESSION['rol'] == "profesor"){
-      include("include/comun/sidebarDerProfesor.php");
+      //include("include/comun/sidebarDerProfesor.php");
     }
     include("include/comun/pie.php");
     ?>

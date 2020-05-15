@@ -1,52 +1,14 @@
-div#contenido {
-	width: 900px;
-	margin: auto;
-	background-color: #aaaaaa;
+.padre{
+  position: relative;
 }
 
-div#sidebarIzq {
-	padding: 10px;
-	float: left;
-	width: 170px;
-	height: 400px;
-	background-color: #D6FED6;
+.profesor{
+  position: relative;
 }
 
-div#sidebarIzq ul {
-	background-color: #D6FED6;
-}
-
-div#sidebarIzq a:hover {
-	color: #E3C322;
-	text-decoration: underline;
-}
-
-div#sidebarDer {
-	padding: 10px;
-	float: right;
-	width: 170px;
-	height: 400px;
-	background-color: #D6FED6;
-}
-
-div#sidebarDer ul {
-	background-color: #D6FED6;
-}
-
-div#contenido {
-	padding: 10px;
-	float: left;
-	min-height: 100px;
-	width: 900px;
-	background-color: white;
-}
-
-div#pie {
-	clear: both;
-	padding: 20px;
-	background-color: #31A36E;
-	color: white;
-	text-align: center;
+.contenido {
+	margin-left: 200px;
+  background-color: white;
 }
 
 div.saludo {
@@ -59,26 +21,25 @@ div#logo{
 }
 
 .cuadrados {
-  width: 200%;
   height: 400px;
   margin-top: 80px;
   text-align: center;
-  margin-left: -300px;
+  display: flex;
+  justify-content: space-around;
 }
-.cuadrados2 {
-  width: 200%;
-  height: 400px;
-  margin-top: -5px;
-  text-align: center;
-  margin-left: -300px;
+
+.info_flex{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .cuadradoInfo{
-position: relative;
+  margin-top: 50px;
+  position: relative;
   text-align: center;
   display: inline-block;
   overflow: auto;
-  margin-left: 350px;
-  margin-right: 50px;
   width: 550px;
   height: 450px;
   border-radius: 15px;
@@ -95,8 +56,6 @@ position: relative;
   text-align: center;
   display: inline-block;
   overflow: auto;
-  margin-left: 150px;
-  margin-right: 50px;
   width: 200px;
   height: 250px;
   border-radius: 15px;
@@ -111,7 +70,7 @@ position: relative;
 
 
 .center {
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -141,6 +100,6 @@ label {
 	display: inline-block;
 }
 
-button {
+button:not(.dropbtn){
 	margin-left: 100px;
 }

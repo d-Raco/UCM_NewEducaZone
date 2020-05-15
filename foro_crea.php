@@ -9,8 +9,8 @@ require_once __DIR__ . '/include/FormularioForo.php';
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Foro</title>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <title>Crea un foro</title>
+    <link rel="stylesheet" type="text/css" href="css/foro.css">
   </head>
   <body>
     <?php
@@ -73,10 +73,10 @@ require_once __DIR__ . '/include/FormularioForo.php';
 
     <?php
     if($_SESSION['rol'] == "padre"){
-      include("include/comun/sidebarDerPadre.php");
+      //include("include/comun/sidebarDerPadre.php");
     }
     elseif($_SESSION['rol'] == "profesor"){
-      include("include/comun/sidebarDerProfesor.php");
+      //include("include/comun/sidebarDerProfesor.php");
     }
     include("include/comun/pie.php");
     ?>

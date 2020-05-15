@@ -1,36 +1,8 @@
+
 div#contenido {
 	width: 900px;
 	margin: auto;
 	background-color: #aaaaaa;
-}
-
-div#sidebarIzq {
-	padding: 10px;
-	float: left;
-	width: 170px;
-	height: auto;
-	background-color: #D6FED6;
-}
-
-div#sidebarIzq ul {
-	background-color: #D6FED6;
-}
-
-div#sidebarIzq a:hover {
-	color: #E3C322;
-	text-decoration: underline;
-}
-
-div#sidebarDer {
-	padding: 10px;
-	float: right;
-	width: 170px;
-	height: auto;
-	background-color: #D6FED6;
-}
-
-div#sidebarDer ul {
-	background-color: #D6FED6;
 }
 
 div#contenido {
@@ -41,23 +13,9 @@ div#contenido {
 	background-color: white;
 }
 
-div#pie {
-	position:fixed;
-  	bottom: 0;
-  	width:98%;
-	padding: 5px;
-	background-color: #31A36E;
-	color: white;
-	text-align: center;
-}
-
 div.saludo {
 	width: 100%;
 	text-align: right;
-}
-
-div#logo{
-	height: 25px;
 }
 
 fieldset {
@@ -80,16 +38,7 @@ label {
 	display: inline-block;
 }
 
-div.bloque {
-  width: 60%;
-  background-color: #31A36E;
-  box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-bottom: 50px;
-	margin: auto;
-}
-
 div.container {
-  text-align: center;
   padding: 10px 0px;
 	margin: auto;
 }
@@ -97,7 +46,6 @@ div.container {
 .containerr {
   position: relative;
   text-align: center;
-  color: white;
 }
 
 .centered {

@@ -10,7 +10,7 @@ require_once __DIR__ . '/include/config.php';
     <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
   <body>
-   <div id ="profesor">
+   <div id ="ver_clase">
     <?php
       include("include/comun/cabecera.php");
       if($_SESSION['rol'] == 'profesor'){
@@ -20,7 +20,7 @@ require_once __DIR__ . '/include/config.php';
         include("include/comun/sidebarIzqPadre.php");
       }
     ?>
-    <div id="contenido">
+    <div class ="contenido" style="margin-left: 250px;">
       <?php
         $id = htmlspecialchars(trim(strip_tags($_GET["id"])));
 

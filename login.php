@@ -13,7 +13,7 @@ require_once __DIR__ . '/include/FormularioLogin.php';
     <?php
       include("include/comun/cabecera.php");
     ?>
-    <div id="login">
+    <div class="login">
       <?php
         $form = new FormularioLogin();
         $form->gestiona();
@@ -21,9 +21,9 @@ require_once __DIR__ . '/include/FormularioLogin.php';
       <div class="registrate">
         <br>¿Nuevo por aquí? <a href="signin.php">Registrate</a>
       </div>
+      <?php
+        include("include/comun/pie.php");
+      ?>
     </div>
-    <?php
-      include("include/comun/pie.php");
-    ?>
   </body>
 </html>

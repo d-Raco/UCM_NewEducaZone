@@ -7,7 +7,7 @@ require_once __DIR__ . '/include/config.php';
   <head>
     <meta charset="utf-8">
     <title>Mensajería alumnos</title>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
   <body>
     <?php
@@ -31,17 +31,17 @@ require_once __DIR__ . '/include/config.php';
           $i = 1;
           while($fila = $rs->fetch_assoc()){
             ?>
-            <div class="bloque">
-              <img src="img/users/alumnos/<?php echo $fila["nombre"]; ?>.jpg" style="width:100%">
-              <div class="container">
+            <div class='w3-container'><ul class="w3-ul">
+              <li>
+              <img src="img/users/alumnos/<?php echo $fila["nombre"]; ?>.jpg" class="w3-circle" style="width:50px">
                 <?php
                 echo '<form name="myform" action="mensajeria.php" method="POST">
                   <input type="hidden" name="tutor" value="' .$fila["id_tutor_legal"]. '">
                   <input type="hidden" name="profesor" value="' .htmlspecialchars(trim(strip_tags($_GET["profesor"]))). '">
                   <button type="submit">' .$i. '. Tutor legal de ' .$fila["nombre"]. ' ' .$fila["apellido1"]. ' ' .$fila["apellido2"]. '</button>
-                  </form>';
+                  </form><br>';
                 ?>
-              </div>
+              </li>
             </div>
             <?php
             $i = $i + 1;
@@ -54,7 +54,7 @@ require_once __DIR__ . '/include/config.php';
     </div>
 
     <?php
-      include("include/comun/sidebarDerProfesor.php");
+      //include("include/comun/sidebarDerProfesor.php");
       include("include/comun/pie.php");
     ?>
    </div>

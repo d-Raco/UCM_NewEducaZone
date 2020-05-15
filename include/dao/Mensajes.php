@@ -111,4 +111,15 @@ class Mensajes {
     self::setTipoArchivo($fila["tipo_archivo"]);
     self::setTamañoArchivo($fila["tamaño_archivo"]);
   }
+
+  public function getMensajesByDate($id){
+    $app = Aplicacion::getSingleton();
+    $conn = $app->conexionBD();
+
+    $sql = "SELECT * FROM mensajería WHERE id_origen = '$id' OR id_destinatario = '$id' ORDER BY fecha_hora ASC";
+
+    $result = $conn->query($sql)
+        or die ($conn->error. " en la línea ".(__LINE__-1));
+    return $result;
+  }
 }

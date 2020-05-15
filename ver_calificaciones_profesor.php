@@ -17,12 +17,12 @@ require_once __DIR__ . '/include/config.php';
         header("Location: ./login.php");
       }
     ?>
-   <div id ="profesor">
+   <div class="cali" style="margin-top: 100px;">
     <?php
       include("include/comun/cabecera.php");
       include("include/comun/sidebarIzqProfesor.php");
     ?>
-    <div id="contenido">
+    <div id="contenido" style = "margin-left: 230px;">
       <?php
         $profesor = new Profesor();
         $alumno = new Alumno();
@@ -57,7 +57,7 @@ require_once __DIR__ . '/include/config.php';
     </div>
 
     <?php
-      include("include/comun/sidebarDerProfesor.php");
+      //include("include/comun/sidebarDerProfesor.php");
       include("include/comun/pie.php");
     ?>
    </div>

@@ -1,0 +1,131 @@
+@value --color-verdeFuerte from "./style.css";
+@value --color-verdeFlojo from "./style.css";
+@value --color-mostaza from "./style.css";
+@value --color-beige from "./style.css";
+@value --color-khaki from "./style.css";
+@value --color-blanco from "./style.css";
+
+
+#tablaIncidencias{
+    font-family: Helvetica, Arial, SansSerif, serif;
+    color: --color-verdeFlojo;
+    font-size: x-large;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    width: 100%;
+    white-space: nowrap;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#tablaHorario{
+    font-family: Helvetica, Arial, SansSerif, serif;
+    color: --color-verdeFlojo;
+    font-size: x-large;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    margin: auto;
+    width: 100%;
+    display: inline-block;
+}
+
+#cabecera{
+    background: #DFDFDF;
+    font-weight: bold;
+}
+
+#filas{
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#filas:nth-child(even) #columna1{
+    background-color: #91C499;
+}#filas:nth-child(even) #columna2{
+    background-color: #91C499;
+}#filas:nth-child(even) #columna{
+    background-color: #91C499;
+}
+
+#columna1{
+    background: #FAFAFA;
+    text-align: center;
+    width: 20%;
+}
+
+#columna2{
+    background: #FAFAFA;
+    text-align: center;
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#columna{
+    background: #FAFAFA;
+    text-align: center;
+    width: 200px;
+    border:solid;
+    border-width: 1px;
+}
+
+
+
+#columna2:hover #tooltip{
+    z-index: 1;
+    width: auto;
+    background-color: white;
+    color: black;
+    visibility: visible;
+    border-width: thick;
+}
+
+#tooltip{
+    visibility: hidden;
+    width: 1000px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-style: solid;
+    border-color: #515151;
+    box-shadow: 5px 5px #333333;
+    padding: 5px 0;
+    white-space: pre-wrap;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+#fondoDIV{
+    width: 100%;
+    background-color: #31A36E;
+    box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: inherit;
+    text-align: center;
+    margin-left: fill;
+    position: center;
+    left: 50%;
+    transform: translate(+25%, 0);
+}
+
+#tituloTabla{
+    text-align: center;
+}
+#centrar{
+
+    display: inline-block;
+}
+
+#noCalendario{
+
+    font-family: Helvetica, Arial, SansSerif, serif;
+    font-size: 14px;
+    color: black;
+    text-align: left;
+    margin-left: 20px;
+
+}

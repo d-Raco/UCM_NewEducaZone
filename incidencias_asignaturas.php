@@ -15,12 +15,12 @@ if (!isset($_SESSION['login'])){
     header("Location: ./login.php");
 }
 ?>
-<div id ="profesor">
+<div id ="incidencias_asignatura">
     <?php
     include("include/comun/cabecera.php");
     include("include/comun/sidebarIzqProfesor.php");
     ?>
-    <div id="contenido">
+    <div class="contenido" style="margin-left: 230px;">
         <?php
         $incidencia = new Incidencias();
 
@@ -33,7 +33,7 @@ if (!isset($_SESSION['login'])){
     </div>
 
     <?php
-    include("include/comun/sidebarDerProfesor.php");
+    //include("include/comun/sidebarDerProfesor.php");
     include("include/comun/pie.php");
     ?>
 </div>

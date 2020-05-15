@@ -1,0 +1,47 @@
+body {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.mssg {
+  border: 2px solid #dedede;
+  background-color: #91C499;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  width:100%;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+
+}
+
+.mssg::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.mssg img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.mssg img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+
+.archivo_enviado, .mensaje_enviado {
+  float:left;
+}
+.archivo_recibido, .mensaje_recibido {
+  float:right;
+}

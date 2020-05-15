@@ -1,0 +1,73 @@
+.content_faqs{
+	margin-top: 140px;
+}
+
+#mapa {
+	height:500px;
+	width:1060px;
+}
+
+.flex_btn{
+	background-color: #91C499;
+	width: 70%;
+	display:flex;
+	flex-direction: column;
+}
+
+button.faqs {
+	background-color: #31A36E;
+	text-align: left;
+	border: 1px solid green;
+  	padding: 15px 32px;
+  	color: white;
+	width:100%;
+	cursor: pointer;
+	transition: all 0.5s;
+	font-size: 28px;
+	display:flex;
+	flex-direction: column;
+}
+
+.faqs span {
+  cursor: pointer;
+  display: block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.faqs span:after {
+  font-size: 30px;
+  color:#E3C322;
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.faqs:hover span {
+  padding-right: 25px;
+}
+
+.faqs:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.respuesta{
+	margin-left: 50px;
+	font-size: 24px;
+	color:white;
+}
+
+.centros{
+	margin-top: 70px;
+	text-align: center;
+}
+
+.principal{
+	display:flex;
+	align-items: center;
+	justify-content: center; 
+	margin-bottom: 100px;
+}

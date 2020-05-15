@@ -10,6 +10,7 @@ class FormularioComentariosForo extends Form
     private $reply = "";
     private $id_redactor = "";
     private $rol_redactor = "";
+    private $respuesta = "";
 
     public function __construct($idClase, $id_relacion, $reply, $id_redactor, $rol_redactor, $respuesta) {
         if($reply){
@@ -24,6 +25,7 @@ class FormularioComentariosForo extends Form
         $this->reply = $reply;
         $this->id_redactor = $id_redactor;
         $this->rol_redactor = $rol_redactor;
+        $this->respuesta = $respuesta;
     }
 
     protected function generaCamposFormulario($datos)
@@ -37,10 +39,10 @@ class FormularioComentariosForo extends Form
 
         $html = <<<EOF
         <fieldset>
-          <p>Título de la entrada:
-          <input type="text" name="titulo" required /><br></p>
-          <p>Contenido de la entrada:
-          <input type="text" name="contenido" requires /><br></p>
+          <p>Título del comentario:</p>
+          <input type="text" name="titulo" placeholder="Título" required />
+          <p>Contenido del comentario:</p>
+          <textarea name="contenido" placeholder="Texto del comentario..." required></textarea>
           <input type="submit" value="Enviar" />
         </fieldset>
         EOF;
@@ -70,6 +72,9 @@ class FormularioComentariosForo extends Form
           $comentario->setContenidoComentario($contenido);
           $comentario->setFecha(date('Y-m-d h:i:s'));
           $comentario->insertComentario();
+          if($this->reply){
+              return './foro_entrada.php?idClase=' .$this->idClase. '&idEntrada=' .$this->respuesta;
+          }
         }
         return $result;
     }

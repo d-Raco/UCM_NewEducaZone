@@ -10,7 +10,7 @@ require_once __DIR__ . '/include/dao/Entradas_foro.php';
   <head>
     <meta charset="utf-8">
     <title>Foro</title>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
   <body>
     <?php
@@ -68,6 +68,7 @@ require_once __DIR__ . '/include/dao/Entradas_foro.php';
               <input type="submit" name="submit" value="Crear entrada en el foro">
         </form>';
 
+        echo "<div class='w3-container'><ul class=\"w3-ul\">";
         $foro = new Entradas_foro();
         $foro->setIdClase($idClase);
         $result = $foro->getEntradasForoByClase();
@@ -77,19 +78,24 @@ require_once __DIR__ . '/include/dao/Entradas_foro.php';
               $padre = new Padre();
               $padre->setId($row["id_creador"]);
               $padre->getPadreById();
-              echo '<a href="foro_entrada.php?idClase=' .$idClase. '&idEntrada=' .$row["id"]. '">' .$row["fecha"]. ' ' .$padre->getNombre(). ' ' .$padre->getAp1(). ' ' .$padre->getAp2(). ' (Padre) ' .$row["titulo_foro"]. ' </a><br>';
+              echo '<li>
+                    <a href="foro_entrada.php?idClase=' .$idClase. '&idEntrada=' .$row["id"]. '">' .$row["fecha"]. ' ' .$padre->getNombre(). ' ' .$padre->getAp1(). ' ' .$padre->getAp2(). ' (Padre) ' .$row["titulo_foro"]. ' </a><br>
+              </li>';
             }
             else if($row["rol_creador"] === "profesor"){
               $profesor = new Profesor();
               $profesor->setId($row["id_creador"]);
               $profesor->getProfesorById();
-              echo '<a href="foro_entrada.php?idClase=' .$idClase. '&idEntrada=' .$row["id"]. '">' .$row["fecha"]. ' ' .$profesor->getNombre(). ' ' .$profesor->getAp1(). ' ' .$profesor->getAp2(). ' (Profesor) ' .$row["titulo_foro"]. ' </a><br>';
+              echo '<li>
+                    <a href="foro_entrada.php?idClase=' .$idClase. '&idEntrada=' .$row["id"]. '">' .$row["fecha"]. ' ' .$profesor->getNombre(). ' ' .$profesor->getAp1(). ' ' .$profesor->getAp2(). ' (Profesor) ' .$row["titulo_foro"]. ' </a><br>
+              </li>';
             }
           }
         }
         else{
           echo("No hay entradas en el foro.");
         }
+        echo "</div>";
       }
       else{
         header("Location: ./login.php");
@@ -99,10 +105,10 @@ require_once __DIR__ . '/include/dao/Entradas_foro.php';
 
     <?php
     if($_SESSION['rol'] == "padre"){
-      include("include/comun/sidebarDerPadre.php");
+      //include("include/comun/sidebarDerPadre.php");
     }
     elseif($_SESSION['rol'] == "profesor"){
-      include("include/comun/sidebarDerProfesor.php");
+      //include("include/comun/sidebarDerProfesor.php");
     }
     include("include/comun/pie.php");
     ?>

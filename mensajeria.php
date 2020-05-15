@@ -8,7 +8,7 @@ require_once __DIR__ . '/include/config.php';
   <head>
     <meta charset="utf-8">
     <title>Mensajería</title>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link rel="stylesheet" type="text/css" href="css/mensajeria.css">
   </head>
   <body>
     <?php
@@ -37,12 +37,6 @@ require_once __DIR__ . '/include/config.php';
       }
       echo "</div>";
 
-      if($_SESSION['rol'] == 'profesor'){
-        include("include/comun/sidebarDerProfesor.php");
-      }
-      else{
-        include("include/comun/sidebarDerPadre.php");
-      }
       include("include/comun/pie.php");
       ?>
      </div>

@@ -24,17 +24,17 @@ class FormularioForo extends Form
         $html = <<<EOF
         <fieldset>
           <input type="hidden" name="idClase" value="$this->idClase">
-          <p>Título de la entrada:
-          <input type="text" name="titulo" required /><br></p>
-          <p>Contenido de la entrada:
-          <input type="text" name="contenido" /><br></p>
+          <p>Título de la entrada:</p>
+          <input type="text" name="titulo" placeholder="Título" required /><br>
+          <p>Contenido de la entrada:</p>
+          <textarea name="contenido" placeholder="Texto de la entrada..."></textarea><br>
           <p>¿Deseas que el resto de usuarios puedan comentar en tu entrada?</p>
           <input type="radio" id="si" name="permisos" value="true" required>
           <label for="si">Sí</label><br>
           <input type="radio" id="no" name="permisos" value="false">
           <label for="no">No</label><br>
           <p>Adjuntar archivos a la entrada:</p>
-          <input type="file" name="fileupload[]" multiple><br>
+          <input type="file" name="fileupload[]" multiple><br><br>
           <input type="submit" value="Enviar" />
         </fieldset>
         EOF;

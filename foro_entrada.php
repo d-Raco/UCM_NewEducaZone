@@ -13,7 +13,7 @@ require_once __DIR__ . '/include/dao/Comentarios_foro.php';
   <head>
     <meta charset="utf-8">
     <title>Foro</title>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link rel="stylesheet" type="text/css" href="css/foro.css">
   </head>
   <body>
     <?php
@@ -93,17 +93,19 @@ require_once __DIR__ . '/include/dao/Comentarios_foro.php';
           $result = $archivos->getArchivos();
           if($result->num_rows > 0){
             while($fila = $result->fetch_assoc()){
-              echo '<a href="include/descargarArchivoForo.php?id=' .$fila["id"]. '"> <img src="img/file.png" width="100" height="100">';
-              echo ' ' .$fila["nombre_archivo"]. '</a><br>';
+              echo '<span class="archivo"><a href="include/descargarArchivoForo.php?id=' .$fila["id"]. '"> <img src="img/file.png" width="100" height="100"><br>';
+              echo ' ' .$fila["nombre_archivo"]. '</a></span>';
             }
           }
 
           //Generar comentario
+          echo "<br><br>";
           if($entrada->getPermisos()){
             if(($entrada->getRolCreador() != $_SESSION['rol']) || ($entrada->getIdCreador() != $usuario->getId())){
               $form = new FormularioComentariosForo($idClase, $idEntrada, 0, $usuario->getId(), $_SESSION['rol'], 0);
               $form->gestiona();
             }
+
             //Imprime comentarios
             $comentarios = new Comentarios_foro();
             $comentarios->setIdRelacion($idEntrada);
@@ -127,24 +129,28 @@ require_once __DIR__ . '/include/dao/Comentarios_foro.php';
                 }
                 echo '<p>' .$row["contenido_comentario"]. '</p>';
 
+                echo '<section id="A' .$row["id"]. '">';
                 //Imprime botón de respuesta o formulario
                 if(isset($_REQUEST["respuesta"]) && $_REQUEST["respuesta"] == $row["id"]){
+                  echo '</div>';
                   $form = new FormularioComentariosForo($idClase, $row["id"], 1, $usuario->getId(), $_SESSION['rol'], $idEntrada);
                   $form->gestiona();
                 }
                 else{
                   if(($row["rol_redactor"] != $_SESSION['rol']) || ($row["id_redactor"] != $usuario->getId())){
-                    echo'<a href="./foro_entrada.php?idClase=' .$idClase. '&idEntrada=' .$idEntrada. '&respuesta=' .$row["id"]. '">Responder</a>';
+                    echo'<a class="responder" href="./foro_entrada.php?idClase=' .$idClase. '&idEntrada=' .$idEntrada. '&respuesta=' .$row["id"]. '#A' .$row["id"]. '">Responder</a>';
                   }
+                  echo '</div>';
                 }
+                echo '</section>';
 
                 //Imprime respuestas
-                echo '<div class="resplies"'>
                 $coment = new Comentarios_foro();
                 $coment->setId($row["id"]);
                 $r = $coment->getReplies();
                 if($r->num_rows > 0){
                   while($fila = $r->fetch_assoc()){
+                    echo '<div class="replies">';
                     echo '<h3>'.$fila["titulo"]. '</h3>';
                     if($fila["rol_redactor"] == "padre"){
                       $pad->setId($fila["id_redactor"]);
@@ -157,11 +163,9 @@ require_once __DIR__ . '/include/dao/Comentarios_foro.php';
                       echo '<p>' .$fila["fecha"]. ' ' .$prof->getNombre(). ' ' .$prof->getAp1(). ' ' .$prof->getAp2(). ' (Profesor)</p>';
                     }
                     echo '<p>' .$fila["contenido_comentario"]. '</p>';
+                    echo '</div>';
                   }
                 }
-                echo '</div>';
-
-                echo '</div>';
               }
             }
             else{
@@ -181,10 +185,10 @@ require_once __DIR__ . '/include/dao/Comentarios_foro.php';
 
     <?php
     if($_SESSION['rol'] == "padre"){
-      include("include/comun/sidebarDerPadre.php");
+      //include("include/comun/sidebarDerPadre.php");
     }
     elseif($_SESSION['rol'] == "profesor"){
-      include("include/comun/sidebarDerProfesor.php");
+      //include("include/comun/sidebarDerProfesor.php");
     }
     include("include/comun/pie.php");
     ?>

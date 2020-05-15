@@ -21,8 +21,8 @@ class FormularioIncidencia extends Form
         $row = $this->incidencia->getInfo();
 
         echo "<table id='tablaIncidencias'>
-                <tr id='filaIncidencias'>
-                    <th id='cabeceraIncidencias'>Incidencias de " .$row["nombre"]. " " .$row["apellido1"]. " " .$row["apellido2"]. " en la asignatura de " .$row["nombre_asignatura"].
+                <tr id='filas'>
+                    <th id='cabecera'>Incidencias de " .$row["nombre"]. " " .$row["apellido1"]. " " .$row["apellido2"]. " en la asignatura de " .$row["nombre_asignatura"].
             "</th>
                 </tr>" ;
 
@@ -30,7 +30,7 @@ class FormularioIncidencia extends Form
 
         if(!empty($incidencias)){
             foreach($incidencias as &$value){
-                echo "<tr id='filaIncidencias'><td id='columna2'>".$value['msg_incidencia'].
+                echo "<tr id='filas'><td id='columna2'>" .$value['msg_incidencia'].
                     "<div id='tooltip'>
                                 ". $value['msg_incidencia'] ."
                             </div>

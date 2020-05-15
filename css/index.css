@@ -24,6 +24,7 @@
 	}
 
 	body {
+		margin-top: 77px;
 		line-height: 1;
 	}
 
@@ -58,6 +59,11 @@
 	}
 
 /* Containers */
+
+	.containerr{
+		position: relative;
+		margin-top: 100px;
+	}
 
 	.container {
 		margin-left: auto;

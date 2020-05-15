@@ -37,7 +37,7 @@ class FormularioMensajería extends Form
         <fieldset>
             <p class="msg"> Escribe aquí tu mensaje: <br/>
             <input type="varchar" name="contenido_msg"></p>
-            <input type="hidden" name="tutor" value="$this->tutor">
+            <input type="hidden" name="tutor" value="$this->tutor"> 
             <input type="hidden" name="profesor" value="$this->profesor">
             <input type="file" name="fileupload">
             <input class="msg" type="submit" name="enviado" value="Submit">
@@ -48,40 +48,33 @@ class FormularioMensajería extends Form
 
         setlocale(LC_TIME,"es_ES");
 
-        $resultEnviados = $mensaje->getMensajes($this->idOrig, $this->rolOrig, $this->idDest, $this->rolDest);
-        $resultRecibidos = $mensaje->getMensajes($this->idDest, $this->rolDest, $this->idOrig, $this->rolOrig);
+        $result = $mensaje->getMensajesByDate($this->idOrig);
 
-        echo "<p>ENVIADOS:</p>";
+        if($result->num_rows > 0){
+          while($fila = $result->fetch_assoc()){
+            if($fila['id_origen'] == $this->idOrig){
+              echo "
+              <div class='mssg darker'>";
 
-        if($resultEnviados->num_rows > 0){
-          while($fila = $resultEnviados->fetch_assoc()){
-            echo "<p>"  .$fila["fecha_hora"]. " " .$fila["contenido_msg"]. " ";
-            if($fila["archivo"] != null) {
-              echo '<a href="include/descargarArchivoMensajeria.php?id=' .$fila["id"]. '"> <img src="img/file.png" width="20" height="20">';
-              echo ' ' .$fila["nombre_archivo"]. '</a>';
+                if($fila["archivo"] != null) {
+                  echo '<a class="archivo_enviado" href="include/descargarArchivoMensajeria.php?id=' .$fila["id"]. '"> <img src="img/file.png" width="20" height="20">';
+                  echo ' ' .$fila["nombre_archivo"]. '</a>';
+                }
+                echo "<div class='mensaje_enviado'><p>Enviado:</p><p>" .$fila["contenido_msg"]. "</p>".$fila["fecha_hora"]. "</div></div>";
             }
-            echo "</p>";
+            elseif ($fila['id_destinatario'] == $this->idOrig) {
+              echo "
+              <div class='mssg'>";
+                echo "<div class='mensaje_recibido'><p>Recibido:</p><p>" .$fila["contenido_msg"]. "</p>".$fila["fecha_hora"]. "</div>";
+                if($fila["archivo"] != null) {
+                  echo '<a class="archivo_recibido" href="include/descargarArchivoMensajeria.php?id=' .$fila["id"]. '"> <img src="img/file.png" width="20" height="20">';
+                  echo ' ' .$fila["nombre_archivo"]. '</a>';
+                }
+              echo "</div>";
+
+            }
           }
         }
-        else{
-           echo "<p>No hay mensajes</p>";
-        }
-
-        echo "<p>RECIBIDOS:</p>";
-
-        if($resultRecibidos->num_rows > 0){
-          while($fila = $resultRecibidos->fetch_assoc()){
-            echo "<p>"  .$fila["fecha_hora"]. " " .$fila["contenido_msg"]. " ";
-            if($fila["archivo"] != null) {
-              echo '<a href="include/descargarArchivo.php?id=' .$fila["id"]. '"> <img src="img/file.png" width="20" height="20">';
-              echo ' ' .$fila["nombre_archivo"]. '</a>';
-            }
-            echo "</p>";          }
-        }
-        else{
-          echo "<p>No hay mensajes</p>";
-        }
-
         return $html;
     }
 

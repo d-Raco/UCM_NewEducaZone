@@ -17,9 +17,8 @@ require_once __DIR__ . '/include/config.php';
   ?>
 
 <div class="containerr">
-  <img src="img/niño_cooreando.jpg" alt="Avatar" class="image" style=width:100%>
-  <div class="centered"> <font size="+8"> Educazone</font> </div>
-</div>
+  <img src="img/portada.png" alt="Avatar" class="image" style=width:100%>
+  <!--<div class="centered"> <font size="+8"> Educazone</font> </div> -->
 
   <section id="one" class="wrapper">
     <div class="inner">
@@ -107,9 +106,10 @@ sobre el progreso y desarrollo del alumno.</p>
       </div>
     </div>
   </section>
-
-    <?php
+      <?php
        include("include/comun/pie.php");
     ?>
+</div>
+
   </body>
 </html>

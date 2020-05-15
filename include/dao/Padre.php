@@ -12,6 +12,7 @@ class Padre {
   private $correo = "";
   private $usuario = "";
   private $contraseña = "";
+  private $foto= NULL;
 
   public function getId(){return $this->id;}
   public function getNombre(){return $this->nombre;}
@@ -22,6 +23,12 @@ class Padre {
   public function getCorreo(){return $this->correo;}
   public function getUsuario(){return $this->usuario;}
   public function getContraseña(){return $this->contraseña;}
+  public function getFoto(){
+    if(is_null($this->foto)){
+      return "./img/usuario.png";
+    }
+    else{return $this->foto;}
+  }
 
   public function setId($_id){$this->id = $_id;}
   public function setNombre($_nombre){$this->nombre = $_nombre;}
@@ -32,6 +39,7 @@ class Padre {
   public function setCorreo($_correo){$this->correo = $_correo;}
   public function setUsuario($_usuario){$this->usuario = $_usuario;}
   public function setContraseña($_contraseña){$this->contraseña = $_contraseña;}
+  public function setFoto($_foto){$this->foto = $_foto;}
 
 	public function getTotalPadres(){
 		$app = Aplicacion::getSingleton();
@@ -59,8 +67,9 @@ class Padre {
   	$correo = $conn->real_escape_string(self::getCorreo());
   	$usuario = $conn->real_escape_string(self::getUsuario());
   	$contraseña = $conn->real_escape_string(self::getContraseña());
+    $foto = $conn->real_escape_string(self::getFoto());
 
-   	$query = "INSERT INTO tutor_legal VALUES  ( '$id' , '$nombre' , '$ap1' , '$ap2' , '$movil' , '$fijo' , '$correo' , '$usuario' , '$contraseña')";
+   	$query = "INSERT INTO tutor_legal VALUES  ( '$id' , '$nombre' , '$ap1' , '$ap2' , '$movil' , '$fijo' , '$correo' , '$usuario' , '$contraseña' , '$foto')";
 	$result = $conn->query($query)
           or die ($conn->error. " en la línea ".(__LINE__-1));
 
@@ -84,6 +93,7 @@ class Padre {
       self::setCorreo($fila['correo']);
       self::setUsuario($fila['usuario']);
       self::setContraseña($fila['contraseña']);
+      self::setFoto($fila['foto']);
     }
 	}
 
@@ -105,6 +115,7 @@ class Padre {
         self::setCorreo($fila['correo']);
         self::setUsuario($fila['usuario']);
         self::setContraseña($fila['contraseña']);
+        self::setFoto($fila['foto']);
       }
   	}
 
@@ -185,6 +196,12 @@ class Padre {
           }
            if($contraseña != NULL){
             $sql = "UPDATE tutor_legal SET contraseña = '$contraseña' WHERE id = '$id'  ";
+               $result = $conn->query($sql)
+              or die ($conn->error. " en la línea ".(__LINE__-1));
+
+          }
+          if($foto != NULL){
+            $sql = "UPDATE tutor_legal SET foto = '$foto' WHERE id = '$id'  ";
                $result = $conn->query($sql)
               or die ($conn->error. " en la línea ".(__LINE__-1));
 

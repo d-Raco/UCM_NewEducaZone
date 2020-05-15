@@ -2,7 +2,7 @@
 //Artur Amon 2020
 require_once('google-calendar-api.php');//para poder acceder a los google calendar del usuario
 require_once('calendarioAjustes.php');  //Los codigos de permiso de google
-
+echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/tablas.css\">";
 /*Accede al calendario de google para lectura*/
 if(isset($_GET['code'])) {
     try {
@@ -17,7 +17,7 @@ if(isset($_GET['code'])) {
     }
 }
 else{
-    header('Location: ../Educazone3.0/calendarioAcceso.php'); //redirige a la pagina de acceso de google
+    header('Location: ./calendarioAcceso.php'); //redirige a la pagina de acceso de google
 }
 
 
@@ -27,7 +27,6 @@ include("include/comun/cabecera.php");
 include("include/comun/sidebarIzqProfesor.php");
 include("include/comun/sidebarDerProfesor.php");
 include("include/comun/pie.php");
-include("include/dao/Padre.php");
 include("include/dao/Alumno.php");
 include("include/dao/Centro.php");
 
@@ -48,7 +47,7 @@ if($_SESSION['rol'] == "profesor")/*Si es profesor, recibe su centro y lo guarda
         echo '<iframe src="https://calendar.google.com/calendar/embed?height=650&amp;wkst=2&amp;bgcolor=%2331a36e&amp;ctz=Europe%2FMadrid&amp;src='. $IDcolegio .'&amp;color=%23039BE5&amp;showTitle=1&amp;showNav=1&amp;showDate=1&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border:solid 1px #777" width="900" height="650" frameborder="0" scrolling="no"></iframe>';
     }
     else {
-        echo "no se ha encontrado un calendario con nombre: ". $colegio . ". Revise si el calendario registrado es el correcto y si existe el calendario de su colegio.";
+        echo "<h2 id='noCalendario'>No se ha encontrado un calendario con nombre: ". $colegio . " en su Google calendar, revise si ha seleccionado la cuenta correcta o si existe un calendario de su organización.</h2>";
     }
 
 }
@@ -80,8 +79,6 @@ else/*Si es padre recorre todos los centros de sus hijos y muestra todos los cal
             echo '<iframe src="https://calendar.google.com/calendar/embed?height=650&amp;wkst=2&amp;bgcolor=%2331a36e&amp;ctz=Europe%2FMadrid&amp;src='. $IDcolegio .'&amp;color=%23039BE5&amp;showTitle=1&amp;showNav=1&amp;showDate=1&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border:solid 1px #777" width="900" height="650" frameborder="0" scrolling="no"></iframe>';
         }
         else
-            echo "no se ha encontrado un calendario con nombre: ". $colegio . ". Revise si el calendario registrado es el correcto y si existe el calendario de su colegio.";
+            echo "<h2 id='noCalendario'>No se ha encontrado un calendario con nombre: ". $colegio . " en su Google calendar, revise si ha seleccionado la cuenta correcta o si existe un calendario de su organización.</h2>";
     }
 }
-
-

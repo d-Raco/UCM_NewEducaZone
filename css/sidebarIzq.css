@@ -3,7 +3,14 @@ body {
   font-family: "Lato", sans-serif;
 }
 
+.contenido{
+  position: relative;
+  margin-top: 100px;
+}
+
 .sidebar {
+  position: fixed;
+  margin-top:100px;
   float:left;
   margin: 0;
   padding: 0;
@@ -13,15 +20,21 @@ body {
   overflow: hidden;
 }
 
-.sidebar a {
+.sidebar a, p {
   display: block;
   color: black;
   padding: 16px;
   text-decoration: none;
 }
 
-.sidebar a:hover:not(.dropbtn_sidebar) {
+.sidebar p{
   background-color: #4CAF50;
+  margin-block-start: 0;
+  margin-block-end:0;
+}
+
+.sidebar a:hover:not(.dropbtn_sidebar) {
+  background-color: #E3C322;
   color: white;
 }
 
@@ -54,17 +67,22 @@ div.content {
   display: block;
 }
 
-.dropdown-content_sidebar a:hover {background-color: #f1f1f1;}
+.dropdown-content_sidebar a:hover {
+  background-color: #f1f1f1;
+}
 
 .dropdown_sidebar:hover .dropdown-content_sidebar {
   display: block;
 }
 
 .dropdown_sidebar:hover .dropbtn_sidebar {
-  background-color: #E3C322;
-  color: black;
+  color: white;
 }
 
 .nombre_profe{
-  background-color: #E3C322;
+  background-color: #4CAF50;
+}
+
+.nombre_profe a:hover{
+  background-color: #4CAF50;
 }

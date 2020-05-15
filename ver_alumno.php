@@ -10,8 +10,9 @@ require_once __DIR__ . '/include/config.php';
     <title>Alumno</title>
     <link rel="stylesheet" type="text/css" href="css/alumno.css">
   </head>
+
   <body>
-  <div id ="alumno">
+  <div class ="alumno">
     <?php
       include("include/comun/cabecera.php");
       if($_SESSION['rol'] == 'profesor'){
@@ -33,7 +34,7 @@ require_once __DIR__ . '/include/config.php';
 
 
 
-        echo "<h1>".$alumno->getNombre(). " " .$alumno->getAp1(). " " .$alumno->getAp2()."</h1>";
+        echo "<br><h1>".$alumno->getNombre(). " " .$alumno->getAp1(). " " .$alumno->getAp2()."</h1>";
         echo "<div class='info'><img src=\"" .$alumno->getFoto(). "\"  width=\"150\" height=\"150\">
         <p>Fecha de nacimiento: " .$alumno->getFecha(). ".</p>
         <p>DNI: " .$alumno->getDNI(). ".</p>
@@ -108,8 +109,8 @@ require_once __DIR__ . '/include/config.php';
 
         }
       ?>
-    </div>
 
+    </div>
     <?php
       include("include/comun/pie.php");
     ?>

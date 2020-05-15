@@ -17,31 +17,18 @@ require_once __DIR__ . '/include/config.php';
 
   </head>
   <body>
+    <div class="editar_profesor">
     <?php
       if (!isset($_SESSION['login'])){
         header("Location: ./login.php");
       }
-    ?>
-   <div id ="alumno">
-    <?php
+
       include("include/comun/cabecera.php");
       include("include/comun/sidebarIzqProfesor.php");
-    ?>
-    <div id="contenedor">
-       <?php
-     $form = new FormularioEditProfesor();
-      $form->gestiona();
-        
-    ?>
-    </div>
-    </div>
 
-    <?php
-      include("include/comun/sidebarDerProfesor.php");
-      include("include/comun/pie.php");
-
-    
+      $form = new FormularioEditProfesor();
+      $form->gestiona();     
     ?>
-   </div>
+  </div><br><br>
   </body>
 </html>

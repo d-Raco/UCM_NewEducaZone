@@ -6,21 +6,25 @@ body {
 }
 
 .header {
-  position: static;
+  display:flex;
+  align-items: center;
+  z-index: 1000;
+  position:fixed;
+  top:0;
+  width:100%;  
   overflow: hidden;
   background-color: #31A36E;
-  padding: 1px 10px;
+  padding: 10px 30px;
 }
 
 .header a {
   float: left;
-  color: black;
   text-align: center;
   padding: 12px;
   text-decoration: none;
-  font-size: 18px; 
+  font-size: 25px; 
   line-height: 20px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .header a.logo {
@@ -28,35 +32,55 @@ body {
   font-weight: bold;
 }
 
-.titulo {
-  margin-top: 15px;
-  color: white;
-}
 
-.header a:hover {
+.header a.op:hover {
   background-color: #E3C322;
-  color: black;
+  color: white;
 }
 
 .header-right {
-  float: right;
+  display:flex;
+  align-items:center;
+  margin-left: auto;
 }
 
-.dropbtn, .header a.op {
-  margin-top: 15px;
-  background-color: #4CAF50;
+.titulo, .header a.op {
   color: white;
+  background-color:#31A36E; 
   padding: 16px;
-  font-size: 18px;
+  font-size: 25px;
   border: none;
   cursor: pointer;
   line-height: 20px;
-  border-radius: 20px;
+  border-radius: 10px;
+}
+
+.user_flex{
+  display: flex;
+  align-items: center;
+}
+
+.user_fex:hover{
+}
+
+.dropbtn{
+  color: white;
+  background-color:#31A36E; 
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  line-height: 50px;
+  border-radius: 10px;
+  margin-left: 0;
+  align-items: center;
 }
 
 .dropdown {
-  position: relative;
-  display: inline-block;
+  background-color: #31A36E;
+}
+
+.titulo {
+  font-size: 25px;
 }
 
 .dropdown-content {
@@ -75,6 +99,7 @@ body {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  font-size: 20px;
 }
 
 .dropdown-content a:hover {background-color: #f1f1f1;}
@@ -85,12 +110,23 @@ body {
 
 .dropdown:hover .dropbtn {
   background-color: #E3C322;
-  color: black;
+}
+
+.imag{
+  border-radius: 50%;
+}
+
+.imag:hover{
+    background-color: #E3C322;
+}
+
+.content_faqs{
+  margin-left: 40px;
 }
 
 .pie {
-  position:fixed;
-  bottom: 0;
+  position: absolute;
+  bottom : 0;
   width:100%;
   padding: 1px;
   background-color: #31A36E;

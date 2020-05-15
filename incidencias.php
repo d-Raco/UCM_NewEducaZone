@@ -9,7 +9,7 @@ require_once __DIR__ . '/include/config.php';
     <meta charset="utf-8">
     <title>Incidencias Padre</title>
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
-      <link rel="stylesheet" href="css/incidencias.css">
+      <link rel="stylesheet" href="css/tablas.css">
   </head>
   <body>
     <?php
@@ -17,7 +17,7 @@ require_once __DIR__ . '/include/config.php';
         header("Location: ./login.php");
       }
     ?>
-   <div id ="alumno">
+   <div id ="incidencias">
     <?php
       include("include/comun/cabecera.php");
       if($_SESSION['rol'] == "padre"){
@@ -27,7 +27,7 @@ require_once __DIR__ . '/include/config.php';
         include("include/comun/sidebarIzqProfesor.php");
       }
     ?>
-    <div id="contenido">
+    <div class="contenido" style="margin-left: 230px;">
 
 		<?php
       if($_SESSION['rol'] == "padre"){
@@ -37,17 +37,17 @@ require_once __DIR__ . '/include/config.php';
 
         if(!empty($incidencias)){
             echo '<table id="tablaIncidencias">
-            <tr id="filaIncidencias">
-                <th id="cabeceraIncidencias" colspan="2">Incidencias
+            <tr id="filas">
+                <th id="cabecera" colspan="2">Incidencias
                 </th>
             </tr>';
           foreach($incidencias as &$value){
-              echo "<tr id='filaIncidencias'>
-                            <td id='columna1'>".$value["nombre_asignatura"]."</td>
+              echo "<tr id='filas'>
+                            <td id='columna1'>" .$value["nombre_asignatura"]."</td>
                             <td id='columna2'>".$value["msg_incidencia"]."
                                 <div id='tooltip'>
                                     ".$value["msg_incidencia"]."
-                                </div> 
+                                </div>
                             </td>
                           </tr>";
           }
@@ -64,10 +64,10 @@ require_once __DIR__ . '/include/config.php';
 
     <?php
     if($_SESSION['rol'] == "padre"){
-      include("include/comun/sidebarDerPadre.php");
+      //include("include/comun/sidebarDerPadre.php");
     }
     elseif($_SESSION['rol'] == "profesor"){
-      include("include/comun/sidebarDerProfesor.php");
+      //include("include/comun/sidebarDerProfesor.php");
     }
     include("include/comun/pie.php");
     ?>

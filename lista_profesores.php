@@ -10,13 +10,12 @@ require_once __DIR__ . '/include/config.php';
     <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
   <body>
+    <div id ="lista_profesores">
     <?php
       if (!isset($_SESSION['login']) ){
         header("Location: ./login.php");
       }
-    ?>
-   <div id ="profesor">
-    <?php
+
       include("include/comun/cabecera.php");
       if($_SESSION['rol'] == 'profesor'){
         include("include/comun/sidebarIzqProfesor.php");
@@ -25,7 +24,7 @@ require_once __DIR__ . '/include/config.php';
         include("include/comun/sidebarIzqPadre.php");
       }
 
-      echo '<div id="contenido">';
+      echo '<div class="contenido" style="margin-left: 250px;">';
         $alumno = new Alumno();
         $alumno->setDNI(htmlspecialchars(trim(strip_tags($_REQUEST["idAlumno"]))));
         $alumno->getAlumno();
@@ -48,10 +47,9 @@ require_once __DIR__ . '/include/config.php';
           }
           $idProfe = $filaAsignatura['id_profesor'];
         }
-        echo "</div>";
+        echo "</div></div>";
 
       include("include/comun/pie.php");
       ?>
-     </div>
-    </body>
+ç    </body>
   </html>

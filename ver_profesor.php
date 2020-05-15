@@ -10,7 +10,7 @@ require_once __DIR__ . '/include/config.php';
     <link rel="stylesheet" type="text/css" href="css/VerPadreyProfe.css">
   </head>
   <body>
-   <div id ="profesor">
+   <div class ="profesor">
     <?php
       include("include/comun/cabecera.php");
       if($_SESSION['rol'] == 'profesor'){
@@ -20,9 +20,10 @@ require_once __DIR__ . '/include/config.php';
         include("include/comun/sidebarIzqPadre.php");
       }
     ?>
-    <div id="contenido">
+    <div class="contenido">
+      <div class="info_flex">
        <div class="cuadradoInfo">
-      <?php
+        <?php
         $profesor = new Profesor();
 
         if ($_SESSION['rol'] == "profesor"){
@@ -52,56 +53,42 @@ require_once __DIR__ . '/include/config.php';
           echo "<p><a href=\"mensajeria.php?tutor=".$id_padre."&profesor=".$profesor->getId()."&contenido_msg=".$msg."\">Enviar mensaje</a></p>";
         }
          ?>
-    </div>
-            <div class="cuadrados">
+        </div>
+      </div>
+      <div class="cuadrados">
+          <div class="cuadrado">
+          <h1><a href = "Editar_profesor.php">Editar Perfil</a></h1>
+          <p>Modifica tu perfil para conocer todos tus datos.</p>
+          </div>
+
+         <div class="cuadrado">
+          <h1><a href = "foro_seleccion.php">Foro</a></h1>
+          <p>Comparte historias, fotos y buenos recuerdos de las actividades con el colegio.</p>
+         </div>
+
         <div class="cuadrado">
-        <h1><a href = "Editar_padre.php">Editar Perfil</a></h1>
-        <p>Modifica tu perfil para conocer todos tus datos.</p>
+          <h1><a href = "mensajeriaClases.php">Mensajeria</a></h1>
+          <p>Intercambia mensajes y archivos con los profesores para mantenerte informado de todo lo necesario sobre las clases de tu hijo.</p>
         </div>
 
-       <div class="cuadrado">
-        <h1><a href = "foro_seleccion.php">Foro</a></h1>
-        <p>Comparte historias, fotos y buenos recuerdos de las actividades con el colegio.</p>
-       </div>
-
-      <div class="cuadrado">
-        <h1><a href = "mensajeriaClases.php">Mensajeria</a></h1>
-        <p>Intercambia mensajes y archivos con los profesores para mantenerte informado de todo lo necesario sobre las clases de tu hijo.</p>
-      </div>
-
-    </div>
-
-      <div class="cuadrados2">
         <div class="cuadrado">
-        <h1><a href = "horario_profesor.php">Horario</a></h1>
-        <p>Consulta el horario de tus clases de cada semana.</p>
+          <h1><a href = "horario_profesor.php">Horario</a></h1>
+          <p>Consulta el horario de tus clases de cada semana.</p>
         </div>
 
-       <div class="cuadrado">
-        <h1><a href = "cursos.php">Cursos</a></h1>
-        <p>Accede a la información de los cursos, clases y alumnos del colegio.</p>
-       </div>
+        <div class="cuadrado">
+          <h1><a href = "cursos.php">Cursos</a></h1>
+          <p>Accede a la información de los cursos, clases y alumnos del colegio.</p>
+        </div>
 
-      <div class="cuadrado">
-        <h1>Calendario</a></h1>
-        <p>Revisa tus eventos en el calendario mensual.</p>
+        <div class="cuadrado">
+          <h1>Calendario</a></h1>
+          <p>Revisa tus eventos en el calendario mensual.</p>
+        </div>
       </div>
-      
     </div>
-  </div>
-</div>
     <?php
-
-
-      if($_SESSION['rol'] == 'profesor'){
-        include("include/comun/sidebarDerProfesor.php");
-      }
-      else{
-        include("include/comun/sidebarDerPadre.php");
-      }
       include("include/comun/pie.php");
-
-
     ?>
    </div>
   </body>
