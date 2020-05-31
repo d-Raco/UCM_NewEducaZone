@@ -24,8 +24,8 @@ img.avatar {
 
 .imagen_registro{
   flex-basis:40%;
-  margin-left:150px; 
-  margin-top:100px; 
+  margin-left:150px;
+  margin-top:100px;
 }
 
 input.login {
@@ -48,12 +48,12 @@ input.control{
 
 .boton_login{
   text-align: center;
-} 
+}
 .boton_registro{
   margin-left: 40px;
 }
 
-button {
+button:not(.dropbtn) {
   background-color: #31A36E;
   color: white;
   padding: 14px 20px;
@@ -81,3 +81,8 @@ button:hover {
   text-align: center;
 }
 
+.nuevo_profesor{
+  position: relative;
+  margin-top: 130px;
+  margin-left:250px;
+}

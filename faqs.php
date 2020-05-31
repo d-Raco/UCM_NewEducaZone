@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 <title>Google Maps</title>
 <link href="css/faqs.css" rel="stylesheet">
-<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/jquery.gomap-1.3.3.min.js"></script>
 <script>

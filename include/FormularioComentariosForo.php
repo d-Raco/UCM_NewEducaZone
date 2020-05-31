@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/Form.php';
-require_once __DIR__ . '/dao/Comentarios_foro.php';
+require_once __DIR__ . '/dao/DAO_Comentarios_foro.php';
 
 class FormularioComentariosForo extends Form
 {
@@ -65,15 +65,16 @@ class FormularioComentariosForo extends Form
         }
         else {
           $comentario = new Comentarios_foro();
-          $comentario->setId($comentario->getNumComentarios()+1);
+          $dao_com = new DAO_Comentarios_foro();
+          $comentario->setId($dao_com->getNumComentarios()+1);
           $comentario->setIdRelacion($this->idEntrada);
           $comentario->setReply($this->reply);
           $comentario->setIdRedactor($this->id_redactor);
           $comentario->setRolRedactor($this->rol_redactor);
           $comentario->setTitulo($titulo);
           $comentario->setContenidoComentario($contenido);
-          $comentario->setFecha(date('Y-m-d h:i:s'));
-          $comentario->insertComentario();
+          $comentario->setFecha(date('Y-m-d H:i:s'));
+          $dao_com->insertComentario($comentario);
           if($this->reply){
               return './foro_entrada.php?idClase=' .$this->idClase. '&idEntrada=' .$this->respuesta;
           }

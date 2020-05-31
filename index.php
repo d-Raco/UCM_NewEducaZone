@@ -3,12 +3,13 @@ require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
-<body style="background-color:#CEFFCE;">
   <head>
     <meta charset="utf-8">
     <title>Index</title>
     <link rel="stylesheet" href="css/index.css">
-	<script src="js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4ecc1a47193e29e4" async="async"></script>
 	<script>
 	var slideIndex = 0;
 	$(document).ready(function carousel() {
@@ -24,20 +25,19 @@ require_once __DIR__ . '/include/config.php';
 		  x[slideIndex-1].style.display = "block";
 		  setTimeout(carousel, 5000); // Change image every 2 seconds
 	});
-	carousel();
 </script>
   </head>
 
-  <body>
+  <body style="background-color:#CEFFCE;">
   <?php
-     include("include/comun/cabecera.php");
+  include("include/comun/cabecera.php");
   ?>
 
 <div class="containerr">
   <img src="img/portada/portada1.png" alt="Avatar" class="slide" style=width:100%>
   <img src="img/portada/portada2.png" alt="Avatar" class="slide" style=width:100%>
-  <img src="img/portada/portada3.png" alt="Avatar" class="slide" style=width:100%>
-  <img src="img/portada/portada4.png" alt="Avatar" class="slide" style=width:100%>
+  <img src="img/portada/portada3.PNG" alt="Avatar" class="slide" style=width:100%>
+  <img src="img/portada/portada4.PNG" alt="Avatar" class="slide" style=width:100%>
   <section id="one" class="wrapper">
     <div class="inner">
       <div class="flex flex-3">
@@ -123,6 +123,7 @@ sobre el progreso y desarrollo del alumno.</p>
         </div>
       </div>
     </div>
+    <div class="addthis_sharing_toolbox"></div>
   </section>
       <?php
        include("include/comun/pie.php");

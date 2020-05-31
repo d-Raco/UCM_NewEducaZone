@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/include/dao/Clases.php';
-require_once __DIR__ . '/include/dao/Profesor.php';
+require_once __DIR__ . '/include/dao/DAO_Clases.php';
+require_once __DIR__ . '/include/dao/DAO_Profesor.php';
 require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
@@ -8,27 +8,31 @@ require_once __DIR__ . '/include/config.php';
   <head>
     <meta charset="utf-8">
     <title>Horario Profesor</title>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
       <link rel="stylesheet" href="css/tablas.css">
+      <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
   <body>
     <?php
       if (!isset($_SESSION['login']) || $_SESSION['rol'] != 'profesor'){
-        header("Location: ./login.php");
+        $url = "https://vm11.aw.e-ucm.es/EducaZone4.0/login.php";
+        echo "<script>window.open('".$url."','_self');</script>";
+        //header("Location: ./login.php");
+        //exit;
       }
       include("include/comun/cabecera.php");
       include("include/comun/sidebarIzqProfesor.php");
     ?>
     <div  class ="horario" style="margin-top: 100px;">
-    <div id="contenido" style = "margin-left: 200px;">
+    <div style = "background-color: #f1f1f1;">
+      <br>
       <?php
-         $clase = new Clases();
          $profesor = new Profesor();
 
          $profesor->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION['name']))));
-         $profesor->getProfe();
-         $clase->setIdTutor($profesor->getId());
-         $rs = $clase->getAsignaturas();
+         $dao_profesor = new DAO_Profesor();
+         $dao_profesor->getProfe($profesor);
+         $dao_clase = new DAO_Clases();
+         $rs = $dao_clase->getAsignaturas($profesor->getId());
 
          if($rs->num_rows > 0){
            $i = 0;
@@ -40,7 +44,7 @@ require_once __DIR__ . '/include/config.php';
            ?>
            <div id="fondoDIV">
                <h1 id='tituloTabla'>Horario</h1>
-               <div class="container">
+               <div>
                    <?php
                    echo "<table id='tablaHorario'>";
                    echo "<tr id='filas'>";

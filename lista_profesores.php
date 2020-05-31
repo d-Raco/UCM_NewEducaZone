@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/include/dao/Alumno.php';
+require_once __DIR__ . '/include/dao/DAO_Alumno.php';
 require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
@@ -13,7 +13,10 @@ require_once __DIR__ . '/include/config.php';
     <div id ="lista_profesores">
     <?php
       if (!isset($_SESSION['login']) ){
-        header("Location: ./login.php");
+        $url = "https://vm11.aw.e-ucm.es/EducaZone4.0/login.php";
+        echo "<script>window.open('".$url."','_self');</script>";
+        //header("Location: ./login.php");
+        //exit;
       }
 
       include("include/comun/cabecera.php");
@@ -27,8 +30,9 @@ require_once __DIR__ . '/include/config.php';
       echo '<div class="contenido" style="margin-left: 250px;">';
         $alumno = new Alumno();
         $alumno->setDNI(htmlspecialchars(trim(strip_tags($_REQUEST["idAlumno"]))));
-        $alumno->getAlumno();
-        $result = $alumno->getProfesores();
+        $dao_alumno = new DAO_Alumno();
+        $dao_alumno->getAlumno($alumno);
+        $result = $dao_alumno->getProfesores($alumno->getIdClase());
 
         $idProfe = NULL;
 
@@ -36,7 +40,7 @@ require_once __DIR__ . '/include/config.php';
 
         echo "<div class='w3-container'><ul class=\"w3-ul\">";
         while($filaAsignatura = $result->fetch_assoc()){
-          $filaProfesor = $alumno->getProfe($filaAsignatura['id_profesor']);
+          $filaProfesor = $dao_alumno->getProfe($filaAsignatura['id_profesor']);
           if($idProfe != $filaAsignatura['id_profesor']){
             echo "<li>
             <img src=".$filaProfesor["foto"]." class=\" w3-circle \" style=\"width:50px\">

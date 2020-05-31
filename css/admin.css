@@ -1,0 +1,62 @@
+* {
+  box-sizing: border-box;
+}
+
+
+p{
+	font-size: 250% 
+}
+
+.admin{
+	position: relative;
+}
+
+.contenido{
+	position:relative;	
+	margin-left: 250px;
+	margin-right: 50px;
+	padding: 1px auto;
+	height: 100px;
+}
+
+.flex-container{
+	justify-content: space-around;
+	width:auto;  
+	margin-top:15px; 
+	display:flex;
+	height: 400px;
+}
+
+
+.clase_imagen{
+	border-radius: 20px;
+	border: 1px solid #000;
+	height: 300px;
+	width: 300px;
+}
+
+.clase_imagen:hover{
+  box-shadow: 0 0 2px 5px #91C499;
+}
+
+.nuevoprofe{
+	line-height: 20px;
+  	border-radius: 20px;
+	padding: 100px;
+	text-align: center;
+}
+
+.funcionalidad3{
+	line-height: 20px;
+  	border-radius: 20px;
+	padding: 100px;
+	text-align: center;
+}
+
+.nuevoAlumno{
+	line-height: 20px;
+  	border-radius: 20px;
+	padding: 100px;
+	text-align: center;
+}
+

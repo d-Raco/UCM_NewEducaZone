@@ -1,0 +1,11 @@
+.botonTutor {
+  border: none;
+  text-decoration: none;
+  background-color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.msgHijo{
+  margin: 40px;
+}

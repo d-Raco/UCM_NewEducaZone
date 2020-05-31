@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2020 at 08:35 PM
+-- Generation Time: May 31, 2020 at 01:33 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -21,6 +21,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `centros_educativos`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `administrador`
+--
+
+CREATE TABLE `administrador` (
+  `id` int(11) NOT NULL,
+  `usuario` varchar(15) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `foto` varchar(80) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `administrador`
+--
+
+INSERT INTO `administrador` (`id`, `usuario`, `password`, `foto`) VALUES
+(1, 'admin', '$2y$10$Dquj6pJN/TfCa4A6SFsURulPdQW/oRlYfe7YzlaLGORGDrRI50V5S', 'img\\avatar.png');
 
 -- --------------------------------------------------------
 
@@ -94,7 +114,7 @@ CREATE TABLE `archivos_foro` (
   `id` int(11) UNSIGNED NOT NULL,
   `id_foro` int(11) UNSIGNED NOT NULL,
   `nombre_archivo` varchar(30) NOT NULL,
-  `tamaño_archivo` int(11) UNSIGNED NOT NULL,
+  `tamano_archivo` int(11) UNSIGNED NOT NULL,
   `archivo` varchar(80) NOT NULL,
   `tipo_archivo` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -103,10 +123,11 @@ CREATE TABLE `archivos_foro` (
 -- Dumping data for table `archivos_foro`
 --
 
-INSERT INTO `archivos_foro` (`id`, `id_foro`, `nombre_archivo`, `tamaño_archivo`, `archivo`, `tipo_archivo`) VALUES
-(1, 2, 'granjaescuela1.jpg', 25808, './archivos/granjaescuela1.jpg', 'image/jpeg'),
-(2, 2, 'granjaescuela2.jpg', 83510, './archivos/granjaescuela2.jpg', 'image/jpeg'),
-(3, 2, 'granjaescuela3.jpg', 120940, './archivos/granjaescuela3.jpg', 'image/jpeg');
+INSERT INTO `archivos_foro` (`id`, `id_foro`, `nombre_archivo`, `tamano_archivo`, `archivo`, `tipo_archivo`) VALUES
+(1, 1, 'metodos_pago.txt', 27, './archivos/metodos_pago.txt', 'text/plain'),
+(2, 2, 'lechugas.jpg', 1570671, './archivos/lechugas.jpg', 'image/jpeg'),
+(3, 2, 'nina.jpg', 1126873, './archivos/nina.jpg', 'image/jpeg'),
+(4, 2, 'poster.jpg', 61033, './archivos/poster.jpg', 'image/jpeg');
 
 -- --------------------------------------------------------
 
@@ -223,42 +244,42 @@ CREATE TABLE `calificaciones` (
 --
 
 INSERT INTO `calificaciones` (`id`, `id_asignatura1`, `nota1`, `id_asignatura2`, `nota2`, `id_asignatura3`, `nota3`, `id_asignatura4`, `nota4`, `id_asignatura5`, `nota5`, `id_asignatura6`, `nota6`) VALUES
-(1, 1, NULL, 2, NULL, 3, NULL, 4, NULL, 5, NULL, 6, NULL),
-(2, 1, NULL, 2, NULL, 3, NULL, 4, NULL, 5, NULL, 6, NULL),
-(3, 7, NULL, 8, NULL, 9, NULL, 10, NULL, 11, NULL, 12, NULL),
-(4, 7, NULL, 8, NULL, 9, NULL, 10, NULL, 11, NULL, 12, NULL),
-(5, 13, NULL, 14, NULL, 15, NULL, 16, NULL, 17, NULL, 18, NULL),
-(6, 19, NULL, 20, NULL, 21, NULL, 22, NULL, 23, NULL, 24, NULL),
-(7, 19, NULL, 20, NULL, 21, NULL, 22, NULL, 23, NULL, 24, NULL),
-(8, 25, NULL, 26, NULL, 27, NULL, 28, NULL, 29, NULL, 30, NULL),
-(9, 25, NULL, 26, NULL, 27, NULL, 28, NULL, 29, NULL, 30, NULL),
-(10, 25, NULL, 26, NULL, 27, NULL, 28, NULL, 29, NULL, 30, NULL),
-(11, 1, NULL, 2, NULL, 3, NULL, 4, NULL, 5, NULL, 6, NULL),
-(12, 7, NULL, 8, NULL, 9, NULL, 10, NULL, 11, NULL, 12, NULL),
-(13, 13, NULL, 14, NULL, 15, NULL, 16, NULL, 17, NULL, 18, NULL),
-(14, 19, NULL, 20, NULL, 21, NULL, 22, NULL, 23, NULL, 24, NULL),
-(15, 25, NULL, 26, NULL, 27, NULL, 28, NULL, 29, NULL, 30, NULL),
-(16, 31, NULL, 32, NULL, 33, NULL, 34, NULL, 35, NULL, 36, NULL),
-(17, 37, NULL, 38, NULL, 39, NULL, 40, NULL, 41, NULL, 42, NULL),
-(18, 43, NULL, 44, NULL, 45, NULL, 46, NULL, 47, NULL, 48, NULL),
-(19, 49, NULL, 50, NULL, 51, NULL, 52, NULL, 53, NULL, 54, NULL),
-(20, 55, NULL, 56, NULL, 57, NULL, 58, NULL, 59, NULL, 60, NULL),
-(21, 25, NULL, 26, NULL, 27, NULL, 28, NULL, 29, NULL, 30, NULL),
-(22, 31, NULL, 32, NULL, 33, NULL, 34, NULL, 35, 4, 36, 2),
-(23, 31, NULL, 32, NULL, 33, NULL, 34, NULL, 35, NULL, 36, NULL),
-(24, 31, NULL, 32, NULL, 33, NULL, 34, NULL, 35, NULL, 36, NULL),
-(25, 31, NULL, 32, NULL, 33, NULL, 34, NULL, 35, NULL, 36, NULL),
-(26, 37, NULL, 38, NULL, 39, NULL, 40, NULL, 41, NULL, 42, NULL),
-(27, 37, NULL, 38, NULL, 39, NULL, 40, NULL, 41, NULL, 42, NULL),
-(28, 37, NULL, 38, NULL, 39, NULL, 40, NULL, 41, NULL, 42, NULL),
-(29, 43, NULL, 44, NULL, 45, NULL, 46, NULL, 47, NULL, 48, NULL),
-(30, 49, NULL, 50, NULL, 51, NULL, 52, NULL, 53, NULL, 54, NULL),
-(31, 49, NULL, 50, NULL, 51, NULL, 52, NULL, 53, NULL, 54, NULL),
-(32, 49, NULL, 50, NULL, 51, NULL, 52, NULL, 53, NULL, 54, NULL),
-(33, 49, NULL, 50, NULL, 51, NULL, 52, NULL, 53, NULL, 54, NULL),
-(34, 55, NULL, 56, NULL, 57, NULL, 58, NULL, 59, NULL, 60, NULL),
-(35, 55, NULL, 56, NULL, 57, NULL, 58, NULL, 59, NULL, 60, NULL),
-(36, 55, NULL, 56, NULL, 57, NULL, 58, NULL, 59, NULL, 60, NULL);
+(1, 1, 4, 2, 6, 3, 7, 4, 8, 5, 7, 6, 7),
+(2, 1, 4, 2, 8.3, 3, 5, 4, 7, 5, 2, 6, 4),
+(3, 7, 5, 8, 5, 9, 1, 10, 9, 11, 6, 12, 5),
+(4, 7, 8, 8, 4.3, 9, 7.9, 10, 2.8, 11, 6, 12, 7),
+(5, 13, 9.2, 14, 3.4, 15, 5, 16, 3, 17, 8, 18, 1),
+(6, 19, 7.3, 20, 5.5, 21, 6, 22, 7, 23, 7, 24, 4),
+(7, 19, 6.7, 20, 3.4, 21, 8, 22, 9, 23, 6, 24, 9),
+(8, 25, 10, 26, 7, 27, 5, 28, 8.5, 29, 9, 30, 10),
+(9, 25, 5.7, 26, 3.6, 27, 9.6, 28, 7, 29, 8, 30, 2),
+(10, 25, 7, 26, 6, 27, 9, 28, 4, 29, 7, 30, 2),
+(11, 1, 5.8, 2, 3, 3, 7, 4, 5, 5, 8, 6, 2),
+(12, 7, 6.9, 8, 2.5, 9, 4.9, 10, 5.3, 11, 7.8, 12, 9),
+(13, 13, 2, 14, 6, 15, 5, 16, 8, 17, 7, 18, 9),
+(14, 19, 9, 20, 7, 21, 5, 22, 3, 23, 2, 24, 7),
+(15, 25, 5, 26, 8, 27, 3, 28, 7, 29, 9, 30, 2),
+(16, 31, 7, 32, 7.9, 33, 4, 34, 7, 35, 9, 36, 3),
+(17, 37, 7, 38, 3, 39, 5, 40, 9, 41, 7, 42, 3),
+(18, 43, 2, 44, 5, 45, 5, 46, 5, 47, 8, 48, 9),
+(19, 49, 5.3, 50, 8.6, 51, 6, 52, 6, 53, 4, 54, 7.2),
+(20, 55, 4.2, 56, 7.4, 57, 4, 58, 6, 59, 8, 60, 4),
+(21, 25, 5, 26, 6, 27, 5, 28, 8, 29, 5, 30, 3),
+(22, 31, 6, 32, 8, 33, 4, 34, 3, 35, 4, 36, 2.75),
+(23, 31, 8, 32, 3, 33, 6, 34, 8, 35, 4, 36, 6),
+(24, 31, 5, 32, 7.2, 33, 7, 34, 9, 35, 4, 36, 4),
+(25, 31, 6.3, 32, 7, 33, 5.2, 34, 6, 35, 2, 36, 4),
+(26, 37, 7, 38, 3, 39, 8, 40, 5, 41, 8, 42, 9),
+(27, 37, 7, 38, 4, 39, 8, 40, 4, 41, 8.8, 42, 0),
+(28, 37, 2, 38, 6, 39, 8, 40, 3, 41, 8, 42, 9),
+(29, 43, 5, 44, 4, 45, 6, 46, 5, 47, 7, 48, 3),
+(30, 49, 5, 50, 7, 51, 5, 52, 6, 53, 9, 54, 7),
+(31, 49, 3, 50, 5, 51, 8, 52, 6, 53, 3, 54, 2),
+(32, 49, 0, 50, 6, 51, 5, 52, 8, 53, 6, 54, 4),
+(33, 49, 8.7, 50, 3.2, 51, 5, 52, 5.4, 53, 6, 54, 5),
+(34, 55, 5, 56, 6, 57, 7.9, 58, 3, 59, 6, 60, 6),
+(35, 55, 4.3, 56, 5.6, 57, 8.4, 58, 4.4, 59, 0, 60, 8),
+(36, 55, 6.4, 56, 6, 57, 7, 58, 3, 59, 5, 60, 7);
 
 -- --------------------------------------------------------
 
@@ -296,7 +317,7 @@ CREATE TABLE `clases` (
   `id` int(4) UNSIGNED NOT NULL,
   `curso` int(1) UNSIGNED NOT NULL,
   `letra` varchar(1) NOT NULL,
-  `titulación` varchar(20) NOT NULL,
+  `titulacion` varchar(20) NOT NULL,
   `id_tutor_clase` int(11) UNSIGNED NOT NULL,
   `numero_alumnos` int(2) UNSIGNED NOT NULL,
   `id_asignatura1` int(11) UNSIGNED NOT NULL,
@@ -311,7 +332,7 @@ CREATE TABLE `clases` (
 -- Dumping data for table `clases`
 --
 
-INSERT INTO `clases` (`id`, `curso`, `letra`, `titulación`, `id_tutor_clase`, `numero_alumnos`, `id_asignatura1`, `id_asignatura2`, `id_asignatura3`, `id_asignatura4`, `id_asignatura5`, `id_asignatura6`) VALUES
+INSERT INTO `clases` (`id`, `curso`, `letra`, `titulacion`, `id_tutor_clase`, `numero_alumnos`, `id_asignatura1`, `id_asignatura2`, `id_asignatura3`, `id_asignatura4`, `id_asignatura5`, `id_asignatura6`) VALUES
 (7, 3, 'A', 'ESO', 8, 3, 1, 2, 3, 4, 5, 6),
 (8, 3, 'B', 'ESO', 1, 5, 31, 32, 33, 34, 35, 36),
 (12, 1, 'C', 'BACHILLERATO', 26, 3, 19, 20, 21, 22, 23, 24),
@@ -399,13 +420,13 @@ CREATE TABLE `comentarios_foro` (
 --
 
 INSERT INTO `comentarios_foro` (`id`, `id_relacion`, `reply`, `id_redactor`, `rol_redactor`, `fecha`, `titulo`, `contenido_comentario`) VALUES
-(1, 1, 0, 10, 'padre', '2020-05-15 08:17:47', 'Duda sobre el pago.', '¿Habrá que realizar un pago adicional o se sumará al coste de la matrícula?'),
-(2, 1, 1, 1, 'profesor', '2020-05-15 08:20:28', 'Pago', 'Se sumará a la matrícula, no tienen que preocuparse por nada.'),
-(3, 3, 0, 9, 'padre', '2020-05-15 08:22:16', 'Igual', 'Mi hija también ha tenido dificultades con ese ejercicio. Llevamos horas intentándolo y nada. ¡Ayuda!'),
-(4, 1, 0, 9, 'padre', '2020-05-15 08:22:56', 'Genial', '¡Qué ganas tiene mi hija de ir! Me alegro de ver lo ilusionada que está.'),
-(5, 1, 1, 9, 'padre', '2020-05-15 08:31:09', 'Yo tampoco lo sabía', 'Yo también tenía la misma duda jajaja. Menos mal que tenemos este foro.'),
-(6, 3, 0, 1, 'profesor', '2020-05-15 08:33:05', 'Solución', 'Se parece mucho al ejercicio 5 del examen de geometría que corregimos el otro día. ¡Echadle un vistazo!'),
-(7, 6, 1, 10, 'padre', '2020-05-15 08:34:46', 'Gracias', 'Muchísimas gracias, es verdad que se parecían. Gracias a eso lo hemos solucionado en un segundo :)');
+(1, 1, 0, 10, 'padre', '2020-05-31 01:02:49', 'Duda', 'Mi hija no me ha sabido decir a qué hora sale el bus del colegio. Esperaba que alguien que lo sepa me responda. Gracias por adelantado.'),
+(2, 1, 1, 9, 'padre', '2020-05-31 01:06:30', 'Yo te respondo', 'Sale el sábado a las 11:30. ¡Un abrazo!'),
+(3, 3, 0, 9, 'padre', '2020-05-31 01:07:16', '¡Ayuda!', 'Mi hija tampoco sabe resolverlo. Ha tenido problemas igual que tu hija. ¿Alguien que nos ayude?'),
+(4, 1, 1, 1, 'profesor', '2020-05-31 01:08:53', 'Información', 'Me alegro de que ya te hayan respondido. De todas formas, tu hija debería haber recibido un panfleto hoy, recuérdale que te lo entregue.'),
+(5, 3, 0, 1, 'profesor', '2020-05-31 01:10:36', 'Resuelto', '¡Qué no cunda el pánico! Ese ejercicio de parece mucho al 7.1 que resolvimos en clase. ¡Recomiendo que le echéis un ojo!'),
+(6, 5, 1, 9, 'padre', '2020-05-31 01:12:09', 'Gracias', 'Menos mal, nos estábamos volviendo locas. Efectivamente se parecía mucho al que nos has dicho.'),
+(7, 1, 0, 9, 'padre', '2020-05-31 01:13:33', '¡Qué ganas!', 'Quería dar las gracias al colegio porque mi hija tiene muchísimas ganas de ir. Creo que habéis logrado involucrarles mucho en las actividades, cosa que como madre sé que es difícil. Muy buen trabajo.');
 
 -- --------------------------------------------------------
 
@@ -429,9 +450,9 @@ CREATE TABLE `entradas_foro` (
 --
 
 INSERT INTO `entradas_foro` (`id`, `id_clase`, `titulo_foro`, `id_creador`, `rol_creador`, `permisos`, `contenido`, `fecha`) VALUES
-(1, 8, 'Visita a la granja escuela', 1, 'profesor', 1, 'El próximo fin de semana iremos la clase 3ºB a una visita a la granja escuela. Cualquier duda que tengan sobre este viaje, no duden en preguntarla.', '2020-05-15 08:12:11'),
-(2, 8, 'Fotos de la granja escuela', 1, 'profesor', 0, '', '2020-05-15 08:13:34'),
-(3, 8, 'Problema de matemáticas', 10, 'padre', 1, 'Mi hija está teniendo problemas con el ejercicio 5 del tema 3. ¿Alguien podría echarnos una mano?', '2020-05-15 08:18:49');
+(1, 8, 'Viaje a la granja escuela', 1, 'profesor', 1, 'Este fin de semana realizaremos un viaje a la granja escuela. Por favor, realicen la transferencia antes del viernes a la cuenta detallada en el archivo que les adjunto. Me gustaría que cualquier otra duda que tengan la planteen en este foro.', '2020-05-31 00:57:17'),
+(2, 8, 'Fotos granja escuela', 1, 'profesor', 0, 'Aquí tenéis las fotos del viaje a la granja escuela. ¡Espero que las disfruten!', '2020-05-31 00:58:25'),
+(3, 8, 'Tarea 5 del tema 3 de Mates', 10, 'padre', 1, 'Mi hija está teniendo problemas con el ejercicio del tema 5 (el de trigonometría) de Matemáticas. Me ha pedido ayuda y tampoco he sabido responder. ¿Alguien que pueda echarnos una mano?', '2020-05-31 01:04:21');
 
 -- --------------------------------------------------------
 
@@ -452,17 +473,17 @@ CREATE TABLE `incidencias` (
 
 INSERT INTO `incidencias` (`id`, `id_asignatura`, `id_alumno`, `msg_incidencia`) VALUES
 (1, 35, '37071162S', 'Ha llegado tarde a clase'),
-(2, 35, '37071162S', 'La he tenido que echar de clase por mal comportamiento'),
-(3, 35, '37071162S', 'No ha hecho la tarea'),
-(4, 36, '37071162S', 'Ha suspendido con un 2');
+(2, 35, '37071162S', 'No ha realizado la tarea'),
+(3, 36, '37071162S', 'Ha realizado un examen deficiente'),
+(4, 36, '37071162S', 'No presta atención en clase');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mensajería`
+-- Table structure for table `mensajeria`
 --
 
-CREATE TABLE `mensajería` (
+CREATE TABLE `mensajeria` (
   `id` int(11) UNSIGNED NOT NULL,
   `id_origen` int(11) UNSIGNED NOT NULL,
   `rol_origen` varchar(20) NOT NULL,
@@ -473,19 +494,17 @@ CREATE TABLE `mensajería` (
   `etiqueta` varchar(20) NOT NULL,
   `nombre_archivo` varchar(50) NOT NULL,
   `archivo` varchar(80) DEFAULT NULL,
-  `tamaño_archivo` int(11) DEFAULT NULL,
+  `tamano_archivo` int(11) DEFAULT NULL,
   `tipo_archivo` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `mensajería`
+-- Dumping data for table `mensajeria`
 --
 
-INSERT INTO `mensajería` (`id`, `id_origen`, `rol_origen`, `id_destinatario`, `rol_destinatario`, `contenido_msg`, `fecha_hora`, `etiqueta`, `nombre_archivo`, `archivo`, `tamaño_archivo`, `tipo_archivo`) VALUES
-(1, 1, 'profesor', 10, 'padre', 'Su hija ha tenido un comportamiento deplorable estos últimos días. Me gustaría que usted viniera con su hija algún día al despacho. Un saludo.', '2020-05-15 08:09:17', '', '', '', 0, ''),
-(2, 10, 'padre', 1, 'profesor', 'También quería hacer una tutoría con usted, a ver si usted me puede ayudar a guiarla en sus estudios. Le adjunto mi horario para que vea qué hora le conviene más.', '2020-05-15 08:16:27', '', 'Horario.docx', './archivos/Horario.docx', 11883, 'application/vnd.openxmlfo'),
-(3, 1, 'profesor', 10, 'padre', 'A las 13:00 del miércoles me viene bien. Nos vemos entonces en mi despacho.', '2020-05-15 08:19:52', '', '', '', 0, ''),
-(4, 10, 'padre', 1, 'profesor', 'Muy bien, nos vemos el miércoles a las 13:00', '2020-05-15 08:33:57', '', '', '', 0, '');
+INSERT INTO `mensajeria` (`id`, `id_origen`, `rol_origen`, `id_destinatario`, `rol_destinatario`, `contenido_msg`, `fecha_hora`, `etiqueta`, `nombre_archivo`, `archivo`, `tamano_archivo`, `tipo_archivo`) VALUES
+(1, 1, 'profesor', 10, 'padre', 'Neus ha tenido una actitud deficiente estos últimos días. Me gustaría tener una tutoría con ella y con usted para hablar de la situación. Por favor, cuénteme que días tiene dispponibles.', '2020-05-31 00:55:03', '', '', '', 0, ''),
+(2, 10, 'padre', 1, 'profesor', 'Estoy de acuerdo, últimamente está irreconocible. A ver si podemos aclarar la situación juntos. Adjunto un archivo con mi disponibilidad. Un saludo.', '2020-05-31 01:01:14', '', 'HORARIOS.docx', './archivos/HORARIOS.docx', 11919, 'application/vnd.openxmlfo');
 
 -- --------------------------------------------------------
 
@@ -502,7 +521,7 @@ CREATE TABLE `profesores` (
   `despacho` int(4) UNSIGNED DEFAULT NULL,
   `correo` varchar(40) NOT NULL,
   `usuario` varchar(15) NOT NULL,
-  `contraseña` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `foto` varchar(80) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -510,7 +529,7 @@ CREATE TABLE `profesores` (
 -- Dumping data for table `profesores`
 --
 
-INSERT INTO `profesores` (`id`, `id_centro`, `nombre`, `apellido1`, `apellido2`, `despacho`, `correo`, `usuario`, `contraseña`, `foto`) VALUES
+INSERT INTO `profesores` (`id`, `id_centro`, `nombre`, `apellido1`, `apellido2`, `despacho`, `correo`, `usuario`, `password`, `foto`) VALUES
 (1, 41000405, 'Javier', 'Sanz', 'Garrido', 0, 'eergtg', 'javisgarr', '$2y$10$b1qEUUyb1E5fZuuac0g.8O9KvlTlCd8FU/JtOJS7OhvMStlri2GN.', 'img\\users\\profesores\\javier.jpg'),
 (2, 8039598, 'Katherine', 'Thompson', NULL, 14, 'KatherineRThompson@gustr.com', 'kathethom', '$2y$10$OKcpMEgTw3lBVvRYBnXbFedeVmHF95bx3pQSQjOOLmwd9/SDaI3T6', 'img\\users\\profesores\\katherine.jpg'),
 (3, 28070913, 'Georgia', 'Potter', NULL, NULL, 'GeorgiaPotter@gmail.com', 'GPotter', '$2y$10$ZCFB8WyTNgQsvJAvqrPrEezL4xY3WAFkgy5nzZrTTMHg4P3wyubJq', 'img\\users\\profesores\\georgia.jpg'),
@@ -547,7 +566,7 @@ CREATE TABLE `tutor_legal` (
   `telefono_fijo` varchar(15) DEFAULT NULL,
   `correo` varchar(40) NOT NULL,
   `usuario` varchar(15) NOT NULL,
-  `contraseña` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `foto` varchar(80) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -555,15 +574,15 @@ CREATE TABLE `tutor_legal` (
 -- Dumping data for table `tutor_legal`
 --
 
-INSERT INTO `tutor_legal` (`id`, `nombre`, `apellido1`, `apellido2`, `telefono_movil`, `telefono_fijo`, `correo`, `usuario`, `contraseña`, `foto`) VALUES
+INSERT INTO `tutor_legal` (`id`, `nombre`, `apellido1`, `apellido2`, `telefono_movil`, `telefono_fijo`, `correo`, `usuario`, `password`, `foto`) VALUES
 (1, 'Francisco', 'Cristobal', 'Casárez', '643 492 101', NULL, 'FCristoCasarez@gustr.com', 'Fcriscas', '$2y$10$oJCfNmuc3Dp1SVDA64LJ3.J/WeWaMGRgwwiXyJ.Jgz0Oq3wkZCos.', 'img\\users\\tutores_legales\\francisco.jpg'),
-(2, 'Bautista', 'Ibarra', 'Chacón', '686 127 193', NULL, 'BautistaChacon@gustr.com', 'bautistaIC', '$2y$10$PC6bzA6YZQxTBtPk/riqaeMmySKjAzz/hYDesHQXdwrtcc8D1PD7S', NULL),
-(3, 'Elenio ', 'Rocha', 'Valverde', '684 704 947', NULL, 'ElenioValverde@gustr.com', 'elerochaval', '$2y$10$veZ/BycDsUxpwXAjhUd4EutdoUAno.58yxWB92xAToVzRPlgHc0A.', NULL),
-(4, 'María', 'Marín', 'Naranjo', '610 449 678', '910606191', 'MariaNaranjo@gustr.com', 'mmnaranj', '$2y$10$VR.OqT2C0eGHMukz8QCf7.CaoyC2mWD64Oqemqtqf0xFYjBze.xtG', NULL),
-(5, 'Helen', 'Ozuna', 'Almonte', '733 029 369', '910600444', 'AlmonteConcepcion@gustr.com', 'helezuna', '$2y$10$wMKXlmPrZJkJVcOOHYtpzOHY0Q9Cphw8P2QR9zZ6C6QsiDwa4jQBK', NULL),
-(6, 'Gara', 'Regalado', 'Montoya', '603 093 237', NULL, 'GaraRMontoya@gustr.com', 'gararemon', '$2y$10$csaZgClSofO56fuIO/QaCenL95FtDvgv4fCa3LYO.dzbg9wveORoS', NULL),
-(7, 'Luján', 'Amaya', 'Delgado', '726 535 611', '910601009', 'LujanDelgado@gmail.com', 'lujamaya', '$2y$10$/BQyWmU7d2ddXLnnO3KeGOuDpVKZfKdb6b6j7dpv8wRdbjPxdZtHO', NULL),
-(8, 'Pedro', 'Otero', 'Franco', '655 224 142', '910608071', 'FedroOteroFranco@gmail.com', 'pedrotero', '$2y$10$H0Zp.ZomzeXLKnYrILW/2uAkd7.4CLHed6kLSaKXSiyXEd.Q/sufa', NULL),
+(2, 'Bautista', 'Ibarra', 'Chacón', '686 127 193', NULL, 'BautistaChacon@gustr.com', 'bautistaIC', '$2y$10$PC6bzA6YZQxTBtPk/riqaeMmySKjAzz/hYDesHQXdwrtcc8D1PD7S', 'img\\users\\tutores_legales\\bautista.jpg'),
+(3, 'Elenio ', 'Rocha', 'Valverde', '684 704 947', NULL, 'ElenioValverde@gustr.com', 'elerochaval', '$2y$10$veZ/BycDsUxpwXAjhUd4EutdoUAno.58yxWB92xAToVzRPlgHc0A.', 'img\\users\\tutores_legales\\elenio.jpg'),
+(4, 'María', 'Marín', 'Naranjo', '610 449 678', '910606191', 'MariaNaranjo@gustr.com', 'mmnaranj', '$2y$10$VR.OqT2C0eGHMukz8QCf7.CaoyC2mWD64Oqemqtqf0xFYjBze.xtG', 'img\\users\\tutores_legales\\maria.jpg'),
+(5, 'Helen', 'Ozuna', 'Almonte', '733 029 369', '910600444', 'AlmonteConcepcion@gustr.com', 'helezuna', '$2y$10$wMKXlmPrZJkJVcOOHYtpzOHY0Q9Cphw8P2QR9zZ6C6QsiDwa4jQBK', 'img\\users\\tutores_legales\\helen.jpg'),
+(6, 'Gara', 'Regalado', 'Montoya', '603 093 237', NULL, 'GaraRMontoya@gustr.com', 'gararemon', '$2y$10$csaZgClSofO56fuIO/QaCenL95FtDvgv4fCa3LYO.dzbg9wveORoS', 'img\\users\\tutores_legales\\gara.jpg'),
+(7, 'Luján', 'Amaya', 'Delgado', '726 535 611', '910601009', 'LujanDelgado@gmail.com', 'lujamaya', '$2y$10$/BQyWmU7d2ddXLnnO3KeGOuDpVKZfKdb6b6j7dpv8wRdbjPxdZtHO', 'img\\users\\tutores_legales\\lujan.jpg'),
+(8, 'Pedro', 'Otero', 'Franco', '655 224 142', '910608071', 'FedroOteroFranco@gmail.com', 'pedrotero', '$2y$10$H0Zp.ZomzeXLKnYrILW/2uAkd7.4CLHed6kLSaKXSiyXEd.Q/sufa', 'img\\users\\tutores_legales\\pedro.jpg'),
 (9, 'Carlos', 'Leyva', 'Gaitán', '748 727 731', '910601031', 'CarlLeyvaGaitan@gustr.com', 'cleyva', '$2y$10$kXFflHmqrdkZ4oy/Ga2qwOpBdJTZm7o.zG6sWPc23poj5HBMIVd4S', NULL),
 (10, 'Emily', 'Bustos', 'Galindo', '750 041 613', '910600448', 'EmilyGalindo@gustr.com', 'emibugalin', '$2y$10$UoWkOXMQGXEvdhJ7MlvauOu4xvo7j3rGLuc29aHGOsINboV80PSW.', NULL),
 (11, 'Ernesto', 'Porras', 'Ortiz', '687 452 124', '910600518', 'ErnestoPorrasOrtiz@gmail.com', 'ernesporras', '$2y$10$m5Y2HCRwMKnNI9ZZOycj3OZyxFvg92hY4z0kZLKOGz1fdUU3E71oW', NULL),
@@ -574,14 +593,17 @@ INSERT INTO `tutor_legal` (`id`, `nombre`, `apellido1`, `apellido2`, `telefono_m
 --
 
 --
+-- Indexes for table `administrador`
+--
+ALTER TABLE `administrador`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `usuario` (`usuario`);
+
+--
 -- Indexes for table `alumnos`
 --
 ALTER TABLE `alumnos`
-  ADD PRIMARY KEY (`DNI`),
-  ADD KEY `fk_alumno_calificaciones` (`id_calificaciones`),
-  ADD KEY `fk_alumno_centro` (`id_centro`),
-  ADD KEY `fk_alumno_clase` (`id_clase`),
-  ADD KEY `fk_alumno_tutor` (`id_tutor_legal`);
+  ADD PRIMARY KEY (`DNI`);
 
 --
 -- Indexes for table `archivos_foro`
@@ -657,9 +679,9 @@ ALTER TABLE `incidencias`
   ADD KEY `fk_asignatura_alumno` (`id_asignatura`);
 
 --
--- Indexes for table `mensajería`
+-- Indexes for table `mensajeria`
 --
-ALTER TABLE `mensajería`
+ALTER TABLE `mensajeria`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -681,6 +703,12 @@ ALTER TABLE `tutor_legal`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `administrador`
+--
+ALTER TABLE `administrador`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `archivos_foro`
@@ -710,7 +738,7 @@ ALTER TABLE `clases`
 -- AUTO_INCREMENT for table `comentarios_foro`
 --
 ALTER TABLE `comentarios_foro`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `entradas_foro`
@@ -725,10 +753,10 @@ ALTER TABLE `incidencias`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `mensajería`
+-- AUTO_INCREMENT for table `mensajeria`
 --
-ALTER TABLE `mensajería`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+ALTER TABLE `mensajeria`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `profesores`
@@ -745,15 +773,6 @@ ALTER TABLE `tutor_legal`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `alumnos`
---
-ALTER TABLE `alumnos`
-  ADD CONSTRAINT `fk_alumno_calificaciones` FOREIGN KEY (`id_calificaciones`) REFERENCES `calificaciones` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_alumno_centro` FOREIGN KEY (`id_centro`) REFERENCES `centros` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_alumno_clase` FOREIGN KEY (`id_clase`) REFERENCES `clases` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_alumno_tutor` FOREIGN KEY (`id_tutor_legal`) REFERENCES `tutor_legal` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `archivos_foro`

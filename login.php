@@ -8,6 +8,7 @@ require_once __DIR__ . '/include/FormularioLogin.php';
     <meta charset="utf-8">
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
   <body>
     <?php

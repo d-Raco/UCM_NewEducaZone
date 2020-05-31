@@ -1,11 +1,11 @@
 <?php
     require_once __DIR__ . '/config.php';
-    require_once __DIR__ . '/dao/Padre.php';
+    require_once __DIR__ . '/dao/DAO_Padre.php';
     require_once __DIR__ . '/Form.php';
 
 
 
-    class FormularioEditarPadre extends Form 
+    class FormularioEditarPadre extends Form
     {
 
         public function __construct() {
@@ -15,7 +15,10 @@
         {
             $padre = new Padre();
             $padre->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
-            $padre->getPadre();
+
+            $dao_padre = new DAO_Padre();
+            $dao_padre->getPadre($padre);
+
             $nombre = $padre->getNombre();
             $apellido1 = $padre->getAp1();
             $apellido2 = $padre->getAp2();
@@ -44,11 +47,13 @@
                 <input class="edit" type="password" placeholder="Contraseña" name="contrasenaNueva" /><br>
                 <b>Repita la contraseña: </b><br>
                 <input class="edit" type="password" placeholder="Contraseña" name="nuevaContrasenaFinal"/><br>
+                <b>Añadir foto: </b><br>
+                <input type="file" name="fileupload"><br>
                 </div>
-                <div class="boton"> 
+                <div class="boton">
                     <button type="submit" class='submit' name="edit">Guardar</button>
-                </div>  
-                   
+                </div>
+
                 EOF;
 
             return $html;
@@ -59,6 +64,7 @@
              protected function procesaFormulario($datos)
              {
                  $padre = new Padre();
+                 $dao_padre = new DAO_PADRE();
 
                  $result = array();
 
@@ -76,6 +82,8 @@
 
                  $contrasenaNueva = isset($datos['contrasenaNueva']) ? htmlspecialchars(trim(strip_tags($datos['contrasenaNueva']))) : null;
 
+                 $file = isset($_FILES['fileupload']) ? $_FILES['fileupload'] : null;
+
                  if ($contrasenaNueva != null && mb_strlen($contrasenaNueva) < 5 ) {
                  $result[] = "La contraseña tiene que tener una longitud de al menos 5 caracteres. ";
                  }
@@ -89,7 +97,10 @@
 
                  if (count($result) === 0) {
                  $padre->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
-                 $padre->getPadre();
+                 $dao_padre->getPadre($padre);
+                 }
+                 else{
+                   return $result;
                  }
                  if( $nombre != null){
                         $padre->setNombre($nombre);
@@ -110,24 +121,22 @@
                         $padre->setCorreo($correo);
                     }
                  if( $contrasenaNueva != null && $nuevaContrasenaFinal != null && strcmp($contrasenaNueva, $nuevaContrasenaFinal) == 0){
-                   
-                        $padre->setContraseña($hash= password_hash($nuevaContrasenaFinal, PASSWORD_BCRYPT, [rand()]));
+
+                        $padre->setContrasena($hash= password_hash($nuevaContrasenaFinal, PASSWORD_BCRYPT, [rand()]));
                         $nuevaContrasenaFinal = $hash= password_hash($nuevaContrasenaFinal, PASSWORD_BCRYPT, [rand()]);
                     }
+                  $foto = null;
+                  if(!empty($file['name'])){
+                      $foto = "./img/users/tutores_legales/" . $file['name'];
+                      $padre->setFoto($foto);
+                      move_uploaded_file($file['tmp_name'], $padre->getFoto());
+                    }
 
-                $padre->updateDatosPadre($nombre, $apellido1,$apellido2,$telefono_movil,$telefono_fijo,$correo,$nuevaContrasenaFinal);
+                $dao_padre->updateDatosPadre($nombre, $apellido1,$apellido2,$telefono_movil,$telefono_fijo,$correo,$nuevaContrasenaFinal,$foto);
 
-            //  require_once __DIR__ . '/ver_padre.php';
-               // hay que hacer que vaya de nuevo al ver_padre 
-          
-
-                   return $result;
+                $url = "https://vm11.aw.e-ucm.es/EducaZone4.0/ver_padre.php";
+                echo "<script>window.open('".$url."','_self');</script>";
+                //header("Location: ./ver_padre.php");
+                //exit;
             }
     }
-
-
-
-        
-
-
-

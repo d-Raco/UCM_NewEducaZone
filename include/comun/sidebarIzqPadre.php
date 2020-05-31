@@ -3,17 +3,25 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="./css/sidebarIzq.css">
+	<script>
+	function goBack() {
+	  window.history.back();
+	}
+	</script>
   </head>
   <body>
     <?php
+	  header("Cache-Control: no cache");
+	  session_cache_limiter("private_no_expire");
       $padre = new Padre();
       $padre->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
-      $padre->getPadre();
-      $result = $padre->getHijos();
+      $dao_padre = new DAO_Padre();
+      $dao_padre->getPadre($padre);
+      $result = $dao_padre->getHijos($padre);
 
     echo
     "<div class='sidebar'>
-      <img src='./img/usuario.png'  width=\"200\" height=\"200\">
+      <img src='".$padre->getFoto()."'  width=\"200\" height=\"200\">
 
       <div class='dropdown_sidebar'>
         <a class='dropbtn_sidebar'>".$_SESSION['name']."</a>
@@ -28,6 +36,9 @@
       <a href='padre_msgnuevo.php'>Mis mensajes</a>
       <a href='foro_seleccion.php'>Foro</a>
       <a href='calendario.php'>Calendario</a>
+	  <div class='back'>
+		<img src='img/back-button-64-64.png' onclick='goBack()'></img>
+	  </div>
     </div>";
     ?>
 

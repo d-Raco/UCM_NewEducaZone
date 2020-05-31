@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/include/dao/Profesor.php';
+require_once __DIR__ . '/include/dao/DAO_Profesor.php';
 require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
@@ -7,7 +7,8 @@ require_once __DIR__ . '/include/config.php';
   <head>
     <meta charset="utf-8">
     <title>Profesor</title>
-    <link rel="stylesheet" type="text/css" href="css/VerPadreyProfe.css">
+    <link rel="stylesheet" type="text/css" href="css/vista_usuario.css">
+    <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
   <body>
    <div class ="profesor">
@@ -20,76 +21,86 @@ require_once __DIR__ . '/include/config.php';
         include("include/comun/sidebarIzqPadre.php");
       }
     ?>
-    <div class="contenido">
-      <div class="info_flex">
-       <div class="cuadradoInfo">
-        <?php
+    <div class="flex_contenido">
+     <?php
+
         $profesor = new Profesor();
+        $dao_profesor = new DAO_Profesor();
 
         if ($_SESSION['rol'] == "profesor"){
           $profesor->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
-          $profesor->getProfe();
         }
         else{
           $profesor->setUsuario(htmlspecialchars(trim(strip_tags($_GET["profesor"]))));
           $id_padre = htmlspecialchars(trim(strip_tags($_GET["tutor"])));
-          $profesor->getProfe();
-          echo "<img src=\"" .$profesor->getFoto(). "\"  width=\"150\" height=\"150\">";
         }
 
-        echo "<h1>".$profesor->getNombre(). " " .$profesor->getAp1(). " " .$profesor->getAp2()."</h1>";
-        echo "<p>Colegio: " .$profesor->getCentro(). ".</p>";
-        echo "<p>Despacho: " .$profesor->getDespacho(). ".</p>";
-        echo "<p>Correo: " .$profesor->getCorreo(). ".</p>";
-        echo "<p>Asignaturas: </p>";
-        $result = $profesor->getAsignaturas();
+        $dao_profesor->getProfe($profesor);
+        $filaCentro = $dao_profesor->getCentro2($profesor->getIdCentro());
+        $filaDespacho = $profesor->getDespacho();
+        $filaCorreo = $profesor->getCorreo();
+        $filaAsignaturas = $dao_profesor->getAsignaturas($profesor->getId());
 
-        while($asig = $result->fetch_assoc()){
-          echo "<ol>".$asig["nombre_asignatura"]."</ol>";
-        }
+        echo "<div class='flex_info'>
+          <br><h1>".$profesor->getNombre(). " " .$profesor->getAp1(). " " .$profesor->getAp2()."</h1>";
+        echo "</div>";
 
-        if ($_SESSION['rol'] == "padre"){
-          $msg = NULL;
-          echo "<p><a href=\"mensajeria.php?tutor=".$id_padre."&profesor=".$profesor->getId()."&contenido_msg=".$msg."\">Enviar mensaje</a></p>";
-        }
-         ?>
-        </div>
-      </div>
-      <div class="cuadrados">
-          <div class="cuadrado">
-          <h1><a href = "Editar_profesor.php">Editar Perfil</a></h1>
-          <p>Modifica tu perfil para conocer todos tus datos.</p>
-          </div>
 
-         <div class="cuadrado">
-          <h1><a href = "foro_seleccion.php">Foro</a></h1>
-          <p>Comparte historias, fotos y buenos recuerdos de las actividades con el colegio.</p>
-         </div>
-
-        <div class="cuadrado">
-          <h1><a href = "mensajeriaClases.php">Mensajeria</a></h1>
-          <p>Intercambia mensajes y archivos con los profesores para mantenerte informado de todo lo necesario sobre las clases de tu hijo.</p>
-        </div>
-
-        <div class="cuadrado">
-          <h1><a href = "horario_profesor.php">Horario</a></h1>
-          <p>Consulta el horario de tus clases de cada semana.</p>
-        </div>
-
-        <div class="cuadrado">
-          <h1><a href = "cursos.php">Cursos</a></h1>
-          <p>Accede a la información de los cursos, clases y alumnos del colegio.</p>
-        </div>
-
-        <div class="cuadrado">
-          <h1>Calendario</a></h1>
-          <p>Revisa tus eventos en el calendario mensual.</p>
-        </div>
-      </div>
+        echo "<div class='flex_funciones'>
+          <div class = 'column1'>
+            <div class = 'flex_informacion'>
+              <div class = 'detalles'>
+                <h4>Detalles del usuario</h4>
+                Correo: " .$filaCorreo. "<br>
+                Despacho: " .$filaDespacho. "<br>
+                Colegio: " .$filaCentro["nombre"]. " (" .$filaCentro["direccion"]. ", id:".$profesor->getUsuario()." " .$filaCentro["provincia"]. ")<br>";
+              echo "</div>";
+              echo "<div class = 'asignaturas'>";
+                echo "<h4>Asignaturas </h4>";
+                $filaAsignaturas = $dao_profesor->getAsignaturas($profesor->getId());
+                while($asignatura = $filaAsignaturas->fetch_assoc()){
+                  echo "<ul>".$asignatura["nombre_asignatura"]."</ul>";
+                }
+              echo "</div>";
+            echo "</div>";
+            echo "<div class='funciones'>";
+              if ($_SESSION['rol'] == "profesor"){
+                //Editar perfil
+                echo "<div class='editarperfil'><a href=\"Editar_profesor.php?\"><img class='clase_imagen' src='./img/editarperfil.png' alt='logo' height='150' width='150'><a><br>
+                <a href = Editar_profesor.php>Editar Perfil</a></div>";
+                echo "<div class='msg'><a href=\"mensajeriaClases.php\"><img class='clase_imagen' src='./img/mensajeria.png' alt='logo' height='150' width='150'></a><br>
+                <a href= mensajeriaClases.php>Mensajeria</a></div>";
+                // Foro
+                echo "<div class='foro'><a href=\"foro_seleccion.php\"><img class='clase_imagen' src='./img/foro.png' alt='logo' height='150' width='150'></a><br>
+                <a href= foro_seleccion.php>Foro</a></div>";
+                //clases
+                echo "<div class='clase'><a href=\"cursos.php\"><img class='clase_imagen' src='./img/clase.png' alt='logo' height='150' width='150'></a><br>
+                <a href= cursos.php>Clases</a></div>";
+                //horario
+                echo "<div class='horario'><a href=\"horario_profesor.php\"><img class='clase_imagen' src='./img/horario.png' alt='logo' height='150' width='150'></a><br>
+                <a href= horario_profesor.php>Horario</a></div>";
+                 //calendario
+                echo "<div class='calendario'><a href=\"calendario.php\"><img class='clase_imagen' src='./img/calendario.png' alt='logo' height='150' width='150'></a><br>
+                <a href= calendario.php>Calendario</a></div>";
+              }
+              else{
+                //Mensajeria
+                echo '<div class="msg">
+                <form name="myform" action="mensajeria.php" method="POST">
+                  <input type="hidden" name="tutor" value="' .$id_padre. '">
+                  <input type="hidden" name="profesor" value="' .$profesor->getId(). '">
+                  <button type="submit">
+                    <img class="clase_imagen" src="./img/mensajeria.png" alt="logo" height="150" width="150"><br>
+                    Nuevo Mensaje
+                  </button>
+                </form><br>
+                </div>';
+              }
+            echo "</div>";//funciones
+          echo "</div>";//columna1
+        echo "</div>";
+	   ?>
     </div>
-    <?php
-      include("include/comun/pie.php");
-    ?>
    </div>
   </body>
 </html>

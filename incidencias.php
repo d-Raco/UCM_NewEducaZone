@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/include/dao/Incidencias.php';
+require_once __DIR__ . '/include/dao/DAO_Incidencias.php';
 require_once __DIR__ . '/include/FormularioIncidencia.php';
 require_once __DIR__ . '/include/config.php';
 ?>
@@ -8,13 +8,16 @@ require_once __DIR__ . '/include/config.php';
   <head>
     <meta charset="utf-8">
     <title>Incidencias Padre</title>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
       <link rel="stylesheet" href="css/tablas.css">
+      <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
   <body>
     <?php
       if (!isset($_SESSION['login'])){
-        header("Location: ./login.php");
+        $url = "https://vm11.aw.e-ucm.es/EducaZone4.0/login.php";
+        echo "<script>window.open('".$url."','_self');</script>";
+        //header("Location: ./login.php");
+        //exit;
       }
     ?>
    <div id ="incidencias">
@@ -27,13 +30,14 @@ require_once __DIR__ . '/include/config.php';
         include("include/comun/sidebarIzqProfesor.php");
       }
     ?>
-    <div class="contenido" style="margin-left: 230px;">
+    <div class="contenido" style="margin-left: 230px;margin-right:100px;">
 
 		<?php
       if($_SESSION['rol'] == "padre"){
         $incidencia = new Incidencias();
-        $incidencia->setIdAsignatura(htmlspecialchars(trim(strip_tags($_GET["idAlumno"]))));
-        $incidencias = $incidencia->getIncidenciasDetalladas();
+        $incidencia->setIdAlumno(htmlspecialchars(trim(strip_tags($_GET["idAlumno"]))));
+        $dao_incidencias = new DAO_Incidencias();
+        $incidencias = $dao_incidencias->getIncidenciasDetalladas($incidencia);
 
         if(!empty($incidencias)){
             echo '<table id="tablaIncidencias">
@@ -63,12 +67,6 @@ require_once __DIR__ . '/include/config.php';
 	</div>
 
     <?php
-    if($_SESSION['rol'] == "padre"){
-      //include("include/comun/sidebarDerPadre.php");
-    }
-    elseif($_SESSION['rol'] == "profesor"){
-      //include("include/comun/sidebarDerProfesor.php");
-    }
     include("include/comun/pie.php");
     ?>
    </div>

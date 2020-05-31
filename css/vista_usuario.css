@@ -1,0 +1,94 @@
+
+.alumno{
+	position: relative;
+}
+
+.flex_contenido{
+	margin:100px 25px 25px 225px;
+	flex-direction: column;
+	justify-content: space-between;
+	display:flex;
+}
+
+.flex_info{
+	margin-top: 25px;
+	background-color: white;
+	padding: 15px;
+	font-size: 15px;
+	align-items: flex-end;
+	display:flex;
+}
+
+.flex_funciones{
+	background-color: white;
+	margin-top:25px; 
+	padding:20px;
+	align-items: stretch;
+	display:flex;
+}
+
+.flex_informacion{
+	justify-content: space-between;
+	display: flex;
+}
+
+.column1, .column2{
+	align-content: center;
+	flex-direction: column;
+	display:flex;
+	flex-grow: 1;
+}
+
+.column2{
+
+	margin-left: 20px;
+	justify-content: flex-start;
+}
+
+.funciones{
+	margin-top: 20px;
+	padding: 15px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #E4E4E4;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	display:flex;
+}
+
+.informacion, .tutor, .incidencia_info, .media, .clase_actual, .prox_clase, .hijos, .asignaturas, .detalles{
+	padding: 15px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #E4E4E4;
+}
+.imagenes_hijos{
+	text-align: center;
+}
+
+.incidencia_info, .media, .clase_actual, .prox_clase{
+	margin-top: 20px;
+}
+
+.asignaturas, .detalles{
+	flex-grow: 1;
+}
+
+.asignaturas{
+	margin-left: 20px;
+}
+
+.clase, .horario, .cal, .incidencias, .msg, .profes, .editarperfil, .foro, .calendario{
+	line-height: 20px;
+  	border-radius: 20px;
+	text-align: center;
+}
+
+.clase_imagen{
+	border-radius: 20px;
+	border: 1px solid #000;
+}
+
+.clase_imagen:hover{
+  box-shadow: 0 0 2px 5px #91C499;
+}

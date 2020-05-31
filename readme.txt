@@ -34,3 +34,6 @@ cleyva		AhhuaMai3ie	Laviana Leyva Guerrero
 emibugalin	OoTha3ae	Neus Benavides Bustos
 ernesporras	Aung7iM0ah	Olalla Porras Rolón
 anavillaper	xahv4Nani6Oo	Romanela Alarcón Villaseñor
+
+ADMINISTRADOR
+admin		administrador

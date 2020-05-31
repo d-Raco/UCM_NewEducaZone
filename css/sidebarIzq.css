@@ -15,7 +15,7 @@ body {
   margin: 0;
   padding: 0;
   width: 200px;
-  background-color: #f1f1f1;
+  background-color: white;
   height: 100%;
   overflow: hidden;
 }
@@ -23,8 +23,15 @@ body {
 .sidebar a, p {
   display: block;
   color: black;
-  padding: 16px;
+  padding: 10px;
   text-decoration: none;
+}
+
+.back img{
+	margin-left: 20px;
+	cursor:pointer;
+	width: 40px;
+    height: 40px;
 }
 
 .sidebar p{
@@ -85,4 +92,8 @@ div.content {
 
 .nombre_profe a:hover{
   background-color: #4CAF50;
+}
+
+.dropbtn_sidebar a{
+  padding: 26px;
 }

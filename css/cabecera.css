@@ -1,8 +1,9 @@
 * {box-sizing: border-box;}
 
-body { 
+body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #f1f1f1;
 }
 
 .header {
@@ -11,7 +12,7 @@ body {
   z-index: 1000;
   position:fixed;
   top:0;
-  width:100%;  
+  width:100%;
   overflow: hidden;
   background-color: #31A36E;
   padding: 10px 30px;
@@ -22,7 +23,7 @@ body {
   text-align: center;
   padding: 12px;
   text-decoration: none;
-  font-size: 25px; 
+  font-size: 25px;
   line-height: 20px;
   border-radius: 10px;
 }
@@ -46,7 +47,7 @@ body {
 
 .titulo, .header a.op {
   color: white;
-  background-color:#31A36E; 
+  background-color:#31A36E;
   padding: 16px;
   font-size: 25px;
   border: none;
@@ -60,12 +61,9 @@ body {
   align-items: center;
 }
 
-.user_fex:hover{
-}
-
 .dropbtn{
   color: white;
-  background-color:#31A36E; 
+  background-color:#31A36E;
   font-size: 20px;
   border: none;
   cursor: pointer;

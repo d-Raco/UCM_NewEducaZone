@@ -1,14 +1,5 @@
-@value --color-verdeFuerte from "./style.css";
-@value --color-verdeFlojo from "./style.css";
-@value --color-mostaza from "./style.css";
-@value --color-beige from "./style.css";
-@value --color-khaki from "./style.css";
-@value --color-blanco from "./style.css";
-
-
 #tablaIncidencias{
-    font-family: Helvetica, Arial, SansSerif, serif;
-    color: --color-verdeFlojo;
+    font-family: Helvetica, Arial, SansSerif;
     font-size: x-large;
     border-collapse: collapse;
     border-spacing: 0;
@@ -21,7 +12,6 @@
 
 #tablaHorario{
     font-family: Helvetica, Arial, SansSerif, serif;
-    color: --color-verdeFlojo;
     font-size: x-large;
     border-collapse: collapse;
     border-spacing: 0;
@@ -101,15 +91,14 @@
 }
 
 #fondoDIV{
-    width: 100%;
     background-color: #31A36E;
     box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     overflow: inherit;
     text-align: center;
-    margin-left: fill;
     position: center;
-    left: 50%;
-    transform: translate(+25%, 0);
+    margin-top:10px;
+    margin-left:250px;
+    margin-right: 10%;
 }
 
 #tituloTabla{

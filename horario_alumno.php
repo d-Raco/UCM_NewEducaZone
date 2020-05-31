@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/include/dao/Clases.php';
+require_once __DIR__ . '/include/dao/DAO_Clases.php';
 require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
@@ -7,11 +7,11 @@ require_once __DIR__ . '/include/config.php';
   <head>
     <meta charset="utf-8">
     <title>Index</title>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
       <link rel="stylesheet" href="css/tablas.css">
+      <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
   <body>
-   
+
     <?php
       include("include/comun/cabecera.php");
       if($_SESSION['rol'] == 'profesor'){
@@ -22,7 +22,8 @@ require_once __DIR__ . '/include/config.php';
       }
     ?>
     <div class ="horario" style="margin-top: 100px;">
-    <div id="contenido" style = "margin-left: 200px;">
+    <div style = "background-color: #f1f1f1;">
+      <br>
       <?php
         $clase = new Clases();
         $clase->setAs1(htmlspecialchars(trim(strip_tags($_GET["id1"]))));
@@ -33,19 +34,20 @@ require_once __DIR__ . '/include/config.php';
         $clase->setAs6(htmlspecialchars(trim(strip_tags($_GET["id6"]))));
         $asignaturas = array();
 
-        $asignaturas[1] =  $clase->getAsignatura($clase->getAs1());
-        $asignaturas[2] =  $clase->getAsignatura($clase->getAs2());
-        $asignaturas[3] =  $clase->getAsignatura($clase->getAs3());
-        $asignaturas[4] =  $clase->getAsignatura($clase->getAs4());
-        $asignaturas[5] =  $clase->getAsignatura($clase->getAs5());
-        $asignaturas[6] =  $clase->getAsignatura($clase->getAs6());
+        $dao_clase = new DAO_Clases();
+        $asignaturas[1] =  $dao_clase->getAsignatura($clase->getAs1());
+        $asignaturas[2] =  $dao_clase->getAsignatura($clase->getAs2());
+        $asignaturas[3] =  $dao_clase->getAsignatura($clase->getAs3());
+        $asignaturas[4] =  $dao_clase->getAsignatura($clase->getAs4());
+        $asignaturas[5] =  $dao_clase->getAsignatura($clase->getAs5());
+        $asignaturas[6] =  $dao_clase->getAsignatura($clase->getAs6());
         ?>
 
         <div id="fondoDIV">
                 <?php
                 echo "<h1 id='tituloTabla'>Horario de ".htmlspecialchars(trim(strip_tags($_GET["id"])))."</h1>";
                 ?>
-          <div class="container">
+          <div>
         <?php
         echo "<table id='tablaHorario'>";
         echo "<tr id='filas'>";

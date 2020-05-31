@@ -1,6 +1,6 @@
 <?php
     require_once __DIR__ . '/config.php';
-    require_once __DIR__ . '/dao/Padre.php';
+    require_once __DIR__ . '/dao/DAO_Padre.php';
     require_once __DIR__ . '/Form.php';
 
 
@@ -32,7 +32,7 @@ class FormularioRegistro extends Form
 
         $html = <<<EOF
             <div class="flex-container">
-                <div class="registro"> 
+                <div class="registro">
                     <b>Nombre del tutor/a legal: </b><br>
                     <input class="control" type="text" placeholder="Nombre" name="nombreTutor" value="$nombreTutor"/><br>
                     <b>Primer apellido del tutor/a legal: </b><br>
@@ -48,9 +48,9 @@ class FormularioRegistro extends Form
                     <b>Usuario: </b><br>
                     <input class="control" type="text" placeholder="Usuario" name="usuario" value="$usuario" required/><br>
                     <b>Contraseña: </b><br>
-                    <input class="control" type="password" placeholder="Contraseña" name="contraseña" required/><br>
+                    <input class="control" type="password" placeholder="Contraseña" name="contrasena" required/><br>
                     <b>Repita la contraseña: </b><br>
-                    <input class="control" type="password" placeholder="Contraseña" name="contraseña2" required/><br>
+                    <input class="control" type="password" placeholder="Contraseña" name="contrasena2" required/><br>
                     <b>Código de acceso: </b><br>
                     <input class="control" type="password" placeholder="Código" name="codigo" required/><br>
                 </div>
@@ -58,7 +58,7 @@ class FormularioRegistro extends Form
                     <img src="./img/signin.png" alt="Avatar" class="sig" height="320" width="480">
                 </div>
             </div>
-            <div class="boton_registro">    
+            <div class="boton_registro">
                 <button type="submit" name="registro">Registrar</button>
             </div>
         EOF;
@@ -69,7 +69,7 @@ class FormularioRegistro extends Form
 
     protected function procesaFormulario($datos)
     {
-        $padre = new Padre();
+        $padre = new DAO_Padre();
 
         $result = array();
 
@@ -78,13 +78,13 @@ class FormularioRegistro extends Form
             $result[] = "El nombre de usuario tiene que tener una longitud de al menos 5 caracteres. ";
         }
 
-        $contraseña = isset($datos['contraseña']) ? htmlspecialchars(trim(strip_tags($datos['contraseña']))) : null;
-        if ( empty($contraseña) || mb_strlen($contraseña) < 5 ) {
+        $contrasena = isset($datos['contrasena']) ? htmlspecialchars(trim(strip_tags($datos['contrasena']))) : null;
+        if ( empty($contrasena) || mb_strlen($contrasena) < 5 ) {
             $result[] = "La contraseña tiene que tener una longitud de al menos 5 caracteres. ";
         }
 
-        $contraseña2 = isset($datos['contraseña2']) ? htmlspecialchars(trim(strip_tags($datos['contraseña2']))) : null;
-        if ( empty($contraseña2) || strcmp($contraseña, $contraseña2) !== 0 ) {
+        $contrasena2 = isset($datos['contrasena2']) ? htmlspecialchars(trim(strip_tags($datos['contrasena2']))) : null;
+        if ( empty($contrasena2) || strcmp($contrasena, $contrasena2) !== 0 ) {
             $result[] = "Las contraseñas deben coincidir. ";
         }
 
@@ -125,12 +125,15 @@ class FormularioRegistro extends Form
                 $padre->setFijo($fijo);
                 $padre->setCorreo($correo);
                 $padre->setUsuario($usuario);
-                $padre->setContraseña($hash= password_hash($contraseña, PASSWORD_BCRYPT, [rand()]));
+                $padre->setContrasena($hash= password_hash($contrasena, PASSWORD_BCRYPT, [rand()]));
 
                 $padre->registro();
                 $padre->actualiza_alumno($codigo);
                 echo "Nuevo registro creado. ";
-                echo "<a href=\"./login.php\">Login</a>";
+                $url = "https://vm11.aw.e-ucm.es/EducaZone4.0/login.php";
+                echo "<script>window.open('".$url."','_self');</script>";
+                //header("Location: ./login.php");
+                //exit;
             }
         }
         return $result;

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/include/dao/Calificaciones.php';
+require_once __DIR__ . '/include/dao/DAO_Calificaciones.php';
 require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
@@ -7,8 +7,8 @@ require_once __DIR__ . '/include/config.php';
 <head>
     <meta charset="utf-8">
     <title>Calificaciones Padre</title>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
     <link rel="stylesheet" type="text/css" href="css/tablas.css">
+    <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
     <?php
@@ -20,13 +20,14 @@ require_once __DIR__ . '/include/config.php';
         }
     ?>
     <div class="cali" style="margin-top: 100px;">
-        <div id="contenido" style = "margin-left: 250px;">
+          <div id="contenido" style = "margin-left: 230px;margin-right: 100px;background-color: #f1f1f1;">
             <h1 id='tituloTabla'>Calificaciones</h1>
             <div id="container">
                 <?php
-                $calificación = new Calificaciones();
-                $calificación->setId(htmlspecialchars(trim(strip_tags($_GET["id"]))));
-                $calificación->getCal();
+                $calificacion = new Calificaciones();
+                $calificacion->setId(htmlspecialchars(trim(strip_tags($_GET["id"]))));
+                $dao_cal = new DAO_Calificaciones();
+                $dao_cal->getCal($calificacion);
                 echo "<table id='tablaIncidencias'>
               <tr id='filas'>
                 <th id='cabecera'>Asignatura</th>
@@ -34,8 +35,8 @@ require_once __DIR__ . '/include/config.php';
               </tr>";
                 for ($i = 1; $i < 7; $i++) {
                     echo "<tr id='filas'>
-                <td id='columna1'>" . $calificación->getNombreAsignatura($i) . "</td>
-                <td id='columna2'>" . $calificación->getNotaAsignatura($i) . "</td>
+                <td id='columna1'>" . $dao_cal->getNombreAsignatura($calificacion, $i) . "</td>
+                <td id='columna2'>" . $calificacion->getNotaAsignatura($i) . "</td>
               </tr>";
                 }
                 echo "</table>";

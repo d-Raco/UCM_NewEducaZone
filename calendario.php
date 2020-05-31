@@ -17,24 +17,28 @@ if(isset($_GET['code'])) {
     }
 }
 else{
-    header('Location: ./calendarioAcceso.php'); //redirige a la pagina de acceso de google
+    $url = "https://vm11.aw.e-ucm.es/EducaZone4.0/calendarioAcceso.php";
+    echo "<script>window.open('".$url."','_self');</script>";
+    //header('Location: ./calendarioAcceso.php'); //redirige a la pagina de acceso de google
 }
 
 
-require_once __DIR__ . '/include/dao/Incidencias.php';
 require_once __DIR__ . '/include/config.php';
 include("include/comun/cabecera.php");
 include("include/comun/sidebarIzqProfesor.php");
-include("include/comun/sidebarDerProfesor.php");
 include("include/comun/pie.php");
-include("include/dao/Alumno.php");
-include("include/dao/Centro.php");
+include("include/dao/DAO_Alumno.php");
+include("include/dao/DAO_Centro.php");
+
+echo '<div id="fondoDIV">';
 
 if($_SESSION['rol'] == "profesor")/*Si es profesor, recibe su centro y lo guarda en $colegio*/{
     $profesor = new Profesor();
     $profesor->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
-    $profesor->getProfe();
-    $colegio = substr(preg_replace("/\([^)]+\)/", "", $profesor->getCentro()), 0, -1);
+    $dao_profesor = new DAO_Profesor();
+    $dao_profesor->getProfe($profesor);
+    $colegio = $dao_profesor->getCentro2($profesor->getIdCentro())["nombre"];;
+
 
     $calendar = $capi->GetCalendarsList($data['access_token']);
     $contadorCalendarioUnico = 0;
@@ -81,4 +85,5 @@ else/*Si es padre recorre todos los centros de sus hijos y muestra todos los cal
         else
             echo "<h2 id='noCalendario'>No se ha encontrado un calendario con nombre: ". $colegio . " en su Google calendar, revise si ha seleccionado la cuenta correcta o si existe un calendario de su organización.</h2>";
     }
+    echo '</div>';
 }

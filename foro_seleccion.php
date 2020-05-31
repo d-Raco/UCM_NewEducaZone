@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__ . '/include/config.php';
-require_once __DIR__ . '/include/dao/Padre.php';
-require_once __DIR__ . '/include/dao/Profesor.php';
-require_once __DIR__ . '/include/dao/Clases.php';
+require_once __DIR__ . '/include/dao/DAO_Padre.php';
+require_once __DIR__ . '/include/dao/DAO_Profesor.php';
+require_once __DIR__ . '/include/dao/DAO_Clases.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,7 +14,10 @@ require_once __DIR__ . '/include/dao/Clases.php';
   <body>
     <?php
        if (!isset($_SESSION['login'])){
-        header("Location: ./login.php");
+         $url = "https://vm11.aw.e-ucm.es/EducaZone4.0/login.php";
+         echo "<script>window.open('".$url."','_self');</script>";
+         //header("Location: ./login.php");
+         //exit;
       }
     ?>
    <div id ="profesor">
@@ -36,24 +39,31 @@ require_once __DIR__ . '/include/dao/Clases.php';
       if($_SESSION['rol'] == "padre"){
         $usuario = new Padre();
         $usuario->setUsuario($username);
-        $usuario->getPadre();
-        $result = $usuario->getHijos();
+
+        $dao_usuario = new DAO_Padre();
+        $dao_usuario->getPadre($usuario);
+
+        $result = $dao_usuario->getHijos($usuario);
         while($row = $result->fetch_assoc()){
           echo '<li>
-                <a href="foro.php?idClase=' .$row["id_clase"]. '">Foro a la clase de ' .$row["nombre"]. '.</a><br>
+                <a href="foro.php?idClase=' .$row["id_clase"]. '">Foro a la clase de ' .$row["nombre"]. '</a><br>
           </li>';
         }
       }
       elseif($_SESSION['rol'] == "profesor"){
         $usuario = new Profesor();
         $usuario->setUsuario($username);
-        $usuario->getProfe();
+        $dao_usuario = new DAO_Profesor();
+        $dao_usuario->getProfe($usuario);
+
         $clases = new Clases();
         $clases->setIdTutor($usuario->getId());
-        $result = $clases->getClaseByTutor();
+        $dao_clases = new DAO_Clases();
+        $result = $dao_clases->getClaseByTutor($usuario->getId());
+
         while($row = $result->fetch_assoc()){
           echo '<li>
-                <a href="foro.php?idClase=' .$row["id"]. '">Foro a la clase ' .$row["curso"]. 'º ' .$row["letra"]. ' ' .$row["titulación"]. '.</a>
+                <a href="foro.php?idClase=' .$row["id"]. '">Foro a la clase ' .$row["curso"]. 'º ' .$row["letra"]. ' ' .$row["titulacion"]. '</a>
           </li>';
         }
       }
@@ -62,12 +72,6 @@ require_once __DIR__ . '/include/dao/Clases.php';
     </div>
 
     <?php
-    if($_SESSION['rol'] == "padre"){
-      //include("include/comun/sidebarDerPadre.php");
-    }
-    elseif($_SESSION['rol'] == "profesor"){
-      //include("include/comun/sidebarDerProfesor.php");
-    }
     include("include/comun/pie.php");
     ?>
    </div>

@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/config.php';
-require_once __DIR__ . '/dao/Padre.php';
-require_once __DIR__ . '/dao/Profesor.php';
+require_once __DIR__ . '/dao/DAO_Padre.php';
+require_once __DIR__ . '/dao/DAO_Profesor.php';
+require_once __DIR__ . '/dao/DAO_Admin.php';
 require_once __DIR__ . '/Form.php';
 
 class FormularioLogin extends Form
@@ -54,35 +55,66 @@ class FormularioLogin extends Form
           $padre = new Padre();
           $padre->setId(0);
           $padre->setUsuario($nombreUsuario);
-          $padre->getPadre();
+          $dao_padre = new DAO_Padre();
+          $dao_padre->getPadre($padre);
+
           $profesor = new Profesor();
           $profesor->setId(0);
           $profesor->setUsuario($nombreUsuario);
-          $profesor->getProfe();
+          $dao_profesor = new DAO_Profesor();
+          $dao_profesor->getProfe($profesor);
+
+          $admin = new Admin();
+          $admin->setUsuario($nombreUsuario);
+          $dao_admin = new DAO_Admin();
+          $dao_admin->getAdmin($admin);
 
           if($padre->getId() != 0){ //PADRE
-            if(password_verify($password, $padre->getContraseña())){
+            if(password_verify($password, $padre->getContrasena())){
                 $_SESSION['login'] = TRUE;
                 $_SESSION['name'] = $nombreUsuario;
                 $_SESSION['rol'] = 'padre';
-                header("Location: ./index.php");
+                $url = "https://vm11.aw.e-ucm.es/EducaZone4.0/ver_padre.php";
+                echo "<script>window.open('".$url."','_self');</script>";
+                //header("Location: ./ver_padre.php");
+                //exit;
             }
             else{
               $result[] = "Error: Usuario o contraseña invalidos. ";
             }
           }
           else if($profesor->getId() != 0){ //PROFE
-           // echo $profesor->getContraseña();
-            if(password_verify($password, $profesor->getContraseña())){
+           // echo $profesor->getContrasena();
+            if(password_verify($password, $profesor->getContrasena())){
               $_SESSION['login'] = TRUE;
               $_SESSION['name'] = $nombreUsuario;
               $_SESSION['rol'] = 'profesor';
-              header("Location: ./ver_profesor.php");
+              $url = "https://vm11.aw.e-ucm.es/EducaZone4.0/ver_profesor.php";
+              echo "<script>window.open('".$url."','_self');</script>";
+              //header("Location: ./ver_profesor.php");
+              //exit;
             }
+
             else{
               $result[] = "Error: Usuario o contraseña invalidos. ";
             }
           }
+           else if($admin->getId() != 0){ //Admin
+           // echo $admin->getContrasena();
+          if(password_verify($password, $admin->getContrasena())){
+
+              $_SESSION['login'] = TRUE;
+              $_SESSION['name'] = $nombreUsuario;
+              $_SESSION['rol'] = 'admin';
+              $url = "https://vm11.aw.e-ucm.es/EducaZone4.0/ver_admin.php";
+              echo "<script>window.open('".$url."','_self');</script>";
+              //header("Location: ./ver_admin.php");
+              //exit;
+            }
+             else{
+              $result[] = "Error: Usuario o contraseña invalidos. ";
+        }
+      }
           else{
             $result[] = "Error: Usuario o contraseña invalidos. ";
           }

@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/include/dao/Profesor.php';
-require_once __DIR__ . '/include/dao/Clases.php';
+require_once __DIR__ . '/include/dao/DAO_Profesor.php';
+require_once __DIR__ . '/include/dao/DAO_Clases.php';
 require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
@@ -13,7 +13,10 @@ require_once __DIR__ . '/include/config.php';
   <body>
     <?php
       if (!isset($_SESSION['login']) || ($_SESSION['rol'] != 'profesor')){
-        header("Location: ./login.php");
+        $url = "https://vm11.aw.e-ucm.es/EducaZone4.0/login.php";
+        echo "<script>window.open('".$url."','_self');</script>";
+        //header("Location: ./login.php");
+        //exit;
       }
     ?>
    <div id ="cursos">
@@ -26,17 +29,19 @@ require_once __DIR__ . '/include/config.php';
       <?php
         $profesor = new Profesor();
         $profesor->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
-        $profesor->getProfe();
+        $dao_profesor = new DAO_Profesor();
+        $dao_profesor->getProfe($profesor);
 
         $clase = new Clases();
         $clase->setIdTutor($profesor->getId());
-        $result = $clase->getAsignaturas();
+        $dao_clase = new DAO_Clases();
+        $result = $dao_clase->getAsignaturas($profesor->getId());
         $idClase = NULL;
 
         echo "<div class='w3-container'><ul class=\"w3-ul\">";
         while($fila = $result->fetch_assoc()){
           $id_asignatura = $fila["id"];
-          $clase->getClaseByAsignatura($id_asignatura);
+          $dao_clase->getClaseByAsignatura($clase, $id_asignatura);
           if($idClase != $clase->getId()){
             echo
             "<li>

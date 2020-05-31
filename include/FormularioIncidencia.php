@@ -17,8 +17,8 @@ class FormularioIncidencia extends Form
     {
         $alumno = $this->incidencia->getIdAlumno();
         $asignatura = $this->incidencia->getIdAsignatura();
-
-        $row = $this->incidencia->getInfo();
+        $dao_incidencia = new DAO_Incidencias();
+        $row = $dao_incidencia->getInfo($this->incidencia);
 
         echo "<table id='tablaIncidencias'>
                 <tr id='filas'>
@@ -26,7 +26,7 @@ class FormularioIncidencia extends Form
             "</th>
                 </tr>" ;
 
-        $incidencias = $this->incidencia->getIncidencias();
+        $incidencias = $dao_incidencia->getIncidencias($this->incidencia);
 
         if(!empty($incidencias)){
             foreach($incidencias as &$value){
@@ -63,9 +63,10 @@ class FormularioIncidencia extends Form
             $result[] = "La incidencia está vacía. ";
         }
         else{
-          $this->incidencia->setId($this->incidencia->getNumIncidencias() + 1);
+            $dao_incidencia = new DAO_Incidencias();
+          $this->incidencia->setId($dao_incidencia->getNumIncidencias() + 1);
           $this->incidencia->setMsgIncidencia($msg);
-          $this->incidencia->insertIncidencia();
+          $dao_incidencia->insertIncidencia($this->incidencia);
         }
 
         return $result;

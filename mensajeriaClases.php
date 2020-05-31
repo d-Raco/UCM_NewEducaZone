@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/include/dao/Profesor.php';
+require_once __DIR__ . '/include/dao/DAO_Profesor.php';
 require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
@@ -7,38 +7,30 @@ require_once __DIR__ . '/include/config.php';
   <head>
     <meta charset="utf-8">
     <title>Clases para Mensajería</title>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" type="text/css" href="css/mensajeriaAlumnos.css">
   </head>
   <body>
-    <?php
-      if (!isset($_SESSION['login']) || $_SESSION['rol'] != 'profesor'){
-        header("Location: ./login.php");
-      }
-    ?>
+
    <div id ="profesor">
     <?php
       include("include/comun/cabecera.php");
       include("include/comun/sidebarIzqProfesor.php");
     ?>
     <div class="contenido" style = "margin-left: 230px;">
-      <h1>Destinatario</h1>
+      <h1>Seleccione la clase del alumno a contactar</h1>
       <?php
       $profesor = new Profesor();
-      $profesor->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION['name']))));
-      $profesor->getProfe();
+      $profesor->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
+      $dao_profesor = new DAO_Profesor();
+      $dao_profesor->getProfe($profesor);
       $idProfesor = $profesor->getId();
-      $clases = $profesor->getAsignaturasProfesor();
+      $clases = $dao_profesor->getAsignaturasProfesor($idProfesor);
+      echo "<div class='w3-container'><ul class=\"w3-ul\">";
       foreach($clases as &$value){
-        ?>
-        <div class="bloque">
-          <div class="container">
-            <?php
-              echo "<p><a href=\"mensajeriaAlumnos.php?id=" .$value["id"]. "&profesor=" .$idProfesor. "\">" .$value["curso"]. "º " .$value["titulación"]. " " .$value["letra"]. "</a> (Número de alumnos: " .$value["numero_alumnos"]. ")</p>";
-            ?>
-          </div>
-        </div>
-    <?php
+        echo "<li><a href=\"mensajeriaAlumnos.php?id=" .$value["id"]. "&profesor=" .$idProfesor. "\">" .$value["curso"]. "º " .$value["titulacion"]. " " .$value["letra"]. "</a> (Número de alumnos: " .$value["numero_alumnos"]. ")</li>";
       }
+      echo '</ul></div>';
       ?>
     </div>
 

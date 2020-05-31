@@ -5,7 +5,7 @@ ini_set('default_charset', 'UTF-8');
 setLocale(LC_ALL, 'es_ES.UTF.8');
 date_default_timezone_set('Europe/Madrid');
 
-define('BD_HOST', 'localhost');
+define('BD_HOST', 'vm11.db.swarm.test');
 define('BD_NAME', 'centros_educativos');
 define('BD_USER', 'administrador');
 define('BD_PASS', 'administrador');

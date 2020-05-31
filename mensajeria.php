@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/include/dao/Mensajes.php';
-require_once __DIR__ . '/include/FormularioMensajería.php';
+require_once __DIR__ . '/include/dao/DAO_Mensajes.php';
+require_once __DIR__ . '/include/FormularioMensajeria.php';
 require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
@@ -9,11 +9,15 @@ require_once __DIR__ . '/include/config.php';
     <meta charset="utf-8">
     <title>Mensajería</title>
     <link rel="stylesheet" type="text/css" href="css/mensajeria.css">
+    <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
   <body>
     <?php
       if (!isset($_SESSION['login']) ){
-        header("Location: ./login.php");
+        $url = "https://vm11.aw.e-ucm.es/EducaZone4.0/login.php";
+        echo "<script>window.open('".$url."','_self');</script>";
+        //header("Location: ./login.php");
+        //exit;
       }
     ?>
    <div id ="profesor">
@@ -32,7 +36,7 @@ require_once __DIR__ . '/include/config.php';
         echo "El alumno no tiene un tutor legal registrado.";
       }
       else{
-        $form = new FormularioMensajería(htmlspecialchars(trim(strip_tags($_REQUEST["tutor"]))), htmlspecialchars(trim(strip_tags($_REQUEST["profesor"]))));
+        $form = new FormularioMensajeria(htmlspecialchars(trim(strip_tags($_REQUEST["tutor"]))), htmlspecialchars(trim(strip_tags($_REQUEST["profesor"]))));
         $form->gestiona();
       }
       echo "</div>";

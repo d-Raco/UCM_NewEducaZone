@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url(font-awesome.min.css);
 @import "https://fonts.googleapis.com/css?family=Raleway:100,300,600";
 
 /*
@@ -2940,7 +2939,7 @@
 
 	#banner {
 		padding: 12em 0 10em 0;
-		background-image: url("/img/niño_cooreando.jpg");
+		background-image: url("/img/nino_cooreando.jpg");
 		background-size: cover;
 		background-position: top;
 		background-attachment: fixed;

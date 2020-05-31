@@ -1,9 +1,9 @@
 <?php
 require_once __DIR__ . '/include/config.php';
-require_once __DIR__ . '/include/dao/Padre.php';
-require_once __DIR__ . '/include/dao/Profesor.php';
-require_once __DIR__ . '/include/dao/Clases.php';
-require_once __DIR__ . '/include/dao/Entradas_foro.php';
+require_once __DIR__ . '/include/dao/DAO_Padre.php';
+require_once __DIR__ . '/include/dao/DAO_Profesor.php';
+require_once __DIR__ . '/include/dao/DAO_Clases.php';
+require_once __DIR__ . '/include/dao/DAO_Entradas_Foro.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +15,10 @@ require_once __DIR__ . '/include/dao/Entradas_foro.php';
   <body>
     <?php
        if (!isset($_SESSION['login'])){
-        header("Location: ./login.php");
+         $url = "https://vm11.aw.e-ucm.es/EducaZone4.0/login.php";
+         echo "<script>window.open('".$url."','_self');</script>";
+         //header("Location: ./login.php");
+         //exit;
       }
     ?>
    <div id ="profesor">
@@ -36,8 +39,10 @@ require_once __DIR__ . '/include/dao/Entradas_foro.php';
       if($_SESSION['rol'] == "padre"){
         $usuario = new Padre();
         $usuario->setUsuario($username);
-        $usuario->getPadre();
-        $result = $usuario->getHijos();
+        $dao_usuario = new DAO_Padre();
+        $dao_usuario->getPadre($usuario);
+
+        $result = $dao_usuario->getHijos($usuario);
         while($row = $result->fetch_assoc()){
           if($row["id_clase"] === $idClase){
             $bien = TRUE;
@@ -47,10 +52,13 @@ require_once __DIR__ . '/include/dao/Entradas_foro.php';
       elseif($_SESSION['rol'] == "profesor"){
         $usuario = new Profesor();
         $usuario->setUsuario($username);
-        $usuario->getProfe();
+        $dao_usuario = new DAO_Profesor();
+        $dao_usuario->getProfe($usuario);
+
         $clases = new Clases();
+        $dao_clases = new DAO_Clases();
         $clases->setIdTutor($usuario->getId());
-        $result = $clases->getClaseByTutor();
+        $result = $dao_clases->getClaseByTutor($usuario->getId());
         while($row = $result->fetch_assoc()){
           if($row["id"] === $idClase){
             $bien = TRUE;
@@ -61,7 +69,8 @@ require_once __DIR__ . '/include/dao/Entradas_foro.php';
       if($bien){
         $clase = new Clases();
         $clase->setId($idClase);
-        $clase->getClaseById();
+        $dao_clase = new DAO_Clases();
+        $dao_clase->getClaseById($clase);
         echo '<h1>Foro de la clase ' .$clase->getCurso(). 'º ' .$clase->getLetra(). ' ' .$clase->getTitul(). '</h1>';
         echo '<form action="foro_crea.php" method="post">
               <input type="hidden" name="idClase" value="'.$idClase.'">
@@ -71,13 +80,16 @@ require_once __DIR__ . '/include/dao/Entradas_foro.php';
         echo "<div class='w3-container'><ul class=\"w3-ul\">";
         $foro = new Entradas_foro();
         $foro->setIdClase($idClase);
-        $result = $foro->getEntradasForoByClase();
+        $dao_foro = new DAO_Entradas_foro();
+        $result = $dao_foro->getEntradasForoByClase($clase);
+
         if($result->num_rows > 0){
           while($row = $result->fetch_assoc()){
             if($row["rol_creador"] === "padre"){
               $padre = new Padre();
               $padre->setId($row["id_creador"]);
-              $padre->getPadreById();
+              $dao_padre = new DAO_Padre();
+              $dao_padre->getPadreById($padre);
               echo '<li>
                     <a href="foro_entrada.php?idClase=' .$idClase. '&idEntrada=' .$row["id"]. '">' .$row["fecha"]. ' ' .$padre->getNombre(). ' ' .$padre->getAp1(). ' ' .$padre->getAp2(). ' (Padre) ' .$row["titulo_foro"]. ' </a><br>
               </li>';
@@ -85,7 +97,8 @@ require_once __DIR__ . '/include/dao/Entradas_foro.php';
             else if($row["rol_creador"] === "profesor"){
               $profesor = new Profesor();
               $profesor->setId($row["id_creador"]);
-              $profesor->getProfesorById();
+              $dao_profesor = new DAO_Profesor();
+              $dao_profesor->getProfesorById($profesor);
               echo '<li>
                     <a href="foro_entrada.php?idClase=' .$idClase. '&idEntrada=' .$row["id"]. '">' .$row["fecha"]. ' ' .$profesor->getNombre(). ' ' .$profesor->getAp1(). ' ' .$profesor->getAp2(). ' (Profesor) ' .$row["titulo_foro"]. ' </a><br>
               </li>';
@@ -95,21 +108,18 @@ require_once __DIR__ . '/include/dao/Entradas_foro.php';
         else{
           echo("No hay entradas en el foro.");
         }
-        echo "</div>";
+        echo "</ul></div>";
       }
       else{
-        header("Location: ./login.php");
+        $url = "https://vm11.aw.e-ucm.es/EducaZone4.0/login.php";
+        echo "<script>window.open('".$url."','_self');</script>";
+        //header("Location: ./login.php");
+        //exit;
       }
       ?>
     </div>
 
     <?php
-    if($_SESSION['rol'] == "padre"){
-      //include("include/comun/sidebarDerPadre.php");
-    }
-    elseif($_SESSION['rol'] == "profesor"){
-      //include("include/comun/sidebarDerProfesor.php");
-    }
     include("include/comun/pie.php");
     ?>
    </div>

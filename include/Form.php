@@ -131,7 +131,7 @@ abstract class Form
 
         $html= $this->generaListaErrores($errores);
 
-        if($this->formId === "formMensajería" || $this->formId === "formForo"){
+        if($this->formId === "formMensajeria" || $this->formId === "formForo" || $this->formId === "formEditarPadre" || $this->formId === "formRegistroAlumno"){
           $html .= '<form method="POST" action="'.$this->action.'" id="'.$this->formId.'" enctype="multipart/form-data">';
         }
         else{

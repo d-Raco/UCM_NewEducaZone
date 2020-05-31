@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/include/dao/Clases.php';
+require_once __DIR__ . '/include/dao/DAO_Clases.php';
 require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
@@ -27,15 +27,16 @@ require_once __DIR__ . '/include/config.php';
         $clase = new Clases();
         $clase->setId($id);
 
-        $result = $clase->getAlumnos();
+        $dao_clase = new DAO_Clases();
+        $result = $dao_clase->getAlumnos($id);
 
         if ($_SESSION['rol'] == "profesor"){
-          $clase->setClase($id);
+          $dao_clase->setClase($clase);
           echo "<h1>Clase de ".$clase->getCurso()." ".$clase->getLetra()." ".$clase->getTitul()."</h1><br>";
 
           echo "<div class='w3-container'><ul class=\"w3-ul\">";
           while($fila = $result->fetch_assoc()){
-            echo 
+            echo
             "<li>
               <img src=".$fila["foto"]." class=\" w3-circle \" style=\"width:50px\">
                 <a href=\"ver_alumno.php?id=" .$fila["DNI"]. "\">"." ".$fila["nombre"]." ".$fila["apellido1"]." ".$fila["apellido2"]."</a><br>

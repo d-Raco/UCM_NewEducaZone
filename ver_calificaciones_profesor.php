@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . '/include/dao/Calificaciones.php';
-require_once __DIR__ . '/include/dao/Profesor.php';
-require_once __DIR__ . '/include/dao/Alumno.php';
+require_once __DIR__ . '/include/dao/DAO_Calificaciones.php';
+require_once __DIR__ . '/include/dao/DAO_Profesor.php';
+require_once __DIR__ . '/include/dao/DAO_Alumno.php';
 require_once __DIR__ . '/include/config.php';
 ?>
 <!DOCTYPE html>
@@ -9,12 +9,15 @@ require_once __DIR__ . '/include/config.php';
   <head>
     <meta charset="utf-8">
     <title>Calificaciones Profesor</title>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
   <body>
     <?php
       if (!isset($_SESSION['login']) || ($_SESSION['rol'] != 'profesor')){
-        header("Location: ./login.php");
+        $url = "https://vm11.aw.e-ucm.es/EducaZone4.0/login.php";
+        echo "<script>window.open('".$url."','_self');</script>";
+        //header("Location: ./login.php");
+        //exit;
       }
     ?>
    <div class="cali" style="margin-top: 100px;">
@@ -22,24 +25,29 @@ require_once __DIR__ . '/include/config.php';
       include("include/comun/cabecera.php");
       include("include/comun/sidebarIzqProfesor.php");
     ?>
-    <div id="contenido" style = "margin-left: 230px;">
+    <div id="contenido" style = "margin-left: 230px">
       <?php
         $profesor = new Profesor();
+        $dao_profesor = new DAO_Profesor;
+
         $alumno = new Alumno();
+        $dao_alumno = new DAO_Alumno();
+
+        $calificación = new Calificaciones();
+        $dao_cal = new DAO_Calificaciones();
 
         $profesor->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
-        $profesor->getProfe();
+        $dao_profesor->getProfe($profesor);
         $alumno->setDNI(htmlspecialchars(trim(strip_tags($_GET["idAl"]))));
-        $alumno->getAlumno();
-        $calificación = new Calificaciones();
+        $dao_alumno->getAlumno($alumno);
         $calificación->setId(htmlspecialchars(trim(strip_tags($alumno->getCal()))));
-        $calificación->getCal();
-        $calificación->setNota(htmlspecialchars(trim(strip_tags($_GET["idAsignatura"]))), htmlspecialchars(trim(strip_tags($_GET["notaNueva"]))));
+        $dao_cal->getCal($calificación);
+        $dao_cal->setNota($calificación, htmlspecialchars(trim(strip_tags($_GET["idAsignatura"]))), htmlspecialchars(trim(strip_tags($_GET["notaNueva"]))));
 
         echo "<h1>Calificación de " .$alumno->getNombre(). " " .$alumno->getAp1(). " " .$alumno->getAp2(). ":</h1>";
 
-        $calificación->getCal();
-        $filaAsignaturas = $calificación->getFilaAsignaturasProfesor($profesor->getId());
+        $dao_cal->getCal($calificación);
+        $filaAsignaturas = $dao_cal->getFilaAsignaturasProfesor($calificación, $profesor->getId());
 
         foreach ($filaAsignaturas as &$value) {
           echo "<p>" .$value["nombre_asignatura"]. ": ";

@@ -1,6 +1,6 @@
 <?php
     require_once __DIR__ . '/config.php';
-    require_once __DIR__ . '/dao/Profesor.php';
+    require_once __DIR__ . '/dao/DAO_Profesor.php';
     require_once __DIR__ . '/Form.php';
 
 
@@ -15,7 +15,8 @@ class FormularioEditProfesor extends Form
 
         $profesor = new Profesor();
         $profesor->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
-        $profesor->getProfe();
+        $dao_profesor = new DAO_Profesor();
+        $dao_profesor->getProfe($profesor);
 
 
         $nombre = $profesor->getNombre();
@@ -25,7 +26,7 @@ class FormularioEditProfesor extends Form
         $correo = $profesor->getCorreo();
         $contrasenaNueva = " ";
         $nuevaContrasenaFinal  = " ";
-   
+
 
         $html = <<<EOF
                     <div class="contenido">
@@ -41,9 +42,9 @@ class FormularioEditProfesor extends Form
                         <b>Correo: </b><br>
                         <input class="edit" type="text" placeholder="$correo" name="correo"/><br>
                         <b>Contraseña: </b><br>
-                        <input class="edit" type="password" placeholder="Contraseña" name="contraseña" /><br>
+                        <input class="edit" type="password" placeholder="Contraseña" name="contrasena" /><br>
                         <b>Repita la contraseña: </b><br>
-                        <input class="edit" type="password" placeholder="Contraseña" name="contraseña2" /><br>
+                        <input class="edit" type="password" placeholder="Contraseña" name="contrasena2" /><br>
                       </div>
                       <div class="boton">
                           <button class='submit' type="submit" name="registro">Guardar</button>
@@ -57,7 +58,7 @@ class FormularioEditProfesor extends Form
 
     protected function procesaFormulario($datos)
     {
-        $profesor = new profesor();
+        $profesor = new Profesor();
 
         $result = array();
 
@@ -71,13 +72,13 @@ class FormularioEditProfesor extends Form
 
         $correo = isset($datos['correo']) ? htmlspecialchars(trim(strip_tags($datos['correo']))) : null;
 
-        $contrasenaNueva = isset($datos['contraseña']) ? htmlspecialchars(trim(strip_tags($datos['contraseña']))) : null;
+        $contrasenaNueva = isset($datos['contrasena']) ? htmlspecialchars(trim(strip_tags($datos['contrasena']))) : null;
 
         if ($contrasenaNueva != null && mb_strlen($contrasenaNueva) < 5 ) {
         $result[] = "La contraseña tiene que tener una longitud de al menos 5 caracteres. ";
         }
 
-        $nuevaContrasenaFinal = isset($datos['contraseña2']) ? htmlspecialchars(trim(strip_tags($datos['contraseña2']))) : null;
+        $nuevaContrasenaFinal = isset($datos['contrasena2']) ? htmlspecialchars(trim(strip_tags($datos['contrasena2']))) : null;
 
         if (strcmp($contrasenaNueva, $nuevaContrasenaFinal) !== 0 ) {
         $result[] = "Las contraseñas deben coincidir. ";
@@ -86,7 +87,11 @@ class FormularioEditProfesor extends Form
 
         if (count($result) === 0) {
           $profesor->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
-          $profesor->getProfe();
+          $dao_profesor = new DAO_Profesor();
+          $dao_profesor->getProfe($profesor);
+        }
+        else{
+          return $result;
         }
         if( $nombre != null){
                $profesor->setNombre($nombre);
@@ -105,12 +110,16 @@ class FormularioEditProfesor extends Form
            }
         if( $contrasenaNueva != null && $nuevaContrasenaFinal != null && strcmp($contrasenaNueva, $nuevaContrasenaFinal) == 0){
 
-               $profesor->setContraseña($hash= password_hash($nuevaContrasenaFinal, PASSWORD_BCRYPT, [rand()]));
+               $profesor->setContrasena($hash= password_hash($nuevaContrasenaFinal, PASSWORD_BCRYPT, [rand()]));
                $nuevaContrasenaFinal = $hash= password_hash($nuevaContrasenaFinal, PASSWORD_BCRYPT, [rand()]);
            }
 
-       $profesor->updateDatosProfesor($nombre, $apellido1,$apellido2,$despacho,$correo,$nuevaContrasenaFinal);
-          return $result;
+        $dao_profesor->updateDatosProfesor($profesor->getId(), $nombre, $apellido1,$apellido2,$despacho,$correo,$nuevaContrasenaFinal);
+
+        $url = "https://vm11.aw.e-ucm.es/EducaZone4.0/ver_profesor.php";
+        echo "<script>window.open('".$url."','_self');</script>";
+        //header("Location: ./ver_profesor.php");
+        //exit;
    }
 }
 

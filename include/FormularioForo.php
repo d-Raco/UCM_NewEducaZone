@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/Form.php';
-require_once __DIR__ . '/dao/Entradas_foro.php';
-require_once __DIR__ . '/dao/Archivos_foro.php';
+require_once __DIR__ . '/dao/DAO_Entradas_Foro.php';
+require_once __DIR__ . '/dao/DAO_Archivos_foro.php';
 
 class FormularioForo extends Form
 {
@@ -58,30 +58,36 @@ class FormularioForo extends Form
         }
         else {
           $entrada = new Entradas_foro();
-          $entrada->setId($entrada->getNumEntradas()+1);
+          $dao_entrada = new DAO_Entradas_foro();
+
+          $entrada->setId($dao_entrada->getNumEntradas()+1);
           $entrada->setIdClase($this->idClase);
           $entrada->setTituloForo($titulo);
           $entrada->setIdCreador($this->idCreador);
           $entrada->setRolCreador($this->rolCreador);
           $entrada->setPermisos($permisos);
           $entrada->setContenido($contenido);
-          $entrada->setFecha(date('Y-m-d h:i:s'));
-          $entrada->insertEntrada();
+          $entrada->setFecha(date('Y-m-d H:i:s'));
+          $dao_entrada->insertEntrada($entrada);
 
           for($key = 0; $key < $total_files; $key++) {
             $archivo = new Archivos_foro();
-            $archivo->setId($archivo->getNumArchivos()+1);
+            $dao_archivo = new DAO_Archivos_foro();
+
+            $archivo->setId($dao_archivo->getNumArchivos()+1);
             $archivo->setIdForo($entrada->getId());
             $archivo->setNombreArchivo($files['name'][$key]);
-            $archivo->setTamañoArchivo($files['size'][$key]);
+            $archivo->setTamanoArchivo($files['size'][$key]);
             $archivo->setArchivo("./archivos/" .$files['name'][$key]);
             $archivo->setTipoArchivo($files['type'][$key]);
             move_uploaded_file($files['tmp_name'][$key], $archivo->getArchivo());
-            $archivo->insertArchivo();
+            $dao_archivo->insertArchivo($archivo);
           }
-
-          echo "Se ha creado una nueva entrada en el foro. ";
-          echo "<a href=\"./foro.php?idClase=" .$this->idClase. "\">Foro</a>";
+          $url = "https://vm11.aw.e-ucm.es/EducaZone4.0/foro.php?idClase=".$this->idClase;
+          echo "<script>window.open('".$url."','_self');</script>";
+          //header("Location: ./foro.php?idClase=".$this->idClase");
+          //exit;
+          exit;
         }
 
         return $result;
