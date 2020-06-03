@@ -1,89 +1,174 @@
 <?php
-//Artur Amon 2020
-require_once('google-calendar-api.php');//para poder acceder a los google calendar del usuario
-require_once('calendarioAjustes.php');  //Los codigos de permiso de google
-echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/tablas.css\">";
-/*Accede al calendario de google para lectura*/
-if(isset($_GET['code'])) {
-    try {
-        $capi = new GoogleCalendarApi();
-        $data = $capi->GetAccessToken(CLIENT_ID, CLIENT_REDIRECT_URL, CLIENT_SECRET, $_GET['code']);
-        $_SESSION['access_token'] = $data['access_token'];
-
-    }
-    catch(Exception $e) {
-        echo $e->getMessage();
-        exit();
-    }
-}
-else{
-    $url = "https://vm11.aw.e-ucm.es/EducaZone4.0/calendarioAcceso.php";
-    echo "<script>window.open('".$url."','_self');</script>";
-    //header('Location: ./calendarioAcceso.php'); //redirige a la pagina de acceso de google
-}
-
-
 require_once __DIR__ . '/include/config.php';
-include("include/comun/cabecera.php");
-include("include/comun/sidebarIzqProfesor.php");
-include("include/comun/pie.php");
-include("include/dao/DAO_Alumno.php");
-include("include/dao/DAO_Centro.php");
+?>
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/moment.min.js"></script>
+<link rel="stylesheet" href="css/fullcalendar.min.css">
+<script src="js/fullcalendar.min.js"></script>
+<script src="js/es.js"></script>
 
-echo '<div id="fondoDIV">';
-
-if($_SESSION['rol'] == "profesor")/*Si es profesor, recibe su centro y lo guarda en $colegio*/{
-    $profesor = new Profesor();
-    $profesor->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
-    $dao_profesor = new DAO_Profesor();
-    $dao_profesor->getProfe($profesor);
-    $colegio = $dao_profesor->getCentro2($profesor->getIdCentro())["nombre"];;
-
-
-    $calendar = $capi->GetCalendarsList($data['access_token']);
-    $contadorCalendarioUnico = 0;
-
-    while($contadorCalendarioUnico < count($calendar) && strcmp($calendar[$contadorCalendarioUnico]["summary"], $colegio) != 0){
-        $contadorCalendarioUnico++;
-    }
-    if($contadorCalendarioUnico < count($calendar)){
-        $IDcolegio = $calendar[$contadorCalendarioUnico]["id"];
-        echo '<iframe src="https://calendar.google.com/calendar/embed?height=650&amp;wkst=2&amp;bgcolor=%2331a36e&amp;ctz=Europe%2FMadrid&amp;src='. $IDcolegio .'&amp;color=%23039BE5&amp;showTitle=1&amp;showNav=1&amp;showDate=1&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border:solid 1px #777" width="900" height="650" frameborder="0" scrolling="no"></iframe>';
-    }
-    else {
-        echo "<h2 id='noCalendario'>No se ha encontrado un calendario con nombre: ". $colegio . " en su Google calendar, revise si ha seleccionado la cuenta correcta o si existe un calendario de su organización.</h2>";
-    }
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<style>
+.fc th {
+	padding: 10px 0px;
+	vertical-align: middle;
+	background: #F2F2F2;
 }
-else/*Si es padre recorre todos los centros de sus hijos y muestra todos los calendarios disponibles*/{
-    $padre = new Padre();
-    $padre->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
-    $padre->getPadre();
-    $hijos = $padre->getHijos();
-    $centros = array();
-    while($filaAlumno = $hijos->fetch_assoc()){
-        $hijoTemp = new Alumno();
-        array_push($centros, $filaAlumno['id_centro']);
-    }
+</style>
+<body>
+<div class ="contenido">
+    <?php
+      include("include/comun/cabecera.php");
+      if($_SESSION['rol'] == 'profesor'){
+        include("include/comun/sidebarIzqProfesor.php");
+      }
+      else{
+        include("include/comun/sidebarIzqPadre.php");
+      }
+    ?>
+	<div class="container">
+		<div class="col"></div>
+		<div class="col-7"><br/><br/><div id="Calendario"></div></div>
+		<div class="col"></div>
+	</div>
+	
+<script>
+$(document).ready(function() {
+	$('#Calendario').fullCalendar({
+		header:{
+			left:'today,prev,next',
+			center:'title',
+			right:'month,basicWeek,agendaWeek,agendaDay'
+		},
+		dayClick:function(date,jsEvent,view){
+			$('#btnAgregar').prop("disabled",false);
+			$('#btnEliminar').prop("disabled",true);
+			$('#btnModificar').prop("disabled",true);
+			
+			limpiarFormulario();
+			$('#txtFecha').val(date.format());
+			$("#ModalEventos").modal();
+		},
+		events:'http://localhost/EducaZone4.0/eventos.php',
+		eventClick:function(calEvent, jsEvent, view) {
+			$('#btnAgregar').prop("disabled",true);
+			$('#btnEliminar').prop("disabled",false);
+			$('#btnModificar').prop("disabled",false);
+		
+			$('#tituloEvento').html(calEvent.title);
+			$('#txtDescripcion').val(calEvent.descripcion);
+			$('#txtId').val(calEvent.id);
+			$('#txtTitulo').val(calEvent.title);
+			$('#txtColor').val(calEvent.color);
+			FechaHora = calEvent.start._i.split(" ");
+			$('#txtFecha').val(FechaHora[0]);
+			$('#txtHora').val(FechaHora[1]);
+			$("#ModalEventos").modal();
+		}
+	});
+});
 
-    array_unique($centros);
 
-    $calendar = $capi->GetCalendarsList($data['access_token']);
-    foreach ($centros as $cole){
+</script>
+<!--Modal para agregar, modificar y eliminar!-->
+	<div class="modal fade" id="ModalEventos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="tituloEvento"></h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+			<input type="hidden" id="txtId" name="txtId" />
+			Fecha: <input type="text" id="txtFecha" name="txtFecha" />
+			
+			<div class="form-row">
+				<div class="form-group col-md-8">
+					<label>Título:</label>
+					<input type="text" id="txtTitulo" class="form-control" placeholder="Título del evento..."/>
+				</div>
+				<div class="form-group col-md-4">
+					<label>Hora del evento:</label>
+					<input type="text" id="txtHora" class="form-control" value="9:30"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Descripcion:</label>
+				<input type="text" id="txtDescripcion" class="form-control"><br/>
+			</div>
+			<div class="form-group">
+				<label>Color:</label>
+				<input type="color" value="#ff0000" id="txtColor" class="form-control"/>
+			</div>
+		  </div>
+		  <div class="modal-footer">
+		  <button type="button" id="btnAgregar" class="btn btn-success">Agregar</button>
+		  <button type="button" id="btnModificar" class="btn btn-success">Modificar</button>
+		  <button type="button" id="btnEliminar" class="btn btn-danger">Borrar</button>
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+</div>
+<script>
+var NuevoEvento;
+$('#btnAgregar').click(function() {
+	RecolectarDatosGUI();
+	EnviarInformacion('agregar',NuevoEvento);
+});
+$('#btnEliminar').click(function() {
+	RecolectarDatosGUI();
+	EnviarInformacion('eliminar',NuevoEvento);
+});
+$('#btnModificar').click(function() {
+	RecolectarDatosGUI();
+	EnviarInformacion('modificar',NuevoEvento);
+});
 
-        $centro = new Centro();
-        $colegio = $centro->getNombrePorID($cole);
-        error_reporting(E_ERROR | E_PARSE);
-        $contadorCalendarioUnico = 0;
-        while($contadorCalendarioUnico < count($calendar) && strcmp($calendar[$contadorCalendarioUnico]["summary"], $colegio) != 0){
-            $contadorCalendarioUnico++;
-        }
-        if($contadorCalendarioUnico < count($calendar)){
-            $IDcolegio = $calendar[$contadorCalendarioUnico]["id"];
-            echo '<iframe src="https://calendar.google.com/calendar/embed?height=650&amp;wkst=2&amp;bgcolor=%2331a36e&amp;ctz=Europe%2FMadrid&amp;src='. $IDcolegio .'&amp;color=%23039BE5&amp;showTitle=1&amp;showNav=1&amp;showDate=1&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border:solid 1px #777" width="900" height="650" frameborder="0" scrolling="no"></iframe>';
-        }
-        else
-            echo "<h2 id='noCalendario'>No se ha encontrado un calendario con nombre: ". $colegio . " en su Google calendar, revise si ha seleccionado la cuenta correcta o si existe un calendario de su organización.</h2>";
-    }
-    echo '</div>';
+function RecolectarDatosGUI() {
+	NuevoEvento = {
+		id:$('#txtId').val(),
+		title:$('#txtTitulo').val(),
+		start:$('#txtFecha').val()+" "+$('#txtHora').val(),
+		color:$('#txtColor').val(),
+		descripcion:$('#txtDescripcion').val(),
+		end:$('#txtFecha').val()+" "+$('#txtHora').val()
+	};
 }
+
+function EnviarInformacion(accion,objEvento) {
+	$.ajax({
+		type:'POST',
+		url:'eventos.php?accion='+accion,
+		data:objEvento,
+		success:function(msg){
+			if(msg) {
+				$('#Calendario').fullCalendar('refetchEvents');
+				$("#ModalEventos").modal('toggle');
+			}
+		},
+		error:function() {
+			alert("Hay un error...");
+		}
+	});
+}
+
+function limpiarFormulario() {
+$('#tituloEvento').html('');
+	$('#txtId').val('');
+	$('#txtTitulo').val('');
+	$('#txtColor').val('');
+	$('#txtDescripcion').val('');
+}
+</script>
+</body>
+</html>

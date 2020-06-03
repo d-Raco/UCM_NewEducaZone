@@ -23,6 +23,7 @@
       </div>
       <a href='admin_profesor.php'>Añadir Profesor</a>
       <a href='admin_alumno.php'>Añadir Alumno</a>
+         <a href='admin_borrarP.php'>Borrar Alumno/Profesor</a>
 	  <div class='back'>
 		<img src='img/back-button-64-64.png' onclick='goBack()'></img>
 	  </div>

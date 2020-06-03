@@ -43,6 +43,14 @@ class DAO_Alumno{
 	public function delete($p) {
 		$query("DELETE Usuarios where id = '" . $p->id . "'");
 	}
+	 public function deleteA($a) {
+      $app = Aplicacion::getSingleton();
+      $conn = $app->conexionBD();
+
+    $query = "DELETE  FROM alumnos where DNI = '$a'";
+    $result = $conn->query($query)
+            or die ($conn->error. " en la línea ".(__LINE__-1));
+  }
 
 	public function getAlumno($alumno) {
 		$app = Aplicacion::getSingleton();

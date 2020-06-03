@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/../dao/DAO_Profesor.php';
 header("Cache-Control: no cache");
-session_cache_limiter("private_no_expire");
 ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">

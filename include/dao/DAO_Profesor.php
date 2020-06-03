@@ -38,7 +38,14 @@ class DAO_Profesor{
 	public function delete($p) {
 		$query("DELETE Usuarios where id = '" . $conn->real_escape_string($p->id) . "'");
 	}
+ public function deleteP($p) {
+      $app = Aplicacion::getSingleton();
+      $conn = $app->conexionBD();
 
+    $query = "DELETE  FROM profesores where usuario = '$p'";
+    $result = $conn->query($query)
+            or die ($conn->error. " en la línea ".(__LINE__-1));
+  }
 	public function getProfe($profesor) {
 		$app = Aplicacion::getSingleton();
 		$conn = $app->conexionBD();

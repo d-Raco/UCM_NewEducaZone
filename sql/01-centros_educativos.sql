@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 31, 2020 at 01:33 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 31-05-2020 a las 23:18:50
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `centros_educativos`
+-- Base de datos: `centros_educativos`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `administrador`
+-- Estructura de tabla para la tabla `administrador`
 --
 
 CREATE TABLE `administrador` (
@@ -36,7 +35,7 @@ CREATE TABLE `administrador` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `administrador`
+-- Volcado de datos para la tabla `administrador`
 --
 
 INSERT INTO `administrador` (`id`, `usuario`, `password`, `foto`) VALUES
@@ -45,7 +44,7 @@ INSERT INTO `administrador` (`id`, `usuario`, `password`, `foto`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `alumnos`
+-- Estructura de tabla para la tabla `alumnos`
 --
 
 CREATE TABLE `alumnos` (
@@ -63,7 +62,7 @@ CREATE TABLE `alumnos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `alumnos`
+-- Volcado de datos para la tabla `alumnos`
 --
 
 INSERT INTO `alumnos` (`DNI`, `nombre`, `apellido1`, `apellido2`, `id_centro`, `id_clase`, `observaciones_medicas`, `id_tutor_legal`, `fecha_nacimiento`, `id_calificaciones`, `foto`) VALUES
@@ -107,7 +106,7 @@ INSERT INTO `alumnos` (`DNI`, `nombre`, `apellido1`, `apellido2`, `id_centro`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `archivos_foro`
+-- Estructura de tabla para la tabla `archivos_foro`
 --
 
 CREATE TABLE `archivos_foro` (
@@ -120,7 +119,7 @@ CREATE TABLE `archivos_foro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `archivos_foro`
+-- Volcado de datos para la tabla `archivos_foro`
 --
 
 INSERT INTO `archivos_foro` (`id`, `id_foro`, `nombre_archivo`, `tamano_archivo`, `archivo`, `tipo_archivo`) VALUES
@@ -132,7 +131,7 @@ INSERT INTO `archivos_foro` (`id`, `id_foro`, `nombre_archivo`, `tamano_archivo`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `asignaturas`
+-- Estructura de tabla para la tabla `asignaturas`
 --
 
 CREATE TABLE `asignaturas` (
@@ -152,7 +151,7 @@ CREATE TABLE `asignaturas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `asignaturas`
+-- Volcado de datos para la tabla `asignaturas`
 --
 
 INSERT INTO `asignaturas` (`id`, `id_profesor`, `nombre_asignatura`, `lunes_inicio`, `lunes_fin`, `martes_inicio`, `martes_fin`, `miercoles_inicio`, `miercoles_fin`, `jueves_inicio`, `jueves_fin`, `viernes_inicio`, `viernes_fin`) VALUES
@@ -220,7 +219,7 @@ INSERT INTO `asignaturas` (`id`, `id_profesor`, `nombre_asignatura`, `lunes_inic
 -- --------------------------------------------------------
 
 --
--- Table structure for table `calificaciones`
+-- Estructura de tabla para la tabla `calificaciones`
 --
 
 CREATE TABLE `calificaciones` (
@@ -240,7 +239,7 @@ CREATE TABLE `calificaciones` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `calificaciones`
+-- Volcado de datos para la tabla `calificaciones`
 --
 
 INSERT INTO `calificaciones` (`id`, `id_asignatura1`, `nota1`, `id_asignatura2`, `nota2`, `id_asignatura3`, `nota3`, `id_asignatura4`, `nota4`, `id_asignatura5`, `nota5`, `id_asignatura6`, `nota6`) VALUES
@@ -284,7 +283,7 @@ INSERT INTO `calificaciones` (`id`, `id_asignatura1`, `nota1`, `id_asignatura2`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `centros`
+-- Estructura de tabla para la tabla `centros`
 --
 
 CREATE TABLE `centros` (
@@ -297,7 +296,7 @@ CREATE TABLE `centros` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `centros`
+-- Volcado de datos para la tabla `centros`
 --
 
 INSERT INTO `centros` (`id`, `nombre`, `provincia`, `direccion`, `telefono`, `email`) VALUES
@@ -310,7 +309,7 @@ INSERT INTO `centros` (`id`, `nombre`, `provincia`, `direccion`, `telefono`, `em
 -- --------------------------------------------------------
 
 --
--- Table structure for table `clases`
+-- Estructura de tabla para la tabla `clases`
 --
 
 CREATE TABLE `clases` (
@@ -329,7 +328,7 @@ CREATE TABLE `clases` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `clases`
+-- Volcado de datos para la tabla `clases`
 --
 
 INSERT INTO `clases` (`id`, `curso`, `letra`, `titulacion`, `id_tutor_clase`, `numero_alumnos`, `id_asignatura1`, `id_asignatura2`, `id_asignatura3`, `id_asignatura4`, `id_asignatura5`, `id_asignatura6`) VALUES
@@ -347,7 +346,7 @@ INSERT INTO `clases` (`id`, `curso`, `letra`, `titulacion`, `id_tutor_clase`, `n
 -- --------------------------------------------------------
 
 --
--- Table structure for table `codigos_de_acceso`
+-- Estructura de tabla para la tabla `codigos_de_acceso`
 --
 
 CREATE TABLE `codigos_de_acceso` (
@@ -357,7 +356,7 @@ CREATE TABLE `codigos_de_acceso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `codigos_de_acceso`
+-- Volcado de datos para la tabla `codigos_de_acceso`
 --
 
 INSERT INTO `codigos_de_acceso` (`codigo`, `id_centro`, `id_alumnos`) VALUES
@@ -401,7 +400,7 @@ INSERT INTO `codigos_de_acceso` (`codigo`, `id_centro`, `id_alumnos`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comentarios_foro`
+-- Estructura de tabla para la tabla `comentarios_foro`
 --
 
 CREATE TABLE `comentarios_foro` (
@@ -416,7 +415,7 @@ CREATE TABLE `comentarios_foro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `comentarios_foro`
+-- Volcado de datos para la tabla `comentarios_foro`
 --
 
 INSERT INTO `comentarios_foro` (`id`, `id_relacion`, `reply`, `id_redactor`, `rol_redactor`, `fecha`, `titulo`, `contenido_comentario`) VALUES
@@ -431,7 +430,7 @@ INSERT INTO `comentarios_foro` (`id`, `id_relacion`, `reply`, `id_redactor`, `ro
 -- --------------------------------------------------------
 
 --
--- Table structure for table `entradas_foro`
+-- Estructura de tabla para la tabla `entradas_foro`
 --
 
 CREATE TABLE `entradas_foro` (
@@ -446,7 +445,7 @@ CREATE TABLE `entradas_foro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `entradas_foro`
+-- Volcado de datos para la tabla `entradas_foro`
 --
 
 INSERT INTO `entradas_foro` (`id`, `id_clase`, `titulo_foro`, `id_creador`, `rol_creador`, `permisos`, `contenido`, `fecha`) VALUES
@@ -457,7 +456,36 @@ INSERT INTO `entradas_foro` (`id`, `id_clase`, `titulo_foro`, `id_creador`, `rol
 -- --------------------------------------------------------
 
 --
--- Table structure for table `incidencias`
+-- Estructura de tabla para la tabla `eventos`
+--
+
+CREATE TABLE `eventos` (
+  `id` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `descripcion` text NOT NULL,
+  `color` varchar(50) NOT NULL,
+  `start` datetime NOT NULL,
+  `end` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `eventos`
+--
+
+INSERT INTO `eventos` (`id`, `title`, `descripcion`, `color`, `start`, `end`) VALUES
+(1, 'Día del Libro', 'La celebración del Día del Libro se remonta a principios del siglo XX. La historia del libro se hace festiva y surgen actividades literarias en todos los centros educativos de toda España.', '#66ffcc', '2020-06-09 09:00:00', '2020-06-09 14:00:00'),
+(2, 'Semana Cultural', 'La Semana Cultural, es una actividad a gran nivel que está compuesta por muchas otras actividades más pequeñas, es decir, durante una semana que normalmente es del mes de junio, se realizan actividades de ocio, culturales y alternativas y a eso es a lo que llamamos Semana Cultural.', '#ffcc66', '2020-06-21 00:00:00', '2020-06-24 00:00:00'),
+(3, 'Educación Vial', 'Las familias deben cumplir con las necesidades de protección que los menores necesitan, sabiendo que son el ejemplo a seguir por éstos y el modelo de actuación que imitaran en el desarrollo de su autonomía como peatones y futuros conductores.', '#ff5050', '2020-06-01 10:00:00', '2020-06-01 12:00:00'),
+(4, 'Carrera Solidaria', 'Realización de todos nuestros alumnos de una carrera solidaria.', '#5fa3e7', '2020-05-31 11:00:00', '2020-05-31 11:00:00'),
+(5, 'AULA', 'Aula es una feria que ayuda al estudiante a decidir eficazmente su futuro formativo y profesional. Combina una oferta  de centros educativos y formativos, entidades y empresas de servicios que dan respuesta a las necesidades de formación de estudiantes (de 4º de E.S.O en adelante) que acuden a elegir el centro en el que formarse para acceder al mercado laboral.', '#00ff00', '2020-06-05 09:00:00', '2020-06-05 09:00:00'),
+(6, 'Museo Arqueológico Nacional - Visita guiada Sala de Egipto', 'De Egipto y Nubia el Museo conserva objetos desde la Prehistoria hasta la época romana y medieval, vinculados al mundo religioso y funerario (sarcófagos, ushebtis, amuletos, momias, estelas, esculturas de divinidades, etc.), muchos de ellos procedentes de excavaciones arqueológicas sistemáticas realizadas en Ehnasya el Medina (Heracleópolis Magna) y en diversos yacimientos nubios.', '#9966ff', '2020-06-19 09:00:00', '2020-06-19 13:00:00'),
+(9, 'ME VOY A MI CASA', '', '#4e00f5', '2020-06-11 12:00:00', '2020-06-11 12:00:00'),
+(10, 'asdfadsf', '', '#682727', '2020-06-12 12:00:00', '2020-06-12 12:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `incidencias`
 --
 
 CREATE TABLE `incidencias` (
@@ -468,7 +496,7 @@ CREATE TABLE `incidencias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `incidencias`
+-- Volcado de datos para la tabla `incidencias`
 --
 
 INSERT INTO `incidencias` (`id`, `id_asignatura`, `id_alumno`, `msg_incidencia`) VALUES
@@ -480,7 +508,7 @@ INSERT INTO `incidencias` (`id`, `id_asignatura`, `id_alumno`, `msg_incidencia`)
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mensajeria`
+-- Estructura de tabla para la tabla `mensajeria`
 --
 
 CREATE TABLE `mensajeria` (
@@ -499,17 +527,18 @@ CREATE TABLE `mensajeria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `mensajeria`
+-- Volcado de datos para la tabla `mensajeria`
 --
 
 INSERT INTO `mensajeria` (`id`, `id_origen`, `rol_origen`, `id_destinatario`, `rol_destinatario`, `contenido_msg`, `fecha_hora`, `etiqueta`, `nombre_archivo`, `archivo`, `tamano_archivo`, `tipo_archivo`) VALUES
 (1, 1, 'profesor', 10, 'padre', 'Neus ha tenido una actitud deficiente estos últimos días. Me gustaría tener una tutoría con ella y con usted para hablar de la situación. Por favor, cuénteme que días tiene dispponibles.', '2020-05-31 00:55:03', '', '', '', 0, ''),
-(2, 10, 'padre', 1, 'profesor', 'Estoy de acuerdo, últimamente está irreconocible. A ver si podemos aclarar la situación juntos. Adjunto un archivo con mi disponibilidad. Un saludo.', '2020-05-31 01:01:14', '', 'HORARIOS.docx', './archivos/HORARIOS.docx', 11919, 'application/vnd.openxmlfo');
+(2, 10, 'padre', 1, 'profesor', 'Estoy de acuerdo, últimamente está irreconocible. A ver si podemos aclarar la situación juntos. Adjunto un archivo con mi disponibilidad. Un saludo.', '2020-05-31 01:01:14', '', 'HORARIOS.docx', './archivos/HORARIOS.docx', 11919, 'application/vnd.openxmlfo'),
+(3, 1, 'padre', 28, 'profesor', 'Hola, queria pedir una tutoria', '2020-05-31 23:11:39', '', '', '', 0, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `profesores`
+-- Estructura de tabla para la tabla `profesores`
 --
 
 CREATE TABLE `profesores` (
@@ -526,7 +555,7 @@ CREATE TABLE `profesores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `profesores`
+-- Volcado de datos para la tabla `profesores`
 --
 
 INSERT INTO `profesores` (`id`, `id_centro`, `nombre`, `apellido1`, `apellido2`, `despacho`, `correo`, `usuario`, `password`, `foto`) VALUES
@@ -554,7 +583,7 @@ INSERT INTO `profesores` (`id`, `id_centro`, `nombre`, `apellido1`, `apellido2`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tutor_legal`
+-- Estructura de tabla para la tabla `tutor_legal`
 --
 
 CREATE TABLE `tutor_legal` (
@@ -571,7 +600,7 @@ CREATE TABLE `tutor_legal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tutor_legal`
+-- Volcado de datos para la tabla `tutor_legal`
 --
 
 INSERT INTO `tutor_legal` (`id`, `nombre`, `apellido1`, `apellido2`, `telefono_movil`, `telefono_fijo`, `correo`, `usuario`, `password`, `foto`) VALUES
@@ -589,38 +618,37 @@ INSERT INTO `tutor_legal` (`id`, `nombre`, `apellido1`, `apellido2`, `telefono_m
 (12, 'Ana', 'Villaseñor', 'Pérez', '643 812 467', '910606338', 'AnaVillaPerez@gmail.com', 'anavillaper', '$2y$10$kSHEe1iTxEZ8Ay64C3C.numLUWQD8QkPvOoUsP.UNH3WLuhwmELNO', NULL);
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `administrador`
+-- Indices de la tabla `administrador`
 --
 ALTER TABLE `administrador`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `usuario` (`usuario`);
 
 --
--- Indexes for table `alumnos`
+-- Indices de la tabla `alumnos`
 --
 ALTER TABLE `alumnos`
   ADD PRIMARY KEY (`DNI`);
 
 --
--- Indexes for table `archivos_foro`
+-- Indices de la tabla `archivos_foro`
 --
 ALTER TABLE `archivos_foro`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_archivo_foro` (`id_foro`);
 
 --
--- Indexes for table `asignaturas`
+-- Indices de la tabla `asignaturas`
 --
 ALTER TABLE `asignaturas`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_asignatura_profesor` (`id_profesor`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `calificaciones`
+-- Indices de la tabla `calificaciones`
 --
 ALTER TABLE `calificaciones`
   ADD PRIMARY KEY (`id`),
@@ -632,17 +660,16 @@ ALTER TABLE `calificaciones`
   ADD KEY `fk_calificaciones_asignatura6` (`id_asignatura6`);
 
 --
--- Indexes for table `centros`
+-- Indices de la tabla `centros`
 --
 ALTER TABLE `centros`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `clases`
+-- Indices de la tabla `clases`
 --
 ALTER TABLE `clases`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_tutor` (`id_tutor_clase`),
   ADD KEY `fk_clase_asignatura1` (`id_asignatura1`),
   ADD KEY `fk_clase_asignatura2` (`id_asignatura2`),
   ADD KEY `fk_clase_asignatura3` (`id_asignatura3`),
@@ -651,27 +678,32 @@ ALTER TABLE `clases`
   ADD KEY `fk_clase_asignatura6` (`id_asignatura6`);
 
 --
--- Indexes for table `codigos_de_acceso`
+-- Indices de la tabla `codigos_de_acceso`
 --
 ALTER TABLE `codigos_de_acceso`
-  ADD KEY `id_centro` (`id_centro`),
-  ADD KEY `id_alumnos` (`id_alumnos`);
+  ADD KEY `id_centro` (`id_centro`);
 
 --
--- Indexes for table `comentarios_foro`
+-- Indices de la tabla `comentarios_foro`
 --
 ALTER TABLE `comentarios_foro`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `entradas_foro`
+-- Indices de la tabla `entradas_foro`
 --
 ALTER TABLE `entradas_foro`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_entradaforo_clase` (`id_clase`);
 
 --
--- Indexes for table `incidencias`
+-- Indices de la tabla `eventos`
+--
+ALTER TABLE `eventos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `incidencias`
 --
 ALTER TABLE `incidencias`
   ADD PRIMARY KEY (`id`),
@@ -679,13 +711,13 @@ ALTER TABLE `incidencias`
   ADD KEY `fk_asignatura_alumno` (`id_asignatura`);
 
 --
--- Indexes for table `mensajeria`
+-- Indices de la tabla `mensajeria`
 --
 ALTER TABLE `mensajeria`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `profesores`
+-- Indices de la tabla `profesores`
 --
 ALTER TABLE `profesores`
   ADD PRIMARY KEY (`id`),
@@ -694,100 +726,100 @@ ALTER TABLE `profesores`
   ADD KEY `id_centro` (`id_centro`);
 
 --
--- Indexes for table `tutor_legal`
+-- Indices de la tabla `tutor_legal`
 --
 ALTER TABLE `tutor_legal`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `usuario` (`usuario`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `administrador`
+-- AUTO_INCREMENT de la tabla `administrador`
 --
 ALTER TABLE `administrador`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `archivos_foro`
+-- AUTO_INCREMENT de la tabla `archivos_foro`
 --
 ALTER TABLE `archivos_foro`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `asignaturas`
+-- AUTO_INCREMENT de la tabla `asignaturas`
 --
 ALTER TABLE `asignaturas`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
--- AUTO_INCREMENT for table `calificaciones`
+-- AUTO_INCREMENT de la tabla `calificaciones`
 --
 ALTER TABLE `calificaciones`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
--- AUTO_INCREMENT for table `clases`
+-- AUTO_INCREMENT de la tabla `clases`
 --
 ALTER TABLE `clases`
   MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `comentarios_foro`
+-- AUTO_INCREMENT de la tabla `comentarios_foro`
 --
 ALTER TABLE `comentarios_foro`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `entradas_foro`
+-- AUTO_INCREMENT de la tabla `entradas_foro`
 --
 ALTER TABLE `entradas_foro`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT for table `incidencias`
+-- AUTO_INCREMENT de la tabla `eventos`
+--
+ALTER TABLE `eventos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `incidencias`
 --
 ALTER TABLE `incidencias`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `mensajeria`
+-- AUTO_INCREMENT de la tabla `mensajeria`
 --
 ALTER TABLE `mensajeria`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `profesores`
+-- AUTO_INCREMENT de la tabla `profesores`
 --
 ALTER TABLE `profesores`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT for table `tutor_legal`
+-- AUTO_INCREMENT de la tabla `tutor_legal`
 --
 ALTER TABLE `tutor_legal`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `archivos_foro`
+-- Filtros para la tabla `archivos_foro`
 --
 ALTER TABLE `archivos_foro`
   ADD CONSTRAINT `fk_archivo_foro` FOREIGN KEY (`id_foro`) REFERENCES `entradas_foro` (`id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `asignaturas`
---
-ALTER TABLE `asignaturas`
-  ADD CONSTRAINT `fk_asignatura_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesores` (`id`) ON UPDATE CASCADE;
-
---
--- Constraints for table `calificaciones`
+-- Filtros para la tabla `calificaciones`
 --
 ALTER TABLE `calificaciones`
   ADD CONSTRAINT `fk_calificaciones_asignatura1` FOREIGN KEY (`id_asignatura1`) REFERENCES `asignaturas` (`id`) ON UPDATE CASCADE,
@@ -798,7 +830,7 @@ ALTER TABLE `calificaciones`
   ADD CONSTRAINT `fk_calificaciones_asignatura6` FOREIGN KEY (`id_asignatura6`) REFERENCES `asignaturas` (`id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `clases`
+-- Filtros para la tabla `clases`
 --
 ALTER TABLE `clases`
   ADD CONSTRAINT `fk_clase_asignatura1` FOREIGN KEY (`id_asignatura1`) REFERENCES `asignaturas` (`id`) ON UPDATE CASCADE,
@@ -806,31 +838,29 @@ ALTER TABLE `clases`
   ADD CONSTRAINT `fk_clase_asignatura3` FOREIGN KEY (`id_asignatura3`) REFERENCES `asignaturas` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_clase_asignatura4` FOREIGN KEY (`id_asignatura4`) REFERENCES `asignaturas` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_clase_asignatura5` FOREIGN KEY (`id_asignatura5`) REFERENCES `asignaturas` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_clase_asignatura6` FOREIGN KEY (`id_asignatura6`) REFERENCES `asignaturas` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_clase_tutor` FOREIGN KEY (`id_tutor_clase`) REFERENCES `profesores` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_clase_asignatura6` FOREIGN KEY (`id_asignatura6`) REFERENCES `asignaturas` (`id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `codigos_de_acceso`
+-- Filtros para la tabla `codigos_de_acceso`
 --
 ALTER TABLE `codigos_de_acceso`
-  ADD CONSTRAINT `fk_codigo_alumno` FOREIGN KEY (`id_alumnos`) REFERENCES `alumnos` (`DNI`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_codigo_centro` FOREIGN KEY (`id_centro`) REFERENCES `centros` (`id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `entradas_foro`
+-- Filtros para la tabla `entradas_foro`
 --
 ALTER TABLE `entradas_foro`
   ADD CONSTRAINT `fk_entradaforo_clase` FOREIGN KEY (`id_clase`) REFERENCES `clases` (`id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `incidencias`
+-- Filtros para la tabla `incidencias`
 --
 ALTER TABLE `incidencias`
   ADD CONSTRAINT `fk_asignatura_alumno` FOREIGN KEY (`id_asignatura`) REFERENCES `asignaturas` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_incidencias_alumno` FOREIGN KEY (`id_alumno`) REFERENCES `alumnos` (`DNI`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `profesores`
+-- Filtros para la tabla `profesores`
 --
 ALTER TABLE `profesores`
   ADD CONSTRAINT `fk_profesor_centro` FOREIGN KEY (`id_centro`) REFERENCES `centros` (`id`) ON UPDATE CASCADE;

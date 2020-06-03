@@ -38,7 +38,7 @@ require_once __DIR__ . '/include/config.php';
 
         echo "<div class='flex_info'>";
           echo "<div><img src=\"" .$alumno->getFoto(). "\"  width=\"150\" height=\"150\"></div>
-          <div><h1>".$alumno->getNombre(). " " .$alumno->getAp1(). " " .$alumno->getAp2()."</h1></div>";
+          <div class = 'nombre_alumno'><h1>".$alumno->getNombre(). " " .$alumno->getAp1(). " " .$alumno->getAp2()."</h1></div>";
         echo "</div>";
 
         echo "<div class='flex_funciones'>
@@ -57,7 +57,7 @@ require_once __DIR__ . '/include/config.php';
           echo "</div>";
           echo "<div class = funciones>
             <div class='clase'><a href='ver_clase.php?id=" .$filaClase["id"]. "&nombre=".$alumno->getNombre()."&ap1=".$alumno->getAp1()."&ap2=".$alumno->getAp2()."'><img class='clase_imagen' src='./img/clase.png' alt='logo' height='150' width='150'><a><br>
-            <a href='ver_clase.php?id=" .$filaClase["id"]. "&nombre=".$alumno->getNombre()."&ap1=".$alumno->getAp1()."&ap2=".$alumno->getAp2()."'>" .$filaClase["curso"]. " " .$filaClase["titulacion"]. " " .$filaClase["letra"]. "</a></div>
+            <a href='ver_clase.php?id=" .$filaClase["id"]. "&nombre=".$alumno->getNombre()."&ap1=".$alumno->getAp1()."&ap2=".$alumno->getAp2()."'>" .$filaClase["curso"]. "º " .$filaClase["titulacion"]. " " .$filaClase["letra"]. "</a></div>
 
             <div class='horario'><a href='horario_alumno.php?id=" .$alumno->getNombre(). "&id1=" .$filaClase["id_asignatura1"]. "&id2=". $filaClase["id_asignatura2"]. "&id3=" .$filaClase["id_asignatura3"]. "&id4=" .$filaClase["id_asignatura4"]. "&id5=" .$filaClase["id_asignatura5"]. "&id6=" .$filaClase["id_asignatura6"]. "'><img class='clase_imagen' src='./img/horario.png' alt='logo' height='150' width='150'></a><br>
             <a href='horario_alumno.php?id=" .$alumno->getNombre(). "&id1=" .$filaClase["id_asignatura1"]. "&id2=". $filaClase["id_asignatura2"]. "&id3=" .$filaClase["id_asignatura3"]. "&id4=" .$filaClase["id_asignatura4"]. "&id5=" .$filaClase["id_asignatura5"]. "&id6=" .$filaClase["id_asignatura6"]. "'>Horario</a></div>";
@@ -114,10 +114,16 @@ require_once __DIR__ . '/include/config.php';
             $dao_profe = new DAO_Profesor();
             $dao_profe->getProfesorById($profe);
             echo "<div class='tutor'>
-              <h4>Tutor de ".$filaClase["curso"]." ".$filaClase["letra"]." ".$filaClase["titulacion"].":</h4>
-              <a href='ver_profesor.php?profesor=" .$profe->getUsuario(). "&tutor=" .$alumno->getIdTutor(). "''>
-                <img  class='imag' src='".$profe->getFoto()."' height=40px width=40px> ".$profe->getNombre()." ".$profe->getAp1()." ".$profe->getAp2()."
-              </a></div>";
+              <h4>Tutor de ".$filaClase["curso"]."º ".$filaClase["letra"]." ".$filaClase["titulacion"].":</h4>";
+              if($_SESSION['rol'] == "padre"){
+                echo "<a href='ver_profesor.php?profesor=" .$profe->getUsuario(). "&tutor=" .$alumno->getIdTutor(). "''>
+                  <img  class='imag' src='".$profe->getFoto()."' height=40px width=40px> ".$profe->getNombre()." ".$profe->getAp1()." ".$profe->getAp2()."
+                </a></div>";
+              }
+              else{
+                echo "<img  class='imag' src='".$profe->getFoto()."' height=40px width=40px> ".$profe->getNombre()." ".$profe->getAp1()." ".$profe->getAp2()."</div>";
+              }
+
 
             echo "<div class = 'incidencia_info'>";
               echo "<h4>Últimas incidencias:</h4>";

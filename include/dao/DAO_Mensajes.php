@@ -95,6 +95,33 @@ class DAO_Mensajes{
     return $result;
   }
 
+  public function getMensajesPadre($idPadre){
+    $app = Aplicacion::getSingleton();
+    $conn = $app->conexionBD();
+
+    $sql = "SELECT * FROM mensajeria WHERE id_destinatario = '$idPadre' AND rol_destinatario = 'padre'";
+
+    $result = $conn->query($sql)
+        or die ($conn->error. " en la línea ".(__LINE__-1));
+
+    if($result->num_rows > 0){
+      return $result;
+    }
+  }
+
+  public function getMensajesProfesor($idProfe){
+    $app = Aplicacion::getSingleton();
+    $conn = $app->conexionBD();
+
+    $sql = "SELECT * FROM mensajeria WHERE id_destinatario = '$idProfe' AND rol_destinatario = 'profesor'";
+
+    $result = $conn->query($sql)
+        or die ($conn->error. " en la línea ".(__LINE__-1));
+
+    if($result->num_rows > 0){
+      return $result;
+    }
+  }
 
 }
 

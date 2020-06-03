@@ -42,9 +42,17 @@ require_once __DIR__ . '/include/config.php';
             <a href= admin_alumnos.php?><p>Nuevo Alumno</p></a></div>";
 
 
+          echo "<div class='nuevoAlumno'><a href=\"admin_borrarP.php\"><img class='clase_imagen' src='./img/borrado.jpg' alt='logo' height='150' width='150'></a><br>
+          <a href= admin_borrarP.php?><p>Borrar alumno/profesor</p></a></div>";
+
+
+
+
+
+
 	?>
     </div>
-
+    
    </div>
    <?php
      include("include/comun/pie.php");

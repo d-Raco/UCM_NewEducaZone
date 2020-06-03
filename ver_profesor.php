@@ -41,8 +41,11 @@ require_once __DIR__ . '/include/config.php';
         $filaCorreo = $profesor->getCorreo();
         $filaAsignaturas = $dao_profesor->getAsignaturas($profesor->getId());
 
-        echo "<div class='flex_info'>
-          <br><h1>".$profesor->getNombre(). " " .$profesor->getAp1(). " " .$profesor->getAp2()."</h1>";
+        echo "<div class='flex_info'>";
+          if($_SESSION['rol'] == "padre"){
+            echo "<div><img src=\"" .$profesor->getFoto(). "\"  width=\"150\" height=\"150\"></div>";
+          }
+          echo "<br><h1>".$profesor->getNombre(). " " .$profesor->getAp1(). " " .$profesor->getAp2()."</h1>";
         echo "</div>";
 
 

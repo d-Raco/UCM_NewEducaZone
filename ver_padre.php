@@ -75,8 +75,7 @@ require_once __DIR__ . '/include/config.php';
                 echo "<div class = 'imagenes_hijos'>";
                   $filaHijos = $dao_padre->getHijos($padre);
                   while($hijo = $filaHijos->fetch_assoc()){
-                    echo "<img class='clase_imagen' src=\"" .$hijo["foto"]. "\"  width=\"150\" height=\"150\"><br>";
-                    echo "<a href=\"ver_alumno.php?id=".$hijo["DNI"]."\">".$hijo["nombre"]."</a><br><br>";
+                    echo "<a href=\"ver_alumno.php?id=".$hijo["DNI"]."\"><img class='clase_imagen' src=\"" .$hijo["foto"]. "\"  width=\"150\" height=\"150\"><br>".$hijo["nombre"]."</a><br><br>";
                   }
                 echo "</div>";
               echo "</div>";

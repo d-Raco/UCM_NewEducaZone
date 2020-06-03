@@ -12,7 +12,6 @@
   <body>
     <?php
 	  header("Cache-Control: no cache");
-	  session_cache_limiter("private_no_expire");
       $padre = new Padre();
       $padre->setUsuario(htmlspecialchars(trim(strip_tags($_SESSION["name"]))));
       $dao_padre = new DAO_Padre();

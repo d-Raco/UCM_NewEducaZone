@@ -92,3 +92,7 @@
 .clase_imagen:hover{
   box-shadow: 0 0 2px 5px #91C499;
 }
+
+.nombre_alumno{
+	margin-left: 20px;
+}
